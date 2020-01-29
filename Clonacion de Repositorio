@@ -1,0 +1,11 @@
+REQUISITOS
+''''''''''
+Instalar git descargando e instalando de la pagina https://git-scm.com/
+
+CLONACION DEL REPOSITORIO GITHUB
+''''''''''''''''''''''''''''''''
+* Preparar el directorio que tendra la carpeta del repositorio
+* En el directorio anterior abrir la terminal
+* Ejecutar: git clone https://github.com/RDHB/Proyecto-IS-802.git
+
+
