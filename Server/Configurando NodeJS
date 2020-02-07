@@ -1,0 +1,6 @@
+                                                                 ---------- Correr todo desde la consola ubicado en la carperta de trabajo
+npm init                                                         ---------- Iniciar proyecto de nodejs
+                                                                 ---------- Rellenar con los datos que piden
+npm install express --save                                       ---------- Instala express
+npm install body-parser --save
+npm i -D nodemon
