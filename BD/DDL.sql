@@ -363,7 +363,7 @@ CREATE TABLE Producto (
 -- Table Inventario_has_Lista_MyR
 -- -----------------------------------------------------
 CREATE TABLE Inventario_has_Lista_MyR (
-	idInventario_has_Lista_MyR VARCHAR(45) NOT NULL,
+	idInventario_has_Lista_MyR INT NOT NULL,
 	Lista_MyR_idLista_MyR INT NOT NULL,
 	Producto_idProducto INT NOT NULL,
 	Rebajados_del_Inventario TINYINT NOT NULL,

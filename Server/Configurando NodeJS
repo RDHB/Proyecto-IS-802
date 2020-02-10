@@ -5,3 +5,6 @@ npm install express --save                                       ---------- Inst
 npm install body-parser --save                                   ---------- Paquete para parsear peticiones http
 npm i -D nodemon                                                 ---------- Paquete para tener iniciar servidor y realizar cambios en caliente
 mpn i -S mongoose                                                ---------- Paquete para usar mongo con nodejs
+npm install tedious --saved                                      ---------- Instala paquete para usar SQL server con node --saved                        
+npm install mssql --saved                                        ---------- Sirve para usar con express y conectar a sql server
+            
