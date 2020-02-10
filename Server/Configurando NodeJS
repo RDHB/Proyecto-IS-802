@@ -3,6 +3,7 @@ npm init                                                         ---------- Inic
                                                                  ---------- Rellenar con los datos que piden
 npm install express --save                                       ---------- Instala express
 npm install body-parser --save                                   ---------- Instala paquete para parsear url's de API's
-npm i -D nodemon                                                 ---------- Instala paquete para hacer cambios a servidor sin reiniciar
-npm install tedious                                              ---------- Instala paquete para usar SQL server con node
-
+npm i -D nodemon                                                 ---------- Instala paquete para hacer cambios a servidor si--savedciar
+npm install tedious --saved                                      ---------- Instala paquete para usar SQL server con node --saved                        
+npm install mssql --saved                                        ---------- Sirve para usar con express y conectar a sql server
+            
