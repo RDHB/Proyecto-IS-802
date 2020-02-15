@@ -152,22 +152,22 @@
 					color: #fff;
 				}
 
-	#logo {
+	#perfil-usuario {
 		position: relative;
 		margin: 1.75em 1.5em 1.5em 1.5em;
 		min-height: 48px;
 		cursor: default;
 	}
 
-		#logo h1 {
+		#perfil-usuario h1 {
 			position: relative;
 			color: #fff;
 			font-weight: 600;
-			font-size: 1em;
+			font-size: 1.25em;
 			line-height: 1em;
 		}
 
-		#logo p {
+		#perfil-usuario p {
 			position: relative;
 			display: block;
 			font-size: 0.6em;
@@ -176,23 +176,23 @@
 			margin: 0.5em 0 0 0;
 		}
 
-		#logo .image {
+		#perfil-usuario .image {
 			position: absolute;
 			left: 0;
 			top: 0;
 		}
 
-	#nav ul {
+	.nav ul {
 		list-style: none;
 		padding-left: 0;
 		margin-bottom: 0;
 	}
 
-		#nav ul li {
+		.nav ul li {
 			padding-left: 0;
 		}
 
-			#nav ul li a {
+			.nav ul li a {
 				display: block;
 				padding: 0.5em 1.5em 0.5em 1.5em;
 				color: rgba(255, 255, 255, 0.5);
@@ -205,13 +205,13 @@
 				transition: none;
 			}
 
-				#nav ul li a span {
+				.nav ul li a span {
 					position: relative;
 					display: block;
 					font-size: 0.8em;
 				}
 
-					#nav ul li a span:before {
+					.nav ul li a span:before {
 						position: absolute;
 						left: 0;
 						color: #41484c;
@@ -220,13 +220,13 @@
 						line-height: 1.75em;
 					}
 
-				#nav ul li a.active {
+				.nav ul li a.active {
 					background: rgba(0, 0, 0, 0.15);
 					box-shadow: inset 0 0 0.25em 0 rgba(0, 0, 0, 0.125);
 					color: #fff;
 				}
 
-					#nav ul li a.active span:before {
+					.nav ul li a.active span:before {
 						color: #e27689;
 					}
 
@@ -429,11 +429,11 @@
 				position: relative;
 			}
 
-		#logo {
+		#perfil-usuario {
 			margin: 1.5em 1.25em 1.25em 1.25em;
 		}
 
-		#nav ul li a {
+		.nav ul li a {
 			padding: 0.5em 1.25em 0.5em 1.25em;
 		}
 

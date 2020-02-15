@@ -3,39 +3,25 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
+// Funcion para hacer aparecer el header u ocultarlo
+
 
 (function($) {
-	
 	var	$window = $(window),
 		$body = $('body'),
-		$nav = $('#nav');
-	
-	// Scrolly.
-		$('.scrolly').scrolly();
+		$wrapper = $('#wrapper');
 
-	// Header (narrower + mobile).
-
-		// Toggle.
-			$(
-				'<div id="headerToggle">' +
-					'<a href="#header" class="toggle"></a>' +
-				'</div>'
-			)
-				.appendTo($body);
-
-		// Header.
-			$('#header')
-				.panel({
-					delay: 500,
-					hideOnClick: true,
-					hideOnSwipe: true,
-					resetScroll: true,
-					resetForms: true,
-					side: 'left',
-					target: $body,
-					visibleClass: 'header-visible'
-				});
-
+	// Header.
+	$('#header').panel({
+		delay: 500,
+		hideOnClick: true,
+		hideOnSwipe: true,
+		resetScroll: true,
+		resetForms: true,
+		side: 'left',
+		target: $body,
+		visibleClass: 'header-visible'
+    });
 
 
 
@@ -43,9 +29,7 @@
 
 
 				
-	var	$window = $(window),
-		$body = $('body'),
-		$wrapper = $('#wrapper');
+	
 
 	// Breakpoints.
 		breakpoints({
