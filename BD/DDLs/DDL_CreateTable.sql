@@ -11,9 +11,19 @@ CREATE TABLE Persona (
 	correoElectronico VARCHAR(45) NULL,
 	direccion VARCHAR(45) NULL,
 	numeroIdentidad VARCHAR(45) NOT NULL,
-	genero VARCHAR(45) NULL,
 	fechaIngreso DATE NULL,
+	Genero_idGenero INT NOT NULL,
 	PRIMARY KEY (idPersona)
+)
+
+
+-- -----------------------------------------------------
+-- Table Persona
+-- -----------------------------------------------------
+CREATE TABLE Genero (
+	idGenero INT NOT NULL,
+	descripcion VARCHAR(45),
+	PRIMARY KEY (idGenero)
 )
 
 -- -----------------------------------------------------
@@ -82,6 +92,7 @@ CREATE TABLE Marca (
 CREATE TABLE Modelo (
 	idModelo INT NOT NULL,
 	descripcion VARCHAR(45) NULL,
+	Marca_idMarca INT NOT NULL,
 	PRIMARY KEY (idModelo)
 )
 
@@ -96,7 +107,6 @@ CREATE TABLE Vehiculos (
 	placa VARCHAR(45) NULL,
 	numeroMotor VARCHAR(45) NULL,
 	caja_de_cambios VARCHAR(45) NULL,
-	Marca_idMarca INT NOT NULL,
 	Modelo_idModelo INT NOT NULL,
 	PRIMARY KEY (idVehiculos)
 )
@@ -256,7 +266,6 @@ CREATE TABLE Promociones (
 	descripcion VARCHAR(45) NULL,
 	fechaInicio DATE NULL,
 	fechaFin DATE NULL,
-	estado VARCHAR(45) NULL,
 	PRIMARY KEY (idPromociones)
 )
 
@@ -503,7 +512,7 @@ CREATE TABLE Estado_Usuario (
 CREATE TABLE Usuarios (
 	idUsuario INT NOT NULL,
 	nombreUsuario VARCHAR(45) NOT NULL,
-	contraseña VARCHAR(45) NOT NULL,
+	contrasenia VARCHAR(45) NOT NULL,
 	Empleado_idEmpleado INT NOT NULL,
 	Estado_Usuario_idEstado_Usuario INT NOT NULL,
 	PRIMARY KEY (idUsuario)

@@ -15,9 +15,10 @@ CREATE TABLE [Promociones] (
 );
 GO
 
-INSERT INTO Promociones([idPromociones],[descripcion],[fechaInicio ],[fechaFin],[estado]) 
+INSERT INTO Promociones([idPromociones],[descripcion],[fechaInicio ],[fechaFin]) 
 VALUES
-(1,'Inicio anio','2020-01-03 01:00:00','2020-02-01 22:56:54','mattis'),
-(2,'Semana Santa','2020-14-01 01:00:00','2020-04-15 22:54:49','euismod'),
-(3,'Fin anio','2020-12-15 16:01:00','2020-12-23 22:12:42','magna');
+(1,'Inicio anio','2020-01-03 01:00:00','2020-02-01 22:56:54'),
+(2,'Semana Santa','2020-14-01 01:00:00','2020-04-15 22:54:49'),
+(3,'Fin anio','2020-12-15 16:01:00','2020-12-23 22:12:42');
+
 

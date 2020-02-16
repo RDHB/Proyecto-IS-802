@@ -15,5 +15,6 @@ GO
 INSERT INTO FormaPago([idFormaPago ],[descripcion]) 
 VALUES
 (1,'Efectivo'),
-(2,'Tarjeta de credito/debito');
+(2,'Tarjeta de credito/debito'),
+(3,'Billeteras Digitales');
 

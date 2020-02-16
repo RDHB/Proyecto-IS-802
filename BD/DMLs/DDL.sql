@@ -1,26 +1,4 @@
-IF EXISTS(SELECT 1 FROM sys.tables WHERE object_id = OBJECT_ID('Persona'))
-BEGIN;
-    DROP TABLE [Persona];
-END;
-GO
-
-CREATE TABLE [Persona] (
-    [PersonaID] INTEGER NOT NULL IDENTITY(1, 1),
-    [idPersona] INTEGER NULL,
-    [primerNombre] VARCHAR(255) NULL,
-    [segundoNombre] VARCHAR(255) NULL,
-    [primerApellido] VARCHAR(255) NULL,
-    [segundoApellido] VARCHAR(255) NULL,
-    [correoElectronico] VARCHAR(255) NULL,
-    [direccion] VARCHAR(255) NULL,
-    [numeroIdentidad] VARCHAR(13) NULL,
-    [genero] INTEGER NULL,
-    [fechaIngreso] VARCHAR(255),
-    PRIMARY KEY ([PersonaID])
-);
-GO
-
-INSERT INTO Persona([idPersona],[primerNombre],[segundoNombre],[primerApellido],[segundoApellido],[correoElectronico],[direccion],[numeroIdentidad],[idGenero],[fechaIngreso]) 
+INSERT INTO Persona([idPersona],[primerNombre],[segundoNombre],[primerApellido],[segundoApellido],[correoElectronico],[direccion],[numeroIdentidad],[genero],[fechaIngreso]) 
 VALUES
 (1,'John','Fletcher','Blackwell','Howard','Proin@massaInteger.co.uk','398-8797 Orci. Ave','16020124 3508',1,'2018-04-18 08:07:39'),
 (2,'Raymond','Fitzgerald','Washington','Small','molestie.tellus@idanteNunc.co.uk','6128 Libero Rd.','16801028 9125',1,'2020-02-09 13:58:45'),

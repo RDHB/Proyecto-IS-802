@@ -1,3 +1,4 @@
+DML: Genero;
 DML: Persona;
 DML: Cliente;
 DML: AreaTrabajo;

@@ -1,6 +1,9 @@
 -- <=== Alter Table ===>
 -- Table Persona
 ALTER TABLE Persona ADD
+	CONSTRAINT fk_Persona_Genero1 
+		FOREIGN KEY (Genero_idGenero) 
+		REFERENCES Genero (idGenero),
 	CONSTRAINT numeroIdentidad_UNIQUE 
 		UNIQUE (numeroIdentidad)
 
@@ -22,11 +25,14 @@ ALTER TABLE Cliente ADD
 		FOREIGN KEY (Persona_idPersona) 
 		REFERENCES Persona (idPersona)
 
+-- Table Modelo
+ALTER TABLE Modelo ADD
+CONSTRAINT fk_Vehiculos_Marca 
+		FOREIGN KEY (Marca_idMarca) 
+		REFERENCES Marca (idMarca)
+
 -- Table Vehiculos
 ALTER TABLE Vehiculos ADD
-	CONSTRAINT fk_Vehiculos_Marca 
-		FOREIGN KEY (Marca_idMarca) 
-		REFERENCES Marca (idMarca),
 	CONSTRAINT fk_Vehiculos_Modelo1 
 		FOREIGN KEY (Modelo_idModelo) 
 		REFERENCES Modelo (idModelo)

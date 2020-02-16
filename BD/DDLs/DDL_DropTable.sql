@@ -44,3 +44,4 @@ DROP TABLE Marca;
 DROP TABLE AreaTrabajo;
 DROP TABLE Cliente;
 DROP TABLE Persona;
+DROP TABLE Genero;
