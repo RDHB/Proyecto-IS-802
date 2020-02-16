@@ -5,7 +5,7 @@ const bodyParser = require('body-parser')
 const app = express()
 const port = process.env.PORT || 3000
 
-app.use(express.static(__dirname + '/APP'))
+//app.use(express.static(__dirname + '/APP'))
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
@@ -13,6 +13,7 @@ app.use(bodyParser.json())
 app.listen(port, () => {
     console.log(`aplicacion corriendo en http://localhost:${port}`)
 })
+
 
 //CONFIGURANDO DIRECCIONES PARA LAS VISTAS
 app.get('/main', (req,res) => {
@@ -24,4 +25,14 @@ app.get('/login', (req,res) => {
 })
 
 
+
 //CONFIGURANDO LAS DIFERENTES PETICIONES GET, POST, PUT, DELETE
+app.get('/img', (req,res) => {
+    res.sendFile(__dirname + '/APP/public/img/4.jpg')
+})
+
+app.get('/producto',(req,resp) => {
+    res.send({messaje: "estos deberian ser los productos"})
+})
+
+
