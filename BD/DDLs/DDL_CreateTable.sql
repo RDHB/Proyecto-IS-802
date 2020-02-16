@@ -1,3 +1,13 @@
+-- -----------------------------------------------------
+-- Table Persona
+-- -----------------------------------------------------
+CREATE TABLE Genero (
+	idGenero INT NOT NULL,
+	descripcion VARCHAR(45),
+	PRIMARY KEY (idGenero)
+)
+
+
 -- <=== Create Table ===>
 -- -----------------------------------------------------
 -- Table Persona
@@ -16,15 +26,6 @@ CREATE TABLE Persona (
 	PRIMARY KEY (idPersona)
 )
 
-
--- -----------------------------------------------------
--- Table Persona
--- -----------------------------------------------------
-CREATE TABLE Genero (
-	idGenero INT NOT NULL,
-	descripcion VARCHAR(45),
-	PRIMARY KEY (idGenero)
-)
 
 -- -----------------------------------------------------
 -- Table Aspirante
@@ -190,7 +191,7 @@ CREATE TABLE Solicitudes (
 	idSolicitudes INT NOT NULL,
 	descripcion VARCHAR(45) NULL,
 	Permisos_idPermisos INT NULL,
-	Vaciones_idVaciones INT NULL,
+	Vacaciones_idVacaciones INT NULL,
 	Empleado_idEmpleado INT NOT NULL,
 	PRIMARY KEY (idSolicitudes)
 )

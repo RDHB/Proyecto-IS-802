@@ -59,8 +59,8 @@ ALTER TABLE Solicitudes ADD
 	CONSTRAINT fk_Solicitudes_Permisos1 
 		FOREIGN KEY (Permisos_idPermisos) 
 		REFERENCES Permisos (idPermisos),
-	CONSTRAINT fk_Solicitudes_Vaciones1 
-		FOREIGN KEY (Vaciones_idVaciones) 
+	CONSTRAINT fk_Solicitudes_Vacaciones1 
+		FOREIGN KEY (Vacaciones_idVacaciones) 
 		REFERENCES Vacaciones (idVacaciones),
 	CONSTRAINT fk_Solicitudes_Empleado1 
 		FOREIGN KEY (Empleado_idEmpleado) 

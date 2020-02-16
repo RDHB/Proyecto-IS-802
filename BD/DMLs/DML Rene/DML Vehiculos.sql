@@ -1,4 +1,4 @@
-F EXISTS(SELECT 1 FROM sys.tables WHERE object_id = OBJECT_ID('Vehiculos'))
+IF EXISTS(SELECT 1 FROM sys.tables WHERE object_id = OBJECT_ID('Vehiculos'))
 BEGIN;
     DROP TABLE [Vehiculos];
 END;
