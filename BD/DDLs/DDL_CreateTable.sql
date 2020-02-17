@@ -341,7 +341,7 @@ CREATE TABLE Inventario_has_Lista_MyR (
 	idInventario_has_Lista_MyR INT NOT NULL,
 	ListaMyR_idListaMyR INT NOT NULL,
 	Producto_idProducto INT NOT NULL,
-	rebajados_del_inventario TINYINT NOT NULL,
+	rebajados_del_inventario BIT NOT NULL,
 	PRIMARY KEY (idInventario_has_Lista_MyR)
 )
 
@@ -480,7 +480,7 @@ CREATE TABLE Cotizacion_has_Producto (
 	idCotizacion_has_Producto INT NOT NULL,
 	Cotizacion_idCotizacion INT NOT NULL,
 	Producto_idProducto INT NOT NULL,
-	aprovados TINYINT NOT NULL,
+	aprovados BIT NOT NULL,
 	PRIMARY KEY (idCotizacion_has_Producto)
 )
 
@@ -490,7 +490,7 @@ CREATE TABLE Cotizacion_has_Producto (
 CREATE TABLE OrdenTrabajo_has_Servicios (
 	OrdenTrabajo_idOrdenTrabajo INT NOT NULL,
 	Servicios_idServicios INT NOT NULL,
-	servicioEfectuado TINYINT NOT NULL,
+	servicioEfectuado BIT NOT NULL,
 	PRIMARY KEY (
 		OrdenTrabajo_idOrdenTrabajo,
 		Servicios_idServicios
