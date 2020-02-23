@@ -99,7 +99,10 @@ input, select, textarea {
 	}
 
 	body {
-		background: #ffffff;
+		background-image: url(../../images/spotlight03.jpg);
+		background-repeat: no-repeat;
+		background-size: cover;
+		
 	}
 
 		body.is-preload *, body.is-preload *:before, body.is-preload *:after {
@@ -8601,3 +8604,10 @@ input, select, textarea {
 			#wrapper.divided > .invert:first-child {
 				box-shadow: none !important;
 			}
+
+		.circulo{
+			width: 200px;
+			height: 200px;
+			background-color: #1ebdd1;
+			border-radius: 100%;
+		}

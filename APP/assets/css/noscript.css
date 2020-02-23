@@ -385,3 +385,12 @@
 	.banner.onscroll-image-fade-in.is-inactive .image img {
 		opacity: 1;
 	}
+
+	div.contenedor {
+		width: 360px; ;
+		height: 800px;
+		padding: 1000px;
+		border: 10xp solid gray;
+		background-color: blue;
+	}
+	
