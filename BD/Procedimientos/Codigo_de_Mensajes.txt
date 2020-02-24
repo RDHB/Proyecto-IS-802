@@ -1,0 +1,8 @@
+CodigoMensaje		Mensaje
+_________________________________________________________________________________
+0			Transaccion exitosa
+1			Error: Fallo la conexion con la Base de Datos
+2			Error: Fallo la peticion con el procedimeinto almacenado
+3			Error: Campos vacios
+4			Error: Identificadores no validos
+5			Error: Validacion en la condicion del procedimeinto
