@@ -1,0 +1,51 @@
+Comandos de ubicación:
+pwd									Para ubicarme en que directorio me encuentro
+cd									Para situarse dentro del directorio
+ls									Para listar todo lo que está dentro de donde nos situamos
+ll									Para listar todo pero más detallado
+mkdir								Para crear directorios
+	mkdir <nombre_de_la_carpeta>
+touch								Para crear los ficheros archivos
+	touch <nombre_del_archivo>
+
+
+Comandos Básicos de Git:
+-h 									Muestra las cosas que se pueden hacer con el comando -h
+git init							Iniciar repositorio
+git checkout -- <archivo>			Descartar cambios en el Working Directory
+git reset HEAD <archivo>			Descartar cambios del Staging Area
+git reset <identificador>			Destrulle los cambios al identificador
+git reset --hard <identificador>	Destrulle los cambios al identificador y los del Stagin Area
+	HEAD							Commit actual
+	HEAD~1							Commit anterior
+git revert <identificador>			Revierte o elimina el commit del identificador
+git add <file>						Añadir archivos al Staging Area
+git status							Ver estado de los archivos
+git commit							Hacer una foto/comentario
+	i, "comentario", ESC, :wq, ENTER
+git commit -m "comentario"			Hacer un foto/comentario rápido
+git log								Muestra todas las fotos
+	git log --online				Muestra los commits con su identificador
+	git log --online --decorate		Muestra los commits de forma decorada
+	git log --online --all			Muestra todos los commits hasta los de ramas distintas
+git push							Subir archivos al repositorio
+git pull -u <rama>					Actualizar archivos con el repositorio
+git clone							Clonar repositorio
+git diff -- <archivo>				Muestra las diferencias del Staging Area con el Working Directory
+git add .gitignore					En el archivo .gitignore se escriben los nombres de las carpetas y archivos para ignorar
+	Crear archivo .gitignore
+
+
+
+Comandos de Ramificación de Git:
+git branch							Ver ramas existentes
+git branch login					Crea la rama "login"
+git checkout login					Cambiar a la rama "login"
+git checkout -b login				Crear y cambiarse a la rama "login"
+git checkout -m login inicio		Renombrar una rama
+git branch -h						Help
+git branch -d <Rama>				Borrar una Rama
+git merge <Rama>					Fusionar una rama en git
+									Para esto se debe estar en la rama a la cual se va a fusionar
+
+
