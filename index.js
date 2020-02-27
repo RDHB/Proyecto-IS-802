@@ -1,38 +1,26 @@
 'use strict'
 
-const express = require('express')
-const bodyParser = require('body-parser')
-const app = express()
-const port = process.env.PORT || 3000
+//LLAMADOS DE DOCUMENTACION REQUERIDA
+const functGestionUsuario = require("./Server/funcionesQuery/gestionUsuario");
+const qry = require("./Server/Conexion BD/Conexion_SQLServer");
+const configServer = require('./Server/ConfiguracionServer/Config');
+const bodyParser = require('body-parser');
+const express = require('express');
 
-//app.use(express.static(__dirname + '/APP'))
-app.use(bodyParser.urlencoded({extended: false}))
-app.use(bodyParser.json())
+//DEFINIENDO CONSTANTES IMPORTANTES
+const port = configServer.port;
+const app = express();
 
-//ESCUCHANDO A TRAVEZ DEL PUERTO 3000
+//DEFINIENDO MIDDLEWARE
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+
+//ESCUCHANDO A TRAVEZ DEL PUERTO CONFIGURADO
 app.listen(port, () => {
     console.log(`aplicacion corriendo en http://localhost:${port}`)
-})
+});
 
-
-//CONFIGURANDO DIRECCIONES PARA LAS VISTAS
-app.get('/main', (req,res) => {
-    res.sendFile(__dirname + '/APP/main.html')
-})
-
-app.get('/login', (req,res) => {
-    res.sendFile(__dirname + '/APP/login.html')
-})
-
-
-
-//CONFIGURANDO LAS DIFERENTES PETICIONES GET, POST, PUT, DELETE
-app.get('/img', (req,res) => {
-    res.sendFile(__dirname + '/APP/public/img/4.jpg')
-})
-
-app.get('/producto',(req,resp) => {
-    res.send({messaje: "estos deberian ser los productos"})
-})
-
-
+// POST VALIDACION DE USUARIO
+app.post('/usuario',(req,resp) => {
+    functGestionUsuario.queryLogin(qry,req.body.usuario,req.body.password,resp);
+});
