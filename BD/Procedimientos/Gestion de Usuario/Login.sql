@@ -19,7 +19,7 @@ select @cEmpleado;
 */
 
 GO
-CREATE PROCEDURE SP_LOGIN(
+CREATE OR REPLACE PROCEDURE SP_LOGIN(
 	--Informacion Usuario
 	@pcNombreUsuario			VARCHAR(45),
 	@pcContrasenia				VARCHAR(45),
