@@ -36,6 +36,8 @@ Descripcion y estructura de Carpetas
 
 7. RRHH: En esta carpetan estaran todos los formularios del modulo Recursos Humanos
     -Se identifica con el prefijo: RH_
+        Jefe de RRHH: RH-J_
+        Asistente de RRHH: RH-A_
 
 8. Vehiculos: En esta carpetan estaran todos los formularios del modulo Vehiculos
     -Se identifica con el prefijo: VE_

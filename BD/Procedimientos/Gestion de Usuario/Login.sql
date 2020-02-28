@@ -27,7 +27,8 @@ CREATE OR REPLACE PROCEDURE SP_LOGIN(
 	--Parametros de Salida
 	@pnCodigoMensaje			INT OUTPUT,
 	@pcMensaje 					VARCHAR(1000) OUTPUT,
-	@pnCodigoEmpleado			VARCHAR(50) OUTPUT
+	@pnCodigoEmpleado			VARCHAR(50) OUTPUT,
+	@pnIdCargo					INT OUTPUT
 )
 AS
 BEGIN
@@ -96,6 +97,9 @@ BEGIN
 	
 	select @pnCodigoEmpleado=e.codigoEmpleado from Empleado e
 	inner join Usuarios u on e.idEmpleado=u.Empleado_idEmpleado
+	where u.nombreUsuario=@pcNombreUsuario;
+	
+	select @pnIdCargo=Cargo_idCargo from Empleado
 	where u.nombreUsuario=@pcNombreUsuario;
 	SET @pcMensaje='Acceso Exitoso';
 END
