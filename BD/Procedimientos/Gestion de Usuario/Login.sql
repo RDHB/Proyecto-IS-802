@@ -1,105 +1,85 @@
-﻿/*
-select * from Usuarios
-
-declare @cMensaje int;
-declare @Mensaje varchar(1000);
-declare @cEmpleado varchar(50);
-
-exec SP_LOGIN
-	'Murphy', 
-	'FSJ44MIN4FJ', 
-	@cMensaje output,
-	@Mensaje output,
-	@cEmpleado output
-;
-
-select @cMensaje;
-select @Mensaje;
-select @cEmpleado;
-*/
-
-GO
-CREATE OR REPLACE PROCEDURE SP_LOGIN(
+﻿GO
+-- <=== Pantalla Login ===>
+CREATE PROCEDURE SP_LOGIN(
 	--Informacion Usuario
-	@pcNombreUsuario			VARCHAR(45),
-	@pcContrasenia				VARCHAR(45),
+	@pnombreUsuario				VARCHAR(45),
+	@pcontrasenia				VARCHAR(45),
 	
-	--Parametros de Salida
-	@pnCodigoMensaje			INT OUTPUT,
-	@pcMensaje 					VARCHAR(1000) OUTPUT,
-	@pnCodigoEmpleado			VARCHAR(50) OUTPUT,
-	@pnIdCargo					INT OUTPUT
-)
-AS
+	-- Parametros de Salida
+    -- Codigo de mensaje
+	@pcodigoMensaje				INT OUTPUT,
+	@pmensaje 					VARCHAR(1000) OUTPUT,
+
+	-- Otros parametros de salida
+	@pcodigoEmpleado			VARCHAR(50) OUTPUT,
+	@pidCargo					INT OUTPUT
+) AS
 BEGIN
-	--Declaracion de Variables
-	DECLARE	@vnConteo INT;
-	SET @pnCodigoMensaje=0;
-	SET @pcMensaje='';
+	/* Funcionalidad: Login de Usuarios
+    * Construir un select con la sigueinte informacion:
+    * nombreUsuario, contrasenia
+    *
+    * Consultar los sigueintes datos en la tabla Empleado:
+    * codigoEmpleado, idCargo
+    */
+	-- Declaracion de Variables
+    DECLARE	@vconteo INT;
+
+    -- Setear Valores
+	SET @pcodigoMensaje = 0;
+	SET @pmensaje = '';
 
 
-
-	
-
-	--Validacion de campos nulos
-	IF @pcNombreUsuario='' or @pcNombreUsuario IS NULL BEGIN
-		SET @pcMensaje=@pcMensaje + ' nombreUsuario, ';
+	-- Validacion de campos nulos
+	IF @pnombreUsuario = '' OR @pnombreUsuario IS NULL BEGIN
+		SET @pmensaje=@pmensaje + ' nombreUsuario ';
 	END;
 	
-	IF @pcContrasenia='' or @pcContrasenia IS NULL BEGIN
-		SET @pcMensaje=@pcMensaje + ' contrasenia ';
+	IF @pcontrasenia = '' OR @pcontrasenia IS NULL BEGIN
+		SET @pmensaje=@pmensaje + ' contrasenia ';
 	END;
 	
-	IF @pcMensaje<>'' BEGIN
-		set @pnCodigoMensaje=3;
-		SET @pcMensaje='Error: Campos vacios: '+@pcMensaje;
+	IF @pmensaje <> '' BEGIN
+		SET @pcodigoMensaje = 3;
+		SET @pmensaje = 'Error: Campos vacios: ' + @pmensaje;
 		RETURN;
 	END;
 
 
-	
-	
+	-- Validacion de identificadores
+	SELECT @vconteo = COUNT(*) FROM Usuarios
+	WHERE NombreUsuario = @pnombreUsuario;
 
-	--Validacion de identificadores
-	SELECT @vnConteo=COUNT(*) FROM Usuarios
-	WHERE NombreUsuario=@pcNombreUsuario;
-
-	IF @vnConteo=0 BEGIN
-		SET @pcMensaje=@pcMensaje + 'Usuario no registrado.';
+	IF @vconteo = 0 BEGIN
+		SET @pmensaje = @pmensaje + 'Usuario no registrado.';
 	END;
 		
-	IF @pcMensaje<>'' BEGIN
-		set @pnCodigoMensaje=4;
-		SET @pcMensaje='Error: Identificadores no validos: '+@pcMensaje;
+	IF @pmensaje <> '' BEGIN
+		SET @pcodigoMensaje = 4;
+		SET @pmensaje = 'Error: Identificadores no validos: ' + @pmensaje;
 		RETURN;
 	END;
 
-
-
-
-
-	--Validacion de procedimientos
-	IF @pcContrasenia <> (
+	
+	-- Validacion de procedimientos
+	IF @pcontrasenia <> (
 		SELECT Contrasenia FROM Usuarios
-		WHERE NombreUsuario=@pcNombreUsuario
+		WHERE NombreUsuario = @pnombreUsuario
 	) BEGIN
-		SET @pcMensaje=@pcMensaje + 'La contraseña es incorrecta.';
+		SET @pmensaje=@pmensaje + 'La contraseña es incorrecta.';
 	END;
 
-	IF @pcMensaje<>'' BEGIN
-		set @pnCodigoMensaje=5;
-		SET @pcMensaje='Error: Validacion en la condicion del procdimiento: ' + @pcMensaje;
+	IF @pmensaje <> '' BEGIN
+		SET @pcodigoMensaje = 5;
+		SET @pmensaje = 'Error: Validacion en la condicion del procdimiento: ' + @pmensaje;
 		RETURN;
 	END;
 
 
+	-- Accion del procedimiento 
+	select @pcodigoEmpleado = e.codigoEmpleado, @pidCargo = Cargo_idCargo from Empleado e
+	inner join Usuarios u on e.idEmpleado = u.Empleado_idEmpleado
+	where u.nombreUsuario = @pnombreUsuario;
 	
-	
-	select @pnCodigoEmpleado=e.codigoEmpleado from Empleado e
-	inner join Usuarios u on e.idEmpleado=u.Empleado_idEmpleado
-	where u.nombreUsuario=@pcNombreUsuario;
-	
-	select @pnIdCargo=Cargo_idCargo from Empleado
-	where u.nombreUsuario=@pcNombreUsuario;
-	SET @pcMensaje='Acceso Exitoso';
+	SET @pmensaje = 'Acceso Exitoso';
 END

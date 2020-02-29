@@ -1,14 +1,7 @@
-/* Funcionalidad: Devolver informacion de una tabla
- * Construir un Select con la sigueinte informacion:
- * - Tabla de la que se desea consultar
- * - Campo del que se desea filtrar ( <nombre del campo> si es ninguno no se filtra )
- * - Caracteres a buscar ( Usar %Like% )
- * 
- * Se requieren los siguientes parametros: nombreTabla, nombreCampo
- * Devuelve en un JSON todos los datos de la tabla
-*/
-CREATE PROCEDURE EXTRAER_TABLAS(
-	-- Parametros de Entrada
+--<=== Pantalla ===>
+GO;
+CREATE PROCEDURE SIGLAS_NOMBRE_PA(
+    -- Parametros de Entrada
 
     
     -- Parametros de Salida
@@ -47,3 +40,5 @@ BEGIN
 
 
 END
+
+
