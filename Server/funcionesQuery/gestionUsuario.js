@@ -15,13 +15,9 @@ function SP_LOGIN(conn,usuario,password,reqOrigin,resp){
             conn.close();
             if(data.output.pnCodigoMensaje == 0){
                 reqOrigin.session.name = usuario;
-                console.log(reqOrigin.session.name);
                 reqOrigin.session.password = password;
-                console.log(reqOrigin.session.password);
                 reqOrigin.session.IdCargo = data.output.pnIdCargo;
-                console.log(reqOrigin.session.IdCargo);
                 reqOrigin.session.CodigoEmpleado = data.output.pnCodigoEmpleado;
-                console.log(reqOrigin.session.CodigoEmpleado);
             }
             resp.send(data.output);
         })
