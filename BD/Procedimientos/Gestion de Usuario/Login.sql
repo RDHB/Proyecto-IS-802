@@ -100,6 +100,6 @@ BEGIN
 	where u.nombreUsuario=@pcNombreUsuario;
 	
 	select @pnIdCargo=Cargo_idCargo from Empleado
-	where u.nombreUsuario=@pcNombreUsuario;
+	where codigoEmpleado=@pnCodigoEmpleado;
 	SET @pcMensaje='Acceso Exitoso';
 END
