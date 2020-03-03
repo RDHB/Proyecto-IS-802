@@ -122,5 +122,11 @@ BEGIN
 	inner join Usuarios u on u.Empleado_idEmpleado = e.idEmpleado
 	where u.nombreUsuario = @pnombreUsuario;
 	
+	select @pCodigoEmpleado=e.codigoEmpleado from Empleado e
+	inner join Usuarios u on e.idEmpleado=u.Empleado_idEmpleado
+	where u.nombreUsuario=@pNombreUsuario;
+	
+	select @pIdCargo=Cargo_idCargo from Empleado
+	where codigoEmpleado=@pCodigoEmpleado;
 	SET @pmensaje = 'Acceso Exitoso';
 END
