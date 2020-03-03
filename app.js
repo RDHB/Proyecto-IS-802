@@ -15,6 +15,7 @@ const app = express();
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(session(config.configSession));
+app.use(express.static('./APP'));
 app.use('/volvo/api/GU',apisGU);
 app.use('/volvo/api/Miscelaneos',apisMiscelaneos);
 
