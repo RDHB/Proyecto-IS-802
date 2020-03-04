@@ -147,18 +147,93 @@ inner join Empleado e on e.idEmpleado = r.Empleado_idEmpleado
 
 
 -- JSON
-DECLARE @json NVarChar(max) = N'{
-   "Campo1": valor1,
-   "Campo2": "valor2",
+-- Requisitos version >= 2016
+select @@VERSION
+ALTER DATABASE database_name SET COMPATIBILITY_LEVEL = 130
+
+-- Consultar con JSON
+DECLARE @json NVARCHAR(max) = N'{
+   "idGenero": 3,
+   "descripcion": "Otro"
 }';
 
 SELECT * FROM openjson(@json)
-select @@VERSION
-
-ALTER DATABASE database_name SET COMPATIBILITY_LEVEL = 130
+SELECT * FROM openjson(@json) WITH (idGenero int '$.idGenero')
 
 
 
+-- Ejecutar consulta con JSON
+DECLARE @ConsultaSQL VARCHAR(max);
+DECLARE @json NVARCHAR(max) = N'{
+   "idGenero": 3,
+   "descripcion": "Otro"
+}';
+
+SET @ConsultaSQL = 'SELECT * FROM openjson(' + CHAR(39) + @json + CHAR(39) + ') WITH (idGenero int ' + CHAR(39) + '$.idGenero' + CHAR(39) +  ')';
+SELECT @ConsultaSQL;
+EXEC (@ConsultaSQL);
+
+
+
+-- Guardar la consulta ejecutada con JSON
+DECLARE @ConsultaSQL VARCHAR(max);
+DECLARE @json NVARCHAR(max) = N'{
+   "idGenero": 3,
+   "descripcion": "Otro"
+}';
+
+SET @ConsultaSQL = 'SELECT * FROM openjson(' + CHAR(39) + @json + CHAR(39) + ') WITH (idGenero int ' + CHAR(39) + '$.idGenero' + CHAR(39) +  ')';
+
+DECLARE @idTable TABLE (id int);
+insert into @idTable (id) EXEC (@ConsultaSQL);
+
+SELECT * FROM @idTable;
+
+
+
+-- Insertar con JSON
+DECLARE @ConsultaSQL VARCHAR(max);
+DECLARE @json NVARCHAR(max) = N'{
+   "idGenero": 3,
+   "descripcion": "Otro"
+}';
+SET @ConsultaSQL = 'INSERT INTO Genero ( idGenero, descripcion ) 
+	(SELECT idGenero, descripcion FROM OPENJSON(' + CHAR(39) + @json + CHAR(39) + ') 
+	WITH ( idGenero INT, descripcion VARCHAR(45) ))';
+SELECT @ConsultaSQL;
+EXEC (@ConsultaSQL);
+select * from Genero;
+delete from Genero where idGenero = 3;
+
+
+
+-- Actualizar con JSON
+DECLARE @json NVARCHAR(max) = N'{
+	"idGenero": 2,
+	"descripcion": "MujerES"
+}';
+UPDATE Genero
+SET idGenero = B.idGenero, descripcion = B.descripcion
+FROM Genero AS A
+JOIN OPENJSON(@json)
+	WITH (idGenero INT, descripcion VARCHAR(45)) B
+	ON A.idGenero = 2
+;
+select * from Genero
+
+
+
+-- Eliminar con JSON
+DECLARE @json VARCHAR(MAX) = N'{
+	"idGenero": 3,
+	"descripcion": "Mujer"
+}';
+Delete Genero
+FROM Genero AS A
+JOIN OPENJSON(@json) 
+	WITH (idGenero INT, descripcion VARCHAR(45)) AS B
+	ON A.idGenero = B.idGenero
+select * from Genero
 
 
 
@@ -351,16 +426,18 @@ DECLARE
 	@prjson				NVarChar(MAX),
 	@prAccion			VARCHAR(45),
 	@prcodigoMensaje	INT,
-	@prmensaje			VARCHAR(1000);
-
-SET @prNombreTabla = 'Genero';
+	@prmensaje			VARCHAR(1000)
+;
+SET @prNombreTabla = 'Promociones';
 SET	@prNombreCampo = '';
 SET	@prFiltroCampo = '';
 SET @prjson = N'{
-	"idGenero": 3,
-	"descripcion": "Otro"
+	"idPromociones": 4,
+	"descripcion": "Prueba",
+	"fechaInicio": "2020-01-04",
+	"fechaFin": "2020-02-04"
 }';
-SET @prAccion = 'INSERTAR';
+SET @prAccion = 'DELETE';
 SET @prcodigoMensaje = 0;
 SET @prmensaje = '';
 
@@ -380,3 +457,7 @@ EXEC GENERIC_GESTION_TABLAS
 -- OUTPUT
 SELECT @prcodigoMensaje;
 SELECT @prmensaje;
+
+select * from Promociones;
+
+
