@@ -3,7 +3,7 @@
 // IMPORTANDO LOS MODULOS NECESARIOS
 const sql = require('mssql');
 const conn = require('../../db/connectionDB');
-const messageMiscelaneos = require('../../others/messageMiscelaneos');
+const messagesMiscelaneos = require('../../others/messagesMiscelaneos');
 
 // DEFINIENDO LAS FUNCIONES
 function SP_LOGIN(req,res){
@@ -20,17 +20,17 @@ function SP_LOGIN(req,res){
             if(result.output.pcodigoMensaje == 0){
                 req.session.name = req.body.usuario;
                 req.session.password = req.body.password;
-                req.session.IdCargo = result.output.pidCargo;
-                req.session.CodigoEmpleado = result.output.pcodigoEmpleado;
+                req.session.idCargo = result.output.pidCargo;
+                req.session.codigoEmpleado = result.output.pcodigoEmpleado;
             }
             res.send(result.output);
         }).catch(function(err){
             conn.close();
-            resp.send(messageMiscelaneos.errorC2);
+            resp.send(messagesMiscelaneos.errorC2);
         });
     })
     .catch(function(err){
-        res.send(messageMiscelaneos.errorC1);
+        res.send(messagesMiscelaneos.errorC1);
     });
 };
 
