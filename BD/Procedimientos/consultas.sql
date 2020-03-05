@@ -1,45 +1,3 @@
-select codigoEmpleado, Cargo_idCargo, u.nombreUsuario, u.contrasenia from Usuarios u 
-inner join Empleado e on e.idEmpleado = u.Empleado_idEmpleado;
-
-select * from Usuarios;
-
--- Consulta SP_LOGIN
-declare @codigoMensaje int;
-declare @Mensaje varchar(1000);
-declare @cEmpleado varchar(50);
-declare @pnIdCargo  int;
-exec SP_LOGIN
-	'Plato', 
-	'BHE81RRR3RE', 
-	@codigoMensaje output,
-	@Mensaje output,
-	@cEmpleado output,
-	@pnIdCargo output
-;
-
-select @codigoMensaje;
-select @Mensaje;
-select @cEmpleado;
-select @pnIdCargo;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 -- Consultas a la informacion de la base de datos
 select * from INFORMATION_SCHEMA.TABLES
 
@@ -408,7 +366,29 @@ DEALLOCATE cursor_columns_json;
 
 
 
+select codigoEmpleado, Cargo_idCargo, u.nombreUsuario, u.contrasenia from Usuarios u 
+inner join Empleado e on e.idEmpleado = u.Empleado_idEmpleado;
 
+select * from Usuarios;
+
+-- LLamar al procedimiento almacenado: GU_LOGIN
+declare @codigoMensaje int;
+declare @Mensaje varchar(1000);
+declare @cEmpleado varchar(50);
+declare @pnIdCargo  int;
+exec SP_LOGIN
+	'Plato', 
+	'BHE81RRR3RE', 
+	@codigoMensaje output,
+	@Mensaje output,
+	@cEmpleado output,
+	@pnIdCargo output
+;
+
+select @codigoMensaje;
+select @Mensaje;
+select @cEmpleado;
+select @pnIdCargo;
 
 
 
@@ -461,3 +441,51 @@ SELECT @prmensaje;
 select * from Promociones;
 
 
+
+
+
+
+
+
+
+
+
+-- LLamar al procedimiento almacenado: GU_GESTION_USUARIOS
+select * from Usuarios;
+
+DECLARE
+	@prcodigoEmpleado		VARCHAR(45),
+	@prnombreUsuario		VARCHAR(45),
+	@prContrasenia			VARCHAR(45),
+	@prAccion				VARCHAR(45),
+
+	@prcodigoMensaje		INT,
+	@prmensaje				VARCHAR(1000)
+;
+SET @prcodigoEmpleado = '';
+SET	@prnombreUsuario = 'LuisFer15';
+SET	@prContrasenia = '';
+SET @prAccion = 'ACTIVATE';
+
+SET @prcodigoMensaje = 0;
+SET @prmensaje = '';
+
+EXEC GU_GESTION_USUARIOS
+	-- INTPUT
+	@prcodigoEmpleado,
+	@prnombreUsuario,
+	@prContrasenia,
+    @prAccion,
+	
+	-- OUTPUT
+	@prcodigoMensaje OUTPUT,
+	@prmensaje OUTPUT;
+;
+
+-- OUTPUT
+SELECT @prcodigoMensaje;
+SELECT @prmensaje;
+
+delete from Usuarios where idUsuario = 20
+select * from Usuarios u 
+inner join Empleado e on u.Empleado_idEmpleado = e.idEmpleado;

@@ -13,7 +13,7 @@ CREATE PROCEDURE GU_GESTION_USUARIOS(
 	@pcodigoEmpleado			VARCHAR(45),
 	@pnombreUsuario				VARCHAR(45),
 	@pcontrasenia				VARCHAR(45),
-	@paccion					VARCHAR(45),
+	@pAccion					VARCHAR(45),
 	
 	-- Parametros de Salida
     -- Codigo de mensaje
