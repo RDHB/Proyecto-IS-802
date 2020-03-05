@@ -1,3 +1,14 @@
+-- <=== Gestion Tablas ===>
+/* Requisitos de las acciones:
+ * SELECT: @pNombreTabla, 
+ * Opcional: @pNombreCampo, @pFiltroCampo
+ *
+ * INSERT: @pNombreCampo, @json
+ *
+ * UPDATE: @pNombreCampo, @json
+ *
+ * DELETE: @pNombreCampo, @json
+*/
 CREATE PROCEDURE [dbo].[GENERIC_GESTION_TABLAS](
 	-- Parametros de Entrada
 	@pNombreTabla						VARCHAR(250),
@@ -13,33 +24,39 @@ CREATE PROCEDURE [dbo].[GENERIC_GESTION_TABLAS](
 	@pmensaje 					VARCHAR(1000) OUTPUT
 )AS
 BEGIN
-    -- Validacion de campos nulos
-    IF @pAccion = '' OR @pAccion IS NULL BEGIN
-        SET @pmensaje=@pmensaje + ' Accion ';
-    END;
-
-    IF @pmensaje <> '' BEGIN
-        SET @pcodigoMensaje = 3;
-        SET @pmensaje = 'Error: Campos vacios: ' + @pmensaje;
-        RETURN;
-    END;
-
-
-	-- Declaracion de Variables
+    -- Declaracion de Variables
 	DECLARE	@vconteo INT;
 	DECLARE @ConsultaSQL NVARCHAR(500);
+	DECLARE @tmpTabla TABLE (columna VARCHAR(45));
+	DECLARE @vnombre_idCampo VARCHAR(45);
+	DECLARE @vidCampo INT;
+	DECLARE @idTable TABLE (id int);
+	
+	-- Variables String para la consulta
+    DECLARE @vcolumnas VARCHAR(MAX) = ''
+    	, @vvariables VARCHAR(MAX) = ''
+		,@colum_name_json VARCHAR(MAX) = ''
+		, @vcolumnas_json VARCHAR(MAX) = ''
+	;
 
+    -- Variables CURSOR
+    DECLARE @colum_name VARCHAR(MAX)
+    	, @data_type VARCHAR(MAX)
+        , @character_len INT
+    ;
+
+
+
+	/* Funcionalidad: Devolver informacion de una tabla
+    * Construir un Select con la sigueinte informacion:
+    * - Tabla de la que se desea consultar
+    * - Campo del que se desea filtrar ( <nombre del campo> si es ninguno no se filtra )
+    * - Caracteres a buscar ( Usar %Like% )
+    * 
+    * Se requieren los siguientes parametros: nombreTabla, nombreCampo(opcional), FiltroCampo(opcional)
+    * Devuelve en un JSON con todos los datos de la tabla
+    */
     IF @pAccion='SELECT' BEGIN
-        /* Funcionalidad: Devolver informacion de una tabla
-        * Construir un Select con la sigueinte informacion:
-        * - Tabla de la que se desea consultar
-        * - Campo del que se desea filtrar ( <nombre del campo> si es ninguno no se filtra )
-        * - Caracteres a buscar ( Usar %Like% )
-        * 
-        * Se requieren los siguientes parametros: nombreTabla, nombreCampo(opcional), FiltroCampo(opcional)
-        * Devuelve en un JSON con todos los datos de la tabla
-        */
-        
         -- Setear Valores
         SET @pcodigoMensaje=0;
         SET @pmensaje='';
@@ -64,6 +81,7 @@ BEGIN
         END;
 
 
+
         -- Validacion de identificadores
         IF @pNombreCampo <> '' BEGIN
             SELECT @vconteo = COUNT(*) FROM INFORMATION_SCHEMA.TABLES
@@ -84,6 +102,7 @@ BEGIN
                 RETURN;
             END;
         END;
+
 
 
         -- Validacion de procedimientos
@@ -113,6 +132,7 @@ BEGIN
             SET @pmensaje = 'Error: Validacion en la condicion del procdimiento: ' + @pmensaje;
             RETURN;
         END;
+
 
 
         -- Accion del procedimiento 
@@ -149,34 +169,20 @@ BEGIN
 
 
 
-
-	-- Declaracion de Variables
-    -- Variables String para la consulta
-    DECLARE @vcolumnas VARCHAR(MAX) = ''
-    	, @vvariables VARCHAR(MAX) = ''
-		,@colum_name_json VARCHAR(MAX) = ''
-		, @vcolumnas_json VARCHAR(MAX) = ''
-	;
-
-    -- Variables CURSOR
-    DECLARE @colum_name VARCHAR(MAX)
-    	, @data_type VARCHAR(MAX)
-        , @character_len INT
-    ;
-	DECLARE @tmpTabla TABLE (columna VARCHAR(45));
+	/* Funcionalidad: Insertar informacion en una tabla
+    * Construir un Insert con la sigueinte informacion:
+    * - Tabla de la que se desea insertar
+    * - Datos en formato JSON
+    * 
+    * Se requieren los siguientes parametros: nombreTabla, DATOS_JSON
+    * Añade un nuevo registro a la tabla especificada con la informacion del JSON
+    */
     IF @pAccion='INSERT' BEGIN
-        /* Funcionalidad: Insertar informacion en una tabla
-        * Construir un Insert con la sigueinte informacion:
-        * - Tabla de la que se desea insertar
-        * - Datos en formato JSON
-        * 
-        * Se requieren los siguientes parametros: nombreTabla, DATOS_JSON
-        * Añade un nuevo registro a la tabla especificada con la informacion del JSON
-        */
         -- Setear Valores
         SET @pcodigoMensaje = 0;
         SET @pmensaje = '';
         SET @ConsultaSQL = '';
+
 
 
         -- Validacion de campos nulos
@@ -197,6 +203,7 @@ BEGIN
         END;
 
 
+
         -- Validacion de identificadores
 		SELECT @vconteo = COUNT(*) FROM INFORMATION_SCHEMA.TABLES
 		WHERE TABLE_NAME = @pNombreTabla;
@@ -210,6 +217,7 @@ BEGIN
 			RETURN;
 		END;
         
+
 
         -- Validacion de procedimientos
         BEGIN TRY
@@ -249,7 +257,6 @@ BEGIN
 			END
             RETURN;
         END;
-		
 		
         OPEN cursor_columns_json;
         FETCH NEXT FROM cursor_columns_json INTO @colum_name_json;
@@ -312,6 +319,7 @@ BEGIN
         END;
 
 
+
         -- Accion del procedimiento 
         -- Se construye la consulta INSERT a partir de los nombres de las columnas
         SET @ConsultaSQL = 'INSERT INTO ' + @pNombreTabla + ' ( '
@@ -363,18 +371,15 @@ BEGIN
 
 
 
-	DECLARE @vnombre_idCampo VARCHAR(45)
-		,@vidCampo INT;
-	DECLARE @idTable TABLE (id int);
+	/* Funcionalidad: Actualizar informacion en una tabla
+    * Construir un Update con la sigueinte informacion:
+    * - Tabla de la que se desea actualizar
+    * - Datos en formato JSON
+    * 
+    * Se requieren los siguientes parametros: nombreTabla, DATOS_JSON
+    * Actualiza un registro de la tabla especificada con la informacion del JSON
+    */
 	IF @pAccion='UPDATE' BEGIN
-        /* Funcionalidad: Actualizar informacion en una tabla
-        * Construir un Update con la sigueinte informacion:
-        * - Tabla de la que se desea actualizar
-        * - Datos en formato JSON
-        * 
-        * Se requieren los siguientes parametros: nombreTabla, DATOS_JSON
-        * Actualiza un registro de la tabla especificada con la informacion del JSON
-        */
         -- Setear Valores
         SET @pcodigoMensaje = 0;
         SET @pmensaje = '';
@@ -448,7 +453,6 @@ BEGIN
 				SET @pmensaje = @pmensaje + 'Formato del JSON invalido'  + ' ' + ERROR_MESSAGE() + CAST(ERROR_NUMBER() AS VARCHAR);
 			END;
         END CATCH;
-
 
 		SET @ConsultaSQL = 'SELECT COUNT(' + @vnombre_idCampo + ') FROM ' + @pNombreTabla
 			+ ' WHERE ' + @vnombre_idCampo + ' = ' + CAST(@vidCampo AS VARCHAR);
@@ -561,7 +565,6 @@ BEGIN
         END;
 
         SET @pmensaje = 'Registro actualizado';
-		
     END;
 
 
@@ -585,16 +588,15 @@ BEGIN
 
 
 
-	
+	/* Funcionalidad: Eliminar informacion en una tabla
+    * Construir un Delete con la sigueinte informacion:
+    * - Tabla de la que se desea eliminar
+    * - Datos en formato JSON
+    * 
+    * Se requieren los siguientes parametros: nombreTabla, DATOS_JSON
+    * Elimina un registro de la tabla especificada con la informacion del JSON
+    */
 	IF @pAccion='DELETE' BEGIN
-        /* Funcionalidad: Eliminar informacion en una tabla
-        * Construir un Delete con la sigueinte informacion:
-        * - Tabla de la que se desea eliminar
-        * - Datos en formato JSON
-        * 
-        * Se requieren los siguientes parametros: nombreTabla, DATOS_JSON
-        * Elimina un registro de la tabla especificada con la informacion del JSON
-        */
         -- Setear Valores
         SET @pcodigoMensaje = 0;
         SET @pmensaje = '';
@@ -713,9 +715,9 @@ BEGIN
         END;
 
         SET @pmensaje = 'Registro eliminado';
-		
     END;
 
+	-- En caso de no elegir una accion
 	IF @pmensaje = '' BEGIN
 		SET @pcodigoMensaje = -1;
 		SET @pmensaje = 'Error: No se definio la accion a realizar ' + @pmensaje;

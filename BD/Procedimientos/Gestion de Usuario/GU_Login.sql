@@ -1,6 +1,8 @@
-﻿GO
--- <=== Pantalla Login ===>
-ALTER PROCEDURE SP_LOGIN(
+﻿-- <=== Pantalla Login ===>
+/* Requisitos de las acciones:
+ * ACCION PRINCIPAL: @pnombreUsuario, @pcontrasenia
+*/
+CREATE PROCEDURE GU_LOGIN(
 	--Informacion Usuario
 	@pnombreUsuario				VARCHAR(45),
 	@pcontrasenia				VARCHAR(45),
@@ -15,6 +17,9 @@ ALTER PROCEDURE SP_LOGIN(
 	@pidCargo					INT OUTPUT
 ) AS
 BEGIN
+	-- Declaracion de Variables
+    DECLARE	@vconteo INT;
+
 	/* Funcionalidad: Login de Usuarios
     * Construir un select con la sigueinte informacion:
     * nombreUsuario, contrasenia
@@ -22,12 +27,11 @@ BEGIN
     * Consultar los sigueintes datos en la tabla Empleado:
     * codigoEmpleado, idCargo
     */
-	-- Declaracion de Variables
-    DECLARE	@vconteo INT;
 
     -- Setear Valores
 	SET @pcodigoMensaje = 0;
 	SET @pmensaje = '';
+
 
 
 	-- Validacion de campos nulos
@@ -44,6 +48,7 @@ BEGIN
 		SET @pmensaje = 'Error: Campos vacios: ' + @pmensaje;
 		RETURN;
 	END;
+
 
 
 	-- Validacion de identificadores
@@ -66,6 +71,7 @@ BEGIN
 		RETURN;
 	END;
 
+
 	
 	-- Validacion de procedimientos
 	IF @pcontrasenia <> (
@@ -81,6 +87,7 @@ BEGIN
 		SET @pmensaje = 'Error: Validacion en la condicion del procdimiento: ' + @pmensaje;
 		RETURN;
 	END;
+
 
 
 	-- Accion del procedimiento 
@@ -121,10 +128,6 @@ BEGIN
 	inner join Empleado e on p.idPersona = e.Persona_idPersona
 	inner join Usuarios u on u.Empleado_idEmpleado = e.idEmpleado
 	where u.nombreUsuario = @pnombreUsuario;
-	
-	select @pCodigoEmpleado=e.codigoEmpleado from Empleado e
-	inner join Usuarios u on e.idEmpleado=u.Empleado_idEmpleado
-	where u.nombreUsuario=@pNombreUsuario;
 	
 	select @pIdCargo=Cargo_idCargo from Empleado
 	where codigoEmpleado=@pCodigoEmpleado;

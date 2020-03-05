@@ -1,8 +1,13 @@
---<=== Pantalla ===>
-GO;
+-- <=== Pantalla ===>
+/* Requisitos de las acciones:
+ * <ACCION 1>: <@parametro1>, <@parametro2> ...
+ * Opcional: <@parametro3>, <@parametro4> ...
+ * 
+ * <ACCION 2>: ...
+*/
 CREATE PROCEDURE SIGLAS_NOMBRE_PA(
     -- Parametros de Entrada
-
+    @paccion					VARCHAR(45),
     
     -- Parametros de Salida
     -- Codigo de mensaje
@@ -13,6 +18,11 @@ CREATE PROCEDURE SIGLAS_NOMBRE_PA(
 
 )AS
 BEGIN
+    -- Declaracion de Variables
+    DECLARE	@vconteo INT;
+
+
+
     /* Funcionalidad: <nombre_funcionalidad>
     * Construir un (select, insert, update o delete) con la sigueinte informacion:
     * parametro1, parametro2, parametro3...
@@ -20,25 +30,37 @@ BEGIN
     * (Consultar, insertar, actualizar o eliminar) los sigueintes datos en la tabla <nombre_tabla>:
     * campo1, campo2, campo3
     */
-    -- Declaracion de Variables
-    DECLARE	@vconteo INT;
-
-    -- Setear Valores
-	SET @pcodigoMensaje=0;
-	SET @pmensaje='';
-
-    -- Validacion de campos nulos
+    IF @paccion = 'ACTION' BEGIN
+		-- Setear Valores
+		SET @pcodigoMensaje=0;
+		SET @pmensaje='';
 
 
-    -- Validacion de identificadores
+
+		-- Validacion de campos nulos
 
 
-    -- Validacion de procedimientos
+
+		-- Validacion de identificadores
 
 
-    -- Accion del procedimiento 
+
+		-- Validacion de procedimientos
 
 
+
+		-- Accion del procedimiento 
+
+
+
+        SET @pmensaje = 'Finalizado con exito';
+	END;
+    
+	-- En caso de no elegir una accion
+	IF @pmensaje = '' BEGIN
+		SET @pcodigoMensaje = -1;
+		SET @pmensaje = 'Error: No se definio la accion a realizar ' + @pmensaje;
+	END;
 END
 
 
