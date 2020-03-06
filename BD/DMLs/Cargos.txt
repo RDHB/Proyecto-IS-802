@@ -1,0 +1,66 @@
+-- Table Cargo
+-- Pantallas Facturacion
+(17,'Cajero'): 
+	FA_Home
+	FA_Facturar
+
+
+
+-- Pantallas Gestion de Usuarios
+(1,'Administrador'):
+	GU_Home
+	GU_Gestion-Usuarios
+	GU_Gestion-DataBase
+
+
+
+-- Pantallas Orden de Trabajo
+(7,'Asesor de Servicios'):
+	OT_Home
+	OT-A_AprovacionCotizacion
+	OT-A_ContratarServicios
+	OT-A_Cotizacion
+	OT-A_FinalizarOT
+	OT-A_GenerarOT
+	OT-A_RevisionVehiculo
+
+(12,'Jefe de Taller'):
+	OT_Home
+	OT-J_AprovacionLista
+	OT-J_ControlCalidad
+	OT-J_provacion Cotizacion
+
+(13,'Tecnico'):
+	OT_Home
+	OT-T_FinalizarMantenimiento
+	OT-T_Generarlista
+
+(14,'Encargado de Bodega'):
+	OT_Home
+	OT-E_RebajarInventario
+
+
+
+-- Pantallas RRHH
+(15,'Jefe de RRHH'):
+	RH_Home
+	RH_Permisos
+	RH_Vacaciones
+
+
+
+(16,'Asistente de RRHH'):
+	RH_Home
+	RH_Contratos
+	RH_EntrevistaTrabajo
+	RH_HorasExtras
+	RH_HuellaDigital
+	RH_RolPago
+
+
+
+-- Pantallas Vehiculos
+(7,'Asesor de Servicios'):
+	VE_Home
+	VE_AsociarClienteVehiculo
+	VE_RegistrarVehiculos
