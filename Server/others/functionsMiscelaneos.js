@@ -6,55 +6,19 @@
 function redirectById(req,res){
     switch(req.session.idCargo){
         case 1:{
-            res.redirect('/volvo/view/home/gestionUsuario');
+            res.redirect('/volvo/view/gestionUsuario/GU_Home');
             break;
         }
-        case 2:{
+        case 7 || 12 || 13 || 14 :{
+            res.redirect('/volvo/view/ordenTrabajo/OT_Home');
             break;
         }
-        case 3:{
-            break;
-        }
-        case 4:{
-            break;
-        }
-        case 5:{
-            break;
-        }
-        case 6:{
-            break;
-        }
-        case 7:{
-            break;
-        }
-        case 8:{
-            break;
-        }
-        case 9:{
-            break;
-        }
-        case 10:{
-            break;
-        }
-        case 11:{
-            break;
-        }
-        case 12:{
-            break;
-        }
-        case 13:{
-            break;
-        }
-        case 14:{
-            break;
-        }
-        case 15:{
-            break;
-        }
-        case 16:{
+        case 15 || 16:{
+            res.redirect('/volvo/view/rrhh/RH_Home');
             break;
         }
         case 17:{
+            res.redirect('/volvo/view/facturacion/FA_Home');
             break;
         }
     }
