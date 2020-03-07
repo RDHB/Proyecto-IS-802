@@ -3,9 +3,10 @@
 // IMPORTANDO LOS MODULOS NECESARIOS
 const express = require('express');
 const functionsAuth = require('../others/functionsAuth')
+const directorio = require('../../ruta');
 
 // DEFINIENDO OBJETOS IMPORTANTES
-const path = '/home/rdhb/Desktop/Repositorio GitHub/Proyecto-IS-802/APP';
+const path = directorio.ruta.replace(/\\/g,'/') + "/APP";
 
 // DEFINIENDO OBJETO QUE MANEJARA LA RUTA '/volvo/views/'
 const apisViews = express.Router();
