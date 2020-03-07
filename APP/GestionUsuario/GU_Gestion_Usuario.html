@@ -13,8 +13,8 @@
 		<div id="main">
 		<section>
 			<div>
-                <img src="../images/vehiculo-cliente.jpg" width="70xp" height="80xp">
-				<h2>Asociación Cliente-Vehículo</h2>
+                <img src="../images/descarga.png" width="70xp" height="80xp">
+				<h2>Gestión de Usuarios</h2>
 				<div>
 					<section>
                         <div class="content">
@@ -22,20 +22,24 @@
                             <form method="post" action="#">
                                 <div class="fields">
                                     <div class="field" style="width: 48%; float:left; display:block; margin: 10;">
-                                        <label for="name" align="left">Número de Identidad</label>
+                                        <label for="name" align="left">Buscar por Nombre</label>
                                         <input type="text" style="width:450px" name="name" id="name" value=""/>
                                         <br>
                                     </div>
-                                    <div class="field" style="width: 48%; float:left; display:block; margin: 10;">
-                                        <label for="name" align="left">Vin</label>
-                                        <input type="text" style="width:450px" name="name" id="name" value=""/>
-                                        <br>
+                                    <div class="field" style="width: 48%; float:right; display:block;margin: 10;">
+                                        <label for="department" align="left">Area de Trabajo</label>
+                                        <select name="department" style="width:450px" id="department">
+                                            <option value="">- Category -</option>
+                                            <option value="1">Manufacturing</option>
+                                            <option value="2">Shipping</option>
+                                            <option value="3">Administration</option>
+                                            <option value="4">Human Resources</option>
+                                        </select>
                                     </div>
-                                    <a href="#" class="button small" style="width: 150%; display:block; margin: 35; align-content:space-around">Vincular</a>
                                 </div>
                                 <section>
                                     <header>
-                                        <h3>Vehículos del Cliente</h3>
+                                        <h3>Tabla de Usuarios del Sistema</h3>
                                     </header>
                                     <div class="content"> 
                                         <div class="table-wrapper" style="width: 90%; display:block; margin: 50;">
@@ -43,10 +47,10 @@
                                                 <thead>
                                                     <tr>
                                                         <th></th>
-                                                        <th>Código</th>
-                                                        <th>Cliente</th>
-                                                        <th>Vehículo</th>
-                                                        <th>VIN</th>
+                                                        <th>Id</th>
+                                                        <th>Nombre</th>
+                                                        <th>Correo</th>
+                                                        <th>Teléfono</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -56,9 +60,9 @@
                                                             <label for="copy">.</label>
                                                         </th>
                                                         <td>1</td>
-                                                        <td>Mariela Rodriguez</td>
-                                                        <td>Toyota 4x4 Hilux</td>
-                                                        <td>1234</td>
+                                                        <td>Luis Solano</td>
+                                                        <td>luis@unah.hn</td>
+                                                        <td>96458212</td>
                                                     </tr>
                                                     <tr>
                                                         <th>
@@ -66,9 +70,9 @@
                                                             <label for="copy">.</label>
                                                         </th>
                                                         <td>2</td>
-                                                        <td>Mariela Rodriguez</td>
-                                                        <td>Camioneta Ford</td>
-                                                        <td>5678</td>
+                                                        <td>Rene Hernandez</td>
+                                                        <td>rene@unah.hn</td>
+                                                        <td>45802356</td>
                                                     </tr>
                                                     <tr>
                                                         <th>
@@ -77,8 +81,8 @@
                                                         </th>
                                                         <td>3</td>
                                                         <td>Mariela Rodriguez</td>
-                                                        <td>Honda Civic Rojo</td>
-                                                        <td>8975</td>
+                                                        <td>mariela@unah.hn</td>
+                                                        <td>78451236</td>
                                                     </tr>
                                                 </tbody>
                                                 <tfoot>

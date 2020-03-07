@@ -1,0 +1,134 @@
+<html>
+	<head>
+		<title>Gestion_BD</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/header.css" />
+        <link rel="stylesheet" href="../assets/css/main.css" />
+		<link rel="icon" type="image" href="../images/Volvo-Emblema.ico" sizes="64x64">
+		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+		<h1 align="center"><i><b><img  src="../images/source.gif" width="70xp" border-radius="100%">Volvo Partes</b></i></h1> 	
+    </head>
+    <body background="">
+		<div id="main">
+		<section>
+			<div>
+                <img src="../images/descarga.png" width="70xp" height="80xp">
+				<h2>Gestión de Base de Datos</h2>
+				<div>
+					<section>
+                        <div class="content">
+
+                            <form method="post" action="#">
+                                <div class="fields">
+                                    <div class="field" style="width: 48%; float:right; display:block;margin: 10;">
+                                        <label for="department" align="left">Seleccionar Tabla</label>
+                                        <select name="department" style="width:450px" id="department">
+                                            <option value="">- Category -</option>
+                                            <option value="1">Manufacturing</option>
+                                            <option value="2">Shipping</option>
+                                            <option value="3">Administration</option>
+                                            <option value="4">Human Resources</option>
+                                        </select>
+                                    </div>
+                                    <div class="field" style="width: 48%; float:right; display:block;margin: 10;">
+                                        <label for="department" align="left">Filtrar Tabla por Campo</label>
+                                        <select name="department" style="width:450px" id="department">
+                                            <option value="">- Category -</option>
+                                            <option value="1">Manufacturing</option>
+                                            <option value="2">Shipping</option>
+                                            <option value="3">Administration</option>
+                                            <option value="4">Human Resources</option>
+                                        </select>
+                                    </div>
+                                    <div class="field" style="width: 48%; float:left; display:block; margin: 10;">
+                                        <label for="name" align="left">Buscar Registro</label>
+                                        <input type="text" style="width:450px" name="name" id="name" value=""/>
+                                        <br>
+                                    </div>
+                                </div>
+                                <section>
+                                    <header>
+                                        <h3>Tabla de Usuarios del Sistema</h3>
+                                    </header>
+                                    <div class="content"> 
+                                        <div class="table-wrapper" style="width: 90%; display:block; margin: 50;">
+                                            <table>
+                                                <thead>
+                                                    <tr>
+                                                        <th></th>
+                                                        <th>Id</th>
+                                                        <th>Nombre</th>
+                                                        <th>Correo</th>
+                                                        <th>Teléfono</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <th>
+                                                            <input type="checkbox" id="copy" name="copy" />
+                                                            <label for="copy">.</label>
+                                                        </th>
+                                                        <td>1</td>
+                                                        <td>Luis Solano</td>
+                                                        <td>luis@unah.hn</td>
+                                                        <td>96458212</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>
+                                                            <input type="checkbox" id="copy" name="copy" />
+                                                            <label for="copy">.</label>
+                                                        </th>
+                                                        <td>2</td>
+                                                        <td>Rene Hernandez</td>
+                                                        <td>rene@unah.hn</td>
+                                                        <td>45802356</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th>
+                                                            <input type="checkbox" id="copy" name="copy" />
+                                                            <label for="copy">.</label>
+                                                        </th>
+                                                        <td>3</td>
+                                                        <td>Mariela Rodriguez</td>
+                                                        <td>mariela@unah.hn</td>
+                                                        <td>78451236</td>
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <td colspan="4"></td>
+															<td><a href="#" class="button small"><h3>+</h3></a></td>
+                                                </tfoot>
+                                            </table>
+                                            <ul class="actions">
+                                                <li><a href="#" class="button small" style="width: 80%; display:block; margin: 50;">Eliminar Registros Seleccionados</a></li>
+                                                <li><a href="#" class="button small" style="width: 80%; display:block; margin: 50;">Revertir Cambios</a></li>
+                                                <li><a href="#" class="button small" style="width: 80%; display:block; margin: 50;">Guardar Cambios</a></li>
+										    </ul>
+                                        </div>                
+                            </form>
+                        </div>
+					</section>
+				</div>
+			</div>
+		</section>
+		
+		<!-- ------------------------------------------------------------ -->
+		<!-- Hasta aquí se puede Editar -->
+		<!-- ------------------------------------------------------------ -->
+		</div>
+
+		<!-- Scripts Necesarios -->
+		<script src="../assets/js/jquery.min.js"></script><script src="../assets/js/demo.js"></script>
+		<script src="../assets/js/jquery.scrollex.min.js"></script>
+		<script src="../assets/js/jquery.scrolly.min.js"></script>
+		<script src="../assets/js/browser.min.js"></script>
+		<script src="../assets/js/breakpoints.min.js"></script>
+		<script src="../assets/js/util.js"></script>
+		<script src="../assets/js/main.js"></script>
+
+		<!-- Header -->
+		<script src="../assets/js/header.js"></script>
+		<script src="../Libreria/cargar-header.js"></script>
+    </body>
+</html>
