@@ -24,11 +24,12 @@ BEGIN
 
 
     /* Funcionalidad: <nombre_funcionalidad>
-    * Construir un (select, insert, update o delete) con la sigueinte informacion:
-    * parametro1, parametro2, parametro3...
-    *
-    * (Consultar, insertar, actualizar o eliminar) los sigueintes datos en la tabla <nombre_tabla>:
-    * campo1, campo2, campo3
+     * Construir un (select, insert, update o delete) con la sigueinte informacion:
+     * Datos: parametro1, parametro2, parametro3...
+     * Datos Opcionales: parametro4, parametro5
+     *
+     * (Consultar, insertar, actualizar o eliminar) los sigueintes datos en la tabla <nombre_tabla>:
+     * campo1, campo2, campo3
     */
     IF @paccion = 'ACTION' BEGIN
 		-- Setear Valores
@@ -38,17 +39,48 @@ BEGIN
 
 
 		-- Validacion de campos nulos
+		IF @parametro1 = '' OR @parametro1 IS NULL BEGIN
+			SET @pmensaje = @pmensaje + ' campo1 ';
+		END;
+
+		IF @pmensaje <> '' BEGIN
+			SET @pcodigoMensaje = 3;
+			SET @pmensaje = 'Error: Campos vacios: ' + @pmensaje;
+			RETURN;
+		END;
 
 
 
 		-- Validacion de identificadores
+        SELECT @vconteo = COUNT(*) FROM Tabla
+		WHERE campo1 = @parametro1;
+		IF @vconteo = 0 BEGIN
+			SET @pmensaje = @pmensaje + ' No existe el identificador => ' + @parametro1 + ' ';
+		END;
+
+        SELECT @vconteo = COUNT(*) FROM Tabla
+		WHERE campo1 = @parametro1;
+		IF @vconteo <> 0 BEGIN
+			SET @pmensaje = @pmensaje + ' Ya existe el identificador => ' + @parametro1 + ' ';
+		END;
+
+		IF @pmensaje <> '' BEGIN
+			SET @pcodigoMensaje = 4;
+			SET @pmensaje = 'Error: Identificadores no validos: ' + @pmensaje;
+			RETURN;
+		END;
 
 
 
 		-- Validacion de procedimientos
+		IF @pmensaje <> '' BEGIN
+			SET @pcodigoMensaje = 5;
+			SET @pmensaje = 'Error: Validacion en la condicion del procdimiento: ' + @pmensaje;
+			RETURN;
+		END;
 
 
-
+		
 		-- Accion del procedimiento 
 
 
@@ -62,5 +94,3 @@ BEGIN
 		SET @pmensaje = 'Error: No se definio la accion a realizar ' + @pmensaje;
 	END;
 END
-
-

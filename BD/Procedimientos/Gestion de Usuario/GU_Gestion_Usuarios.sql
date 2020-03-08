@@ -1,4 +1,4 @@
--- <=== Gestion Usuarios ===>
+-- <=== GU_Gestion_Usuarios ===>
 /* Requisitos de las acciones:
  * INSERT: @pcodigoEmpleado, @pnombreUsuario, @pcontrasenia
  *

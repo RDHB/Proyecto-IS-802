@@ -489,3 +489,212 @@ SELECT @prmensaje;
 delete from Usuarios where idUsuario = 20
 select * from Usuarios u 
 inner join Empleado e on u.Empleado_idEmpleado = e.idEmpleado;
+
+
+
+
+
+
+
+
+
+
+
+
+-- LLamar al procedimiento almacenado: VE_GESTION_CLIENTES
+select * from Persona p
+inner join Cliente c on c.Persona_idPersona = p.idPersona;
+
+DECLARE
+	@prprimerNombre 					VARCHAR(45) = 'Luis',
+	@prsegundoNombre					VARCHAR(45) = 'Fernando',
+	@prprimerapellido					VARCHAR(45) = 'Solano',
+	@prsegundoapellido					VARCHAR(45) = 'Martinez',
+	@prcorreoElectronico				VARCHAR(45) = 'luisfer.sm15@gmail.com',
+	@prdireccion						VARCHAR(45) = '21 de Febrero',
+	@prnumeroIdentidad					VARCHAR(45) = '1804-1998-00221',
+	@pridGenero							INT = 5,
+	@prnumeroTelefono					VARCHAR(45) = '9798-2221',
+    @praccion							VARCHAR(45) = 'INSERT',
+
+	@prcodigoMensaje				INT = 0,
+	@prmensaje						VARCHAR(1000) = ''
+;
+
+
+EXEC VE_GESTION_CLIENTES
+	-- INTPUT
+	@prprimerNombre,
+	@prsegundoNombre,
+	@prprimerapellido,
+	@prsegundoapellido,
+	@prcorreoElectronico,
+	@prdireccion,
+	@prnumeroIdentidad,
+	@pridGenero,
+	@prnumeroTelefono,
+    @praccion,
+	
+	-- OUTPUT
+	@prcodigoMensaje OUTPUT,
+	@prmensaje OUTPUT;
+;
+
+-- OUTPUT
+SELECT @prcodigoMensaje;
+SELECT @prmensaje;
+
+
+SELECT * FROM Cliente C INNER JOIN Persona P ON P.idPersona = C.Persona_idPersona
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- LLamar al procedimiento almacenado: VE_GESTION_VEHICULOS
+SELECT * FROM Vehiculos
+
+DECLARE
+	@pvin	 							VARCHAR(45) = '1PCH23DF56GHJ3DF341',
+	@pcolor								VARCHAR(45) = 'Plateado',
+	@pplaca								VARCHAR(45) = 'PCH-2345',
+	@pnumeroMotor						VARCHAR(45) = 'R134J4768341',
+	@pcaja_de_cambios					VARCHAR(45) = 'Automatico',
+	@pidModelo							INT = 101,
+    @paccion							VARCHAR(45) = 'INSERT',
+
+	@prcodigoMensaje				INT = 0,
+	@prmensaje						VARCHAR(1000) = ''
+;
+
+
+EXEC VE_GESTION_VEHICULOS
+	-- INTPUT
+	@pvin,
+	@pcolor,
+	@pplaca,
+	@pnumeroMotor,
+	@pcaja_de_cambios,
+	@pidModelo,
+    @paccion,
+	
+	-- OUTPUT
+	@prcodigoMensaje OUTPUT,
+	@prmensaje OUTPUT;
+;
+
+-- OUTPUT
+SELECT @prcodigoMensaje;
+SELECT @prmensaje;
+
+
+SELECT * FROM Vehiculos
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- LLamar al procedimiento almacenado: VE_ASOCIAR_CYV
+SELECT * FROM VinculoCyV
+SELECT * FROM Vehiculos
+select * from Persona p
+inner join Cliente c on c.Persona_idPersona = p.idPersona;
+
+DECLARE
+	@pvin						VARCHAR(45) = '1PCH23DF56GHJ3DF341', -- 1PCH23DF56GHJ3DF341
+	@pnumeroIdentidad			VARCHAR(45) = '1804-1998-00220', -- 1804-1998-00220
+    @paccion					VARCHAR(45) = 'UNLINK',
+
+	@prcodigoMensaje				INT = 0,
+	@prmensaje						VARCHAR(1000) = ''
+;
+
+
+EXEC VE_ASOCIAR_CYV
+	-- INTPUT
+	@pvin,
+	@pnumeroIdentidad,
+    @paccion,
+	
+	-- OUTPUT
+	@prcodigoMensaje OUTPUT,
+	@prmensaje OUTPUT;
+;
+
+-- OUTPUT
+SELECT @prcodigoMensaje;
+SELECT @prmensaje;
+
+
+
+
+
+
+
+SELECT 
+	V.vin
+	, ( -- descripcion Marca
+		SELECT descripcion FROM Marca Ma
+		WHERE Ma.idMarca = ( -- idMarca
+			SELECT Mo.Marca_idMarca FROM Modelo Mo
+			WHERE Mo.idModelo = V.Modelo_idModelo
+		)
+	)
+	, ( -- descripcion Modelo
+		SELECT descripcion FROM Modelo Mo2
+		WHERE Mo2.idModelo = V.Modelo_idModelo
+	)
+	, ( -- numeroIdentidad
+		SELECT P.numeroIdentidad FROM Persona P
+		INNER JOIN Cliente C2 ON C2.Persona_idPersona = P.idPersona
+		WHERE C2.idCliente = VCV.Cliente_idCliente
+	)
+	,( -- NombreCompleto
+		SELECT CONCAT(
+			P2.primerNombre
+			, P2.segundoNombre
+			, P2.primerApellido
+			, P2.segundoApellido
+		) AS NombreCompleto
+		FROM Persona P2
+		INNER JOIN Cliente C2 ON C2.Persona_idPersona = P2.idPersona
+		WHERE C2.idCliente = VCV.Cliente_idCliente
+	)
+FROM VinculoCyV VCV
+INNER JOIN Cliente C ON C.idCliente = VCV.Cliente_idCliente
+INNER JOIN Vehiculos V ON V.idVehiculos = VCV.Vehiculos_idVehiculos
+
+
+SELECT COUNT(*) FROM VinculoCyV
+		WHERE Vehiculos_idVehiculos = (
+			SELECT idVehiculos 
+			FROM Vehiculos
+			WHERE vin = '1PCH23DF56GHJ3DF341'
+		)
+		AND Cliente_idCliente = (
+			SELECT C.idCliente FROM Cliente C
+			INNER JOIN Persona P ON P.idPersona = C.Persona_idPersona
+			WHERE P.numeroIdentidad = '1804-1998-00220'
+		)

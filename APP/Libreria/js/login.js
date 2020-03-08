@@ -1,6 +1,6 @@
 $("#btn-login").click(function () {
 	$.ajax({
-		url: "http://localhost:3000/volvo/api/GU/SP_LOGIN",
+		url: "http://localhost:3000/volvo/api/GU/GU_LOGIN",
 		data: "usuario=" + $("#usuario").val() + "&password=" + $("#password").val(),
 		dataType: "json",
 		method: "POST",

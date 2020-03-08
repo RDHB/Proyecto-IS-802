@@ -8,7 +8,7 @@ const functionsGU = require('./functionsQuerys/funtionsGU');
 const apisGU = express.Router();
 
 // DEFINIENDO SUBRUTAS Y ATENCION A PETICIONES AL SERVIDOR
-apisGU.post('/SP_LOGIN',functionsGU.SP_LOGIN);
+apisGU.post('/GU_LOGIN',functionsGU.GU_LOGIN);
 
 
 // EXPORTANDO EL OBJETO DESEADO

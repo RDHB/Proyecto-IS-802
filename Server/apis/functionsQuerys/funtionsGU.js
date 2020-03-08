@@ -6,7 +6,7 @@ const conn = require('../../db/connectionDB');
 const messagesMiscelaneos = require('../../others/messagesMiscelaneos');
 
 // DEFINIENDO LAS FUNCIONES
-function SP_LOGIN(req,res){
+function GU_LOGIN(req,res){
     conn.connect().then(function(){
         var reqDB = new sql.Request(conn);
         reqDB.input('pnombreUsuario',sql.VarChar,req.body.usuario);
@@ -15,7 +15,7 @@ function SP_LOGIN(req,res){
         reqDB.output('pmensaje', sql.VarChar);
         reqDB.output('pcodigoEmpleado', sql.VarChar);
         reqDB.output('pidCargo',sql.Int);
-        reqDB.execute('SP_LOGIN').then(function(result){
+        reqDB.execute('GU_LOGIN').then(function(result){
             conn.close();
             if(result.output.pcodigoMensaje == 0){
                 req.session.name = req.body.usuario;
@@ -36,5 +36,5 @@ function SP_LOGIN(req,res){
 
 // EXPORTANDO LAS FUNCIONES QUE ATENDERAN LAS PETICIONES
 module.exports = {
-    SP_LOGIN
+    GU_LOGIN
 };
