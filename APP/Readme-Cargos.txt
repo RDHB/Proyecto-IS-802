@@ -28,7 +28,7 @@
 	OT_Home
 	OT-J_AprovacionLista
 	OT-J_ControlCalidad
-	OT-J_provacion Cotizacion
+	OT-J_AprovacionCotizacion
 
 (13,'Tecnico'):
 	OT_Home

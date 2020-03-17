@@ -5,7 +5,7 @@
  * 
  * <ACCION 2>: ...
 */
-CREATE PROCEDURE SIGLAS_NOMBRE_PA(
+CREATE PROCEDURE SIGLAS_NOMBRE_PA (
     -- Parametros de Entrada
     @paccion					VARCHAR(45),
     
@@ -16,7 +16,7 @@ CREATE PROCEDURE SIGLAS_NOMBRE_PA(
 
     -- Otros parametros de salida
 
-)AS
+) AS
 BEGIN
     -- Declaracion de Variables
     DECLARE	@vconteo INT;
