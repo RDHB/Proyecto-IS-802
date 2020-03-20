@@ -1,0 +1,39 @@
+Login.hmtl:           				localhost:3000/volvo/
+
+FA_Home.hmtl        				/facturacion/FA_Home
+FA_Facturar.hmtl    				/facturacion/FA_Facturar
+
+GU_Home.hmtl						/gestionUsuario/GU_Home
+GU_Gestion-Usuarios.hmtl			/gestionUsuario/GU_Gestion-Usuarios
+GU_DataBase.hmtl					/gestionUsuario/GU_DataBase
+
+OT_Home.html						/ordenTrabajo/OT_Home
+OT-A_AprovacionCotizacion.html			/ordenTrabajo/OT-A_AprovacionCotizacion
+OT-A_ContratarServicios.html			/ordenTrabajo/OT-A_ContratarServicios
+OT-A_Cotizacion.html					/ordenTrabajo/OT-A_Cotizacion
+OT-A_FinalizarOT.html					/ordenTrabajo/OT-A_FinalizarOT
+OT-A_GenerarOT.html						/ordenTrabajo/OT-A_GenerarOT
+OT-A_RevisionVehiculo.html				/ordenTrabajo/OT-A_RevisionVehiculo
+VE_Home.html							/vehiculos/VE_Home
+VE_AsociarClienteVehiculo.html				/vehiculos/VE_AsociarClienteVehiculo
+VE_RegistrarVehiculos.html					/vehiculos/VE_RegistrarVehiculos
+VE_RegistrarCliente.html					/vehiculos/VE_RegistrarCliente
+
+OT-J_AprovacionLista.html				/ordenTrabajo/OT-J_AprovacionLista
+OT-J_ControlCalidad.html				/ordenTrabajo/OT-J_ControlCalidad
+OT-J_AprovacionCotizacion.html			/ordenTrabajo/OT-J_AprovacionCotizacion
+
+OT-T_FinalizarMantenimiento.html		/ordenTrabajo/OT-T_FinalizarMantenimiento
+OT-T_Generarlista.html					/ordenTrabajo/OT-T_Generarlista
+
+OT-E_RebajarInventario.html				/ordenTrabajo/OT-E_RebajarInventario
+
+RH_Home.hmtl						/rrhh/RH_Home
+RH_Permisos.html						/rrhh/RH_Permisos
+RH_Vacaciones.html						/rrhh/RH_Vacaciones
+
+RH_Contratos.html						/rrhh/RH_Contratos
+RH_EntrevistaTrabajo.html				/rrhh/RH_EntrevistaTrabajo
+RH_HorasExtras.html						/rrhh/RH_HorasExtras
+RH_HuellaDigital.html					/rrhh/RH_HuellaDigital
+RH_RolPago.html							/rrhh/RH_RolPago

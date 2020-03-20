@@ -83,8 +83,8 @@ apisViews.get('/ordenTrabajo/OT-J_ControlCalidad',functionsAuth.authJefeTaller, 
     res.sendFile(path + '/OrdenTrabajo/OT-J_ControlCalidad.html');
 });
 
-apisViews.get('/ordenTrabajo/OT-J_provacionCotizacion',functionsAuth.authJefeTaller, (req,res) => {
-    res.sendFile(path + '/OrdenTrabajo/OT-J_provacion Cotizacion.html');
+apisViews.get('/ordenTrabajo/OT-J_AprovacionCotizacion',functionsAuth.authJefeTaller, (req,res) => {
+    res.sendFile(path + '/OrdenTrabajo/OT-J_AprovacionCotizacion.html');
 });
 // tecnico
 apisViews.get('/ordenTrabajo/OT-T_FinalizarMantenimiento',functionsAuth.authTecnico, (req,res) => {
@@ -145,5 +145,8 @@ apisViews.get('/vehiculos/VE_RegistrarVehiculos',functionsAuth.authAsesorServici
     res.sendFile(path + '/Vehiculos/VE_RegistrarVehiculos.html');
 });
 
+apisViews.get('/vehiculos/VE_RegistrarCliente',functionsAuth.authAsesorServicios, (req,res) => {
+    res.sendFile(path + '/Vehiculos/VE_RegistrarCliente.html');
+});
 // EXPORTANDO LA API QUE MUESTRA LA VISTA
 module.exports = apisViews;
