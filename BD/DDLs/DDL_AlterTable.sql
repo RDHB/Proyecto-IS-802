@@ -178,11 +178,6 @@ ALTER TABLE ContratoPersonal ADD
 		FOREIGN KEY (TipoContrato_idTipoContrato) 
 		REFERENCES TipoContrato (idTipoContrato)
 
--- Table EntrevistaTrabajo
-ALTER TABLE EntrevistaTrabajo ADD
-	CONSTRAINT fk_EntrevistaTrabajo_Curriculum1 
-		FOREIGN KEY (Curriculum_idCurriculum) 
-		REFERENCES Curriculum (idCurriculum)
 
 -- Table Historico_Contratos
 ALTER TABLE Historico_Contratos ADD
