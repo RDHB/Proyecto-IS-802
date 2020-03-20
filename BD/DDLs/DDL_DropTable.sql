@@ -6,7 +6,6 @@ DROP TABLE Estado_Usuario;
 DROP TABLE Cotizacion_has_Producto;
 DROP TABLE RolPago;
 DROP TABLE Historico_Contratos;
-DROP TABLE EntrevistaTrabajo;
 DROP TABLE Recambios;
 DROP TABLE Inventario_has_Lista_MyR;
 DROP TABLE VinculoCyV;

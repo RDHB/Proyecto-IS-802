@@ -6,7 +6,6 @@ DELETE FROM Estado_Usuario;
 DELETE FROM Cotizacion_has_Producto;
 DELETE FROM RolPago;
 DELETE FROM Historico_Contratos;
-DELETE FROM EntrevistaTrabajo;
 DELETE FROM Recambios;
 DELETE FROM Inventario_has_Lista_MyR;
 DELETE FROM VinculoCyV;

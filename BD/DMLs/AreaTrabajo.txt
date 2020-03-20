@@ -1,0 +1,29 @@
+1. Gerencia:		1. Presidente
+
+2. RRHH:			2. Jefe de RRHH
+					3. Asistente de RRHH
+
+3. Administracion:	4. Jefe Administrativo
+					5. Asistente Administrativo
+					6. Consejero
+
+4. Contabilidad:	7. Jefe de Contabilidad
+					8. Contador
+
+5. Almacen:			9. Encargado de Bodega
+
+6. Ventas:			10. Gerente de Ventas
+					11. Jefe de Recambios
+					12. Vendedor de Recambios
+					13. Asistente de Recambios
+					14. Cajero
+
+7. Taller:			15. Jefe de Taller
+					16. Tecnico
+
+8. Servicios:		17. Asesor de Servicios
+					18. Operario Lavador de Vehiculos
+
+9. Tecnologia:		19. Administrador de Sistema
+
+10. Limpieza:		20. Aseador

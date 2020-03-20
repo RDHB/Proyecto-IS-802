@@ -86,16 +86,17 @@ VALUES
 -- Table AreadeTrabajo
 INSERT INTO AreaTrabajo([idAreaTrabajo],[descripcion]) 
 VALUES
-(1,'pulvinar arcu et pede.'),
-(2,'ipsum primis in'),
-(3,'luctus et ultrices posuere cubilia'),
-(4,'rutrum magna. Cras convallis cpede ac'),
-(5,'turpisegestas. Aliquam fringiue neque sed'),
-(6,'Nunc mauris. Morbi non sapien .'),
-(7,'lorem tristique aliquet.'),
-(8,'tortor nibh sit amet orcttis'),
-(9,'Luis vo nunc sit a Aliquam erat volutpat.'),
-(10,'vitae, posuere at, velirem lorem, luctus');
+(1,'Gerencia'),
+(2,'RRHH'),
+(3,'Administracion'),
+(4,'Contabilidad'),
+(5,'Almacen'),
+(6,'Ventas'),
+(7,'Taller'),
+(8,'Servicios'),
+(9,'Tecnologia'),
+(10,'Limpieza');
+
 
 -- Table Marca
 INSERT INTO Marca([idMarca],[descripcion]) 
@@ -378,53 +379,56 @@ VALUES
 (20,'nec, euismod in, dolor.',668,593,           '2020-12-20','2027-09-19',20);
 
 -- Table Aspirante
-INSERT INTO Aspirante([idAspirante],[descripcion],[Persona_idPersona]) 
+INSERT INTO Aspirante([idAspirante],[descripcion],[fechaEntrevista],[Persona_idPersona]) 
 VALUES
-(1,'condimentum. Donec at ',8),
-(2,'vel, mauris. Integer sem',7),
-(3,'Cras lorem lorem,',1),
-(4,'dolor vitae dolor. Dont',10),
-(5,'convallis convallis',9),
-(6,'purus mauris a nunc. Is',6),
-(7,'nascetur ridiculus muse',5),
-(8,'facilisis eget,',2),
-(9,'tristique aliquet. Pha',10),
-(10,'amet orci. Ut',3);
+(1,'condimentum. Donec at ','2014-01-21',41),
+(2,'vel, mauris. Integer sem','2019-12-21',42),
+(3,'Cras lorem lorem,','2011-01-17',43),
+(4,'dolor vitae dolor. Dont','2018-06-15',44),
+(5,'convallis convallis','2011-07-19',45),
+(6,'purus mauris a nunc. Is','2012-10-31',46),
+(7,'nascetur ridiculus muse','2019-06-13',47),
+(8,'facilisis eget,','2016-07-04',48),
+(9,'tristique aliquet. Pha','2020-06-16',49),
+(10,'amet orci. Ut','2017-08-28',50);
 
 -- Table Curriculum
-INSERT INTO Curriculum([idCurriculum],[descripcion],[Aspirante_idAspirante]) 
+INSERT INTO Curriculum([idCurriculum],[nombreArchivo],[Aspirante_idAspirante]) 
 VALUES
-(1,'non enim commodo hendre',8),
-(2,'turpis vitae purus grav',5),
-(3,'euismod ac, fermentum v',8),
-(4,'eu enim. Etiam imperdie',6),
-(5,'Aenean euismod',8),
-(6,'lacus,',6),
-(7,'aliquet vel, vulputate e',1),
-(8,'fringilla ornare placerat',6),
-(9,'nisl.',5),
-(10,'tortor at risus. Nunc ac',5);
+(1,'1. Perry Raymond.docx',1),
+(2,'2. Griffin Gross.docx',2),
+(3,'3. Damon Hawkins.docx',3),
+(4,'4. Fletcher Reed.docx',4),
+(5,'5. Aquila Key.docx',5),
+(6,'6. Fuller Trujillo.docx',6),
+(7,'7. Roth Cochran.docx',7),
+(8,'8. Quinlan Boyd.docx',8),
+(9,'9. Chandler Vinson.docx',9),
+(10,'10. Blaze Santana.docx',10);
 
 -- Table Cargo
 INSERT INTO Cargo([idCargo],[descripcion]) 
 VALUES
-(1,'Administrador'),
-(2,'Presidente'),
-(3,'Gerente de ventas'),
+(1,'Presidente'),
+(2,'Jefe de RRHH'),
+(3,'Asistente de RRHH'),
 (4,'Jefe Administrativo'),
 (5,'Asistente Administrativo'),
 (6,'Consejero'),
-(7,'Asesor de Servicios'),
-(8,'Operario Lavador de Vehiculos'),
-(9,'Jefe de Recambios'),
-(10,'Vendedor de Recambios'),
-(11,'Asistente de Recambios'),
-(12,'Jefe de Taller'),
-(13,'Tecnico'),
-(14,'Encargado de Bodega'),
-(15,'Jefe de RRHH'),
-(16,'Asistente de RRHH'),
-(17,'Cajero');
+(7,'Jefe de Contabilidad'),
+(8,'Contador'),
+(9,'Encargado de Bodega'),
+(10,'Gerente de Ventas'),
+(11,'Jefe de Recambios'),
+(12,'Vendedor de Recambios'),
+(13,'Asistente de Recambios'),
+(14,'Cajero'),
+(15,'Jefe de Taller'),
+(16,'Tecnico'),
+(17,'Asesor de Servicios'),
+(18,'Operario Lavador de Vehiculos'),
+(19,'Administrador de Sistema'),
+(20,'Aseador');
 
 -- Table Permisos
 INSERT INTO Permisos([idPermisos],[motivo],[fecha]) 
@@ -458,14 +462,14 @@ VALUES
 INSERT INTO Empleado([idEmpleado],[CodigoEmpleado],[descripcion],[JefeInmediato],[Persona_idPersona],[Cargo_idCargo],[AreaTrabajo_idAreaTrabajo]) 
 VALUES
 (1,'EMP0001','Morbi sit', 10, 11, 1, 2),
-(2,'EMP0002','dui augue eu tellus. Phasellus', 3, 12, 1, 3),
-(3,'EMP0003','In ornare sagittis felis.', 5, 13, 7, 1),
-(4,'EMP0004','Vivamus nisi.', 8, 14, 9, 5),
-(5,'EMP0005','quam quis', 6, 15, 10, 4),
-(6,'EMP0006','leo. Cras vehicula aliquet', 7, 16, 7, 7),
-(7,'EMP0007','nunc sed pede. Cum sociis', 3, 17, 6, 1),
-(8,'EMP0008','sodales. Mauris blandit enim consequat', 7, 18, 8, 10),
-(9,'EMP0009','eu nulla at', 9, 19, 10, 1),
+(2,'EMP0002','dui augue eu tellus. Phasellus', 3, 12, 7, 3),
+(3,'EMP0003','In ornare sagittis felis.', 5, 13, 12, 1),
+(4,'EMP0004','Vivamus nisi.', 8, 14, 13, 5),
+(5,'EMP0005','quam quis', 6, 15, 14, 4),
+(6,'EMP0006','leo. Cras vehicula aliquet', 7, 16, 15, 7),
+(7,'EMP0007','nunc sed pede. Cum sociis', 3, 17, 16, 1),
+(8,'EMP0008','sodales. Mauris blandit enim consequat', 7, 18, 17, 10),
+(9,'EMP0009','eu nulla at', 9, 19, 7, 1),
 (10,'EMP0010','orci', 9, 20, 2, 9),
 (11,'EMP0011','dui lectus rutrum urna,', 8, 21, 1, 1),
 (12,'EMP0012','arcu eu odio tristique', 1, 22, 2, 2),
@@ -672,20 +676,6 @@ VALUES
 (9,'elementum, dui quis accumsan',9),
 (10,'turpis vitae purus gravida',10);
 
--- Table EntrevistaTrabajo
-INSERT INTO EntrevistaTrabajo([idEntrevistaTrabajo],[fechaHora],[Curriculum_idCurriculum]) 
-VALUES
-(1,'2014-01-21',6),
-(2,'2019-12-21',3),
-(3,'2011-01-17',6),
-(4,'2018-06-15',7),
-(5,'2011-07-19',5),
-(6,'2012-10-31',1),
-(7,'2019-06-13',10),
-(8,'2016-07-04',9),
-(9,'2020-06-16',2),
-(10,'2017-08-28',8);
-
 -- Table Historico_Contratos
 INSERT INTO Historico_Contratos([idHistorico_Contratos],[ContratoPersonal_idContratoPersonal],[Empleado_idEmpleado]) 
 VALUES
@@ -738,15 +728,15 @@ VALUES
 INSERT INTO Usuarios([idUsuario],[nombreUsuario],[contrasenia],[Empleado_idEmpleado],[Estado_Usuario_idEstado_Usuario]) 
 VALUES
 (1,'Murphy','FSJ44MIN4FJ',1,1),
-(2,'Carson','FDN61QJI7UM',2,2),
-(3,'Plato','BHE81RRR3RE',3,2),
+(2,'Carson','FDN61QJI7UM',2,1),
+(3,'Plato','BHE81RRR3RE',3,1),
 (4,'Marvin','MYC35PEB8EV',4,1),
 (5,'Avram','QFQ39QGO6SF',5,1),
-(6,'Oliver','ODY47FJL1DH',6,2),
-(7,'Odysseus','RKL51XQZ5XF',7,2),
+(6,'Oliver','ODY47FJL1DH',6,1),
+(7,'Odysseus','RKL51XQZ5XF',7,1),
 (8,'Joshua','OHM31QHV2MV',8,1),
 (9,'Sylvester','QWH00KBU3XE',9,1),
-(10,'Reece','IKH08NXO5AA',10,2),
+(10,'Reece','IKH08NXO5AA',10,1),
 (11,'Hu','PQU24OYM5OU',11,1),
 (12,'Denton','NAG63DHW6XI',12,1),
 (13,'Emerson','QMF57AGC8LI',13,1),

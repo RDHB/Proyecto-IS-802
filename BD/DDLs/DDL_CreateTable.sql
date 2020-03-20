@@ -33,6 +33,7 @@ CREATE TABLE Persona (
 CREATE TABLE Aspirante (
 	idAspirante INT NOT NULL,
 	descripcion VARCHAR(45) NULL,
+	fechaEntrevista DATETIME NULL,
 	Persona_idPersona INT NOT NULL,
 	PRIMARY KEY (idAspirante)
 )
@@ -42,7 +43,7 @@ CREATE TABLE Aspirante (
 -- -----------------------------------------------------
 CREATE TABLE Curriculum (
 	idCurriculum INT NOT NULL,
-	descripcion VARCHAR(45) NULL,
+	nombreArchivo VARCHAR(45) NULL,
 	Aspirante_idAspirante INT NOT NULL,
 	PRIMARY KEY (idCurriculum)
 )
@@ -399,7 +400,6 @@ CREATE TABLE TipoContrato (
 	PRIMARY KEY (idTipoContrato)
 )
 
-
 -- -----------------------------------------------------
 -- Table ContratoPersonal
 -- -----------------------------------------------------
@@ -411,16 +411,6 @@ CREATE TABLE ContratoPersonal (
 	horaSalida TIME NULL,
 	TipoContrato_idTipoContrato INT NOT NULL,
 	PRIMARY KEY (idContratoPersonal)
-)
-
--- -----------------------------------------------------
--- Table EntrevistaTrabajo
--- -----------------------------------------------------
-CREATE TABLE EntrevistaTrabajo (
-	idEntrevistaTrabajo INT NOT NULL,
-	fechaHora DATETIME NULL,
-	Curriculum_idCurriculum INT NOT NULL,
-	PRIMARY KEY (idEntrevistaTrabajo)
 )
 
 -- -----------------------------------------------------

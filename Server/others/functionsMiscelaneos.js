@@ -5,19 +5,23 @@
 // DEFINIENDO FUNCIONES MISCELANEAS
 function redirectById(req,res){
     switch(req.session.idCargo){
-        case 1:{
+        case 19:{
             res.redirect('/volvo/view/gestionUsuario/GU_Home');
             break;
         }
-        case 7 || 12 || 13 || 14 :{
+        case 9:
+        case 15:
+        case 16:
+        case 17:{
             res.redirect('/volvo/view/ordenTrabajo/OT_Home');
             break;
         }
-        case 15 || 16:{
+        case 2:
+        case 3:{
             res.redirect('/volvo/view/rrhh/RH_Home');
             break;
         }
-        case 17:{
+        case 14:{
             res.redirect('/volvo/view/facturacion/FA_Home');
             break;
         }
