@@ -183,16 +183,16 @@ VALUES
 -- Table Servicios
 INSERT INTO Servicios([idServicios],[nombre],[precioCosto],[duracion]) 
 VALUES
-(1,'Praesent eu dui. Cum',220,'04:18:45'),
-(2,'malesuada ut, sem. Nulla',651,'03:59:53'),
-(3,'Aliquam adipiscing lobortis risus.',418,'02:58:05'),
-(4,'odio tristique pharetra. Quisque',874,'02:13:54'),
-(5,'morbi tristique senectus et',486,'22:27:54'),
-(6,'Donec egestas. Duis ac',502,'06:35:31'),
-(7,'eleifend non, dapibus rutrum,',754,'02:30:54'),
-(8,'ac mi eleifend egestas.',245,'16:30:13'),
-(9,'non enim. Mauris quis',479,'03:34:59'),
-(10,'Etiam laoreet, libero et',802,'02:53:56');
+(1,'Lavado de auto',220,'04:18:45'),
+(2,'Inspeccion del Vehiculo',651,'03:59:53'),
+(3,'Mantenimiento',418,'02:58:05'),
+(4,'Pintura',874,'02:13:54'),
+(5,'Cambio de llantas',486,'22:27:54'),
+(6,'Cambio de aceites',502,'06:35:31'),
+(7,'Cambio de amortiguadores',754,'02:30:54'),
+(8,'Reparacion de motor',245,'16:30:13'),
+(9,'Reparacion de abolladuras',479,'03:34:59'),
+(10,'Otras Reparaciones',802,'02:53:56');
 
 -- Table Cotizacion
 INSERT INTO Cotizacion([idCotizacion],[descripcion],[Fecha]) 
@@ -276,14 +276,14 @@ VALUES
 -- Table Horas_extras
 INSERT INTO Horas_extras([idHoras_extras],[HoraInicio],[HoraFin],[fecha]) 
 VALUES
-(1,'20:14:33','13:16:19','05/08/2015'),
+(1,'13:16:19','20:14:33','05/08/2015'),
 (2,'06:55:48','08:02:23','2011/11/16'),
 (3,'11:27:13','17:51:23','2019/01/05'),
-(4,'21:25:34','07:21:43','2020/08/01'),
+(4,'07:21:43','21:25:34','2020/08/01'),
 (5,'12:34:40','17:32:16','2017/02/17'),
 (6,'10:13:58','11:24:33','2014/10/22'),
-(7,'09:03:42','00:43:28','2012/05/19'),
-(8,'08:40:07','05:02:42','2016/03/21'),
+(7,'00:43:28','09:03:42','2012/05/19'),
+(8,'05:02:42','08:40:07','2016/03/21'),
 (9,'03:39:55','10:13:36','2011/08/03'),
 (10,'03:34:49','07:17:11','2018/02/04');
 
@@ -294,7 +294,7 @@ VALUES
 (2,10,6),
 (3,3,10),
 (4,7,2),
-(5,4,10),
+(5,4,9),
 (6,3,10),
 (7,1,8),
 (8,3,5),
@@ -381,16 +381,16 @@ VALUES
 -- Table Aspirante
 INSERT INTO Aspirante([idAspirante],[descripcion],[fechaEntrevista],[Persona_idPersona]) 
 VALUES
-(1,'condimentum. Donec at ','2014-01-21',41),
-(2,'vel, mauris. Integer sem','2019-12-21',42),
-(3,'Cras lorem lorem,','2011-01-17',43),
-(4,'dolor vitae dolor. Dont','2018-06-15',44),
-(5,'convallis convallis','2011-07-19',45),
-(6,'purus mauris a nunc. Is','2012-10-31',46),
-(7,'nascetur ridiculus muse','2019-06-13',47),
-(8,'facilisis eget,','2016-07-04',48),
-(9,'tristique aliquet. Pha','2020-06-16',49),
-(10,'amet orci. Ut','2017-08-28',50);
+(1,'Area de Tecnologia','2014-01-21',41),
+(2,'Area de Contabilidad','2019-12-21',42),
+(3,'Area de RRHH','2011-01-17',43),
+(4,'Area de Administracion','2018-06-15',44),
+(5,'Area de Ventas','2011-07-19',45),
+(6,'Area de Almacen','2012-10-31',46),
+(7,'Area de Limpieza','2019-06-13',47),
+(8,'Area de Gerencia','2016-07-04',48),
+(9,'Area de Servicios','2020-06-16',49),
+(10,'Area de Taller','2017-08-28',50);
 
 -- Table Curriculum
 INSERT INTO Curriculum([idCurriculum],[nombreArchivo],[Aspirante_idAspirante]) 
@@ -433,16 +433,16 @@ VALUES
 -- Table Permisos
 INSERT INTO Permisos([idPermisos],[motivo],[fecha]) 
 VALUES
-(1,'magna. Phasellus dolor elit,','2019-07-15'),
-(2,'posuere vulputate, lacus. Cdo','2019-08-18'),
-(3,'Proin','2019-08-15'),
-(4,'pede et risus. Quisque libes','2019-02-16'),
-(5,'convallis dolor. Quisque ti','2019-03-11'),
-(6,'accumsan','2019-06-14'),
-(7,'leo. Vivamus nibh dolor, no','2019-02-20'),
-(8,'at, velit. Pellentesque ult','2019-04-19'),
-(9,'iaculis quis,','2019-09-17'),
-(10,'purus. Nullam','2019-02-19');
+(1,'Coronavirus','2019-07-15'),
+(2,'Examen de la Universidad','2019-08-18'),
+(3,'Llevar el hijo a la escuela','2019-08-15'),
+(4,'Tramitar la Visa','2019-02-16'),
+(5,'Llevar el perro al veterinario','2019-03-11'),
+(6,'Dengue','2019-06-14'),
+(7,'Graduacion de Estudios Universitarios','2019-02-20'),
+(8,'Defuncion de un Familiar','2019-04-19'),
+(9,'Conpulsar titulos para maestria','2019-09-17'),
+(10,'Reporte de asalto','2019-02-19');
 
 --Vacaciones
 INSERT INTO Vacaciones([idVacaciones],[cantidadDias],[FechaInicio],[FechaFin],[FechaRetorno]) 
@@ -461,40 +461,40 @@ VALUES
 -- Table Empleado
 INSERT INTO Empleado([idEmpleado],[CodigoEmpleado],[descripcion],[JefeInmediato],[Persona_idPersona],[Cargo_idCargo],[AreaTrabajo_idAreaTrabajo]) 
 VALUES
-(1,'EMP0001','Morbi sit', 10, 11, 1, 2),
-(2,'EMP0002','dui augue eu tellus. Phasellus', 3, 12, 7, 3),
-(3,'EMP0003','In ornare sagittis felis.', 5, 13, 12, 1),
-(4,'EMP0004','Vivamus nisi.', 8, 14, 13, 5),
-(5,'EMP0005','quam quis', 6, 15, 14, 4),
-(6,'EMP0006','leo. Cras vehicula aliquet', 7, 16, 15, 7),
-(7,'EMP0007','nunc sed pede. Cum sociis', 3, 17, 16, 1),
-(8,'EMP0008','sodales. Mauris blandit enim consequat', 7, 18, 17, 10),
-(9,'EMP0009','eu nulla at', 9, 19, 7, 1),
-(10,'EMP0010','orci', 9, 20, 2, 9),
-(11,'EMP0011','dui lectus rutrum urna,', 8, 21, 1, 1),
-(12,'EMP0012','arcu eu odio tristique', 1, 22, 2, 2),
-(13,'EMP0013','parturient montes, nascetur ridiculus', 4, 23, 3, 3),
-(14,'EMP0014','dui. Fusce diam nunc,', 10, 24, 4, 4),
-(15,'EMP0015','diam. Pellentesque habitant morbi', 6, 25, 5, 5),
-(16,'EMP0016','enim. Suspendisse aliquet, sem', 3, 26, 6, 6),
-(17,'EMP0017','senectus et netus et', 4, 27, 7, 7),
-(18,'EMP0018','at risus. Nunc ac', 6, 28, 8, 8),
-(19,'EMP0019','massa non ante bibendum', 7, 29, 9, 9),
-(20,'EMP0020','lectus ante dictum mi,', 9, 30, 10, 10);
+(1,'EMP0001','Excelente', 10, 11, 1, 2),
+(2,'EMP0002','Excelente', 3, 12, 7, 3),
+(3,'EMP0003','Excelente', 5, 13, 12, 1),
+(4,'EMP0004','Excelente', 8, 14, 13, 5),
+(5,'EMP0005','Excelente', 6, 15, 14, 4),
+(6,'EMP0006','Excelente', 7, 16, 15, 7),
+(7,'EMP0007','Excelente', 3, 17, 16, 1),
+(8,'EMP0008','Excelente', 7, 18, 17, 10),
+(9,'EMP0009','Excelente', 9, 19, 7, 1),
+(10,'EMP0010','Bueno', 9, 20, 2, 9),
+(11,'EMP0011','Bueno', 8, 21, 1, 1),
+(12,'EMP0012','Bueno', 1, 22, 2, 2),
+(13,'EMP0013','Bueno', 4, 23, 3, 3),
+(14,'EMP0014','Bueno', 10, 24, 4, 4),
+(15,'EMP0015','Regular', 6, 25, 5, 5),
+(16,'EMP0016','Regular', 3, 26, 6, 6),
+(17,'EMP0017','Regular', 4, 27, 7, 7),
+(18,'EMP0018','Regular', 6, 28, 8, 8),
+(19,'EMP0019','Malo', 7, 29, 9, 9),
+(20,'EMP0020','Malo', 9, 30, 10, 10);
 
 -- Table Solicitudes
 INSERT INTO Solicitudes([idSolicitudes],[descripcion],[Permisos_idPermisos],[Vacaciones_idVacaciones],[Empleado_idEmpleado])
 VALUES
-(1,'malesuada malesuada. Integer id magna',3,7,7),
-(2,'quis',6,10,5),
-(3,'Sed et libero. Proin',7,9,3),
-(4,'Fusce dolor quam, elementum',9,8,5),
-(5,'ornare, libero',9,1,4),
-(6,'turpis egestas. Aliquam',2,8,6),
-(7,'mauris sapien, cursus in, hendrerit',10,9,6),
-(8,'eleifend, nunc risus',2,1,4),
-(9,'lobortis, nisi',6,4,5),
-(10,'Nulla tincidunt,',2,8,4);
+(1,'Vacaciones de mes',3,7,7),
+(2,'Vacaciones de semana santa',6,10,5),
+(3,'Permiso de Salud',7,9,3),
+(4,'Permiso de Estudio',9,8,5),
+(5,'Vacaciones de semana morazanica',9,1,4),
+(6,'Permiso Familiar',2,8,6),
+(7,'Permiso de Obligaciones',10,9,6),
+(8,'Vacaciones de Navidad',2,1,4),
+(9,'Dias Libres',6,4,5),
+(10,'Otros Permisos',2,8,4);
 
 -- Table Reservacion
 INSERT INTO Reservacion([idReservacion],[descripcion],[cita],[Empleado_idEmpleado],[Cliente_idCliente]) 
@@ -527,16 +527,16 @@ VALUES
 -- Table Huella
 INSERT INTO Huella([idHuella],[descripcion],[HoraEntrada],[HoraSalida],[Fecha],[Empleado_idEmpleado]) 
 VALUES
-(1,'interdum. Sed auctor','20:14:33','13:16:19','2020-08-11',7),
-(2,'velit. Cras loremget,','06:55:48','08:02:23','2020-01-14',1),
-(3,'a, magna.','11:27:13','17:51:23','2020-06-18',9),
-(4,'dui quis llis est, vitae','21:25:34','07:21:43','2020-09-13',1),
-(5,'dictum eutis a, magna.','12:34:40','17:32:16','2020-04-16',10),
-(6,'non','10:13:58','11:24:33','2020-11-10',5),
-(7,'nisl sem,','09:03:42','00:43:28','2020-11-13',3),
-(8,'hendrerit a, arcu.','08:40:07','05:02:42','2020-07-12',8),
-(9,'vitae era blandit congue.','03:39:55','10:13:36','2020-02-15',7),
-(10,'Nunc mauris elit, dictum end','20:14:33','13:16:19','2020-02-20',5);
+(1,'Hora Correcta','13:16:19','20:14:33','2020-08-11',7),
+(2,'Hora Correcta','06:55:48','08:02:23','2020-01-14',1),
+(3,'Hora Correcta','11:27:13','17:51:23','2020-06-18',9),
+(4,'Hora Correcta','07:21:43','21:25:34','2020-09-13',1),
+(5,'Hora Correcta','12:34:40','17:32:16','2020-04-16',10),
+(6,'Retraso','10:13:58','11:24:33','2020-11-10',5),
+(7,'Retraso y Salida Temprana','00:43:28','09:03:42','2020-11-13',3),
+(8,'Salida Temprana','05:02:42','08:40:07','2020-07-12',8),
+(9,'Hora Correcta y Horas extras','03:39:55','10:13:36','2020-02-15',7),
+(10,'Horas extras','13:16:19','20:14:33','2020-02-20',5);
 
 -- Table Materiales
 INSERT INTO Materiales([idMateriales],[descripcion],[Producto_idProducto]) 
@@ -679,30 +679,30 @@ VALUES
 -- Table Historico_Contratos
 INSERT INTO Historico_Contratos([idHistorico_Contratos],[ContratoPersonal_idContratoPersonal],[Empleado_idEmpleado]) 
 VALUES
-(1,5,7),
-(2,3,6),
-(3,7,5),
-(4,5,5),
-(5,7,5),
-(6,8,9),
-(7,6,1),
-(8,3,4),
-(9,4,9),
-(10,10,3);
+(1,1,1),
+(2,2,2),
+(3,3,3),
+(4,4,4),
+(5,5,5),
+(6,6,6),
+(7,7,7),
+(8,8,8),
+(9,9,9),
+(10,10,10);
 
 -- Table RolPago
 INSERT INTO RolPago([idRolPago],[Sueldo],[Fecha],[Deducciones],[CantidadHT],[CantidadHE],[PagoHT],[PagoHE],[Comisiones],[Cargo],[Empleado_idEmpleado]) 
 VALUES
-(1,9555,'2013-08-21',483,10,4,13869,666,3695,'dolor vitae',4),
-(2,7894,'2019-03-14',199,12,4,6095,1436,2076,'turpis egestas. Aliquam fringilla',4),
-(3,14292,'2016-05-15',229,12,2,5749,673,3703,'vel sapien',10),
-(4,11449,'2013-05-10',456,11,1,14303,889,4960,'tempor, est',3),
-(5,8120,'2018-06-09',317,12,1,7187,1488,1512,'lectus sit',3),
-(6,13569,'2017-03-03',191,11,2,9484,1456,1149,'magna tellus',9),
-(7,10917,'2018-06-23',377,12,4,14109,1878,3873,'Duis risus',2),
-(8,5962,'2016-04-06',361,10,1,5580,1277,3952,'mollis.',4),
-(9,12844,'2011-08-12',268,11,4,5915,1984,1648,'vestibulum lorem, sit amet',2),
-(10,13930,'2014-03-14',223,12,2,13398,554,2823,'sed sem egestas',10);
+(1,9555,'2013-08-21',483,10,4,13869,666,3695,'Asesor de Servicios',4),
+(2,7894,'2019-03-14',199,12,4,6095,1436,2076,'Asesor de Servicios',4),
+(3,14292,'2016-05-15',229,12,2,5749,673,3703,'Jefe de RRHH',10),
+(4,11449,'2013-05-10',456,11,1,14303,889,4960,'Administrador Sistema',3),
+(5,8120,'2018-06-09',317,12,1,7187,1488,1512,'Administrador Sistema',3),
+(6,13569,'2017-03-03',191,11,2,9484,1456,1149,'Asistente de RRHH',9),
+(7,10917,'2018-06-23',377,12,4,14109,1878,3873,'Cajero',2),
+(8,5962,'2016-04-06',361,10,1,5580,1277,3952,'Asesor de Servicios',4),
+(9,12844,'2011-08-12',268,11,4,5915,1984,1648,'Cajero',2),
+(10,13930,'2014-03-14',223,12,2,13398,554,2823,'Jefe de RRHH',10);
 
 -- Table Cotizacion_has_Producto
 INSERT INTO Cotizacion_has_Producto([idCotizacion_has_Producto],[Cotizacion_idCotizacion],[Producto_idProducto],[Aprovados]) 
@@ -727,7 +727,7 @@ VALUES
 -- Table Usuarios
 INSERT INTO Usuarios([idUsuario],[nombreUsuario],[contrasenia],[Empleado_idEmpleado],[Estado_Usuario_idEstado_Usuario]) 
 VALUES
-(1,'Murphy','FSJ44MIN4FJ',1,1),
+(1,'LuisFer15','extremo15',1,1),
 (2,'Carson','FDN61QJI7UM',2,1),
 (3,'Plato','BHE81RRR3RE',3,1),
 (4,'Marvin','MYC35PEB8EV',4,1),
