@@ -79,15 +79,9 @@ ALTER TABLE Reservacion ADD
 
 -- Table OrdenTrabajo
 ALTER TABLE OrdenTrabajo ADD
-	CONSTRAINT fk_Orden_de_Trabajo_Cotizacion1 
-		FOREIGN KEY (Cotizacion_idCotizacion) 
-		REFERENCES Cotizacion (idCotizacion),
 	CONSTRAINT fk_Orden_de_Trabajo_Cliente1 
 		FOREIGN KEY (Cliente_idCliente) 
 		REFERENCES Cliente (idCliente),
-	CONSTRAINT fk_Orden_de_Trabajo_Lista_MyR1 
-		FOREIGN KEY (ListaMyR_idListaMyR) 
-		REFERENCES ListaMyR (idListaMyR),
 	CONSTRAINT fk_Orden_de_Trabajo_EstadoOT1 
 		FOREIGN KEY (EstadoOT_idEstadoOT) 
 		REFERENCES EstadoOT (idEstadoOT),
@@ -133,36 +127,9 @@ ALTER TABLE VinculoCyV ADD
 
 -- Table Producto
 ALTER TABLE Producto ADD
-	CONSTRAINT fk_Producto_Inventario1 
-		FOREIGN KEY (Inventario_idInventario) 
-		REFERENCES Inventario (idInventario)
-
--- Table Inventario_has_Lista_MyR
-ALTER TABLE Inventario_has_Lista_MyR ADD
-	CONSTRAINT fk_Inventario_has_Lista_MyR_Lista_MyR1 
-		FOREIGN KEY (ListaMyR_idListaMyR) 
-		REFERENCES ListaMyR (idListaMyR),
-	CONSTRAINT fk_Inventario_has_Lista_MyR_Producto1 
-		FOREIGN KEY (Producto_idProducto) 
-		REFERENCES Producto (idProducto)
-
--- Table Recambios
-ALTER TABLE Recambios ADD
-	CONSTRAINT fk_Recambios_Producto1 
-		FOREIGN KEY (Producto_idProducto) 
-		REFERENCES Producto (idProducto)
-
--- Table Materiales
-ALTER TABLE Materiales ADD
-	CONSTRAINT fk_Materiales_Producto1 
-		FOREIGN KEY (Producto_idProducto) 
-		REFERENCES Producto (idProducto)
-
--- Table Herramientas
-ALTER TABLE Herramientas ADD
-	CONSTRAINT fk_Herramientas_Inventario1 
-		FOREIGN KEY (Inventario_idInventario) 
-		REFERENCES Inventario (idInventario)
+	CONSTRAINT fk_Producto_TipoProducto1 
+		FOREIGN KEY (TipoProducto_idTipoProducto) 
+		REFERENCES TipoProducto (idTipoProducto)
 
 -- Table Huella
 ALTER TABLE Huella ADD
@@ -203,23 +170,32 @@ ALTER TABLE RolPago ADD
 		FOREIGN KEY (Empleado_idEmpleado) 
 		REFERENCES Empleado (idEmpleado)
 
--- Table Cotizacion_has_Producto
-ALTER TABLE Cotizacion_has_Producto ADD
-	CONSTRAINT fk_Cotizacion_has_Producto_Cotizacion1 
-		FOREIGN KEY (Cotizacion_idCotizacion) 
-		REFERENCES Cotizacion (idCotizacion),
-	CONSTRAINT fk_Cotizacion_has_Producto_Producto1 
-		FOREIGN KEY (Producto_idProducto) 
-		REFERENCES Producto (idProducto)
-
--- Table OrdenTrabajo_has_Servicios
-ALTER TABLE OrdenTrabajo_has_Servicios ADD
-	CONSTRAINT fk_Orden_de_Trabajo_has_Servicios_Orden_de_Trabajo1 
+-- Table Lista_Servicios
+ALTER TABLE Lista_Servicios ADD
+	CONSTRAINT fk_OrdenTrabajo_has_Servicios_OrdenTrabajo1 
 		FOREIGN KEY (OrdenTrabajo_idOrdenTrabajo) 
 		REFERENCES OrdenTrabajo (idOrdenTrabajo),
-	CONSTRAINT fk_Orden_de_Trabajo_has_Servicios_Servicios1 
+	CONSTRAINT fk_OrdenTrabajo_has_Servicios_Servicios1 
 		FOREIGN KEY (Servicios_idServicios) 
 		REFERENCES Servicios (idServicios)
+
+-- Table Lista_Cotizacion
+ALTER TABLE Lista_Cotizacion ADD
+	CONSTRAINT fk_OrdenTrabajo_has_Producto_OrdenTrabajo1 
+		FOREIGN KEY (OrdenTrabajo_idOrdenTrabajo) 
+		REFERENCES OrdenTrabajo (idOrdenTrabajo),
+	CONSTRAINT fk_OrdenTrabajo_has_Producto_Producto1 
+		FOREIGN KEY (Producto_idProducto) 
+		REFERENCES Producto (idProducto)
+		
+-- Table Lista_MyR
+ALTER TABLE Lista_MyR ADD
+	CONSTRAINT fk_OrdenTrabajo_has_Producoto_OrdenTrabajo2
+		FOREIGN KEY (OrdenTrabajo_idOrdenTrabajo) 
+		REFERENCES OrdenTrabajo (idOrdenTrabajo),
+	CONSTRAINT fk_OrdenTrabajo_has_Producoto_Producto2
+		FOREIGN KEY (Producto_idProducto) 
+		REFERENCES Producto (idProducto)
 
 -- Table Usuarios
 ALTER TABLE Usuarios ADD
