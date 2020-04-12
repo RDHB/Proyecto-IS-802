@@ -34,7 +34,30 @@ function GU_LOGIN(req,res){
     });
 };
 
+function GU_GESTION_USUARIOS(req,res){
+    conn.connect().then(function(){
+        var reqDB = new sql.Request(conn);
+        reqDB.input('pcodigoEmpleado',sql.VarChar,req.body.codigoEmpleado);
+        reqDB.input('pnombreUsuario',sql.VarChar,req.body.nombreUsuario);
+        reqDB.input('pcontrasenia',sql.VarChar,req.body.contrasenia);
+        reqDB.input('pAccion',sql.VarChar,req.body.accion);
+        reqDB.output('pcodigoMensaje', sql.Int);
+        reqDB.output('pmensaje', sql.VarChar);
+        reqDB.execute('GU_GESTION_USUARIOS').then(function(result){
+            conn.close();
+            res.send(result.output);
+        }).catch(function(err){
+            conn.close();
+            resp.send(messagesMiscelaneos.errorC2);
+        });
+    })
+    .catch(function(err){
+        res.send(messagesMiscelaneos.errorC1);
+    });
+};
+
 // EXPORTANDO LAS FUNCIONES QUE ATENDERAN LAS PETICIONES
 module.exports = {
-    GU_LOGIN
+    GU_LOGIN,
+    GU_GESTION_USUARIOS
 };
