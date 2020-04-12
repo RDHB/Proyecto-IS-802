@@ -22,7 +22,7 @@ app.use('/volvo/api/Miscelaneos',apisMiscelaneos);
 app.use('/volvo/view',apisViews);
 
 // DEFINIENDO PUNTO DE INICIO DE APLICACION
-app.get('/volvo/',(req,res) => {
+app.get('/volvo',(req,res) => {
     if(req.session.name){
         functionsMiscelaneos.redirectById(req,res);
     }else{
