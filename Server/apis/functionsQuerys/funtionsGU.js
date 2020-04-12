@@ -26,7 +26,7 @@ function GU_LOGIN(req,res){
             res.send(result.output);
         }).catch(function(err){
             conn.close();
-            resp.send(messagesMiscelaneos.errorC2);
+            res.send(messagesMiscelaneos.errorC2);
         });
     })
     .catch(function(err){
@@ -48,7 +48,7 @@ function GU_GESTION_USUARIOS(req,res){
             res.send(result.output);
         }).catch(function(err){
             conn.close();
-            resp.send(messagesMiscelaneos.errorC2);
+            res.send(messagesMiscelaneos.errorC2);
         });
     })
     .catch(function(err){

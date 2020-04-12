@@ -6,6 +6,7 @@ const express = require('express');
 const session = require('express-session');
 const config = require('./Server/settings/config');
 const apisGU = require('./Server/apis/apisGU');
+const apisVE = require('./Server/apis/apisVE');
 const apisMiscelaneos = require('./Server/apis/apisMiscelaneos');
 const apisViews = require('./Server/views/apisViews');
 const functionsMiscelaneos = require('./Server/others/functionsMiscelaneos');
@@ -18,6 +19,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(session(config.configSession));
 app.use('/volvo/api/GU',apisGU);
+app.use('/volvo/api/VE',apisVE);
 app.use('/volvo/api/Miscelaneos',apisMiscelaneos);
 app.use('/volvo/view',apisViews);
 
