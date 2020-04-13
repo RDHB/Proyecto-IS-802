@@ -2,8 +2,11 @@
 
 // IMPORTANDO LOS MODULOS NECESARIOS
 const sql = require('mssql');
+const jwt = require('jsonwebtoken');
 const conn = require('../../db/connectionDB');
 const messagesMiscelaneos = require('../../others/messagesMiscelaneos');
+const secretToken = require('../../settings/config')
+
 
 // DEFINIENDO FUNCIONES MISCELANEAS
 function GENERIC_GESTION_TABLAS(req,res){
@@ -29,7 +32,30 @@ function GENERIC_GESTION_TABLAS(req,res){
     });
 };
 
+function generateToken (user){
+    return jwt.sign({username:user}, secretToken.configToken.key, { expiresIn: 60*60*24});
+}
+
+function authToken(req, res, next){
+    const token = req.headers['authorization'].replace('Bearer ','');
+
+    if (token == null){
+        res.send(messagesMiscelaneos.errorC6);
+    }else{
+        jwt.verify(token, secretToken.configToken.key,(err,decoded)=>{
+            if(decoded){
+                req.decoded = decoded;
+                next();
+            }else if(err){
+                res.send(messagesMiscelaneos.errorC6);
+            }
+        });
+    }
+}
+
 // EXPORTANDO FUNCIONES MISCELANEAS
 module.exports = {
-    GENERIC_GESTION_TABLAS
+    GENERIC_GESTION_TABLAS,
+    generateToken,
+    authToken
 };

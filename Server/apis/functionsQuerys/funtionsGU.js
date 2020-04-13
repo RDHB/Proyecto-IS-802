@@ -4,6 +4,7 @@
 const sql = require('mssql');
 const conn = require('../../db/connectionDB');
 const messagesMiscelaneos = require('../../others/messagesMiscelaneos');
+const functionsMiscelaneos = require('../functionsMiscelaneos/functionsMiscelaneos');
 
 // DEFINIENDO LAS FUNCIONES
 function GU_LOGIN(req,res){
@@ -17,13 +18,19 @@ function GU_LOGIN(req,res){
         reqDB.output('pidCargo',sql.Int);
         reqDB.execute('GU_LOGIN').then(function(result){
             conn.close();
+            var token;
             if(result.output.pcodigoMensaje == 0){
                 req.session.name = req.body.usuario;
                 req.session.password = req.body.password;
                 req.session.idCargo = result.output.pidCargo;
                 req.session.codigoEmpleado = result.output.pcodigoEmpleado;
+                token = functionsMiscelaneos.generateToken(req.session.name)
+                result.output.token = token;
+                res.send(result.output);
+            }else{
+                res.send({pcodigoMensaje: result.output.pcodigoMensaje, pmensaje: result.output.pmensaje});    
             }
-            res.send(result.output);
+            
         }).catch(function(err){
             conn.close();
             res.send(messagesMiscelaneos.errorC2);

@@ -1,7 +1,9 @@
 'use strict'
 
-// SE EXPORTAN DIVERSOS DATOS DE INTERES PARA LA CONEXION EN EL SERVIDOR Y LA REALIZAR LA CONEXION A LA BASE DE DATOS INSTALADO EN EL SERVIDOR
+const crypto = require('crypto');
 
+
+// SE EXPORTAN DIVERSOS DATOS DE INTERES PARA LA CONEXION EN EL SERVIDOR Y LA REALIZAR LA CONEXION A LA BASE DE DATOS INSTALADO EN EL SERVIDOR
 module.exports = {
     configServer : {
         port : process.env.PORT || 3000
@@ -15,8 +17,10 @@ module.exports = {
         parseJSON: true
     },
     configSession : {
-        secret: 'QuegranSecretoj@@@',
+        secret: crypto.randomBytes(64).toString('hex'),
         saveUninitialized: true,
         resave: true
-    }
+    },
+    configToken: {
+        key: crypto.randomBytes(64).toString('hex')}
 };
