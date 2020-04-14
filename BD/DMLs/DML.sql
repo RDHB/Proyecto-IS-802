@@ -578,18 +578,18 @@ VALUES
 (10,10,10);
 
 -- Table RolPago
-INSERT INTO RolPago([idRolPago],[Sueldo],[Fecha],[Deducciones],[CantidadHT],[CantidadHE],[PagoHT],[PagoHE],[Comisiones],[Cargo],[Empleado_idEmpleado]) 
+INSERT INTO RolPago([idRolPago],[cargo],[fecha],[sueldoBase],[cantidadHE],[pagoHE],[comisiones],[deducciones],[totalPago],[Empleado_idEmpleado]) 
 VALUES
-(1,9555,'2013-08-21',483,10,4,13869,666,3695,'Asesor de Servicios',4),
-(2,7894,'2019-03-14',199,12,4,6095,1436,2076,'Asesor de Servicios',4),
-(3,14292,'2016-05-15',229,12,2,5749,673,3703,'Jefe de RRHH',10),
-(4,11449,'2013-05-10',456,11,1,14303,889,4960,'Administrador Sistema',3),
-(5,8120,'2018-06-09',317,12,1,7187,1488,1512,'Administrador Sistema',3),
-(6,13569,'2017-03-03',191,11,2,9484,1456,1149,'Asistente de RRHH',9),
-(7,10917,'2018-06-23',377,12,4,14109,1878,3873,'Cajero',2),
-(8,5962,'2016-04-06',361,10,1,5580,1277,3952,'Asesor de Servicios',4),
-(9,12844,'2011-08-12',268,11,4,5915,1984,1648,'Cajero',2),
-(10,13930,'2014-03-14',223,12,2,13398,554,2823,'Jefe de RRHH',10);
+(1,'Asesor de Servicios'   ,'2013-08-21',9555,10,40,483     ,666,13869,4),
+(2,'Asesor de Servicios'   ,'2019-03-14',7894,12,40,199     ,1436,6095,4),
+(3,'Jefe de RRHH'          ,'2016-05-15',14292,12,20,229    ,673,5749,10),
+(4,'Administrador Sistema' ,'2013-05-10',11449,11,10,456    ,889,14303,3),
+(5,'Administrador Sistema' ,'2018-06-09',8120,12,10,317     ,1488,7187,3),
+(6,'Asistente de RRHH'     ,'2017-03-03',13569,11,20,191    ,1456,9484,9),
+(7,'Cajero'                ,'2018-06-23',10917,12,40,377    ,1878,14109,2),
+(8,'Asesor de Servicios'   ,'2016-04-06',5962,10,10,361     ,1277,5580,4),
+(9,'Cajero'                ,'2011-08-12',12844,11,40,268    ,1984,5915,2),
+(10,'Jefe de RRHH'         ,'2014-03-14',13930,12,20,223    ,554,13398,10);
 
 -- Table Lista_Servicios
 INSERT INTO Lista_Servicios([OrdenTrabajo_idOrdenTrabajo],[Servicios_idServicios],[servicioEfectuado]) 
