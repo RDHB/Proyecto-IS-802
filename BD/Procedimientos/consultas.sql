@@ -566,12 +566,12 @@ SELECT * FROM Cliente C INNER JOIN Persona P ON P.idPersona = C.Persona_idPerson
 SELECT * FROM Vehiculos
 
 DECLARE
-	@pvin	 							VARCHAR(45) = '1PCH23DF56GHJ3DF341',
+	@pvin	 							VARCHAR(45) = '1PCH23DF56GHJ3DF34A',
 	@pcolor								VARCHAR(45) = 'Plateado',
 	@pplaca								VARCHAR(45) = 'PCH-2345',
 	@pnumeroMotor						VARCHAR(45) = 'R134J4768341',
 	@pcaja_de_cambios					VARCHAR(45) = 'Automatico',
-	@pidModelo							INT = 101,
+	@pidModelo							INT = 1,
     @paccion							VARCHAR(45) = 'INSERT',
 
 	@prcodigoMensaje				INT = 0,
@@ -648,11 +648,6 @@ SELECT @prcodigoMensaje;
 SELECT @prmensaje;
 
 
-
-
-
-
-
 SELECT 
 	V.vin
 	, ( -- descripcion Marca
@@ -698,3 +693,128 @@ SELECT COUNT(*) FROM VinculoCyV
 			INNER JOIN Persona P ON P.idPersona = C.Persona_idPersona
 			WHERE P.numeroIdentidad = '1804-1998-00220'
 		)
+;
+
+
+
+
+
+
+
+
+
+
+
+
+-- LLamar al procedimiento almacenado: RH_ENTREVISTA_TRABAJO
+SELECT * FROM Persona
+SELECT * FROM Telefono
+SELECT * FROM Aspirante
+select * from Curriculum
+
+DELETE FROM Curriculum WHERE idCurriculum = 11;
+DELETE FROM Aspirante WHERE Persona_idPersona = 61;
+DELETE FROM Telefono WHERE Persona_idPersona = 61;
+DELETE FROM Persona WHERE idPersona = 61;
+
+
+DECLARE
+	@pnumeroIdentidad			VARCHAR(45) = '16020124 3501',
+	@pprimerNombre				VARCHAR(45) = 'Luis',
+	@psegundoNombre				VARCHAR(45) = 'Fletcher',
+	@pprimerApellido			VARCHAR(45) = 'Matinez',
+	@psegundoApellido			VARCHAR(45) = 'Howard',
+	@prcorreoElectronico		VARCHAR(45) = 'luisfer@gmail.com',
+	@prdireccion				VARCHAR(45) = 'Barreo Caba�as',
+	@prnumeroTelefono			VARCHAR(45) = '9798-2221',
+	@pridGenero					INT = 1,
+	@prdescripcion				VARCHAR(45) = 'Area Ventas',
+	@pFecha						DATE = '2018-04-18',
+    @paccion					VARCHAR(45) = 'INSERT',
+
+	@prcodigoMensaje INT = 0,
+	@prmensaje VARCHAR(45) = '',
+	@prNombreArchivo VARCHAR(45) = ''
+;
+
+
+EXEC RH_ENTREVISTA_TRABAJO
+	-- INTPUT
+	@pnumeroIdentidad,
+	@pprimerNombre,
+	@psegundoNombre,
+	@pprimerApellido,
+	@psegundoApellido,
+	@prcorreoElectronico,
+	@prdireccion,
+	@prnumeroTelefono,
+	@pridGenero,
+	@prdescripcion,
+	@pFecha,
+    @paccion,
+	
+	-- OUTPUT
+	@prcodigoMensaje OUTPUT,
+	@prmensaje OUTPUT,
+	@prNombreArchivo OUTPUT
+;
+
+-- OUTPUT
+SELECT @prcodigoMensaje;
+SELECT @prmensaje;
+SELECT @prNombreArchivo;
+
+
+
+
+
+
+
+
+
+-- LLamar al procedimiento almacenado: RH_ENTREVISTA_TRABAJO
+SELECT * FROM Persona
+SELECT * FROM Empleado
+select * from ContratoPersonal
+SELECT * FROM Historico_Contratos
+
+delete from Empleado where idEmpleado = 21;
+delete from ContratoPersonal where idContratoPersonal = 11;
+delete from Historico_Contratos where idHistorico_Contratos  = 11;
+DECLARE
+	@prnumeroIdentidad			VARCHAR(45) = '16020124 3508',
+	@prsueldo					DECIMAL = 1123,
+	@prhoraInicio				TIME = '08:00:00.0000000',
+	@prhoraFin					TIME = '16:00:00.0000000',
+	@pridTipoContrato			INT = 1,
+	@pridAreaTrabajo			INT = 1,
+	@pridCargo					INT = 1,
+    @paccion					VARCHAR(45) = 'INSERT',
+
+	@prcodigoMensaje INT = 0,
+	@prmensaje VARCHAR(1000) = '',
+	@pcodigoEmpleado VARCHAR(45) = ''
+;
+
+
+EXEC RH_CONTRATOS
+	-- INTPUT
+	@prnumeroIdentidad,
+	@prsueldo,
+	@prhoraInicio,
+	@prhoraFin,
+	@pridTipoContrato,
+	@pridAreaTrabajo,
+	@pridCargo,
+	@paccion,
+	
+	-- OUTPUT
+	@prcodigoMensaje OUTPUT,
+	@prmensaje OUTPUT,
+	@pcodigoEmpleado OUTPUT
+;
+
+-- OUTPUT
+SELECT @prcodigoMensaje;
+SELECT @prmensaje;
+SELECT @pcodigoEmpleado;

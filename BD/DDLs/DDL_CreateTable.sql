@@ -382,15 +382,14 @@ CREATE TABLE Historico_HE (
 -- -----------------------------------------------------
 CREATE TABLE RolPago (
 	idRolPago INT NOT NULL,
-	sueldo DECIMAL NULL,
+	cargo VARCHAR(45) NULL,
 	fecha DATE NULL,
-	deducciones DECIMAL NULL,
-	cantidadHT INT NULL,
+	sueldoBase DECIMAL NULL,
 	cantidadHE INT NULL,
-	pagoHT DECIMAL NULL,
 	pagoHE DECIMAL NULL,
 	comisiones DECIMAL NULL,
-	cargo VARCHAR(45) NULL,
+	deducciones DECIMAL NULL,
+	totalPago DECIMAL NULL,
 	Empleado_idEmpleado INT NOT NULL,
 	PRIMARY KEY (idRolPago)
 )
