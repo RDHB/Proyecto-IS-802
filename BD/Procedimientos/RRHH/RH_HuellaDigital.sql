@@ -287,7 +287,7 @@ BEGIN
 			WHERE Empleado_idEmpleado = (SELECT idEmpleado FROM Empleado WHERE codigoEmpleado = @pcodigoEmpleado)
 			AND fecha = @pfecha
 		);
-
+		
 		SET @phoraSalida = (
 			SELECT horaSalida FROM Huella
 			WHERE Empleado_idEmpleado = (SELECT idEmpleado FROM Empleado WHERE codigoEmpleado = @pcodigoEmpleado)
