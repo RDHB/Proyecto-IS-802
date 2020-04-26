@@ -153,8 +153,8 @@ BEGIN
 			SELECT Horas_extras_idHoras_extras FROM Historico_HE HHE
 			INNER JOIN Horas_extras HE ON HE.idHoras_extras = HHE.Horas_extras_idHoras_extras
 			WHERE HHE.AreaTrabajo_idAreaTrabajo = @pidAreaTrabajo
-			AND HE.fecha = @pfecha;
-		)
+			AND HE.fecha = @pfecha
+		);
 
 
         SET @pmensaje = 'Horas Extras registradas con exito';

@@ -64,7 +64,7 @@ SELECT @prNombreArchivo;
 
 
 
--- LLamar al procedimiento almacenado: RH_ENTREVISTA_TRABAJO
+-- LLamar al procedimiento almacenado: RH_CONTRATOS
 SELECT * FROM Persona
 SELECT * FROM Empleado
 select * from ContratoPersonal
@@ -297,3 +297,150 @@ EXEC RH_ROL_PAGO
 ;
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- LLamar al procedimiento almacenado: RH_PERMISOS
+SELECT * FROM Permisos
+
+SELECT E.codigoEmpleado, S.descripcion, P.motivo, P.fecha FROM Permisos P
+INNER JOIN Solicitudes S ON S.Permisos_idPermisos = P.idPermisos
+INNER JOIN Empleado E ON E.idEmpleado = S.Empleado_idEmpleado
+
+
+SELECT E.codigoEmpleado, H.fecha, H.horaEntrada, H.horaSalida FROM Huella H 
+INNER JOIN Empleado E ON H.Empleado_idEmpleado = E.idEmpleado
+
+SELECT E.codigoEmpleado, CP.horaEntrada, CP.horaSalida FROM ContratoPersonal CP
+INNER JOIN Historico_Contratos HC ON HC.ContratoPersonal_idContratoPersonal = CP.idContratoPersonal
+INNER JOIN Empleado E ON HC.Empleado_idEmpleado = E.idEmpleado
+
+delete from Solicitudes where idSolicitudes = 11
+delete from Permisos where idPermisos = 11
+delete from Huella where idHuella = 11
+
+
+DECLARE
+	@prcodigoEmpleado				VARCHAR(45)		= 'EMP0001',
+	@prmotivo						VARCHAR(45)		= 'Coronavirus de nuevo',
+	@prfecha						DATE			= DATEADD(DAY,-1,GETDATE()),
+	@prdescripcion					VARCHAR(45)		= 'Sintomas graves',
+    @praccion						VARCHAR(45)		= 'INSERT',
+
+
+    @prcodigoMensaje				INT				= 0,
+	@prmensaje 						VARCHAR(1000)	= '',
+	@prnombreCompleto				VARCHAR(45)		= '',
+	@prcargo						VARCHAR(45)		= ''
+;
+
+
+EXEC RH_PERMISOS
+	-- INTPUT
+	@prcodigoEmpleado,
+	@prmotivo,
+	@prfecha,
+	@prdescripcion,
+    @praccion,
+
+	-- OUTPUT
+	@prcodigoMensaje OUTPUT,
+	@prmensaje OUTPUT,
+	@prnombreCompleto OUTPUT,
+	@prcargo OUTPUT
+;
+
+SELECT @prcodigoMensaje
+	, @prmensaje
+	, @prnombreCompleto
+	, @prcargo
+;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- LLamar al procedimiento almacenado: RH_VACACIONES
+SELECT * FROM Vacaciones
+
+SELECT E.codigoEmpleado, S.descripcion, V.cantidadDias, V.fechaInicio, V.fechaFin, V.fechaRetorno FROM Vacaciones V
+INNER JOIN Solicitudes S ON S.Vacaciones_idVacaciones = V.idVacaciones
+INNER JOIN Empleado E ON E.idEmpleado = S.Empleado_idEmpleado
+
+delete from Solicitudes where idSolicitudes = 11
+delete from Vacaciones where idVacaciones = 11
+
+DECLARE
+	-- Parametros de Entrada
+	@prcodigoEmpleado			VARCHAR(45)		= 'EMP0001',
+	@prcantidadDias				INT				= 40,
+	@prfechaInicio				DATE			= DATEADD(DAY,0,GETDATE()),
+	@prdescripcion				VARCHAR(45)		= 'Vacaciones de prueba',
+    @praccion					VARCHAR(45)		= 'INSERT',
+    
+    -- Parametros de Salida
+    @prcodigoMensaje			INT				= 0,
+	@prmensaje 					VARCHAR(1000)	= '',
+	@prfechaFin					DATE			= '',
+	@prfechaReingreso			DATE			= '',
+	@prnombreCompleto			VARCHAR(45)		= '',
+	@prcargo					VARCHAR(45)		= ''
+;
+
+
+EXEC RH_VACACIONES
+	-- INTPUT
+	@prcodigoEmpleado,
+	@prcantidadDias,
+	@prfechaInicio,
+	@prdescripcion,
+    @praccion,
+
+	-- OUTPUT
+	@prcodigoMensaje OUTPUT,
+	@prmensaje OUTPUT,
+	@prfechaFin OUTPUT,
+	@prfechaReingreso OUTPUT,
+	@prnombreCompleto OUTPUT,
+	@prcargo OUTPUT
+;
+
+SELECT @prcodigoMensaje
+	, @prmensaje
+	, @prfechaFin
+	, @prfechaReingreso
+	, @prnombreCompleto
+	, @prcargo
+
+;
+
+SELECT E.codigoEmpleado, S.descripcion, V.cantidadDias, V.fechaInicio, V.fechaFin, V.fechaRetorno FROM Vacaciones V
+INNER JOIN Solicitudes S ON S.Vacaciones_idVacaciones = V.idVacaciones
+INNER JOIN Empleado E ON E.idEmpleado = S.Empleado_idEmpleado

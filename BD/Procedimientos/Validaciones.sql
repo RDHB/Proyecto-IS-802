@@ -106,6 +106,6 @@ inner join Solicitudes s on s.Vacaciones_idVacaciones = v.idVacaciones
 inner join Empleado e on e.idEmpleado = s.Empleado_idEmpleado
 /* Recomendaciones:
  * Validar que la fecha de inicio sea menor que la fecha fin, y que la fecha fin sea menor que la fecha de retorno
- * Un empleado no puede tener mas de dos solicitudes de vacaciones al año
+ * Un empleado no puede tener mas de tres solicitudes de vacaciones al año
  * Los dias de vacaciones no pueden superar los 40 dias
 */
