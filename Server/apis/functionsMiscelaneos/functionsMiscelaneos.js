@@ -32,6 +32,15 @@ function GENERIC_GESTION_TABLAS(req,res){
     });
 };
 
+function GET_DATA_USER(req, res){
+    const dataUser = {
+        user: req.session.user,
+        name: req.session.name,
+        idCargo: req.session.idCargo
+    };
+    res.send(dataUser);
+}
+
 function generateToken (user){
     return jwt.sign({username:user}, secretToken.configToken.key, { expiresIn: 60*60*24});
 }
@@ -56,6 +65,7 @@ function authToken(req, res, next){
 // EXPORTANDO FUNCIONES MISCELANEAS
 module.exports = {
     GENERIC_GESTION_TABLAS,
+    GET_DATA_USER,
     generateToken,
     authToken
 };

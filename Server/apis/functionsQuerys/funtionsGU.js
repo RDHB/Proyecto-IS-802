@@ -20,11 +20,13 @@ function GU_LOGIN(req,res){
             conn.close();
             var token;
             if(result.output.pcodigoMensaje == 0){
-                req.session.name = req.body.usuario;
+                req.session.user = req.body.usuario;
                 req.session.password = req.body.password;
+                req.session.name = result.recordset[0].Nombre;
                 req.session.idCargo = result.output.pidCargo;
                 req.session.codigoEmpleado = result.output.pcodigoEmpleado;
                 token = functionsMiscelaneos.generateToken(req.session.name)
+                result.output.nombre = result.recordset[0].Nombre;
                 result.output.token = token;
                 res.send(result.output);
             }else{

@@ -6,5 +6,81 @@
     * 4. Listo el Header se aplicado a todas las paginas
 */
 $(Document).ready(function(){
-    $('body').prepend('<!-- Header --> <div id="header"> <div class="top"> <!-- Usuario --> <div id="perfil-usuario"><!-- Información del usuario --> <span class="image avatar48"> <img src="../images/images1.png" alt="" /> </span> <h1>Nombre-Usuario</h1> <p>Nombre del Empleado</p> </div> <!-- Menu (Nav) --> <nav class="nav"> <ul id="menu-accion"> <!-- Lista de acciones del usuario --> <li> <a href="#top"> <span class="icon solid fa-home"></span> <span>Home</span> </a> </li> <li> <a href="#portfolio"> <span class="icon solid fa-th"></span> <span>Pagina 1</span> </a> </li> </ul> </nav> </div> <div class="bottom"> <!-- Social Icons --> <ul class="icons"> <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li> <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li> <li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li> <li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li> <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li> </ul> </div> </div>');
+    /*$.ajax({
+		url: "https://localhost:3000/volvo/api/GU/GU_LOGIN",
+		data: {
+            "usuario" : 'Murphy',
+            "password" : 'FSJ44MIN4FJ',
+        },
+		dataType: "json",
+		method: "POST",
+		success: function (respuesta) {
+			if (respuesta.pcodigoMensaje == 0) {
+				localStorage.setItem('token',respuesta.token);
+			}
+		}
+	}).then((res)=>{
+        $.ajax({
+            url: "https://localhost:3000/volvo/api/Miscelaneos/GET_DATA_USER",
+            headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')},
+            dataType: "json",
+            method: "POST",
+            success: function (respuesta) {
+                $('body').prepend('<!-- Header --><div id="header"><div class="top"><!-- Usuario --><div id="perfil-usuario"><!-- Información del usuario --><span class="image avatar48"> <img src="../images/images1.png" alt="" /></span><h1>' + respuesta.user +'</h1><p>' + respuesta.name + '</p></div><!-- Menu (Nav) --><nav class="nav"><ul id="menu-accion"><!-- Lista de acciones del usuario --><li> <a href="#top"> <span class="icon solid fa-home"></span> <span>Home</span></a></li><li> <a href="#portfolio"> <span class="icon solid fa-th"></span> <span>Pagina 1</span> </a> </li></ul></nav></div><div class="bottom"></div></div>');
+            },
+            error: function (error) {
+                $("#notificacion").append(error.responseText);
+            }
+        });
+    }).catch((err)=>{
+        alert('error');
+    });*/
+    
+    $.ajax({
+        url: "https://localhost:3000/volvo/api/Miscelaneos/GET_DATA_USER",
+        headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')},
+		dataType: "json",
+		method: "POST",
+		success: function (respuesta) {
+            $('body').prepend('<!-- Header --><div id="header"><div class="top"><!-- Usuario --><div id="perfil-usuario"><!-- Información del usuario --><span class="image avatar48"> <img src="../images/images1.png" alt="" /></span><h1>' + respuesta.user +'</h1><p>' + respuesta.name + '</p></div><!-- Menu (Nav) --><nav class="nav"><ul id="menu-accion"><!-- Lista de acciones del usuario --><li> <a id="btnHome"> <span class="icon solid fa-home"></span> <span>Home</span></a></li><li> <a href="#portfolio"> <span class="icon solid fa-th"></span> <span>Pagina 1</span> </a> </li></ul></nav></div><div class="bottom"></div></div>');
+		},
+		error: function (error) {
+			$("#notificacion").append(error.responseText);
+		}
+    });
 });
+
+//ESTA ES LA ESTRUCTURA DEL HEADER, SE SECAMBIA HACERLO DE AQUI, LUEGO COMPACTARLO PARA COPIARLO EN EL PREPEND
+/*
+    <!-- Header -->' 
+    <div id="header"> 
+        <div class="top"> 
+            <!-- Usuario --> 
+            <div id="perfil-usuario">
+                <!-- Información del usuario --> 
+                <span class="image avatar48"> <img src="../images/images1.png" alt="" /> </span> 
+                <h1>' + respuesta.user +'</h1> 
+                <p>' + respuesta.name + '</p> 
+            </div> 
+            <!-- Menu (Nav) --> 
+            <nav class="nav"> 
+                <ul id="menu-accion"> 
+                    <!-- Lista de acciones del usuario --> 
+                    <li> <a href="#top"> <span class="icon solid fa-home"></span> <span>Home</span> </a> </li> 
+                    <li> <a href="#portfolio"> <span class="icon solid fa-th"></span> <span>Pagina 1</span> </a> </li> 
+                </ul> 
+            </nav> 
+        </div> 
+        <div class="bottom"> 
+            <!-- Social Icons --> 
+            <ul class="icons"> 
+                <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li> 
+                <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li> 
+                <li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li> 
+                <li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li> 
+                <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li> 
+            </ul> 
+        </div> 
+    </div>
+*/
+
