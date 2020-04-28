@@ -42,7 +42,33 @@ $(Document).ready(function(){
 		dataType: "json",
 		method: "POST",
 		success: function (respuesta) {
-            $('body').prepend('<!-- Header --><div id="header"><div class="top"><!-- Usuario --><div id="perfil-usuario"><!-- Información del usuario --><span class="image avatar48"> <img src="../images/images1.png" alt="" /></span><h1>' + respuesta.user +'</h1><p>' + respuesta.name + '</p></div><!-- Menu (Nav) --><nav class="nav"><ul id="menu-accion"><!-- Lista de acciones del usuario --><li> <a id="btnHome"> <span class="icon solid fa-home"></span> <span>Home</span></a></li><li> <a href="#portfolio"> <span class="icon solid fa-th"></span> <span>Pagina 1</span> </a> </li></ul></nav></div><div class="bottom"></div></div>');
+            switch (respuesta.idCargo){
+                case 19:{
+                    $('body').prepend('<!-- Header --><div id="header"><div class="top"><!-- Usuario --><div id="perfil-usuario"><!-- Información del usuario --><span class="image avatar48"> <img src="../images/images1.png" alt="" /></span><h1>' + respuesta.user +'</h1><p>' + respuesta.name + '</p></div><!-- Menu (Nav) --><nav class="nav"><ul id="menu-accion"><!-- Lista de acciones del usuario --><li> <a href="https://localhost:3000/volvo/view/gestionUsuario/GU_Home" id="btnHome"> <span class="icon solid fa-home"></span> <span>Home</span></a></li>          <li> <a href="https://localhost:3000/volvo/view/gestionUsuario/GU_Gestion_Usuarios"> <span class="icon solid fa-th"></span> <span>Gestión de Usuarios</span> </a> </li>           <li> <a href="https://localhost:3000/volvo/view/gestionUsuario/GU_DataBase"> <span class="icon solid fa-th"></span> <span>Control Base de Datos</span> </a> </li>            </ul></nav></div><div class="bottom"></div></div>');
+                    break;
+                }
+                case 17:{
+                    break;
+                }        
+                case 9:{
+                    break;
+                }        
+                case 15:{
+                    break;
+                }        
+                case 16:{
+                    break;
+                }        
+                case 2:{
+                    break;
+                }        
+                case 3:{
+                    break;
+                }
+                case 14:{
+                    break;
+                }            
+            }
 		},
 		error: function (error) {
 			$("#notificacion").append(error.responseText);

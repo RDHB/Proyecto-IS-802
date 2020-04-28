@@ -32,6 +32,7 @@ function GENERIC_GESTION_TABLAS(req,res){
     });
 };
 
+
 function GET_DATA_USER(req, res){
     const dataUser = {
         user: req.session.user,
@@ -67,5 +68,5 @@ module.exports = {
     GENERIC_GESTION_TABLAS,
     GET_DATA_USER,
     generateToken,
-    authToken
+    authToken,
 };

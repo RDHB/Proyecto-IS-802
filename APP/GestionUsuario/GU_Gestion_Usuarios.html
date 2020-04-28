@@ -21,19 +21,21 @@
 
                             <form method="post" action="#">
                                 <div class="fields">
-                                    <div class="field" style="width: 48%; float:left; display:block; margin: 10;">
+                                    <div class="field" style="width: 25%; float:left; display:block; margin: 10 10 10 50;">
                                         <label for="name" align="left">Buscar por Nombre</label>
-                                        <input type="text" style="width:450px" name="name" id="name" value=""/>
+                                        <input type="text" style="width:300px" name="name" id="name" value=""/>
                                         <br>
                                     </div>
-                                    <div class="field" style="width: 48%; float:right; display:block;margin: 10;">
+                                    <div class="field"  style="width: 25%; float:right; display:block; margin: 10;">
+                                        <label for="department" align="left">Estado del Usuario</label>
+                                        <select id="selectEstadoUsuario" name="department" style="width:300px" id="department">
+                                            <option value="0">Todos los estados</option>
+                                        </select>
+                                    </div>
+                                    <div class="field" style="width: 25%; float:right; display:block; margin: 10;">
                                         <label for="department" align="left">Area de Trabajo</label>
-                                        <select name="department" style="width:450px" id="department">
-                                            <option value="">- Category -</option>
-                                            <option value="1">Manufacturing</option>
-                                            <option value="2">Shipping</option>
-                                            <option value="3">Administration</option>
-                                            <option value="4">Human Resources</option>
+                                        <select id="selectAreaTrabajo" name="department" style="width:300px" id="department">
+                                            <option value="0"> Todas las áreas</option>
                                         </select>
                                     </div>
                                 </div>
@@ -87,7 +89,7 @@
                                                 </tbody>
                                                 <tfoot>
                                                     <td colspan="4"></td>
-															<td><a href="#" class="button small"><h3>+</h3></a></td>
+															<td><a href="#" id="plus" class="button small"><h3>+</h3></a></td>
                                                 </tfoot>
                                             </table>
                                             <ul class="actions">
@@ -102,7 +104,52 @@
 					</section>
 				</div>
 			</div>
-		</section>
+        </section>
+        
+        <!-- ------------------------------------------------------------ -->
+		<!-- Ventanas modales -->
+        <!-- ------------------------------------------------------------ -->
+        <div id="plusUser" style="display: none; width: 600;">
+            <div class="content">
+                <div class="table-wrapper" style="display:block; margin: 25">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>Código empleado</td>
+                                <td>
+                                    <input type="text" style="width:200px" id="newCodigoEmpleado" value=""/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Usuario</td>
+                                <td>
+                                    <input type="text" style="width:200px" id="newUser" value=""/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Contraseña</td>
+                                <td>
+                                    <input type="text" style="width:200px" id="newPassword" value=""/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div align="center" style="margin: 25;">
+                        <a id="agregarUser" class="button small">Agregar</a>
+                    </div>
+                    <div align="center" style="margin: 25;">
+                        <span  id="notificacion" style="color: brown;  display: none;"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ------------------------------------------------------------ -->
+        <!-- ------------------------------------------------------------ -->
+
+
+
+
 		
 		<!-- ------------------------------------------------------------ -->
 		<!-- Hasta aquí se puede Editar -->
@@ -116,10 +163,15 @@
 		<script src="../assets/js/browser.min.js"></script>
 		<script src="../assets/js/breakpoints.min.js"></script>
 		<script src="../assets/js/util.js"></script>
-		<script src="../assets/js/main.js"></script>
+        <script src="../assets/js/main.js"></script>
+        
+        <!-- jquery-modal -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 
 		<!-- Header -->
 		<script src="../assets/js/header.js"></script>
-		<script src="../Libreria/cargar-header.js"></script>
+        <script src="../Libreria/cargar-header.js"></script>
+        <script src="../Libreria/js/GestionUsuario/GU_Gestion-Usuarios.js"></script>
     </body>
 </html>

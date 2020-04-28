@@ -11,8 +11,8 @@ const apisMiscelaneos = express.Router();
 apisMiscelaneos.use(functionsMiscelaneos.authToken);
 
 // DEFINIENDO SUBRUTAS Y ATENCION A PETICIONES AL SERVIDOR
-apisMiscelaneos.post('/GENERIC_GESTION_TABLAS',functionsMiscelaneos.GENERIC_GESTION_TABLAS);
-apisMiscelaneos.post('/GET_DATA_USER',functionsMiscelaneos.GET_DATA_USER);
+apisMiscelaneos.post('/GENERIC_GESTION_TABLAS',functionsMiscelaneos.authToken,functionsMiscelaneos.GENERIC_GESTION_TABLAS);
+apisMiscelaneos.post('/GET_DATA_USER',functionsMiscelaneos.authToken,functionsMiscelaneos.GET_DATA_USER);
 
 // EXPORTANDO EL OBJETO DESEADO
 module.exports = apisMiscelaneos;
