@@ -31,7 +31,23 @@ $(Document).ready(function(){
             }
         });
     }).then(function(){
-        
+        $.ajax({
+            url: "https://localhost:3000/volvo/api/Miscelaneos/GENERIC_GESTION_TABLAS",
+            headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')},
+            data: {
+                "nombreTabla" : 'Estado_Usuario',
+                "accion"      : 'SELECT'
+            },
+            dataType: "json",
+            method: "POST",
+            success: function (respuesta) {
+                if (respuesta.output.pcodigoMensaje == 0) {
+                    for(i=0; i< respuesta.data.length; i++){
+                        $('#selectEstadoUsuario').append('<option value="'+respuesta.data[i].idEstado_Usuario+'">'+respuesta.data[i].descripcion+'</option>');
+                    }
+                }
+            }
+        });
     })
 });
 
