@@ -7,7 +7,7 @@
 */
 $("#btn-login").click(function () {
 	$.ajax({
-		url: "http://localhost:3000/volvo/api/GU/GU_LOGIN",
+		url: "https://localhost:3000/volvo/api/GU/GU_LOGIN",
 		data: {
             "usuario" : $("#usuario").val(),
             "password" : $("#password").val(),
@@ -16,9 +16,10 @@ $("#btn-login").click(function () {
 		method: "POST",
 		success: function (respuesta) {
 			if (respuesta.pcodigoMensaje == 0) {
-				window.location.href = "http://localhost:3000/volvo";
+				localStorage.setItem('token',respuesta.token);
+				window.location.href = "https://localhost:3000/volvo";
 			}else{
-				$("#notificacion").replaceWith('<label  id="notificacion" style="color: brown;">'+respuesta.pmensaje+'</label>');// respuesta.pmensaje.error);
+				$("#notificacion").replaceWith('<label  id="notificacion" style="color: brown;">'+respuesta.pmensaje+'</label>');
 			}
 		},
 		error: function (error) {

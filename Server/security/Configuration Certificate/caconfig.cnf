@@ -1,0 +1,85 @@
+# My sample caconfig.cnf file.
+#
+# Default configuration to use when one is not provided on the command line.
+#
+[ ca ]
+default_ca = local_ca
+#
+#
+# Default location of directories and files needed to generate certificates.
+#
+[ local_ca ]
+dir = /home/rdhb/myCA
+certificate = $dir/cacert.pem
+database = $dir/index.txt
+new_certs_dir = $dir/signedcerts
+private_key = $dir/private/cakey.pem
+serial = $dir/serial
+#
+#
+# Default expiration and encryption policies for certificates
+#
+default_crl_days = 365
+default_days = 1825
+# sha1 is no longer recommended, we will be using sha256
+default_md = sha256
+#
+policy = local_ca_policy
+x509_extensions = local_ca_extensions
+#
+#
+# Copy extensions specified in the certificate request
+#
+copy_extensions = copy
+#
+#
+# Default policy to use when generating server certificates. 
+# The following fields must be defined in the server certificate.
+#
+# NO CAMBIAR EL VALOR "supplied" DEBAJO CON NADA.
+# It is the correct content.
+#
+[ local_ca_policy ]
+commonName = supplied
+stateOrProvinceName = supplied
+countryName = supplied
+emailAddress = supplied
+organizationName = supplied
+organizationalUnitName = supplied
+#
+#
+# x509 extensions to use when generating server certificates
+#
+[ local_ca_extensions ]
+basicConstraints = CA:false
+#
+#
+# The default root certificate generation policy
+#
+[ req ]
+default_bits = 2048
+default_keyfile = /home/rdhb/myCA/private/cakey.pem
+#
+# sha1 is no longer recommended, we will be using sha256
+default_md = sha256
+#
+prompt = no
+distinguished_name = root_ca_distinguished_name
+x509_extensions = root_ca_extensions
+#
+#
+# NOMBRE DE LA AUTORIDAD DE CERTIFICACION RAIZ
+#
+# CAMBIE EL CONTENIDO DE ESTOS VALORES PARA QUE COINCIDAN
+# CON LOS DE SU EMPRESA!
+#
+[ root_ca_distinguished_name ]
+commonName = Entidad Certificadora AutopartesPrueba
+stateOrProvinceName = AutopartesPrueba
+countryName = HN
+emailAddress = mlr.AutopartesPrueba@hotmail.com
+organizationName = AutopartesPrueba
+organizationalUnitName = AutopartesPrueba
+#
+[ root_ca_extensions ]
+basicConstraints = CA:true

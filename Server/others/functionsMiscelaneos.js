@@ -9,13 +9,13 @@ function redirectById(req,res){
             res.redirect('/volvo/view/gestionUsuario/GU_Home');
             break;
         }
-        case 9:
-        case 15:
-        case 16:
         case 17:{
             res.redirect('/volvo/view/ordenTrabajo/OT_Home');
             break;
         }
+        case 9:
+        case 15:
+        case 16:
         case 2:
         case 3:{
             res.redirect('/volvo/view/rrhh/RH_Home');

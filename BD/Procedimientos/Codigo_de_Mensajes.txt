@@ -6,3 +6,4 @@ ________________________________________________________________________________
 3			Error: Campos vacios
 4			Error: Identificadores no validos
 5			Error: Validacion en la condicion del procedimeinto
+6           Error: Servicio denegado porque usuario no tiene token de autenticacion

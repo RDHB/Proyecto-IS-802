@@ -1,0 +1,24 @@
+#
+# certs_localhost.cnf
+#
+
+[ req ]
+prompt = no
+distinguished_name = server_distinguished_name
+req_extensions = v3_req
+
+[ server_distinguished_name ]
+commonName = localhost
+stateOrProvinceName = AutopartesPrueba
+countryName = HN
+emailAddress = mlr.AutopartesPrueba@hotmail.com
+organizationName = AutopartesPrueba
+organizationalUnitName = AutopartesPrueba
+
+[ v3_req ]
+basicConstraints = CA:FALSE
+keyUsage = nonRepudiation, digitalSignature, keyEncipherment
+subjectAltName = @alt_names
+
+[ alt_names ]
+DNS.0 = localhost
