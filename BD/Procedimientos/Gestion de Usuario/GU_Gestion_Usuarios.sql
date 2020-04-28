@@ -2,7 +2,11 @@
 /* Requisitos de las acciones:
  * INSERT: @pcodigoEmpleado, @pnombreUsuario, @pcontrasenia
  *
- * UPDATE: @pnombreUsuario, @pcontrasenia
+ * UPDATE: @pidUsuario, @pnombreUsuario, @pcontrasenia, @pcorreoElectronico, @ptelefono
+ *
+ * SELECT: 
+ * Opcionales: @pnombrePersona, idEstadoUsuario, idAreaTrabajo
+ * Salida-Data: idUsuario, nombrePersona, nombreUsuario, contrasenia, correoElectronico, telefono
  *
  * DESACTIVATE: @pnombreUsuario
  *
@@ -10,9 +14,18 @@
 */
 CREATE PROCEDURE GU_GESTION_USUARIOS(
     --Informacion Usuario
+	@pidUsuario					INT,
 	@pcodigoEmpleado			VARCHAR(45),
 	@pnombreUsuario				VARCHAR(45),
 	@pcontrasenia				VARCHAR(45),
+	
+	@pcorreoElectronico			VARCHAR(45),
+	@ptelefono					VARCHAR(45),
+
+	@pnombrePersona				VARCHAR(45),
+	@pidEstadoUsuario			INT,
+	@pidAreaTrabajo				INT,
+
 	@pAccion					VARCHAR(45),
 	
 	-- Parametros de Salida
@@ -133,10 +146,16 @@ BEGIN
 
     /* Funcionalidad: Modificar usuarios del sistema
     * Construir un Update con la sigueinte informacion:
-    * nombreUsuario, contrasenia (nueva)
+    * @pidUsuario, @pnombreUsuario, @pcontrasenia, @pcorreoElectronico, @ptelefono
 	*
-    * Modificar los sigueintes datos en la tabla usuario:
-    * contrasenia (nueva)
+    * Modificar los sigueintes datos en la tabla Usuario:
+    * nombreUsuario, contrasenia
+	*
+	* Modificar los sigueintes datos en la tabla Persona:
+	* correoElectronico
+	*
+	* Modificar los sigueintes datos en la tabla Telefono:
+	* telefono
     */
 	IF @paccion = 'UPDATE' BEGIN
 		-- Setear Valores
@@ -146,12 +165,24 @@ BEGIN
 
 
 		-- Validacion de campos nulos
+		IF @pidUsuario = 0 BEGIN
+			SET @pmensaje=@pmensaje + ' idUsuario ';
+		END;
+
 		IF @pnombreUsuario = '' OR @pnombreUsuario IS NULL BEGIN
 			SET @pmensaje=@pmensaje + ' nombreUsuario ';
 		END;
 
 		IF @pcontrasenia = '' OR @pcontrasenia IS NULL BEGIN
 			SET @pmensaje=@pmensaje + ' contrasenia ';
+		END;
+		
+		IF @pcorreoElectronico = '' OR @pcorreoElectronico IS NULL BEGIN
+			SET @pmensaje=@pmensaje + ' correoElectronico ';
+		END;
+		
+		IF @ptelefono = '' OR @ptelefono IS NULL BEGIN
+			SET @pmensaje=@pmensaje + ' telefono ';
 		END;
 
 		IF @pmensaje <> '' BEGIN
@@ -164,9 +195,9 @@ BEGIN
 
 		-- Validacion de identificadores
 		SELECT @vconteo = COUNT(*)  FROM Usuarios
-		where nombreUsuario = @pnombreUsuario 
+		where idUsuario = @pidUsuario
 		IF @vconteo = 0 BEGIN
-			SET @pmensaje = @pmensaje + 'El usuario ' + @pnombreUsuario + ' no existe: ';
+			SET @pmensaje = @pmensaje + 'El usuario ' + CAST(@pidUsuario AS VARCHAR) + ' no existe: ';
 		END;
 
 		IF @pmensaje <> '' BEGIN
@@ -178,23 +209,35 @@ BEGIN
 
 
 		-- Validacion de procedimientos
-		SELECT @vconteo = COUNT(*)  FROM Usuarios
-		where nombreUsuario = @pnombreUsuario and contrasenia = @pcontrasenia
-		IF @vconteo <> 0 BEGIN
-			SET @pmensaje = @pmensaje + 'El usuario ya tiene esta contraseña';
-		END;
-
-		IF @pmensaje <> '' BEGIN
-			SET @pcodigoMensaje = 5;
-			SET @pmensaje = 'Error: Validacion en la condicion del procdimiento: ' + @pmensaje;
-			RETURN;
-		END;
+		
 
 
+		-- Accion del procedimiento
+		-- Actualizar informacion Usuario
+		UPDATE Usuarios SET 
+			nombreUsuario = @pnombreUsuario
+			, contrasenia = @pcontrasenia
+		WHERE idUsuario = @pidUsuario
 
-		-- Accion del procedimiento 
-		UPDATE Usuarios SET contrasenia = @pcontrasenia WHERE nombreUsuario = @pnombreUsuario
+		-- Actualizar informacion Usuario
+		UPDATE Persona SET
+			correoElectronico = @pcorreoElectronico
+		WHERE idPersona = (
+			SELECT Persona_idPersona FROM Empleado
+			WHERE idEmpleado = (
+				SELECT Empleado_idEmpleado FROM Usuarios WHERE idUsuario = @pidUsuario
+			)
+		)
 
+		-- Actualizar informacion Usuario
+		UPDATE Telefono SET
+			numeroTelefono = @ptelefono
+		WHERE Persona_idPersona = (
+			SELECT Persona_idPersona FROM Empleado
+			WHERE idEmpleado = (
+				SELECT Empleado_idEmpleado FROM Usuarios WHERE idUsuario = @pidUsuario
+			)
+		)
 		SET @pmensaje = 'Contrasenia guardada';
 	END;
 
@@ -202,6 +245,109 @@ BEGIN
 
 
 
+
+
+
+
+
+
+
+	
+
+	/* Funcionalidad: Seleccionar usuarios del sistema
+    * Construir un select con la sigueinte informacion:
+    * Opcionales: @pnombrePersona, idEstadoUsuario, idAreaTrabajo
+	* Salida-Data: idUsuario, nombrePersona, nombreUsuario, contrasenia, correoElectronico, telefono
+	*
+    * Seleccionar los sigueintes datos en la tabla Usuario:
+    * idUsuario, nombreUsuario, contrasenia
+	*
+	* Seleccionar los sigueintes datos en la tabla EstadoUsuario:
+    * descripcion
+	*
+	* Seleccionar los sigueintes datos en la tabla Persona:
+	* correoElectronico
+	*
+	* Seleccionar los sigueintes datos en la tabla Telefono:
+	* telefono
+    */
+	IF @paccion = 'SELECT' BEGIN
+		-- Setear Valores
+		SET @pcodigoMensaje=0;
+		SET @pmensaje='';
+
+
+
+		-- Validacion de campos nulos
+		
+		-- Validacion de identificadores
+		
+		-- Validacion de procedimientos
+		
+
+
+		-- Accion del procedimiento
+		-- Actualizar informacion Usuario
+		UPDATE Usuarios SET 
+			nombreUsuario = @pnombreUsuario
+			, contrasenia = @pcontrasenia
+		WHERE idUsuario = @pidUsuario
+
+		-- Actualizar informacion Usuario
+		UPDATE Persona SET
+			correoElectronico = @pcorreoElectronico
+		WHERE idPersona = (
+			SELECT Persona_idPersona FROM Empleado
+			WHERE idEmpleado = (
+				SELECT Empleado_idEmpleado FROM Usuarios WHERE idUsuario = @pidUsuario
+			)
+		)
+
+		-- Actualizar informacion Usuario
+		UPDATE Telefono SET
+			numeroTelefono = @ptelefono
+		WHERE Persona_idPersona = (
+			SELECT Persona_idPersona FROM Empleado
+			WHERE idEmpleado = (
+				SELECT Empleado_idEmpleado FROM Usuarios WHERE idUsuario = @pidUsuario
+			)
+		)
+
+
+		-- Salida-Data: idUsuario, nombrePersona, nombreUsuario, contrasenia, correoElectronico, telefono
+		SELECT 
+			U.idUsuario
+			, CONCAT(
+				P.primerNombre
+				, ' '
+				, P.segundoNombre
+				, ' '
+				, P.primerApellido
+				, ' '
+				, P.segundoApellido
+			) AS 'nombrePersona'
+			, U.nombreUsuario
+			, U.contrasenia
+			, p.correoElectronico
+			, (
+				SELECT numeroTelefono FROM Telefono
+				WHERE Persona_idPersona = P.idPersona
+			) AS 'numeroTelefono'
+		FROM Usuarios U
+		INNER JOIN Empleado E ON E.idEmpleado = U.Empleado_idEmpleado
+		INNER JOIN Persona P ON P.idPersona = E.Persona_idPersona
+		WHERE CONCAT (
+			P.primerNombre
+			, ' '
+			, P.segundoNombre
+			, ' '
+			, P.primerApellido
+			, ' '
+			, P.segundoApellido
+		) LIKE NULL
+
+		SET @pmensaje = 'Consulta finalizada con exito';
+	END;
 
 
 
