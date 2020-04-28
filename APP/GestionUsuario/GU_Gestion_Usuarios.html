@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="../assets/css/header.css" />
         <link rel="stylesheet" href="../assets/css/main.css" />
+        <link rel="stylesheet" href="../Libreria/css/GestionUsuario/GU_Gestion-Usuarios.css" />
 		<link rel="icon" type="image" href="../images/Volvo-Emblema.ico" sizes="64x64">
 		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
 		<h1 align="center"><i><b><img  src="../images/source.gif" width="70xp" border-radius="100%">Volvo Partes</b></i></h1> 	
@@ -20,7 +21,7 @@
                         <div class="content">
 
                             <form method="post" action="#">
-                                <div class="fields" style="display: flex; justify-content: center; align-content: center; flex-wrap: wrap;">
+                                <div class="fields" style="display: flex; justify-content: center; align-content: center; flex-wrap: wrap; margin-top: 30;">
                                     <div  style="width: 25%; float:left; display:block; margin: 10 10 10 50;">
                                         <label for="name" align="left">Buscar por Nombre</label>
                                         <input type="text" style="width:100%" name="name" id="name" value=""/>
@@ -95,8 +96,8 @@
                                             <ul class="actions">
                                                 <li><a href="#" class="button small" style="width: 90%; display:block; margin: 20;">Editar Usuario Seleccionado</a></li>
                                                 <li><a href="#" class="button small" style="width: 90%; display:block; margin: 20 ;">Eliminar Usuarios Seleccionados</a></li>
-                                                <li><a href="#" class="button small" style="width: 80%; display:block; margin: 20;">Guardar Cambios</a></li>
-                                                <li><a href="#" class="button small" style="width: 80%; display:block; margin: 20;">Revertir Cambios</a></li>
+                                                <li><a href="#" class="button small" style="width: 90%; display:block; margin: 20;">Guardar Cambios</a></li>
+                                                <li><a href="#" class="button small" style="width: 90%; display:block; margin: 20;">Revertir Cambios</a></li>
 										    </ul>
                                         </div>
                                 </section>        
@@ -110,7 +111,7 @@
         <!-- ------------------------------------------------------------ -->
 		<!-- Ventanas modales -->
         <!-- ------------------------------------------------------------ -->
-        <div id="plusUser" style="display: none; width: 600;">
+        <div id="plusUser" class="modal">
             <div class="content">
                 <div class="table-wrapper" style="display:block; margin: 25">
                     <table>
@@ -118,19 +119,19 @@
                             <tr>
                                 <td>Código empleado</td>
                                 <td>
-                                    <input type="text" style="width:200px" id="newCodigoEmpleado" value=""/>
+                                    <input type="text" style="width:320px" id="newCodigoEmpleado" value=""/>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Usuario</td>
                                 <td>
-                                    <input type="text" style="width:200px" id="newUser" value=""/>
+                                    <input type="text" style="width:320px" id="newUser" value=""/>
                                 </td>
                             </tr>
                             <tr>
                                 <td>Contraseña</td>
                                 <td>
-                                    <input type="text" style="width:200px" id="newPassword" value=""/>
+                                    <input type="text" style="width:320px" id="newPassword" value=""/>
                                 </td>
                             </tr>
                         </tbody>

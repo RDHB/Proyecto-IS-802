@@ -51,18 +51,13 @@ $(Document).ready(function(){
     })
 });
 
-
-
-
-
 $('#plus').click(function(){
     $('#plusUser').modal({
         fadeDuration: 250,
         fadeDelay: 1.5,
-        width: 500
+        modalClass: "modal"
       });
 });
-
 
 $('#agregarUser').click(function(){
     $.ajax({
