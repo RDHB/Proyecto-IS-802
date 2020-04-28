@@ -3,11 +3,11 @@
  * SELECT: @pNombreTabla, 
  * Opcional: @pNombreCampo, @pFiltroCampo
  *
- * INSERT: @pNombreCampo, @json
+ * INSERT: @pNombreTabla, @json
  *
- * UPDATE: @pNombreCampo, @json
+ * UPDATE: @pNombreTabla, @json
  *
- * DELETE: @pNombreCampo, @json
+ * DELETE: @pNombreTabla, @json
 */
 CREATE PROCEDURE [dbo].[GENERIC_GESTION_TABLAS](
 	-- Parametros de Entrada
