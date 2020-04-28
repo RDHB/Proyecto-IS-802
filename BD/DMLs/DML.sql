@@ -183,44 +183,16 @@ VALUES
 -- Table Servicios
 INSERT INTO Servicios([idServicios],[nombre],[precioCosto],[duracion]) 
 VALUES
-(1,'Praesent eu dui. Cum',220,'04:18:45'),
-(2,'malesuada ut, sem. Nulla',651,'03:59:53'),
-(3,'Aliquam adipiscing lobortis risus.',418,'02:58:05'),
-(4,'odio tristique pharetra. Quisque',874,'02:13:54'),
-(5,'morbi tristique senectus et',486,'22:27:54'),
-(6,'Donec egestas. Duis ac',502,'06:35:31'),
-(7,'eleifend non, dapibus rutrum,',754,'02:30:54'),
-(8,'ac mi eleifend egestas.',245,'16:30:13'),
-(9,'non enim. Mauris quis',479,'03:34:59'),
-(10,'Etiam laoreet, libero et',802,'02:53:56');
-
--- Table Cotizacion
-INSERT INTO Cotizacion([idCotizacion],[descripcion],[Fecha]) 
-VALUES
-(1,'parturient montes, nascetur ridiculus','2019-04-08'),
-(2,'justo faucibus lectus, a','2020-01-05'),
-(3,'eu, placerat eget, venenatis','2021-02-08'),
-(4,'Etiam imperdiet dictum magna.','2020-02-25'),
-(5,'dis parturient montes, nascetur','2020-10-05'),
-(6,'elit. Curabitur sed tortor.','2020-08-18'),
-(7,'libero. Morbi accumsan laoreet','2020-03-17'),
-(8,'Aenean egestas hendrerit neque.','2020-10-08'),
-(9,'odio. Nam interdum enim','2020-10-11'),
-(10,'ut, sem. Nulla interdum.','2020-02-28');
-
--- Table ListaMyR
-INSERT INTO ListaMyR([idListaMyR],[descripcion]) 
-VALUES
-(1,'Mauris nulla. Integer urna.'),
-(2,'turpis egestas. Aliquam fringilla'),
-(3,'a, scelerisque sed, sapien.'),
-(4,'Mauris eu turpis. Nulla'),
-(5,'ut odio vel est'),
-(6,'feugiat. Sed nec metus'),
-(7,'Curabitur ut odio vel'),
-(8,'tincidunt aliquam arcu. Aliquam'),
-(9,'dictum placerat, augue. Sed'),
-(10,'ipsum. Suspendisse non leo.');
+(1,'Lavado de auto',220,'04:18:45'),
+(2,'Inspeccion del Vehiculo',651,'03:59:53'),
+(3,'Mantenimiento',418,'02:58:05'),
+(4,'Pintura',874,'02:13:54'),
+(5,'Cambio de llantas',486,'22:27:54'),
+(6,'Cambio de aceites',502,'06:35:31'),
+(7,'Cambio de amortiguadores',754,'02:30:54'),
+(8,'Reparacion de motor',245,'16:30:13'),
+(9,'Reparacion de abolladuras',479,'03:34:59'),
+(10,'Otras Reparaciones',802,'02:53:56');
 
 -- Table EstadoOT
 INSERT INTO EstadoOT([idEstadoOT],[descripcion]) 
@@ -240,24 +212,24 @@ VALUES
 (13,'Orden de Trabajo finalizada');
 
 -- Table OrdenTrabajo
-INSERT INTO OrdenTrabajo([idOrdenTrabajo],[descripcion],[estado_del_vehiculo],[objetosPersonales],[fechaInicio],[fechaFin],[reparacionesEfectuadas],[reparacionesNoEfectuadas],[comentarios],[Cotizacion_idCotizacion],[Cliente_idCLiente],[ListaMyR_idListaMyR],[EstadoOT_idEstadoOT],[Vehiculos_idVehiculos]) 
+INSERT INTO OrdenTrabajo([idOrdenTrabajo],[fechaInicio],[fechaFin],[estado_del_vehiculo],[objetosPersonales],[reparacionesEfectuadas],[reparacionesNoEfectuadas],[Recomendaciones],     [Cliente_idCLiente],[EstadoOT_idEstadoOT],[Vehiculos_idVehiculos]) 
 VALUES
-(1,'accumsan convallis, ante lectus','Donec tempor, est ac','Etiam gravida molestie arcu.',              '2019-10-03','2020-05-20','vitae sodales nisi magna','sem semper erat, in','semper egestas, urna justo',1,1,1,1,1),
-(2,'felis ullamcorper viverra. Maecenas','risus. Donec egestas. Aliquam','magnis dis parturient montes,','2018-12-20','2019-03-06','sed consequat auctor, nunc','massa. Integer vitae nibh.','Proin non massa non',2,2,2,2,2),
-(3,'suscipit, est ac facilisis','eget nisi dictum augue','interdum enim non nisi.',                      '2013-06-19','2020-03-19','nec ante blandit viverra.','eget ipsum. Suspendisse sagittis.','sem egestas blandit. Nam',3,3,3,3,3),
-(4,'sagittis felis. Donec tempor,','Nulla tempor augue ac','pellentesque, tellus sem mollis',            '2020-01-20','2020-02-20','at risus. Nunc ac','malesuada id, erat. Etiam','vel lectus. Cum sociis',4,4,4,4,4),
-(5,'non, bibendum sed, est.','mollis. Integer tincidunt aliquam','scelerisque mollis. Phasellus libero', '2020-01-21','2020-10-20','eget metus eu erat','pede blandit congue. In','penatibus et magnis dis',5,5,5,5,5),
-(6,'amet ultricies sem magna','amet ante. Vivamus non','aliquet odio. Etiam ligula',                     '2019-02-19','2020-02-21','eros. Nam consequat dolor','varius orci, in consequat','Nunc ac sem ut',6,6,6,6,6),
-(7,'luctus et ultrices posuere','felis. Donec tempor, est','quam. Curabitur vel lectus.',                '2019-05-20','2020-06-19','interdum ligula eu enim.','habitant morbi tristique senectus','nec quam. Curabitur vel',7,7,7,7,7),
-(8,'mi enim, condimentum eget,','justo faucibus lectus, a','elit, pharetra ut, pharetra',                '2019-06-19','2020-12-20','penatibus et magnis dis','Sed nec metus facilisis','quam dignissim pharetra. Nam',8,8,8,8,8),
-(9,'mi pede, nonummy ut,','nibh. Phasellus nulla. Integer','rhoncus. Donec est. Nunc',                   '2020-05-19','2020-09-19','porttitor eros nec tellus.','id, ante. Nunc mauris','sed, facilisis vitae, orci.',9,9,9,9,9),
-(10,'dictum ultricies ligula. Nullam','vitae, posuere at, velit.','neque pellentesque massa lobortis',   '2020-04-20','2020-10-20','lacus. Etiam bibendum fermentum','risus a ultricies adipiscing,','arcu. Vivamus sit amet',10,10,10,10,10);
+(1,'2019-10-03','2020-05-20',   'Perfecto estado',              'Sin objetos personales',   'Cambio de aceite, Fuga de agua',   'Calibrado de suspensión',  'Se recomienda cambiar las llantas',        1,1,1),
+(2,'2018-12-20','2019-03-06',   'Abolladuras en las puertas',   'Llaves',                   'Cambio de aceite, Fuga de agua',   'Calibrado de suspensión',  'Se recomienda cambiar las llantas',        2,2,2),
+(3,'2013-06-19','2020-03-19',   'Abolladuras en las puertas',   'Monederos',                'Cambio de aceite, Fuga de agua',   'Reparacion del motor',     'Se recomienda revisar la caja de cambios', 3,3,3),
+(4,'2020-01-20','2020-02-20',   'Perfecto estado',              'Tarjetas Bancarias',       'Mantenimiento 100 KM',             'Reparacion del motor',     '',                                         4,4,4),
+(5,'2020-01-21','2020-10-20',   'Perfecto estado',              'Alimentos y Refrescos',    'Mantenimiento 100 KM',             'Reparacion del motor',     '',                                         5,5,5),
+(6,'2019-02-19','2020-02-21',   'Abolladuras en las puertas',   'Computadora ASUS',         'Mantenimiento 100 KM',             'Pintura del Vehiculo',     '',                                         6,6,6),
+(7,'2019-05-20','2020-06-19',   'Perfecto estado',              '2 Celulares Huawei',       'Todas las reparaciones',           '',                         '',                                         7,7,7),
+(8,'2019-06-19','2020-12-20',   'Perfecto estado',              'Sin objetos personales',   'Todas las reparaciones',           '',                         '',                                         8,8,8),
+(9,'2020-05-19','2020-09-19',   'Sin retrovisores',             'Sin objetos personales',   'Todas las reparaciones',           '',                         '',                                         9,9,9),
+(10,'2020-04-20','2020-10-20',  'Ventanas quebrados',           'Sin objetos personales',   'Todas las reparaciones',           '',                         '',                                         10,10,10);
 
 -- Table TipoContrato
 INSERT INTO TipoContrato([idTipoContrato],[descripcion]) 
 VALUES
-(1,'penatibus et magnis dis parturient'),
-(2,'amet nulla. Donec non');
+(1,'Permanente'),
+(2,'Temporal');
 
 -- Table ContratoPersonal
 INSERT INTO ContratoPersonal([idContratoPersonal],[fechaContrato],[Sueldo],[HoraEntrada],[HoraSalida],[TipoContrato_idTipoContrato]) 
@@ -276,14 +248,14 @@ VALUES
 -- Table Horas_extras
 INSERT INTO Horas_extras([idHoras_extras],[HoraInicio],[HoraFin],[fecha]) 
 VALUES
-(1,'20:14:33','13:16:19','05/08/2015'),
+(1,'13:16:19','20:14:33','05/08/2015'),
 (2,'06:55:48','08:02:23','2011/11/16'),
 (3,'11:27:13','17:51:23','2019/01/05'),
-(4,'21:25:34','07:21:43','2020/08/01'),
+(4,'07:21:43','21:25:34','2020/08/01'),
 (5,'12:34:40','17:32:16','2017/02/17'),
 (6,'10:13:58','11:24:33','2014/10/22'),
-(7,'09:03:42','00:43:28','2012/05/19'),
-(8,'08:40:07','05:02:42','2016/03/21'),
+(7,'00:43:28','09:03:42','2012/05/19'),
+(8,'05:02:42','08:40:07','2016/03/21'),
 (9,'03:39:55','10:13:36','2011/08/03'),
 (10,'03:34:49','07:17:11','2018/02/04');
 
@@ -294,103 +266,74 @@ VALUES
 (2,10,6),
 (3,3,10),
 (4,7,2),
-(5,4,10),
-(6,3,10),
+(5,4,9),
+(6,3,1),
 (7,1,8),
 (8,3,5),
 (9,2,4),
 (10,5,4);
-
--- Table OrdenTrabajo_has_Servicios
-INSERT INTO OrdenTrabajo_has_Servicios([OrdenTrabajo_idOrdenTrabajo],[Servicios_idServicios],[servicioEfectuado]) 
-VALUES
-(1,1,0),
-(2,2,0),
-(3,3,1),
-(4,4,1),
-(5,5,1),
-(6,6,0),
-(7,7,1),
-(8,8,1),
-(9,9,1),
-(10,10,1);
 
 -- Table Descuento
 INSERT INTO Descuento([idDescuento],[descripcion],[porcentaje],[fecha_de_validez]) 
 VALUES
 (1,'Tercera edad',25,'2021-02-17 22:09:24');
 
--- Table Inventario
-INSERT INTO Inventario([idInventario],[descripcion],[cantidad]) 
+-- Table TipoProducto
+INSERT INTO TipoProducto([idTipoProducto],[descripcion]) 
 VALUES
-(1,'quam, elementum at, egestas',529),
-(2,'malesuada vel, convallis in,',718),
-(3,'odio. Phasellus at augue',887),
-(4,'blandit at, nisi. Cum',853),
-(5,'aliquet. Proin velit. Sed',550),
-(6,'vitae, orci. Phasellus dapibus',981),
-(7,'in, hendrerit consectetuer, cursus',357),
-(8,'conubia nostra, per inceptos',823),
-(9,'Suspendisse dui. Fusce diam',484),
-(10,'ultrices, mauris ipsum porta',98),
-(11,'erat neque non quam.',1),
-(12,'lobortis mauris. Suspendisse aliquet',339),
-(13,'Praesent luctus. Curabitur egestas',664),
-(14,'rhoncus id, mollis nec,',141),
-(15,'mollis nec, cursus a,',422),
-(16,'dolor. Donec fringilla. Donec',990),
-(17,'ipsum primis in faucibus',880),
-(18,'at auctor ullamcorper, nisl',170),
-(19,'Nullam scelerisque neque sed',159),
-(20,'ut eros non enim',670),
-(21,'Donec nibh enim, gravida',916),
-(22,'In ornare sagittis felis.',251),
-(23,'et, rutrum eu, ultrices',364),
-(24,'aliquet nec, imperdiet nec,',849),
-(25,'fermentum risus, at fringilla',667),
-(26,'molestie. Sed id risus',568),
-(27,'enim, gravida sit amet,',159),
-(28,'massa. Mauris vestibulum, neque',991),
-(29,'mauris, rhoncus id, mollis',712),
-(30,'dis parturient montes, nascetur',529);
+(1,'Recambio'),
+(2,'Herramienta');
 
 -- Table Producto
-INSERT INTO Producto([idProducto],[nombre],[precioVenta],[precioCompra],[FechaIngreso],[FechaVencimiento],[Inventario_idInventario]) 
+INSERT INTO Producto([idProducto],[nombre],[cantidad],[precioVenta],[precioCompra],[FechaIngreso],[FechaVencimiento],[TipoProducto_idTipoProducto]) 
 VALUES
-(1,'penatibus et magnis dis',968,469,            '2020-05-19','2027-08-20',1),
-(2,'id sapien. Cras dolor',369,19,               '2020-08-19','2027-07-19',2),
-(3,'feugiat placerat velit. Quisque',669,862,    '2020-04-19','2027-08-20',3),
-(4,'aliquet diam. Sed diam',425,442,             '2020-05-19','2027-06-20',4),
-(5,'laoreet ipsum. Curabitur consequat,',217,909,'2020-08-20','2027-10-19',5),
-(6,'commodo at, libero. Morbi',199,248,          '2020-03-20','2027-06-20',6),
-(7,'Curabitur sed tortor. Integer',232,405,      '2020-05-20','2027-07-19',7),
-(8,'dui lectus rutrum urna,',373,616,            '2020-08-20','2027-12-19',8),
-(9,'eu neque pellentesque massa',991,671,        '2020-09-19','2027-06-20',9),
-(10,'accumsan sed, facilisis vitae,',281,544,    '2020-02-20','2027-06-19',10),
-(11,'magna. Ut tincidunt orci',332,78,           '2020-02-19','2027-01-20',11),
-(12,'Quisque libero lacus, varius',571,558,      '2020-07-20','2027-03-20',12),
-(13,'placerat, augue. Sed molestie.',329,665,    '2020-07-20','2027-02-20',13),
-(14,'rutrum urna, nec luctus',747,898,           '2020-11-20','2027-02-19',14),
-(15,'orci. Phasellus dapibus quam',591,406,      '2020-09-20','2027-04-19',15),
-(16,'vestibulum, neque sed dictum',78,900,       '2020-09-20','2027-01-20',16),
-(17,'ut eros non enim',174,809,                  '2020-05-19','2027-07-20',17),
-(18,'consequat, lectus sit amet',77,159,         '2020-08-20','2027-11-19',18),
-(19,'sit amet metus. Aliquam',693,179,           '2020-10-20','2027-11-19',19),
-(20,'nec, euismod in, dolor.',668,593,           '2020-12-20','2027-09-19',20);
+(1,'Llantas',              1,78,900,      '2020-09-20','2027-01-20',1),
+(2,'Rines',                2,174,809,     '2020-05-19','2027-07-20',1),
+(3,'Retrovisores',         7,77,159,      '2020-08-20','2027-11-19',1),
+(4,'Manubrio',             7,693,179,     '2020-10-20','2027-11-19',1),
+(5,'Caja de cambios',      4,668,593,     '2020-12-20','2027-09-19',1),
+(6,'Bompers',              3,332,78,      '2020-02-19','2027-01-20',1),
+(7,'Guarda Fangos',        20,571,558,    '2020-07-20','2027-03-20',1),
+(8,'Limpia para brizas',   17,329,665,    '2020-07-20','2027-02-20',1),
+(9,'Bujia',                15,747,898,    '2020-11-20','2027-02-19',1),
+(10,'Focos Traseros',      11,591,406,    '2020-09-20','2027-04-19',1),
+(11,'Frenos',              14,78,900,     '2020-09-20','2027-01-20',1),
+(12,'Polarizado',          1,174,809,     '2020-05-19','2027-07-20',1),
+(13,'Aceite',              14,77,159,     '2020-08-20','2027-11-19',1),
+(14,'Liquido de freno',    13,693,179,    '2020-10-20','2027-11-19',1),
+(15,'Jumpers',             12,668,593,    '2020-12-20','2027-09-19',1),
+
+(16,'Llave 1 9/16',             21,0,469,    '2020-05-19','2027-08-20',2),
+(17,'Llave 1 5/8',              21,0,19,     '2020-08-19','2027-07-19',2),
+(18,'Llave 1 11/16',            2,0,862,     '2020-04-19','2027-08-20',2),
+(19,'Llave 1 3/4',              21,0,442,    '2020-05-19','2027-06-20',2),
+(20,'Llave 1 1/4',              2,0,909,     '2020-08-20','2027-10-19',2),
+(21,'Sierra de mano',           22,0,248,    '2020-03-20','2027-06-20',2),
+(22,'Pinza',                    2,0,406,     '2020-09-20','2027-04-19',2),
+(23,'Tijeras',                  23,0,405,    '2020-05-20','2027-07-19',2),
+(24,'Destornillador Filix',     2,0,616,     '2020-08-20','2027-12-19',2),
+(25,'Destornillador Plano',     24,0,671,    '2020-09-19','2027-06-20',2),
+(26,'Destornillador Estrella',  25,0,544,    '2020-02-20','2027-06-19',2),
+(27,'Sargento',                 3,0,78,      '2020-02-19','2027-01-20',2),
+(28,'Tenaza',                   22,0,558,    '2020-07-20','2027-03-20',2),
+(29,'Terraja de roscar',        21,0,665,    '2020-07-20','2027-02-20',2),
+(30,'Escariador',               2,0,898,     '2020-11-20','2027-02-19',2);
+
+
 
 -- Table Aspirante
 INSERT INTO Aspirante([idAspirante],[descripcion],[fechaEntrevista],[Persona_idPersona]) 
 VALUES
-(1,'condimentum. Donec at ','2014-01-21',41),
-(2,'vel, mauris. Integer sem','2019-12-21',42),
-(3,'Cras lorem lorem,','2011-01-17',43),
-(4,'dolor vitae dolor. Dont','2018-06-15',44),
-(5,'convallis convallis','2011-07-19',45),
-(6,'purus mauris a nunc. Is','2012-10-31',46),
-(7,'nascetur ridiculus muse','2019-06-13',47),
-(8,'facilisis eget,','2016-07-04',48),
-(9,'tristique aliquet. Pha','2020-06-16',49),
-(10,'amet orci. Ut','2017-08-28',50);
+(1,'Area de Tecnologia','2014-01-21',41),
+(2,'Area de Contabilidad','2019-12-21',42),
+(3,'Area de RRHH','2011-01-17',43),
+(4,'Area de Administracion','2018-06-15',44),
+(5,'Area de Ventas','2011-07-19',45),
+(6,'Area de Almacen','2012-10-31',46),
+(7,'Area de Limpieza','2019-06-13',47),
+(8,'Area de Gerencia','2016-07-04',48),
+(9,'Area de Servicios','2020-06-16',49),
+(10,'Area de Taller','2017-08-28',50);
 
 -- Table Curriculum
 INSERT INTO Curriculum([idCurriculum],[nombreArchivo],[Aspirante_idAspirante]) 
@@ -433,18 +376,18 @@ VALUES
 -- Table Permisos
 INSERT INTO Permisos([idPermisos],[motivo],[fecha]) 
 VALUES
-(1,'magna. Phasellus dolor elit,','2019-07-15'),
-(2,'posuere vulputate, lacus. Cdo','2019-08-18'),
-(3,'Proin','2019-08-15'),
-(4,'pede et risus. Quisque libes','2019-02-16'),
-(5,'convallis dolor. Quisque ti','2019-03-11'),
-(6,'accumsan','2019-06-14'),
-(7,'leo. Vivamus nibh dolor, no','2019-02-20'),
-(8,'at, velit. Pellentesque ult','2019-04-19'),
-(9,'iaculis quis,','2019-09-17'),
-(10,'purus. Nullam','2019-02-19');
+(1,'Coronavirus','2019-07-15'),
+(2,'Examen de la Universidad','2019-08-18'),
+(3,'Llevar el hijo a la escuela','2019-08-15'),
+(4,'Tramitar la Visa','2019-02-16'),
+(5,'Llevar el perro al veterinario','2019-03-11'),
+(6,'Dengue','2019-06-14'),
+(7,'Graduacion de Estudios Universitarios','2019-02-20'),
+(8,'Defuncion de un Familiar','2019-04-19'),
+(9,'Conpulsar titulos para maestria','2019-09-17'),
+(10,'Reporte de asalto','2019-02-19');
 
---Vacaciones
+--Table Vacaciones
 INSERT INTO Vacaciones([idVacaciones],[cantidadDias],[FechaInicio],[FechaFin],[FechaRetorno]) 
 VALUES
 (1,26,'2019-05-12','2020-02-11','2021-02-21'),
@@ -461,40 +404,40 @@ VALUES
 -- Table Empleado
 INSERT INTO Empleado([idEmpleado],[CodigoEmpleado],[descripcion],[JefeInmediato],[Persona_idPersona],[Cargo_idCargo],[AreaTrabajo_idAreaTrabajo]) 
 VALUES
-(1,'EMP0001','Morbi sit', 10, 11, 1, 2),
-(2,'EMP0002','dui augue eu tellus. Phasellus', 3, 12, 7, 3),
-(3,'EMP0003','In ornare sagittis felis.', 5, 13, 12, 1),
-(4,'EMP0004','Vivamus nisi.', 8, 14, 13, 5),
-(5,'EMP0005','quam quis', 6, 15, 14, 4),
-(6,'EMP0006','leo. Cras vehicula aliquet', 7, 16, 15, 7),
-(7,'EMP0007','nunc sed pede. Cum sociis', 3, 17, 16, 1),
-(8,'EMP0008','sodales. Mauris blandit enim consequat', 7, 18, 17, 10),
-(9,'EMP0009','eu nulla at', 9, 19, 7, 1),
-(10,'EMP0010','orci', 9, 20, 2, 9),
-(11,'EMP0011','dui lectus rutrum urna,', 8, 21, 1, 1),
-(12,'EMP0012','arcu eu odio tristique', 1, 22, 2, 2),
-(13,'EMP0013','parturient montes, nascetur ridiculus', 4, 23, 3, 3),
-(14,'EMP0014','dui. Fusce diam nunc,', 10, 24, 4, 4),
-(15,'EMP0015','diam. Pellentesque habitant morbi', 6, 25, 5, 5),
-(16,'EMP0016','enim. Suspendisse aliquet, sem', 3, 26, 6, 6),
-(17,'EMP0017','senectus et netus et', 4, 27, 7, 7),
-(18,'EMP0018','at risus. Nunc ac', 6, 28, 8, 8),
-(19,'EMP0019','massa non ante bibendum', 7, 29, 9, 9),
-(20,'EMP0020','lectus ante dictum mi,', 9, 30, 10, 10);
+(1,'EMP0001','Excelente', 10, 11, 1, 2),
+(2,'EMP0002','Excelente', 3, 12, 7, 3),
+(3,'EMP0003','Excelente', 5, 13, 12, 1),
+(4,'EMP0004','Excelente', 8, 14, 13, 5),
+(5,'EMP0005','Excelente', 6, 15, 14, 4),
+(6,'EMP0006','Excelente', 7, 16, 15, 7),
+(7,'EMP0007','Excelente', 3, 17, 16, 1),
+(8,'EMP0008','Excelente', 7, 18, 17, 10),
+(9,'EMP0009','Excelente', 9, 19, 7, 1),
+(10,'EMP0010','Bueno', 9, 20, 2, 9),
+(11,'EMP0011','Bueno', 8, 21, 1, 1),
+(12,'EMP0012','Bueno', 1, 22, 2, 2),
+(13,'EMP0013','Bueno', 4, 23, 3, 3),
+(14,'EMP0014','Bueno', 10, 24, 4, 4),
+(15,'EMP0015','Regular', 6, 25, 5, 5),
+(16,'EMP0016','Regular', 3, 26, 6, 6),
+(17,'EMP0017','Regular', 4, 27, 7, 7),
+(18,'EMP0018','Regular', 6, 28, 8, 8),
+(19,'EMP0019','Malo', 7, 29, 9, 9),
+(20,'EMP0020','Malo', 9, 30, 10, 10);
 
 -- Table Solicitudes
 INSERT INTO Solicitudes([idSolicitudes],[descripcion],[Permisos_idPermisos],[Vacaciones_idVacaciones],[Empleado_idEmpleado])
 VALUES
-(1,'malesuada malesuada. Integer id magna',3,7,7),
-(2,'quis',6,10,5),
-(3,'Sed et libero. Proin',7,9,3),
-(4,'Fusce dolor quam, elementum',9,8,5),
-(5,'ornare, libero',9,1,4),
-(6,'turpis egestas. Aliquam',2,8,6),
-(7,'mauris sapien, cursus in, hendrerit',10,9,6),
-(8,'eleifend, nunc risus',2,1,4),
-(9,'lobortis, nisi',6,4,5),
-(10,'Nulla tincidunt,',2,8,4);
+(1,'Vacaciones de mes',3,7,7),
+(2,'Vacaciones de semana santa',6,10,5),
+(3,'Permiso de Salud',7,9,3),
+(4,'Permiso de Estudio',9,8,5),
+(5,'Vacaciones de semana morazanica',9,1,4),
+(6,'Permiso Familiar',2,8,6),
+(7,'Permiso de Obligaciones',10,9,6),
+(8,'Vacaciones de Navidad',2,1,4),
+(9,'Dias Libres',6,4,5),
+(10,'Otros Permisos',2,8,4);
 
 -- Table Reservacion
 INSERT INTO Reservacion([idReservacion],[descripcion],[cita],[Empleado_idEmpleado],[Cliente_idCliente]) 
@@ -510,47 +453,19 @@ VALUES
 (9,'nunc','2020-12-16',10,9),
 (10,'ridiculus mus.','2020-05-11',3,4);
 
--- Table Herramientas
-INSERT INTO Herramientas([idHerramientas],[nombre],[precioCosto],[fechaIngreso],[Inventario_idInventario]) 
-VALUES
-(1,'diam luctus lobortis. Class',351,'2020-04-20',1),
-(2,'ornare, facilisis eget, ipsum.',152,'2020-03-20',2),
-(3,'ut eros non enim',291,'2020-05-19',3),
-(4,'magna sed dui. Fusce',411,'2020-07-19',4),
-(5,'lectus. Nullam suscipit, est',23,'2020-07-20',5),
-(6,'nunc nulla vulputate dui,',343,'2020-04-20',6),
-(7,'posuere at, velit. Cras',850,'2020-02-20',7),
-(8,'vestibulum nec, euismod in,',826,'2020-01-20',8),
-(9,'semper erat, in consectetuer',676,'2020-06-19',9),
-(10,'Fusce mollis. Duis sit',630,'2020-05-20',10);
-
 -- Table Huella
 INSERT INTO Huella([idHuella],[descripcion],[HoraEntrada],[HoraSalida],[Fecha],[Empleado_idEmpleado]) 
 VALUES
-(1,'interdum. Sed auctor','20:14:33','13:16:19','2020-08-11',7),
-(2,'velit. Cras loremget,','06:55:48','08:02:23','2020-01-14',1),
-(3,'a, magna.','11:27:13','17:51:23','2020-06-18',9),
-(4,'dui quis llis est, vitae','21:25:34','07:21:43','2020-09-13',1),
-(5,'dictum eutis a, magna.','12:34:40','17:32:16','2020-04-16',10),
-(6,'non','10:13:58','11:24:33','2020-11-10',5),
-(7,'nisl sem,','09:03:42','00:43:28','2020-11-13',3),
-(8,'hendrerit a, arcu.','08:40:07','05:02:42','2020-07-12',8),
-(9,'vitae era blandit congue.','03:39:55','10:13:36','2020-02-15',7),
-(10,'Nunc mauris elit, dictum end','20:14:33','13:16:19','2020-02-20',5);
-
--- Table Materiales
-INSERT INTO Materiales([idMateriales],[descripcion],[Producto_idProducto]) 
-VALUES
-(1,'Duis cursus, diam at',1),
-(2,'Fusce fermentum fermentum arcu.',2),
-(3,'Aenean euismod mauris eu',3),
-(4,'Proin sed turpis nec',4),
-(5,'Sed id risus quis',5),
-(6,'vulputate velit eu sem.',6),
-(7,'Maecenas iaculis aliquet diam.',7),
-(8,'mattis semper, dui lectus',8),
-(9,'conubia nostra, per inceptos',9),
-(10,'elementum, dui quis accumsan',10);
+(1,'Hora Correcta','13:16:19','20:14:33','2020-08-11',7),
+(2,'Hora Correcta','06:55:48','08:02:23','2020-01-14',1),
+(3,'Hora Correcta','11:27:13','17:51:23','2020-06-18',9),
+(4,'Hora Correcta','07:21:43','21:25:34','2020-09-13',1),
+(5,'Hora Correcta','12:34:40','17:32:16','2020-04-16',10),
+(6,'Retraso','10:13:58','11:24:33','2020-11-10',5),
+(7,'Retraso y Salida Temprana','00:43:28','09:03:42','2020-11-13',3),
+(8,'Salida Temprana','05:02:42','08:40:07','2020-07-12',8),
+(9,'Hora Correcta y Horas extras','03:39:55','10:13:36','2020-02-15',7),
+(10,'Horas extras','13:16:19','20:14:33','2020-02-20',5);
 
 -- Table FormaPago
 INSERT INTO FormaPago([idFormaPago],[descripcion]) 
@@ -648,75 +563,75 @@ VALUES
 (3,9,9),
 (6,10,10);
 
--- Table Inventario_has_ListaMyR
-INSERT INTO Inventario_has_Lista_MyR([idInventario_has_Lista_MyR],[ListaMyR_idListaMyR],[Producto_idProducto],[Rebajados_del_Inventario]) 
-VALUES
-(1,1,1,1),
-(2,2,2,0),
-(3,3,3,0),
-(4,4,4,0),
-(5,5,5,1),
-(6,6,6,1),
-(7,7,7,1),
-(8,8,8,1),
-(9,9,9,0),
-(10,10,10,1);
-
--- Table Recambios
-INSERT INTO Recambios([idRecambios],[descripcion],[Producto_idProducto]) 
-VALUES
-(1,'Donec tempus, lorem fringilla',1),
-(2,'ante ipsum primis in',2),
-(3,'quis diam luctus lobortis.',3),
-(4,'Sed et libero. Proin',4),
-(5,'tortor. Nunc commodo auctor',5),
-(6,'eu tempor erat neque',6),
-(7,'enim commodo hendrerit. Donec',7),
-(8,'aliquet, sem ut cursus',8),
-(9,'elementum, dui quis accumsan',9),
-(10,'turpis vitae purus gravida',10);
-
 -- Table Historico_Contratos
 INSERT INTO Historico_Contratos([idHistorico_Contratos],[ContratoPersonal_idContratoPersonal],[Empleado_idEmpleado]) 
 VALUES
-(1,5,7),
-(2,3,6),
-(3,7,5),
-(4,5,5),
-(5,7,5),
-(6,8,9),
-(7,6,1),
-(8,3,4),
-(9,4,9),
-(10,10,3);
+(1,1,1),
+(2,2,2),
+(3,3,3),
+(4,4,4),
+(5,5,5),
+(6,6,6),
+(7,7,7),
+(8,8,8),
+(9,9,9),
+(10,10,10);
 
 -- Table RolPago
-INSERT INTO RolPago([idRolPago],[Sueldo],[Fecha],[Deducciones],[CantidadHT],[CantidadHE],[PagoHT],[PagoHE],[Comisiones],[Cargo],[Empleado_idEmpleado]) 
+INSERT INTO RolPago([idRolPago],[cargo],[fecha],[sueldoBase],[cantidadHE],[pagoHE],[comisiones],[deducciones],[totalPago],[Empleado_idEmpleado]) 
 VALUES
-(1,9555,'2013-08-21',483,10,4,13869,666,3695,'dolor vitae',4),
-(2,7894,'2019-03-14',199,12,4,6095,1436,2076,'turpis egestas. Aliquam fringilla',4),
-(3,14292,'2016-05-15',229,12,2,5749,673,3703,'vel sapien',10),
-(4,11449,'2013-05-10',456,11,1,14303,889,4960,'tempor, est',3),
-(5,8120,'2018-06-09',317,12,1,7187,1488,1512,'lectus sit',3),
-(6,13569,'2017-03-03',191,11,2,9484,1456,1149,'magna tellus',9),
-(7,10917,'2018-06-23',377,12,4,14109,1878,3873,'Duis risus',2),
-(8,5962,'2016-04-06',361,10,1,5580,1277,3952,'mollis.',4),
-(9,12844,'2011-08-12',268,11,4,5915,1984,1648,'vestibulum lorem, sit amet',2),
-(10,13930,'2014-03-14',223,12,2,13398,554,2823,'sed sem egestas',10);
+(1,'Asesor de Servicios'   ,'2013-08-21',9555,10,40,483     ,666,13869,4),
+(2,'Asesor de Servicios'   ,'2019-03-14',7894,12,40,199     ,1436,6095,4),
+(3,'Jefe de RRHH'          ,'2016-05-15',14292,12,20,229    ,673,5749,10),
+(4,'Administrador Sistema' ,'2013-05-10',11449,11,10,456    ,889,14303,3),
+(5,'Administrador Sistema' ,'2018-06-09',8120,12,10,317     ,1488,7187,3),
+(6,'Asistente de RRHH'     ,'2017-03-03',13569,11,20,191    ,1456,9484,9),
+(7,'Cajero'                ,'2018-06-23',10917,12,40,377    ,1878,14109,2),
+(8,'Asesor de Servicios'   ,'2016-04-06',5962,10,10,361     ,1277,5580,4),
+(9,'Cajero'                ,'2011-08-12',12844,11,40,268    ,1984,5915,2),
+(10,'Jefe de RRHH'         ,'2014-03-14',13930,12,20,223    ,554,13398,10);
 
--- Table Cotizacion_has_Producto
-INSERT INTO Cotizacion_has_Producto([idCotizacion_has_Producto],[Cotizacion_idCotizacion],[Producto_idProducto],[Aprovados]) 
+-- Table Lista_Servicios
+INSERT INTO Lista_Servicios([OrdenTrabajo_idOrdenTrabajo],[Servicios_idServicios],[servicioEfectuado]) 
 VALUES
-(1,1,1,0),
-(2,2,2,0),
-(3,3,3,1),
-(4,4,4,1),
-(5,5,5,0),
-(6,6,6,0),
-(7,7,7,0),
-(8,8,8,1),
-(9,9,9,0),
-(10,10,10,1);
+(1,1,0),
+(2,2,0),
+(3,3,1),
+(4,4,1),
+(5,5,1),
+(6,6,0),
+(7,7,1),
+(8,8,1),
+(9,9,1),
+(10,10,1);
+
+-- Table Lista_MyR
+INSERT INTO Lista_MyR([OrdenTrabajo_idOrdenTrabajo],[Producto_idProducto],[rebajados]) 
+VALUES
+(1,1,1),
+(2,2,0),
+(3,3,0),
+(4,4,0),
+(5,5,1),
+(6,6,1),
+(7,7,1),
+(8,8,1),
+(9,9,0),
+(10,10,1);
+
+-- Table Lista_Cotizacion
+INSERT INTO Lista_Cotizacion([OrdenTrabajo_idOrdenTrabajo],[Producto_idProducto],[aprovados]) 
+VALUES
+(1,1,0),
+(2,2,0),
+(3,3,1),
+(4,4,1),
+(5,5,0),
+(6,6,0),
+(7,7,0),
+(8,8,1),
+(9,9,0),
+(10,10,1);
 
 -- Table Estado_Usuario
 INSERT INTO Estado_Usuario([idEstado_Usuario],[descripcion]) 
@@ -727,7 +642,7 @@ VALUES
 -- Table Usuarios
 INSERT INTO Usuarios([idUsuario],[nombreUsuario],[contrasenia],[Empleado_idEmpleado],[Estado_Usuario_idEstado_Usuario]) 
 VALUES
-(1,'Murphy','FSJ44MIN4FJ',1,1),
+(1,'LuisFer15','extremo15',1,1),
 (2,'Carson','FDN61QJI7UM',2,1),
 (3,'Plato','BHE81RRR3RE',3,1),
 (4,'Marvin','MYC35PEB8EV',4,1),

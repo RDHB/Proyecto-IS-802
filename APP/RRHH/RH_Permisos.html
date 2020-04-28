@@ -22,27 +22,37 @@
                             <form method="post" action="#">
                                 <div class="fields" align="center" style="width: 100%; float:left; display:block; margin: 10;">
                                     <div class="field" style="width: 100%; float:left; display:block; margin: 10;">
-                                        <label for="name" >Empleado</label>
-                                        <input placeholder="Ejemplo: 0000-0000-0000" type="text" style="width:450px" name="name" id="name" value=""/>
+                                        <label for="name" >Código Empleado</label>
+                                        <input type="textbox" style="width:450px" name="name" id="name" value=""/>
+                                    </div>
+                                    <div class="field" style="width: 100%; float:left; display:block; margin: 10;">
+                                        <label for="name" >Nombre Completo</label>
+                                        <input type="textbox" style="width:450px" name="name" id="name" value=""/>
                                     </div>
                                     <div class="field" style="width: 100%; float:left; display:block; margin: 10;">
                                         <label for="name" >Cargo</label>
-                                        <input placeholder="Ejemplo: 0000-0000-0000" type="text" style="width:450px" name="name" id="name" value=""/>
+                                        <input type="textbox" style="width:450px" name="name" id="name" value=""/>
                                     </div>
                                     <div class="field" id="select" style="width: 100%; float:left; display:block; margin: 10;">
-                                        <label for="fecha" align="center">Tipo de Permiso</label>
                                         <select style="width: 450px;">
+                                            <option value="especial">Tipo de Solicitud</option>
                                             <option value="especial">Permiso Especial</option>
                                             <option value="vacacion">Vacaciones</option>
                                         </select><br>
                                     </div>
-                                    <div id="myDIV">
-                                        <div id="especial" class="field" style="width: 48%; float:left; display:block; margin: 10;">
-                                            <label for="name" >Motivo</label>
+                                    <div id="myDIV" class="field" style="width: 100%; float:left; display:block; margin: 10;">
+                                        <div id="especial">
                                             <select style="width: 450px;">
+                                                <option>Motivo</option>
                                                 <option>Permiso</option>
-                                                <option>Permiso</option>
+                                                <option>Vacaciones</option>
+                                                <option>Familiar</option>
+                                                <option>Salud</option>
                                             </select><br>
+                                        </div>
+                                        <div class="field" style="width: 48%; float:left; display:block; margin: 10;">
+                                            <label for="fecha">Descripción Adicional</label>
+                                            <input type="textbox" style="width:400px" name="name" id="name" value=""/><br>
                                         </div>
                                         <div class="field" style="width: 48%; float:left; display:block; margin: 10;">
                                             <label for="fecha">Fecha</label>

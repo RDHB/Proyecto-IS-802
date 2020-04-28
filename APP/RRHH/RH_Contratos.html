@@ -21,21 +21,33 @@
 
                             <form method="post" action="#">
                                 <div class="fields">
-                                    <div class="field" style="width: 48%; float:left; display:block; margin: 10;">
-                                        <label for="name" align="left">Empleado</label>
-                                        <input placeholder="Ejemplo: 0000-0000-0000" type="text" style="width:450px" name="name" id="name" value=""/>
+                                    <div class="field" style="width: 100%; float:left; display:block; margin: 10;">
+                                        <label for="name" align="center">Número de Identidad</label>
+                                        <input placeholder="Ejemplo: 0000-0000-0000" type="textbox" style="width:450px" name="name" id="name" value=""/>
                                     </div>
-                                    <div class="field" style="width: 48%; float:left; display:block; margin: 10;">
-                                        <label for="name" align="left">Área de Trabajo</label>
-                                        <input type="text" style="width:450px" name="name" id="name" value=""/>
+                                    <div class="field" style="width: 30%; float:left; display:block; margin: 10;">
+                                        <label for="name" align="center">Sueldo</label>
+                                        <input type="textbox" style="width:150px" name="name" id="name" value=""/>
                                     </div>
-                                    <div class="field" style="width: 48%; float:left; display:block; margin: 10;">
-                                        <label for="name" align="left">Sueldo</label>
-                                        <input type="number" style="width:400px" name="name" id="name" value=""/>
+                                    <div class="field" style="width: 30%; float:left; display:block; margin: 10;">
+                                        <label for="fecha" align="center">Hora Inicio de Trabajo</label>
+                                        <input type="time" style="width:200px" name="name" id="name" value=""/>
                                         <br>
                                     </div>
-                                    <div class="field" style="width: 48%; float:left; display:block; margin: 10;">
-                                        <label for="fecha" align="left">Tipo de Contrato</label>
+                                    <div class="field" style="width: 30%; float:left; display:block; margin: 10;">
+                                        <label for="fecha" align="center" >Hora Fin de Trabajo</label>
+                                        <input type="time" style="width:200px" name="name" id="name" value=""/>
+                                        <br><br>
+                                    </div>
+                                    <div class="field" align="center" style="width: 100%; float:left; display:block; margin: 10;">
+                                        <select style="width: 450px;">
+                                            <option>Tipo de Contrato</option>
+                                            <option>Temporal</option>
+                                            <option>Permanente</option>
+                                        </select>
+                                        <br>
+                                    </div>
+                                    <div class="field" align="center" style="width: 100%; float:left; display:block; margin: 10;">
                                         <select style="width: 450px;">
                                             <option>Área de Trabajo</option>
                                             <option>Vehículos</option>
@@ -43,14 +55,15 @@
                                         </select>
                                         <br>
                                     </div>
-                                    <div class="field" style="width: 48%; float:left; display:block; margin: 10;">
-                                        <label for="fecha" align="left">Hora Inicio de Trabajo</label>
-                                        <input type="time" style="width:400px" name="name" id="name" value=""/>
-                                        <br>
-                                    </div>
-                                    <div class="field" style="width: 48%; float:left; display:block; margin: 10;">
-                                        <label for="fecha" align="left">Hora Fin de Trabajo</label>
-                                        <input type="time" style="width:400px" name="name" id="name" value=""/>
+                                    <div class="field" align="center" style="width: 100%; float:left; display:block; margin: 10;">
+                                        <select style="width: 450px;">
+                                            <option>Cargo</option>
+                                            <option>Asesor</option>
+                                            <option>Jefe de Taller</option>
+                                            <option>Cajero</option>
+                                            <option>Técnico</option>
+                                            <option>Administrador</option>
+                                        </select>
                                         <br>
                                     </div>
                                     <br>

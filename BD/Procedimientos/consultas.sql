@@ -566,12 +566,12 @@ SELECT * FROM Cliente C INNER JOIN Persona P ON P.idPersona = C.Persona_idPerson
 SELECT * FROM Vehiculos
 
 DECLARE
-	@pvin	 							VARCHAR(45) = '1PCH23DF56GHJ3DF341',
+	@pvin	 							VARCHAR(45) = '1PCH23DF56GHJ3DF34A',
 	@pcolor								VARCHAR(45) = 'Plateado',
 	@pplaca								VARCHAR(45) = 'PCH-2345',
 	@pnumeroMotor						VARCHAR(45) = 'R134J4768341',
 	@pcaja_de_cambios					VARCHAR(45) = 'Automatico',
-	@pidModelo							INT = 101,
+	@pidModelo							INT = 1,
     @paccion							VARCHAR(45) = 'INSERT',
 
 	@prcodigoMensaje				INT = 0,
@@ -648,11 +648,6 @@ SELECT @prcodigoMensaje;
 SELECT @prmensaje;
 
 
-
-
-
-
-
 SELECT 
 	V.vin
 	, ( -- descripcion Marca
@@ -698,3 +693,4 @@ SELECT COUNT(*) FROM VinculoCyV
 			INNER JOIN Persona P ON P.idPersona = C.Persona_idPersona
 			WHERE P.numeroIdentidad = '1804-1998-00220'
 		)
+;

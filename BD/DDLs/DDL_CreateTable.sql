@@ -114,17 +114,6 @@ CREATE TABLE Vehiculos (
 )
 
 -- -----------------------------------------------------
--- Table Inventario
--- -----------------------------------------------------
-CREATE TABLE Inventario (
-	idInventario INT NOT NULL,
-	descripcion VARCHAR(45) NULL,
-	cantidad INT NULL,
-	PRIMARY KEY (idInventario)
-)
-
-
--- -----------------------------------------------------
 -- Table Servicios
 -- -----------------------------------------------------
 CREATE TABLE Servicios (
@@ -134,18 +123,6 @@ CREATE TABLE Servicios (
 	duracion TIME NULL,
 	PRIMARY KEY (idServicios)
 )
-
-
--- -----------------------------------------------------
--- Table Cotizacion
--- -----------------------------------------------------
-CREATE TABLE Cotizacion (
-	idCotizacion INT NOT NULL,
-	descripcion VARCHAR(45) NULL,
-	fecha DATE NULL,
-	PRIMARY KEY (idCotizacion)
-)
-
 
 -- -----------------------------------------------------
 -- Table Permisos
@@ -209,15 +186,6 @@ CREATE TABLE Reservacion (
 	PRIMARY KEY (idReservacion)
 )
 
--- -----------------------------------------------------
--- Table ListaMyR
--- -----------------------------------------------------
-CREATE TABLE ListaMyR (
-	idListaMyR INT NOT NULL,
-	descripcion VARCHAR(45) NULL,
-	PRIMARY KEY (idListaMyR)
-)
-
 
 -- -----------------------------------------------------
 -- Table FormaPago
@@ -244,17 +212,14 @@ CREATE TABLE EstadoOT (
 -- -----------------------------------------------------
 CREATE TABLE OrdenTrabajo (
 	idOrdenTrabajo INT NOT NULL,
-	descripcion VARCHAR(45) NULL,
-	estado_del_vehiculo VARCHAR(45) NULL,
-	objetosPersonales VARCHAR(45) NULL,
 	fechaInicio DATE NULL,
 	fechaFin DATE NULL,
-	reparacionesEfectuadas VARCHAR(45) NULL,
-	reparacionesNoEfectuadas VARCHAR(45) NULL,
-	comentarios VARCHAR(45) NULL,
-	Cotizacion_idCotizacion INT NOT NULL,
+	estado_del_vehiculo VARCHAR(1000) NULL,
+	objetosPersonales VARCHAR(1000) NULL,
+	reparacionesEfectuadas VARCHAR(1000) NULL,
+	reparacionesNoEfectuadas VARCHAR(1000) NULL,
+	Recomendaciones VARCHAR(1000) NULL,
 	Cliente_idCliente INT NOT NULL,
-	ListaMyR_idListaMyR INT NOT NULL,
 	EstadoOT_idEstadoOT INT NOT NULL,
 	Vehiculos_idVehiculos INT NOT NULL,
 	PRIMARY KEY (idOrdenTrabajo)
@@ -322,60 +287,27 @@ CREATE TABLE VinculoCyV (
 )
 
 -- -----------------------------------------------------
+-- Table TipoProducto
+-- -----------------------------------------------------
+CREATE TABLE TipoProducto (
+	idTipoProducto INT NOT NULL,
+	descripcion VARCHAR(45) NULL,
+	PRIMARY KEY (idTipoProducto)
+)
+
+-- -----------------------------------------------------
 -- Table Producto
 -- -----------------------------------------------------
 CREATE TABLE Producto (
 	idProducto INT NOT NULL,
 	nombre VARCHAR(45) NULL,
+	cantidad INT NULL,
 	precioVenta DECIMAL NULL,
 	precioCompra DECIMAL NULL,
 	fechaIngreso DATE NULL,
 	fechaVencimiento DATE NULL,
-	Inventario_idInventario INT NOT NULL,
+	TipoProducto_idTipoProducto INT NOT NULL,
 	PRIMARY KEY (idProducto)
-)
-
--- -----------------------------------------------------
--- Table Inventario_has_Lista_MyR
--- -----------------------------------------------------
-CREATE TABLE Inventario_has_Lista_MyR (
-	idInventario_has_Lista_MyR INT NOT NULL,
-	ListaMyR_idListaMyR INT NOT NULL,
-	Producto_idProducto INT NOT NULL,
-	rebajados_del_inventario BIT NOT NULL,
-	PRIMARY KEY (idInventario_has_Lista_MyR)
-)
-
--- -----------------------------------------------------
--- Table Recambios
--- -----------------------------------------------------
-CREATE TABLE Recambios (
-	idRecambios INT NOT NULL,
-	descripcion VARCHAR(45) NULL,
-	Producto_idProducto INT NOT NULL,
-	PRIMARY KEY (idRecambios)
-)
-
--- -----------------------------------------------------
--- Table Materiales
--- -----------------------------------------------------
-CREATE TABLE Materiales (
-	idMateriales INT NOT NULL,
-	descripcion VARCHAR(45) NULL,
-	Producto_idProducto INT NOT NULL,
-	PRIMARY KEY (idMateriales)
-)
-
--- -----------------------------------------------------
--- Table Herramientas
--- -----------------------------------------------------
-CREATE TABLE Herramientas (
-	idHerramientas INT NOT NULL,
-	nombre VARCHAR(45) NULL,
-	precioCosto DECIMAL NULL,
-	fechaIngreso DATE NULL,
-	Inventario_idInventario INT NOT NULL,
-	PRIMARY KEY (idHerramientas)
 )
 
 -- -----------------------------------------------------
@@ -450,40 +382,54 @@ CREATE TABLE Historico_HE (
 -- -----------------------------------------------------
 CREATE TABLE RolPago (
 	idRolPago INT NOT NULL,
-	sueldo DECIMAL NULL,
+	cargo VARCHAR(45) NULL,
 	fecha DATE NULL,
-	deducciones DECIMAL NULL,
-	cantidadHT INT NULL,
+	sueldoBase DECIMAL NULL,
 	cantidadHE INT NULL,
-	pagoHT DECIMAL NULL,
 	pagoHE DECIMAL NULL,
 	comisiones DECIMAL NULL,
-	cargo VARCHAR(45) NULL,
+	deducciones DECIMAL NULL,
+	totalPago DECIMAL NULL,
 	Empleado_idEmpleado INT NOT NULL,
 	PRIMARY KEY (idRolPago)
 )
 
 -- -----------------------------------------------------
--- Table Cotizacion_has_Producto
+-- Table Lista_Servicios
 -- -----------------------------------------------------
-CREATE TABLE Cotizacion_has_Producto (
-	idCotizacion_has_Producto INT NOT NULL,
-	Cotizacion_idCotizacion INT NOT NULL,
-	Producto_idProducto INT NOT NULL,
-	aprovados BIT NOT NULL,
-	PRIMARY KEY (idCotizacion_has_Producto)
-)
-
--- -----------------------------------------------------
--- Table OrdenTrabajo_has_Servicios
--- -----------------------------------------------------
-CREATE TABLE OrdenTrabajo_has_Servicios (
+CREATE TABLE Lista_Servicios (
 	OrdenTrabajo_idOrdenTrabajo INT NOT NULL,
 	Servicios_idServicios INT NOT NULL,
-	servicioEfectuado BIT NOT NULL,
+	servicioEfectuado INT NOT NULL,
 	PRIMARY KEY (
 		OrdenTrabajo_idOrdenTrabajo,
 		Servicios_idServicios
+	)
+)
+
+-- -----------------------------------------------------
+-- Table Lista_MyR
+-- -----------------------------------------------------
+CREATE TABLE Lista_MyR (
+	OrdenTrabajo_idOrdenTrabajo INT NOT NULL,
+	Producto_idProducto INT NOT NULL,
+	rebajados INT NOT NULL,
+	PRIMARY KEY (
+		OrdenTrabajo_idOrdenTrabajo,
+		Producto_idProducto
+	)
+)
+
+-- -----------------------------------------------------
+-- Table Lista_Cotizacion
+-- -----------------------------------------------------
+CREATE TABLE Lista_Cotizacion (
+	OrdenTrabajo_idOrdenTrabajo INT NOT NULL,
+	Producto_idProducto INT NOT NULL,
+	aprovados INT NOT NULL,
+	PRIMARY KEY (
+		OrdenTrabajo_idOrdenTrabajo,
+		Producto_idProducto
 	)
 )
 
