@@ -55,6 +55,7 @@ BEGIN
 
 
 		-- Validacion de identificadores
+		-- Solo se puede dar revicion a ordenes de trabajo que tengan el idEstadoOT = 2
         SELECT @vconteo = COUNT(*) FROM Tabla
 		WHERE campo1 = @parametro1;
 		IF @vconteo = 0 BEGIN
