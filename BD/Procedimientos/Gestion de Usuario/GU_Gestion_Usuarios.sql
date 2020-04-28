@@ -12,7 +12,7 @@
  *
  * ACTIVATE: @pnombreUsuario
 */
-CREATE PROCEDURE GU_GESTION_USUARIOS(
+ALTER PROCEDURE [dbo].[GU_GESTION_USUARIOS](
     --Informacion Usuario
 	@pidUsuario					INT,
 	@pcodigoEmpleado			VARCHAR(45),
@@ -38,6 +38,25 @@ CREATE PROCEDURE GU_GESTION_USUARIOS(
 BEGIN
 	-- Declaracion de Variables
 	DECLARE @vconteo INT;
+
+	DECLARE @Temp1 TABLE (
+		idUsuario INT
+		, nombrePersona VARCHAR(1000)
+		, nombreUsuario VARCHAR(45)
+		, contrasenia VARCHAR(45)
+		, correoElectronico VARCHAR(45)
+		, numeroTelefono VARCHAR(45)
+		, AreaTrabajo VARCHAR(45)
+	);
+	DECLARE @Temp2 TABLE (
+		idUsuario INT
+		, nombrePersona VARCHAR(1000)
+		, nombreUsuario VARCHAR(45)
+		, contrasenia VARCHAR(45)
+		, correoElectronico VARCHAR(45)
+		, numeroTelefono VARCHAR(45)
+		, AreaTrabajo VARCHAR(45)
+	);
 
     /* Funcionalidad: Añadir usuarios al sistema
     * Construir un Insert con la sigueinte informacion:
@@ -209,7 +228,18 @@ BEGIN
 
 
 		-- Validacion de procedimientos
+		SELECT @vconteo = COUNT(*)  FROM Usuarios
+		where nombreUsuario = @pnombreUsuario 
 		
+		IF @vconteo <> 0 BEGIN
+			SET @pmensaje = @pmensaje + 'Ya hay un usuario registrado con este nombre: ' + @pnombreUsuario;
+		END;
+
+		IF @pmensaje <> '' BEGIN
+			SET @pcodigoMensaje = 5;
+			SET @pmensaje = 'Error: Validacion en la condicion del procdimiento: ' + @pmensaje;
+			RETURN;
+		END;
 
 
 		-- Accion del procedimiento
@@ -238,7 +268,7 @@ BEGIN
 				SELECT Empleado_idEmpleado FROM Usuarios WHERE idUsuario = @pidUsuario
 			)
 		)
-		SET @pmensaje = 'Contrasenia guardada';
+		SET @pmensaje = 'Datos del usuario actualizados con exito';
 	END;
 
 
@@ -287,34 +317,8 @@ BEGIN
 
 
 		-- Accion del procedimiento
-		-- Actualizar informacion Usuario
-		UPDATE Usuarios SET 
-			nombreUsuario = @pnombreUsuario
-			, contrasenia = @pcontrasenia
-		WHERE idUsuario = @pidUsuario
-
-		-- Actualizar informacion Usuario
-		UPDATE Persona SET
-			correoElectronico = @pcorreoElectronico
-		WHERE idPersona = (
-			SELECT Persona_idPersona FROM Empleado
-			WHERE idEmpleado = (
-				SELECT Empleado_idEmpleado FROM Usuarios WHERE idUsuario = @pidUsuario
-			)
-		)
-
-		-- Actualizar informacion Usuario
-		UPDATE Telefono SET
-			numeroTelefono = @ptelefono
-		WHERE Persona_idPersona = (
-			SELECT Persona_idPersona FROM Empleado
-			WHERE idEmpleado = (
-				SELECT Empleado_idEmpleado FROM Usuarios WHERE idUsuario = @pidUsuario
-			)
-		)
-
-
-		-- Salida-Data: idUsuario, nombrePersona, nombreUsuario, contrasenia, correoElectronico, telefono
+		-- Guardando informacion de los usuarios del sistema
+		INSERT INTO @Temp1 
 		SELECT 
 			U.idUsuario
 			, CONCAT(
@@ -333,19 +337,92 @@ BEGIN
 				SELECT numeroTelefono FROM Telefono
 				WHERE Persona_idPersona = P.idPersona
 			) AS 'numeroTelefono'
+			, (
+				SELECT descripcion FROM AreaTrabajo WHERE idAreaTrabajo = E.AreaTrabajo_idAreaTrabajo
+			) AS 'AreaTrabajo'
 		FROM Usuarios U
 		INNER JOIN Empleado E ON E.idEmpleado = U.Empleado_idEmpleado
 		INNER JOIN Persona P ON P.idPersona = E.Persona_idPersona
-		WHERE CONCAT (
-			P.primerNombre
-			, ' '
-			, P.segundoNombre
-			, ' '
-			, P.primerApellido
-			, ' '
-			, P.segundoApellido
-		) LIKE NULL
+		;
 
+
+
+		-- Filtro nombrePersona
+		IF @pnombrePersona <> '' OR @pnombrePersona <> NULL BEGIN
+			
+			-- Ejecuta el filtro en la variable @Temp2
+			INSERT INTO @Temp2
+				SELECT * FROM @Temp1 T
+				WHERE T.nombrePersona LIKE '%' + @pnombrePersona + '%'
+			;
+			
+			-- Guarda el filtro en la variable @Temp1
+			DELETE FROM @Temp1;
+			INSERT INTO @Temp1
+				SELECT * FROM @Temp2
+			;
+			
+			-- Vacia el filtro de la variable @Temp2
+			DELETE FROM @Temp2;
+
+		END;
+
+
+
+		-- Filtro EstadoUsuario
+		IF @pidEstadoUsuario <> 0 BEGIN
+			
+			-- Ejecuta el filtro en la variable @Temp2
+			INSERT INTO @Temp2
+				SELECT * FROM @Temp1 T
+				WHERE T.idUsuario IN (
+					SELECT idUsuario FROM Usuarios
+					WHERE Estado_Usuario_idEstado_Usuario = @pidEstadoUsuario
+				)
+			;
+			
+			-- Guarda el filtro en la variable @Temp1
+			DELETE FROM @Temp1;
+			INSERT INTO @Temp1
+				SELECT * FROM @Temp2
+			;
+			
+			-- Vacia el filtro de la variable @Temp2
+			DELETE FROM @Temp2;
+
+		END;
+
+
+
+		-- Filtro AreaTrabajo
+		IF @pidAreaTrabajo <> 0 BEGIN
+
+			-- Ejecuta el filtro en la variable @Temp2
+			INSERT INTO @Temp2
+				SELECT * FROM @Temp1 T
+				WHERE T.idUsuario IN (
+					SELECT U.idUsuario FROM Empleado E
+					INNER JOIN Usuarios U ON E.idEmpleado = U.Empleado_idEmpleado
+					WHERE E.AreaTrabajo_idAreaTrabajo = @pidAreaTrabajo
+				)
+			;
+			
+			-- Guarda el filtro en la variable @Temp1
+			DELETE FROM @Temp1;
+			INSERT INTO @Temp1
+				SELECT * FROM @Temp2
+			;
+			
+			-- Vacia el filtro de la variable @Temp2
+			DELETE FROM @Temp2;
+
+		END;
+		
+
+
+		-- Retornar consulta filtrada o no
+		SELECT * FROM @Temp1;
+		
 		SET @pmensaje = 'Consulta finalizada con exito';
 	END;
 

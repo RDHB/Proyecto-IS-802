@@ -454,27 +454,57 @@ select * from Promociones;
 select * from Usuarios;
 
 DECLARE
-	@prcodigoEmpleado		VARCHAR(45),
-	@prnombreUsuario		VARCHAR(45),
-	@prContrasenia			VARCHAR(45),
-	@prAccion				VARCHAR(45),
+	@pridUsuario					INT,
+	@prcodigoEmpleado			VARCHAR(45),
+	@prnombreUsuario				VARCHAR(45),
+	@prcontrasenia				VARCHAR(45),
+	
+	@prcorreoElectronico			VARCHAR(45),
+	@prtelefono					VARCHAR(45),
 
-	@prcodigoMensaje		INT,
-	@prmensaje				VARCHAR(1000)
+	@prnombrePersona				VARCHAR(45),
+	@pridEstadoUsuario			INT,
+	@pridAreaTrabajo				INT,
+
+	@prAccion					VARCHAR(45),
+	
+	-- Parametros de Salida
+    -- Codigo de mensaje
+	@prcodigoMensaje				INT ,
+	@prmensaje 					VARCHAR(1000) 
+
 ;
-SET @prcodigoEmpleado = '';
-SET	@prnombreUsuario = 'LuisFer15';
-SET	@prContrasenia = '';
-SET @prAccion = 'ACTIVATE';
+SET @pridUsuario = 1
+SET @prcodigoEmpleado = ''
+SET	@prnombreUsuario = 'XXLUISFER15XX';
+SET	@prContrasenia = 'EXTREMO15';
+
+SET @prcorreoElectronico = 'LUISFER.GAME15@GMAIL.COM'
+SET @prtelefono = '97982221'
+
+SET @prnombrePersona = ''
+SET @pridEstadoUsuario = 0
+SET @pridAreaTrabajo = 0
+
+SET @prAccion = 'SELECT';
 
 SET @prcodigoMensaje = 0;
 SET @prmensaje = '';
 
 EXEC GU_GESTION_USUARIOS
 	-- INTPUT
+	@pridUsuario,
 	@prcodigoEmpleado,
 	@prnombreUsuario,
 	@prContrasenia,
+
+	@prcorreoElectronico,
+	@prtelefono,
+
+	@prnombrePersona,
+	@pridEstadoUsuario,
+	@pridAreaTrabajo,
+
     @prAccion,
 	
 	-- OUTPUT
