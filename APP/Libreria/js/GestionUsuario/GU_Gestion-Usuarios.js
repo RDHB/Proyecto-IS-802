@@ -58,10 +58,12 @@ $('#agregarUser').click(function(){
 		dataType: "json",
 		method: "POST",
 		success: function (respuesta) {
-			if (respuesta.pcodigoMensaje == 0) {
-				$("#notificacion").replaceWith('<span  id="notificacion" style="color: green;">'+respuesta.pmensaje+'</span>');
+            if (respuesta.output.pcodigoMensaje == 0) {
+                $("#notificacion").replaceWith('<span  id="notificacion" style="color: green;">'+respuesta.output.pmensaje+'</span>');
+                console.log(respuesta.output.pmensaje);
 			}else{
-                $("#notificacion").replaceWith('<span  id="notificacion" style="color: brown;">'+respuesta.pmensaje+'</span>');
+                $("#notificacion").replaceWith('<span  id="notificacion" style="color: brown;">'+respuesta.output.pmensaje+'</span>');
+                console.log(respuesta.output.pmensaje);
             }
         },
         error : function(error){

@@ -46,15 +46,21 @@ function GU_LOGIN(req,res){
 function GU_GESTION_USUARIOS(req,res){
     conn.connect().then(function(){
         var reqDB = new sql.Request(conn);
+        reqDB.input('pidUsuario',sql.Int,req.body.idUsuario);
         reqDB.input('pcodigoEmpleado',sql.VarChar,req.body.codigoEmpleado);
         reqDB.input('pnombreUsuario',sql.VarChar,req.body.nombreUsuario);
         reqDB.input('pcontrasenia',sql.VarChar,req.body.contrasenia);
+        reqDB.input('pcorreoElectronico',sql.VarChar,req.body.correoElectronico);
+        reqDB.input('ptelefono',sql.VarChar,req.body.telefono);
+        reqDB.input('pnombrePersona',sql.VarChar,req.body.nombrePersona);
+        reqDB.input('pidEstadoUsuario',sql.Int,req.body.idEstadoUsuario);
+        reqDB.input('pidAreaTrabajo',sql.Int,req.body.pidAreaTrabajo);
         reqDB.input('pAccion',sql.VarChar,req.body.accion);
         reqDB.output('pcodigoMensaje', sql.Int);
         reqDB.output('pmensaje', sql.VarChar);
         reqDB.execute('GU_GESTION_USUARIOS').then(function(result){
             conn.close();
-            res.send(result.output);
+            res.send({output: result.output, data: result.recordsets[0]});
         }).catch(function(err){
             conn.close();
             res.send(messagesMiscelaneos.errorC2);
