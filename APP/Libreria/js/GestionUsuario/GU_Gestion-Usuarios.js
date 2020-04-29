@@ -1,36 +1,22 @@
 $(Document).ready(function(){
     $.ajax({
-		url: "https://localhost:3000/volvo/api/GU/GU_LOGIN",
-		data: {
-            "usuario" : 'Murphy',
-            "password" : 'FSJ44MIN4FJ',
+        url: "https://localhost:3000/volvo/api/Miscelaneos/GENERIC_GESTION_TABLAS",
+        headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')},
+        data: {
+            "nombreTabla" : 'AreaTrabajo',
+            "accion"      : 'SELECT'
         },
-		dataType: "json",
-		method: "POST",
-		success: function (respuesta) {
-			if (respuesta.pcodigoMensaje == 0) {
-                localStorage.setItem('token',respuesta.token);
-			}
-		}
-    }).then(function(){
-        $.ajax({
-            url: "https://localhost:3000/volvo/api/Miscelaneos/GENERIC_GESTION_TABLAS",
-            headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')},
-            data: {
-                "nombreTabla" : 'AreaTrabajo',
-                "accion"      : 'SELECT'
-            },
-            dataType: "json",
-            method: "POST",
-            success: function (respuesta) {
-                if (respuesta.output.pcodigoMensaje == 0) {
-                    for(i=0; i< respuesta.data.length; i++){
-                        $('#selectAreaTrabajo').append('<option value="'+respuesta.data[i].idAreaTrabajo+'">'+respuesta.data[i].descripcion+'</option>');
-                    }
+        dataType: "json",
+        method: "POST",
+        success: function (respuesta) {
+            if (respuesta.output.pcodigoMensaje == 0) {
+                for(i=0; i< respuesta.data.length; i++){
+                    $('#selectAreaTrabajo').append('<option value="'+respuesta.data[i].idAreaTrabajo+'">'+respuesta.data[i].descripcion+'</option>');
                 }
             }
-        });
-    }).then(function(){
+        }
+    }).
+    then(function(){
         $.ajax({
             url: "https://localhost:3000/volvo/api/Miscelaneos/GENERIC_GESTION_TABLAS",
             headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')},

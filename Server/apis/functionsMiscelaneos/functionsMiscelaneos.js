@@ -42,13 +42,48 @@ function GET_DATA_USER(req, res){
     res.send(dataUser);
 }
 
+function GET_TABLESNAMES_DB(req, res){
+    conn.connect().then(function(result){
+        var reqDB = new sql.Request(conn);
+        reqDB.query('SELECT * FROM INFORMATION_SCHEMA.TABLES').then(function(result){
+            conn.close();
+            res.send({data: result.recordsets[0]});
+        })
+        .catch(function(err){
+            conn.close();
+            res.send(messagesMiscelaneos.errorC2);
+        });
+    })
+    .catch(function(err){
+        res.send(messagesMiscelaneos.errorC1);
+    });
+}
+
+function GET_CAMPOS_TABLE_DB(req, res){
+    conn.connect().then(function(result){
+        var reqDB = new sql.Request(conn);
+        reqDB.query("SELECT COLUMN_NAME FROM Information_Schema.Columns WHERE TABLE_NAME = '"+req.body.nombreTabla+"' ORDER BY COLUMN_NAME")
+        .then(function(result){
+            conn.close();
+            res.send({data: result.recordsets[0]});
+        })
+        .catch(function(err){
+            conn.close();
+            res.send(messagesMiscelaneos.errorC2);
+        });
+    })
+    .catch(function(err){
+        res.send(messagesMiscelaneos.errorC1);
+    });
+}
+
 function generateToken (user){
     return jwt.sign({username:user}, secretToken.configToken.key, { expiresIn: 60*60*24});
 }
 
 function authToken(req, res, next){
     const token = req.headers['authorization'].replace('Bearer ','');
-
+    
     if (token == null){
         res.send(messagesMiscelaneos.errorC6);
     }else{
@@ -67,6 +102,8 @@ function authToken(req, res, next){
 module.exports = {
     GENERIC_GESTION_TABLAS,
     GET_DATA_USER,
+    GET_TABLESNAMES_DB,
+    GET_CAMPOS_TABLE_DB,
     generateToken,
     authToken,
 };
