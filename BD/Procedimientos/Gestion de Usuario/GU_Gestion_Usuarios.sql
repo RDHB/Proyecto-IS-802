@@ -117,7 +117,7 @@ BEGIN
 
 		-- Validacion de procedimientos
 		SELECT @vconteo = COUNT(*)  FROM Usuarios
-		where nombreUsuario = @pnombreUsuario 
+		where nombreUsuario = @pnombreUsuario COLLATE SQL_Latin1_General_CP1_CS_AS
 		IF @vconteo <> 0 BEGIN
 			SET @pmensaje = @pmensaje + 'Ya hay un usuario registrado con este nombre: ' + @pnombreUsuario;
 		END;
@@ -192,10 +192,6 @@ BEGIN
 			SET @pmensaje=@pmensaje + ' nombreUsuario ';
 		END;
 
-		IF @pcontrasenia = '' OR @pcontrasenia IS NULL BEGIN
-			SET @pmensaje=@pmensaje + ' contrasenia ';
-		END;
-		
 		IF @pcorreoElectronico = '' OR @pcorreoElectronico IS NULL BEGIN
 			SET @pmensaje=@pmensaje + ' correoElectronico ';
 		END;
@@ -229,7 +225,7 @@ BEGIN
 
 		-- Validacion de procedimientos
 		SELECT @vconteo = COUNT(*)  FROM Usuarios
-		where nombreUsuario = @pnombreUsuario 
+		WHERE nombreUsuario = @pnombreUsuario COLLATE SQL_Latin1_General_CP1_CS_AS
 		
 		IF @vconteo <> 0 BEGIN
 			SET @pmensaje = @pmensaje + 'Ya hay un usuario registrado con este nombre: ' + @pnombreUsuario;
@@ -246,7 +242,6 @@ BEGIN
 		-- Actualizar informacion Usuario
 		UPDATE Usuarios SET 
 			nombreUsuario = @pnombreUsuario
-			, contrasenia = dbo.FN_ENCRIPTAR(@pcontrasenia)
 		WHERE idUsuario = @pidUsuario
 
 		-- Actualizar informacion Usuario
@@ -266,6 +261,14 @@ BEGIN
 			SELECT Persona_idPersona FROM Empleado
 			WHERE idEmpleado = (
 				SELECT Empleado_idEmpleado FROM Usuarios WHERE idUsuario = @pidUsuario
+			)
+		) AND idTelefono = (
+			SELECT MIN(idTelefono) FROM Telefono
+			WHERE Persona_idPersona = (
+				SELECT Persona_idPersona FROM Empleado
+				WHERE idEmpleado = (
+					SELECT Empleado_idEmpleado FROM Usuarios WHERE idUsuario = @pidUsuario
+				)
 			)
 		)
 		SET @pmensaje = 'Datos del usuario actualizados con exito';
@@ -290,7 +293,7 @@ BEGIN
 	* Salida-Data: idUsuario, nombrePersona, nombreUsuario, contrasenia, correoElectronico, telefono
 	*
     * Seleccionar los sigueintes datos en la tabla Usuario:
-    * idUsuario, nombreUsuario, contrasenia
+    * idUsuario, nombreUsuario
 	*
 	* Seleccionar los sigueintes datos en la tabla EstadoUsuario:
     * descripcion
@@ -331,11 +334,13 @@ BEGIN
 				, P.segundoApellido
 			) AS 'nombrePersona'
 			, U.nombreUsuario
-			, U.contrasenia
 			, p.correoElectronico
 			, (
-				SELECT numeroTelefono FROM Telefono
-				WHERE Persona_idPersona = P.idPersona
+				SELECT numeroTelefono FROM Telefono T1
+				WHERE T1.idTelefono = (
+					SELECT MIN(T2.idTelefono) FROM Telefono T2
+					WHERE T2.Persona_idPersona = P.idPersona
+				)
 			) AS 'numeroTelefono'
 			, (
 				SELECT descripcion FROM AreaTrabajo WHERE idAreaTrabajo = E.AreaTrabajo_idAreaTrabajo
@@ -462,7 +467,7 @@ BEGIN
 
 		-- Validacion de identificadores
 		SELECT @vconteo = COUNT(*)  FROM Usuarios
-		where nombreUsuario = @pnombreUsuario 
+		where nombreUsuario = @pnombreUsuario COLLATE SQL_Latin1_General_CP1_CS_AS
 		IF @vconteo = 0 BEGIN
 			SET @pmensaje = @pmensaje + 'El usuario ' + @pnombreUsuario + ' no existe: ';
 		END;
@@ -476,7 +481,8 @@ BEGIN
 
 
 		-- Accion del procedimiento 
-		UPDATE Usuarios SET Estado_Usuario_idEstado_Usuario = 2 WHERE nombreUsuario = @pnombreUsuario
+		UPDATE Usuarios SET Estado_Usuario_idEstado_Usuario = 2 
+		WHERE nombreUsuario = @pnombreUsuario COLLATE SQL_Latin1_General_CP1_CS_AS;
 
 		SET @pmensaje = 'Usuario desactivado';
 	END;
@@ -522,7 +528,7 @@ BEGIN
 
 		-- Validacion de identificadores
 		SELECT @vconteo = COUNT(*)  FROM Usuarios
-		where nombreUsuario = @pnombreUsuario 
+		WHERE nombreUsuario = @pnombreUsuario COLLATE SQL_Latin1_General_CP1_CS_AS
 		IF @vconteo = 0 BEGIN
 			SET @pmensaje = @pmensaje + 'El usuario ' + @pnombreUsuario + ' no existe: ';
 		END;
@@ -536,7 +542,8 @@ BEGIN
 
 
 		-- Accion del procedimiento 
-		UPDATE Usuarios SET Estado_Usuario_idEstado_Usuario = 1 WHERE nombreUsuario = @pnombreUsuario
+		UPDATE Usuarios SET Estado_Usuario_idEstado_Usuario = 1 
+		WHERE nombreUsuario = @pnombreUsuario COLLATE SQL_Latin1_General_CP1_CS_AS;
 
 		SET @pmensaje = 'Usuario activado';
 	END;
