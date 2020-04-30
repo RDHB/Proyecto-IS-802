@@ -24,7 +24,7 @@
                                 <div class="fields" style="display: flex; justify-content: center; align-content: center; flex-wrap: wrap; margin-top: 30;">
                                     <div  style="width: 25%; float:left; display:block; margin: 10 10 10 50;">
                                         <label for="name" align="left">Buscar por Nombre</label>
-                                        <input type="text" style="width:100%" name="name" id="name" value=""/>
+                                        <input type="text" style="width:100%" name="name" id="searchName" value=""/>
                                         <br>
                                     </div>
                                     <div  style="width: 25%; float:right; display:block; margin: 10;">
@@ -70,12 +70,12 @@
                                             </table>
                                             <div style="display: flexbox; flex-direction: column;">
                                                 <ul class="actions" style="display: flexbox; justify-content: center; align-content: center;">
-                                                    <li><buttom class="button small" style="width: 90%; display:block; margin: 20;">Editar Usuario Seleccionado</buttom></li>
-                                                    <li><buttom class="button small" style="width: 90%; display:block; margin: 20 ;">Eliminar Usuarios Seleccionados</buttom></li>
+                                                    <li><buttom id="btnEditarUsuario" class="button small" style="width: 90%; display:block; margin: 20;">Editar Usuario Seleccionado</buttom></li>
+                                                    <li><buttom id="btnEliminarUsuario" class="button small" style="width: 90%; display:block; margin: 20 ;">Eliminar Usuarios Seleccionados</buttom></li>
                                                 </ul>
                                                 <ul class="actions" style="display: flexbox; justify-content: center; align-content: center;">
-                                                    <li><buttom class="button small" style="width: 90%; display:block; margin: 20 ;">Activar Usuarios Seleccionados</buttom></li>
-                                                    <li><buttom class="button small" style="width: 90%; display:block; margin: 20 ;">Desactivar Usuarios Seleccionados</buttom></li>
+                                                    <li><buttom id="btnActivarUsuario" class="button small" style="width: 90%; display:block; margin: 20 ;">Activar Usuarios Seleccionados</buttom></li>
+                                                    <li><buttom id="btnDesactivarUsuario" class="button small" style="width: 90%; display:block; margin: 20 ;">Desactivar Usuarios Seleccionados</buttom></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -122,6 +122,47 @@
                         </table>
                         <div align="center" style="margin: 25;">
                             <a id="agregarUser" class="button small">Agregar</a>
+                        </div>
+                        <div align="center" style="margin: 25;">
+                            <span  id="notificacion" style="color: brown;  display: none;"></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
+        <div id="editUser" class="modal">
+            <section style="display: flexbox; justify-content: center; align-items: center;">
+                <header style="display: flexbox; justify-content: center; align-items: center;">
+                    <h3 style="text-align: center; ">Ingrese la información requerida</h3>
+                </header>
+                <div class="content" style="display: flexbox; justify-content: center; align-items: center;">
+                    <div class="table-wrapper" style="margin: 25; display: flexbox; justify-content: center; align-items: center;">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>Nombre Usuario</td>
+                                    <td>
+                                        <input type="text" style="width:320px" id="updateNombreUsuario" value=""/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Coreo electrónico</td>
+                                    <td>
+                                        <input type="text" style="width:320px" id="updateCorreoElectronico" value=""/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Teléfono</td>
+                                    <td>
+                                        <input type="text" style="width:320px" id="updateTelefono" value=""/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div align="center" style="margin: 25;">
+                            <a id="updateUser" class="button small">Actualizar información</a>
                         </div>
                         <div align="center" style="margin: 25;">
                             <span  id="notificacion" style="color: brown;  display: none;"></span>
