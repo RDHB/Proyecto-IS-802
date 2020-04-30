@@ -74,7 +74,7 @@ BEGIN
 
 	
 	-- Validacion de procedimientos
-	IF @pcontrasenia <> (
+	IF dbo.FN_ENCRIPTAR(@pcontrasenia) <> (
 		SELECT Contrasenia FROM Usuarios
 		WHERE NombreUsuario = @pnombreUsuario
 	) BEGIN

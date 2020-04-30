@@ -370,15 +370,15 @@ select codigoEmpleado, Cargo_idCargo, u.nombreUsuario, u.contrasenia from Usuari
 inner join Empleado e on e.idEmpleado = u.Empleado_idEmpleado;
 
 select * from Usuarios;
-
+select dbo.FN_ENCRIPTAR('ResplandorFinal');
 -- LLamar al procedimiento almacenado: GU_LOGIN
 declare @codigoMensaje int;
 declare @Mensaje varchar(1000);
 declare @cEmpleado varchar(50);
 declare @pnIdCargo  int;
-exec SP_LOGIN
-	'Plato', 
-	'BHE81RRR3RE', 
+exec GU_LOGIN
+	'elRubius', 
+	'G8t0e', 
 	@codigoMensaje output,
 	@Mensaje output,
 	@cEmpleado output,
