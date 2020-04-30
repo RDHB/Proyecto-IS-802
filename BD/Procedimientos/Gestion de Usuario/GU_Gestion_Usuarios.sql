@@ -141,7 +141,7 @@ BEGIN
 		VALUES (
 			(SELECT MAX(idUsuario) + 1 FROM Usuarios)
 			, @pnombreUsuario
-			, @pcontrasenia
+			, dbo.FN_ENCRIPTAR(@pcontrasenia)
 			, (SELECT idEmpleado FROM Empleado WHERE codigoEmpleado = @pcodigoEmpleado)
 			, 1
 		);
@@ -246,7 +246,7 @@ BEGIN
 		-- Actualizar informacion Usuario
 		UPDATE Usuarios SET 
 			nombreUsuario = @pnombreUsuario
-			, contrasenia = @pcontrasenia
+			, contrasenia = dbo.FN_ENCRIPTAR(@pcontrasenia)
 		WHERE idUsuario = @pidUsuario
 
 		-- Actualizar informacion Usuario
