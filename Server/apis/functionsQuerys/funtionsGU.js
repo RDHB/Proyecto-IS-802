@@ -54,7 +54,7 @@ function GU_GESTION_USUARIOS(req,res){
         reqDB.input('ptelefono',sql.VarChar,req.body.telefono);
         reqDB.input('pnombrePersona',sql.VarChar,req.body.nombrePersona);
         reqDB.input('pidEstadoUsuario',sql.Int,req.body.idEstadoUsuario);
-        reqDB.input('pidAreaTrabajo',sql.Int,req.body.pidAreaTrabajo);
+        reqDB.input('pidAreaTrabajo',sql.Int,req.body.idAreaTrabajo);
         reqDB.input('pAccion',sql.VarChar,req.body.accion);
         reqDB.output('pcodigoMensaje', sql.Int);
         reqDB.output('pmensaje', sql.VarChar);

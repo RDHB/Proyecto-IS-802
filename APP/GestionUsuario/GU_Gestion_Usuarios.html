@@ -30,13 +30,13 @@
                                     <div  style="width: 25%; float:right; display:block; margin: 10;">
                                         <label for="department" align="left">Estado del Usuario</label>
                                         <select id="selectEstadoUsuario" name="department" style="width:100%" id="department">
-                                            <option value="0">Todos los estados</option>
+                                            <option value="">Todos los estados</option>
                                         </select>
                                     </div>
                                     <div  style="width: 25%; float:right; display:block; margin: 10;">
                                         <label for="department" align="left">Area de Trabajo</label>
                                         <select id="selectAreaTrabajo" name="department" style="width:100%" id="department">
-                                            <option value="0"> Todas las áreas</option>
+                                            <option value=""> Todas las áreas</option>
                                         </select>
                                     </div>
                                 </div>
@@ -45,59 +45,41 @@
                                         <h3>Tabla de Usuarios del Sistema</h3>
                                     </header>
                                     <div class="content"> 
-                                        <div class="table-wrapper" style="width: 90%; display:block; margin: 50;">
-                                            <table>
+                                        <div class="table-wrapper" style="display:block; margin: 50;">
+                                            <table style="width: 1300px;">
                                                 <thead>
                                                     <tr>
-                                                        <th></th>
-                                                        <th>Id</th>
-                                                        <th>Nombre</th>
-                                                        <th>Correo</th>
-                                                        <th>Teléfono</th>
+                                                        <th style="text-align: center; width:10px; margin: 0;"></th>
+                                                        <th style="text-align: center; width:15px; margin: 0;">Id</th>
+                                                        <th style="text-align: center; margin: 0;">Nombre</th>
+                                                        <th style="text-align: center; margin: 0;">Usuario</th>
+                                                        <th style="text-align: center; margin: 0;">Correo</th>
+                                                        <th style="text-align: center; margin: 0;">Teléfono</th>
+                                                        <th style="text-align: center; margin: 0;">Área de Trabajo</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <th>
-                                                            <input type="checkbox" id="copy" name="copy" />
-                                                            <label for="copy">.</label>
-                                                        </th>
-                                                        <td>1</td>
-                                                        <td>Luis Solano</td>
-                                                        <td>luis@unah.hn</td>
-                                                        <td>96458212</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>
-                                                            <input type="checkbox" id="copy" name="copy" />
-                                                            <label for="copy">.</label>
-                                                        </th>
-                                                        <td>2</td>
-                                                        <td>Rene Hernandez</td>
-                                                        <td>rene@unah.hn</td>
-                                                        <td>45802356</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>
-                                                            <input type="checkbox" id="copy" name="copy" />
-                                                            <label for="copy">.</label>
-                                                        </th>
-                                                        <td>3</td>
-                                                        <td>Mariela Rodriguez</td>
-                                                        <td>mariela@unah.hn</td>
-                                                        <td>78451236</td>
-                                                    </tr>
+                                                <tbody id="bodyTable">
+                                                    <!-- ------------------------------------------------------------ -->
+		                                            <!-- Relleno de la tabla  <td><a href="#" id="plus" class="button small"><h3>+</h3></a></td> -->
+                                                    <!-- ------------------------------------------------------------ -->
                                                 </tbody>
-                                                <tfoot>
-                                                    <td colspan="4"></td>
-															<td><a href="#" id="plus" class="button small"><h3>+</h3></a></td>
+                                                <tfoot > 
+                                                    <td colspan="1"></td>
+                                                    <td><buttom id="plus" class="button small"><h3>+</h3></buttom></td>
                                                 </tfoot>
                                             </table>
-                                            <ul class="actions" style="display: flexbox; justify-content: center;align-content: center;">
-                                                <li><a href="#" class="button small" style="width: 90%; display:block; margin: 20;">Editar Usuario Seleccionado</a></li>
-                                                <li><a href="#" class="button small" style="width: 90%; display:block; margin: 20 ;">Eliminar Usuarios Seleccionados</a></li>
-										    </ul>
+                                            <div style="display: flexbox; flex-direction: column;">
+                                                <ul class="actions" style="display: flexbox; justify-content: center; align-content: center;">
+                                                    <li><buttom class="button small" style="width: 90%; display:block; margin: 20;">Editar Usuario Seleccionado</buttom></li>
+                                                    <li><buttom class="button small" style="width: 90%; display:block; margin: 20 ;">Eliminar Usuarios Seleccionados</buttom></li>
+                                                </ul>
+                                                <ul class="actions" style="display: flexbox; justify-content: center; align-content: center;">
+                                                    <li><buttom class="button small" style="width: 90%; display:block; margin: 20 ;">Activar Usuarios Seleccionados</buttom></li>
+                                                    <li><buttom class="button small" style="width: 90%; display:block; margin: 20 ;">Desactivar Usuarios Seleccionados</buttom></li>
+                                                </ul>
+                                            </div>
                                         </div>
+                                    </div>
                                 </section>        
                             </form>
                         </div>
@@ -110,38 +92,43 @@
 		<!-- Ventanas modales -->
         <!-- ------------------------------------------------------------ -->
         <div id="plusUser" class="modal">
-            <div class="content">
-                <div class="table-wrapper" style="display:block; margin: 25">
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td>Código empleado</td>
-                                <td>
-                                    <input type="text" style="width:320px" id="newCodigoEmpleado" value=""/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Usuario</td>
-                                <td>
-                                    <input type="text" style="width:320px" id="newUser" value=""/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Contraseña</td>
-                                <td>
-                                    <input type="password" style="width:320px" id="newPassword" value=""/>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div align="center" style="margin: 25;">
-                        <a id="agregarUser" class="button small">Agregar</a>
-                    </div>
-                    <div align="center" style="margin: 25;">
-                        <span  id="notificacion" style="color: brown;  display: none;"></span>
+            <section style="display: flexbox; justify-content: center; align-items: center;">
+                <header style="display: flexbox; justify-content: center; align-items: center;">
+                    <h3 style="text-align: center; ">Ingrese la información requerida</h3>
+                </header>
+                <div class="content" style="display: flexbox; justify-content: center; align-items: center;">
+                    <div class="table-wrapper" style="margin: 25; display: flexbox; justify-content: center; align-items: center;">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>Código empleado</td>
+                                    <td>
+                                        <input type="text" style="width:320px" id="newCodigoEmpleado" value=""/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Usuario</td>
+                                    <td>
+                                        <input type="text" style="width:320px" id="newUser" value=""/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Contraseña</td>
+                                    <td>
+                                        <input type="password" style="width:320px" id="newPassword" value=""/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div align="center" style="margin: 25;">
+                            <a id="agregarUser" class="button small">Agregar</a>
+                        </div>
+                        <div align="center" style="margin: 25;">
+                            <span  id="notificacion" style="color: brown;  display: none;"></span>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
 
         <!-- ------------------------------------------------------------ -->
