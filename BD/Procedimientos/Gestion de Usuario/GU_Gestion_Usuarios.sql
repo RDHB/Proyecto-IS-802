@@ -2,11 +2,11 @@
 /* Requisitos de las acciones:
  * INSERT: @pcodigoEmpleado, @pnombreUsuario, @pcontrasenia
  *
- * UPDATE: @pidUsuario, @pnombreUsuario, @pcontrasenia, @pcorreoElectronico, @ptelefono
+ * UPDATE: @pidUsuario, @pnombreUsuario, @pcorreoElectronico, @ptelefono
  *
  * SELECT: 
  * Opcionales: @pnombrePersona, idEstadoUsuario, idAreaTrabajo
- * Salida-Data: idUsuario, nombrePersona, nombreUsuario, contrasenia, correoElectronico, telefono
+ * Salida-Data: idUsuario, nombrePersona, nombreUsuario, correoElectronico, telefono
  *
  * DESACTIVATE: @pnombreUsuario
  *
@@ -166,7 +166,7 @@ BEGIN
     * @pidUsuario, @pnombreUsuario, @pcorreoElectronico, @ptelefono
 	*
     * Modificar los sigueintes datos en la tabla Usuario:
-    * nombreUsuario, contrasenia
+    * nombreUsuario
 	*
 	* Modificar los sigueintes datos en la tabla Persona:
 	* correoElectronico
@@ -289,7 +289,7 @@ BEGIN
 	/* Funcionalidad: Seleccionar usuarios del sistema
     * Construir un select con la sigueinte informacion:
     * Opcionales: @pnombrePersona, idEstadoUsuario, idAreaTrabajo
-	* Salida-Data: idUsuario, nombrePersona, nombreUsuario, contrasenia, correoElectronico, telefono
+	* Salida-Data: idUsuario, nombrePersona, nombreUsuario, correoElectronico, telefono
 	*
     * Seleccionar los sigueintes datos en la tabla Usuario:
     * idUsuario, nombreUsuario
