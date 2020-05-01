@@ -53,14 +53,14 @@ BEGIN
 
 	-- Validacion de identificadores
 	SELECT @vconteo = COUNT(*) FROM Usuarios
-	WHERE nombreUsuario = @pnombreUsuario;
+	WHERE nombreUsuario = @pnombreUsuario COLLATE SQL_Latin1_General_CP1_CS_AS;
 	IF @vconteo = 0 BEGIN
 		SET @pmensaje = @pmensaje + 'Usuario no registrado.';
 	END;
 	
 	SELECT @vconteo = COUNT(*)  FROM Usuarios
-	where nombreUsuario = @pnombreUsuario 
-	and Estado_Usuario_idEstado_Usuario = 1
+	WHERE nombreUsuario = @pnombreUsuario COLLATE SQL_Latin1_General_CP1_CS_AS
+	AND Estado_Usuario_idEstado_Usuario = 1
 	IF @vconteo = 0 BEGIN
 		SET @pmensaje = @pmensaje + 'Usuario Deshabilitado.';
 	END;
@@ -74,10 +74,10 @@ BEGIN
 
 	
 	-- Validacion de procedimientos
-	IF dbo.FN_ENCRIPTAR(@pcontrasenia) <> (
+	IF ( dbo.FN_ENCRIPTAR(@pcontrasenia) <> (
 		SELECT Contrasenia FROM Usuarios
-		WHERE NombreUsuario = @pnombreUsuario
-	) BEGIN
+		WHERE NombreUsuario = @pnombreUsuario COLLATE SQL_Latin1_General_CP1_CS_AS
+	) COLLATE SQL_Latin1_General_CP1_CS_AS) BEGIN
 		SET @pmensaje=@pmensaje + 'La contraseña es incorrecta.';
 	END;
 	
@@ -127,7 +127,7 @@ BEGIN
 	from Persona p
 	inner join Empleado e on p.idPersona = e.Persona_idPersona
 	inner join Usuarios u on u.Empleado_idEmpleado = e.idEmpleado
-	where u.nombreUsuario = @pnombreUsuario;
+	where u.nombreUsuario = @pnombreUsuario COLLATE SQL_Latin1_General_CP1_CS_AS;
 	
 	select @pIdCargo=Cargo_idCargo from Empleado
 	where codigoEmpleado=@pCodigoEmpleado;
