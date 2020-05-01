@@ -41,13 +41,16 @@ $(Document).ready(function(){
 });
 
 $('#plus').click(function(){
+    $('#newNotificacion').empty();
+    $('#newCodigoEmpleado').val('');
+    $('#newUser').val('');
+    $('#newPassword').val('');
     $('#plusUser').modal({
         fadeDuration: 250,
         fadeDelay: 1.5,
         modalClass: "modal"
       });
 });
-
 
 $('#selectEstadoUsuario').change(function(){
     $('#bodyTable').empty();
@@ -71,7 +74,7 @@ $('#agregarUser').click(function(){
             "accion" : 'INSERT'
         },
 		dataType: "json",
-		method: "POST",
+        method: "POST",
 		success: function (respuesta) {
             if (respuesta.output.pcodigoMensaje == 0) {
                 $("#newNotificacion").replaceWith('<span  id="newNotificacion" style="color: green;">'+respuesta.output.pmensaje+'</span>');
@@ -192,6 +195,7 @@ $('#btnEditarUsuario').click(function(){
         seleccionados.push($(this).val());
     });
     if(seleccionados.length == 1){
+        $('#updateNotoficacion').empty();
         $('#editUser').modal({
             fadeDuration: 250,
             fadeDelay: 1.5,
