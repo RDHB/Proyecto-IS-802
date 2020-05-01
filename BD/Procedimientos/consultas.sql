@@ -475,18 +475,18 @@ DECLARE
 
 ;
 SET @pridUsuario = 1
-SET @prcodigoEmpleado = ''
-SET	@prnombreUsuario = 'XXLUISFER15XX';
-SET	@prContrasenia = 'EXTREMO15';
+SET @prcodigoEmpleado = 'EMP00001'
+SET	@prnombreUsuario = 'LuisFer15';
+SET	@prContrasenia = 'Extremo15';
 
-SET @prcorreoElectronico = 'LUISFER.GAME15@GMAIL.COM'
-SET @prtelefono = '97982221'
+SET @prcorreoElectronico = ''
+SET @prtelefono = ''
 
 SET @prnombrePersona = ''
 SET @pridEstadoUsuario = 0
 SET @pridAreaTrabajo = 0
 
-SET @prAccion = 'SELECT';
+SET @prAccion = 'INSERT';
 
 SET @prcodigoMensaje = 0;
 SET @prmensaje = '';

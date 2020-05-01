@@ -12,7 +12,7 @@
  *
  * ACTIVATE: @pnombreUsuario
 */
-ALTER PROCEDURE [dbo].[GU_GESTION_USUARIOS](
+CREATE PROCEDURE GU_GESTION_USUARIOS(
     --Informacion Usuario
 	@pidUsuario					INT,
 	@pcodigoEmpleado			VARCHAR(45),
@@ -43,7 +43,6 @@ BEGIN
 		idUsuario INT
 		, nombrePersona VARCHAR(1000)
 		, nombreUsuario VARCHAR(45)
-		, contrasenia VARCHAR(45)
 		, correoElectronico VARCHAR(45)
 		, numeroTelefono VARCHAR(45)
 		, AreaTrabajo VARCHAR(45)
@@ -52,7 +51,6 @@ BEGIN
 		idUsuario INT
 		, nombrePersona VARCHAR(1000)
 		, nombreUsuario VARCHAR(45)
-		, contrasenia VARCHAR(45)
 		, correoElectronico VARCHAR(45)
 		, numeroTelefono VARCHAR(45)
 		, AreaTrabajo VARCHAR(45)
@@ -165,7 +163,7 @@ BEGIN
 
     /* Funcionalidad: Modificar usuarios del sistema
     * Construir un Update con la sigueinte informacion:
-    * @pidUsuario, @pnombreUsuario, @pcontrasenia, @pcorreoElectronico, @ptelefono
+    * @pidUsuario, @pnombreUsuario, @pcorreoElectronico, @ptelefono
 	*
     * Modificar los sigueintes datos en la tabla Usuario:
     * nombreUsuario, contrasenia
@@ -226,6 +224,7 @@ BEGIN
 		-- Validacion de procedimientos
 		SELECT @vconteo = COUNT(*)  FROM Usuarios
 		WHERE nombreUsuario = @pnombreUsuario COLLATE SQL_Latin1_General_CP1_CS_AS
+		AND idUsuario <> @pidUsuario
 		
 		IF @vconteo <> 0 BEGIN
 			SET @pmensaje = @pmensaje + 'Ya hay un usuario registrado con este nombre: ' + @pnombreUsuario;
