@@ -448,7 +448,7 @@ CREATE TABLE Estado_Usuario (
 -- -----------------------------------------------------
 CREATE TABLE Usuarios (
 	idUsuario INT NOT NULL,
-	nombreUsuario VARCHAR(45) NOT NULL,
+	nombreUsuario VARCHAR(45) COLLATE SQL_Latin1_General_CP1_CS_AS NOT NULL,
 	contrasenia VARCHAR(45) NOT NULL,
 	Empleado_idEmpleado INT NOT NULL,
 	Estado_Usuario_idEstado_Usuario INT NOT NULL,
