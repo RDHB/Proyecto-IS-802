@@ -74,13 +74,13 @@ $('#agregarUser').click(function(){
 		method: "POST",
 		success: function (respuesta) {
             if (respuesta.output.pcodigoMensaje == 0) {
-                $("#notificacion").replaceWith('<span  id="notificacion" style="color: green;">'+respuesta.output.pmensaje+'</span>');
+                $("#newNotificacion").replaceWith('<span  id="newNotificacion" style="color: green;">'+respuesta.output.pmensaje+'</span>');
 			}else{
-                $("#notificacion").replaceWith('<span  id="notificacion" style="color: brown;">'+respuesta.output.pmensaje+'</span>');
+                $("#newNotificacion").replaceWith('<span  id="newNotificacion" style="color: brown;">'+respuesta.output.pmensaje+'</span>');
             }
         },
         error : function(error){
-            $("#notificacion").replaceWith('<span  id="notificacion" style="color: brown;">'+error.responseText+'</span>');
+            $("#newNotificacion").replaceWith('<span  id="newNotificacion" style="color: brown;">'+error.responseText+'</span>');
         }
     });
 });    
@@ -111,15 +111,15 @@ $('#searchName').keyup(function(){
                             bodyTable.innerHTML += `
                                     <tr>
                                         <th>
-                                            <input type="checkbox" id="${usuarioBackEnd.idUsuario}" value="${{idUsuario: usuarioBackEnd.idUsuario, nombreUsuario: usuarioBackEnd.nombreUsuario, correoElectronico: usuarioBackEnd.correoElectronico, telefono: usuarioBackEnd.numeroTelefono}}" style="width:10px; height:100%;"/>
+                                            <input type="checkbox" id="${usuarioBackEnd.idUsuario}" value="${usuarioBackEnd.idUsuario}" style="width:10px; height:100%;"/>
                                             <label for="${usuarioBackEnd.idUsuario}">.</label>
                                         </th>
                                         <td style="width:15px; text-align:center;">${usuarioBackEnd.idUsuario}</td>
-                                        <td>${usuarioBackEnd.nombrePersona}</td>
-                                        <td>${usuarioBackEnd.nombreUsuario}</td>
-                                        <td>${usuarioBackEnd.correoElectronico}</td>
-                                        <td>${usuarioBackEnd.numeroTelefono}</td>
-                                        <td>${usuarioBackEnd.AreaTrabajo}</td>
+                                        <td id="${'nombrePersona'+usuarioBackEnd.idUsuario}">${usuarioBackEnd.nombrePersona}</td>
+                                        <td id="${'nombreUsuario'+usuarioBackEnd.idUsuario}">${usuarioBackEnd.nombreUsuario}</td>
+                                        <td id="${'correoElectronico'+usuarioBackEnd.idUsuario}">${usuarioBackEnd.correoElectronico}</td>
+                                        <td id="${'numeroTelefono'+usuarioBackEnd.idUsuario}">${usuarioBackEnd.numeroTelefono}</td>
+                                        <td id="${'areaTrabajo'+usuarioBackEnd.idUsuario}">${usuarioBackEnd.AreaTrabajo}</td>
                                     </tr>
                                 `;
                         }
@@ -165,7 +165,20 @@ function informacionUsuarios(){
         success: function(respuesta){
             if(respuesta.output.pcodigoMensaje == 0){
                 for(i=0; i < respuesta.data.length; i++){
-                    $('#bodyTable').append('<tr><th><input type="checkbox" id="'+respuesta.data[i].idUsuario+'" data-json="'+{idUsuario: respuesta.data[i].idUsuario, nombreUsuario: respuesta.data[i].nombreUsuario,correoElectronico: respuesta.data[i].correoElectronico, telefono: respuesta.data[i].numeroTelefono}+'" style="width:10px; height:100%;"/><label for="'+respuesta.data[i].idUsuario+'">.</label></th><td style="width:15px; text-align:center;">'+respuesta.data[i].idUsuario+'</td><td>'+respuesta.data[i].nombrePersona+'</td><td>'+respuesta.data[i].nombreUsuario+'</td><td>'+respuesta.data[i].correoElectronico+'</td><td>'+respuesta.data[i].numeroTelefono+'</td><td>'+respuesta.data[i].AreaTrabajo+'</td></tr>');
+                    $('#bodyTable').append(`
+                        <tr>
+                            <th>
+                                <input type="checkbox" id="${respuesta.data[i].idUsuario}" value="${respuesta.data[i].idUsuario}" style="width:10px; height:100%;"/>  
+                                <label for="${respuesta.data[i].idUsuario}">.</label>
+                            </th>
+                            <td style="width:15px; text-align:center;">${respuesta.data[i].idUsuario}</td>
+                            <td id="${'nombrePersona'+respuesta.data[i].idUsuario}">${respuesta.data[i].nombrePersona}</td>
+                            <td id="${'nombreUsuario'+respuesta.data[i].idUsuario}">${respuesta.data[i].nombreUsuario}</td>
+                            <td id="${'correoElectronico'+respuesta.data[i].idUsuario}">${respuesta.data[i].correoElectronico}</td>
+                            <td id="${'numeroTelefono'+respuesta.data[i].idUsuario}">${respuesta.data[i].numeroTelefono}</td>
+                            <td id="${'areaTrabajo'+respuesta.data[i].idUsuario}">${respuesta.data[i].AreaTrabajo}</td>
+                        </tr>`
+                    );
                 }
             }
         }
@@ -176,8 +189,7 @@ function informacionUsuarios(){
 $('#btnEditarUsuario').click(function(){
     var seleccionados = new Array();
     $('input[type=checkbox]:checked').each(function() {
-        //seleccionados.push($(this).val());
-        console.log($.parseJSON($(this).data('json')));
+        seleccionados.push($(this).val());
     });
 
     if(seleccionados.length == 1){
@@ -186,10 +198,9 @@ $('#btnEditarUsuario').click(function(){
             fadeDelay: 1.5,
             modalClass: "modal"
           });
-        //console.log(seleccionados[0].nombreUsuario);
-        /*$('$updateNombreUsuario').val() = seleccionados[0].nombreUsuario;
-        $('$updateCorreoElectronico').val() = seleccionados[0].correoElectronico;
-        $('$updateTelefono').val() = seleccionados[0].telefono;*/
+        $('#updateNombreUsuario').val($('#nombreUsuario'+seleccionados[0]).text());
+        $('#updateCorreoElectronico').val($('#correoElectronico'+seleccionados[0]).text());
+        $('#updateNumeroTelefono').val($('#numeroTelefono'+seleccionados[0]).text());
     }
     
 });
