@@ -93,7 +93,7 @@ BEGIN
 	-- Accion del procedimiento 
 	select @pcodigoEmpleado = e.codigoEmpleado, @pidCargo = Cargo_idCargo from Empleado e
 	inner join Usuarios u on e.idEmpleado = u.Empleado_idEmpleado
-	where u.nombreUsuario = @pnombreUsuario;
+	where u.nombreUsuario = @pnombreUsuario COLLATE SQL_Latin1_General_CP1_CS_AS;
 	
 	select p.idPersona
 		, CONCAT(p.primerNombre, ' ', p.primerApellido ) AS Nombre

@@ -9,8 +9,8 @@ declare @Mensaje varchar(1000);
 declare @cEmpleado varchar(50);
 declare @pnIdCargo  int;
 exec GU_LOGIN
-	'elRubius', 
-	'G8t0e', 
+	'LuisFer15', 
+	'Extremo15', 
 	@codigoMensaje output,
 	@Mensaje output,
 	@cEmpleado output,
@@ -203,7 +203,7 @@ DECLARE
 
 SET @pnombreUsuario = 'LuisFer15';
 
-SET @pnewContrasenia = '';
+SET @pnewContrasenia = 'Extremo15';
 SET	@pnewNombreUsuario = '';
 SET	@pnewCorreoElectronico = '';
 SET	@pnewDireccion = '';
@@ -213,7 +213,7 @@ SET @pnewTelefono = '';
 SET @pidTelefono = 61;
 
 
-SET @pAccion = 'SELECT-TELEFONO';
+SET @pAccion = 'UPDATE-CONTRASENIA';
 
 SET @pcodigoMensaje = 0;
 SET @pmensaje = '';
@@ -241,6 +241,67 @@ EXEC GU_CONFIG
 -- OUTPUT
 SELECT @pcodigoMensaje;
 SELECT @pmensaje;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- LLamar al procedimiento almacenado: GU_REINICIO_CONTRASENIA
+-- select * from Usuarios
+DECLARE
+	-- Parametros de Entrada
+	-- ID
+	@pnombreUsuario				VARCHAR(45),
+
+    @paccion					VARCHAR(45),
+    
+    -- Parametros de Salida
+    -- Codigo de mensaje
+    @pcodigoMensaje				INT,
+	@pmensaje 					VARCHAR(1000),
+
+    -- Otros parametros de salida
+	@presetContrasenia			VARCHAR(45)
+;
+
+SET @pnombreUsuario = 'LuisFer15';
+
+
+SET @pAccion = 'RESET';
+
+SET @pcodigoMensaje = 0;
+SET @pmensaje = '';
+SET @presetContrasenia = '';
+
+EXEC GU_REINICIO_CONTRASENIA
+	-- INTPUT
+	@pnombreUsuario,
+
+    @pAccion,
+	
+	-- OUTPUT
+	@pcodigoMensaje OUTPUT,
+	@pmensaje OUTPUT,
+	@presetContrasenia OUTPUT
+;
+
+-- OUTPUT
+SELECT @pcodigoMensaje;
+SELECT @pmensaje;
+SELECT @presetContrasenia;
 
 
 
