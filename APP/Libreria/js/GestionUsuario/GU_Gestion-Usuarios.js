@@ -191,7 +191,6 @@ $('#btnEditarUsuario').click(function(){
     $('input[type=checkbox]:checked').each(function() {
         seleccionados.push($(this).val());
     });
-
     if(seleccionados.length == 1){
         $('#editUser').modal({
             fadeDuration: 250,
@@ -204,12 +203,3 @@ $('#btnEditarUsuario').click(function(){
     }
     
 });
-
-
-/*$('input[type=checkbox]').on('change', function() {
-    if ($(this).is(':checked') ) {
-        console.log("Checkbox " + $(this).prop("id") +  " (" + $(this).val() + ") => Seleccionado");
-    } else {
-        console.log("Checkbox " + $(this).prop("id") +  " (" + $(this).val() + ") => Deseleccionado");
-    }
-});*/
