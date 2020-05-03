@@ -1,0 +1,3 @@
+CREATE VIEW vwRandom
+AS
+SELECT RAND() as Rnd

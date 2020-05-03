@@ -6,8 +6,7 @@
  * UPDATE-USUARIO: @pnombreUsuario, @pnewNombreUsuario
  * 
  * 
- * UPDATE-PERSONA: @pnombreUsuario
- * Opcional: @pnewCorreoElectronico, @pnewDireccion
+ * UPDATE-PERSONA: @pnombreUsuario, @pnewCorreoElectronico, @pnewDireccion
  * 
  * 
  * ADD-TELEFONO: @pnombreUsuario, @pnewTelefono
@@ -24,7 +23,7 @@
  * SELECT-TELEFONO: @pnombreUsuario
  * Salida: idUsaurio, nombreUsuario, idTelefono, numeroTelefono
 */
-CREATE PROCEDURE GU_CONFIG (
+ALTER PROCEDURE [dbo].[GU_CONFIG] (
     -- Parametros de Entrada
 	-- ID
 	@pnombreUsuario				VARCHAR(45),
@@ -57,7 +56,7 @@ BEGIN
 
 
 
-    /* Funcionalidad: Actualizar contraseña
+    /* Funcionalidad: Actualizar contraseÃ±a
      * Construir un update con la sigueinte informacion:
      * Datos: @pnombreUsuario, @pnewContrasenia
      *
@@ -102,14 +101,13 @@ BEGIN
 		END;
 
 
-		select * from Usuarios
 		
 		-- Validacion de procedimientos
 		SELECT @vconteo = COUNT(*) FROM Usuarios
 		WHERE nombreUsuario = @pnombreUsuario COLLATE SQL_Latin1_General_CP1_CS_AS
 		AND contrasenia = dbo.FN_ENCRIPTAR( @pnewContrasenia ) COLLATE SQL_Latin1_General_CP1_CS_AS;
 		IF @vconteo <> 0 BEGIN
-			SET @pmensaje = @pmensaje + ' El usuario no puede tener la misma contrasenia => ' + dbo.FN_ENCRIPTAR( @pnewContrasenia ) + ' ';
+			SET @pmensaje = @pmensaje + ' El usuario no puede tener la misma contrasenia => ' + @pnewContrasenia + ' ';
 		END;
 
 		IF @pmensaje <> '' BEGIN
@@ -121,7 +119,7 @@ BEGIN
 
 		
 		-- Accion del procedimiento 
-		UPDATE Usuarios SET contrasenia = @pnewContrasenia
+		UPDATE Usuarios SET contrasenia = dbo.FN_ENCRIPTAR( @pnewContrasenia )
 		WHERE nombreUsuario = @pnombreUsuario COLLATE SQL_Latin1_General_CP1_CS_AS;
 
 
@@ -400,104 +398,6 @@ BEGIN
 
 
 
-	/* Funcionalidad: Agregar Telefono
-     * Construir un insert con la sigueinte informacion:
-     * Datos: @pnombreUsuario, @pnewTelefono
-     *
-     * Insertar los sigueintes datos en la tabla Telefono:
-     * idTelefono, numeroTelefono, Persona_idPersona
-    */
-    IF @paccion = 'ADD-TELEFONO' BEGIN
-		-- Setear Valores
-		SET @pcodigoMensaje=0;
-		SET @pmensaje='';
-
-
-
-		-- Validacion de campos nulos
-		IF @pnombreUsuario = '' OR @pnombreUsuario IS NULL BEGIN
-			SET @pmensaje = @pmensaje + ' nombreUsuario ';
-		END;
-
-		IF @pnewTelefono = '' OR @pnewTelefono IS NULL BEGIN
-			SET @pmensaje = @pmensaje + ' newTelefono ';
-		END;
-		
-		IF @pmensaje <> '' BEGIN
-			SET @pcodigoMensaje = 3;
-			SET @pmensaje = 'Error: Campos vacios: ' + @pmensaje;
-			RETURN;
-		END;
-
-
-
-		-- Validacion de identificadores
-        SELECT @vconteo = COUNT(*) FROM Usuarios
-		WHERE nombreUsuario = @pnombreUsuario COLLATE SQL_Latin1_General_CP1_CS_AS;
-		IF @vconteo = 0 BEGIN
-			SET @pmensaje = @pmensaje + ' No existe el identificador => ' + @pnombreUsuario + ' ';
-		END;
-
-		IF @pmensaje <> '' BEGIN
-			SET @pcodigoMensaje = 4;
-			SET @pmensaje = 'Error: Identificadores no validos: ' + @pmensaje;
-			RETURN;
-		END;
-
-
-		
-		-- Validacion de procedimientos
-		SELECT @vconteo = COUNT(*) FROM Telefono
-		WHERE Persona_idPersona = (
-			SELECT Persona_idPersona FROM Empleado
-			WHERE idEmpleado = (
-				SELECT Empleado_idEmpleado FROM Usuarios
-				WHERE nombreUsuario = @pnombreUsuario COLLATE SQL_Latin1_General_CP1_CS_AS
-			)
-		) AND numeroTelefono = @pnewTelefono
-		IF @vconteo <> 0 BEGIN
-			SET @pmensaje = @pmensaje + ' El usuario ya cuenta con este numero de telefono => ' + @pnewTelefono + ' ';
-		END;
-
-		IF @pmensaje <> '' BEGIN
-			SET @pcodigoMensaje = 5;
-			SET @pmensaje = 'Error: Validacion en la condicion del procdimiento: ' + @pmensaje;
-			RETURN;
-		END;
-		
-
-		
-		-- Accion del procedimiento 
-		INSERT INTO Telefono (
-			idTelefono
-			, numeroTelefono
-			, Persona_idPersona
-		) VALUES (
-			(SELECT MAX(idTelefono) + 1 FROM Telefono)
-			, @pnewTelefono
-			, (
-				SELECT Persona_idPersona FROM Empleado
-				WHERE idEmpleado = (
-					SELECT Empleado_idEmpleado FROM Usuarios
-					WHERE nombreUsuario = @pnombreUsuario COLLATE SQL_Latin1_General_CP1_CS_AS
-				)
-			)
-		)
-
-
-
-        SET @pmensaje = 'Telefono agregado con exito';
-	END;
-
-
-
-
-
-
-
-
-
-	
 	/* Funcionalidad: Eliminar Telefono
      * Construir un delete con la sigueinte informacion:
      * Datos: @pnombreUsuario, @pidTelefono
@@ -517,8 +417,8 @@ BEGIN
 			SET @pmensaje = @pmensaje + ' nombreUsuario ';
 		END;
 
-		IF @pnewTelefono = '' OR @pnewTelefono IS NULL BEGIN
-			SET @pmensaje = @pmensaje + ' @pidTelefono ';
+		IF @pidTelefono = '' OR @pidTelefono IS NULL BEGIN
+			SET @pmensaje = @pmensaje + ' idTelefono ';
 		END;
 		
 		IF @pmensaje <> '' BEGIN
@@ -539,7 +439,7 @@ BEGIN
 		SELECT @vconteo = COUNT(*) FROM Telefono
 		WHERE idTelefono = @pidTelefono;
 		IF @vconteo = 0 BEGIN
-			SET @pmensaje = @pmensaje + ' No existe el identificador => ' + @pidTelefono + ' ';
+			SET @pmensaje = @pmensaje + ' No existe el identificador => ' + CAST(@pidTelefono AS VARCHAR) + ' ';
 		END;
 
 		IF @pmensaje <> '' BEGIN
@@ -559,8 +459,10 @@ BEGIN
 				WHERE nombreUsuario = @pnombreUsuario COLLATE SQL_Latin1_General_CP1_CS_AS
 			)
 		) AND idTelefono = @pidTelefono
-		IF @vconteo <> 0 BEGIN
-			SET @pmensaje = @pmensaje + ' El usuario no tiene este numero de telefono registrado => ' + @pnewTelefono + ' ';
+		IF @vconteo = 0 BEGIN
+			SET @pmensaje = @pmensaje + ' El usuario ' + @pnombreUsuario + ' no tiene este numero de telefono registrado => ' + 
+			(SELECT numeroTelefono FROM Telefono WHERE idTelefono = @pidTelefono)
+			+ ' ';
 		END;
 
 		IF @pmensaje <> '' BEGIN
@@ -622,10 +524,6 @@ BEGIN
 			SET @pmensaje = @pmensaje + ' nombreUsuario ';
 		END;
 
-		IF @pnewTelefono = '' OR @pnewTelefono IS NULL BEGIN
-			SET @pmensaje = @pmensaje + ' @pidTelefono ';
-		END;
-		
 		IF @pmensaje <> '' BEGIN
 			SET @pcodigoMensaje = 3;
 			SET @pmensaje = 'Error: Campos vacios: ' + @pmensaje;
@@ -656,32 +554,48 @@ BEGIN
 
 		
 		-- Validacion de procedimientos
-		SELECT @vconteo = COUNT(*) FROM Telefono
-		WHERE Persona_idPersona = (
-			SELECT Persona_idPersona FROM Empleado
-			WHERE idEmpleado = (
-				SELECT Empleado_idEmpleado FROM Usuarios
-				WHERE nombreUsuario = @pnombreUsuario COLLATE SQL_Latin1_General_CP1_CS_AS
-			)
-		) AND idTelefono = @pidTelefono
-		IF @vconteo <> 0 BEGIN
-			SET @pmensaje = @pmensaje + ' El usuario no tiene este numero de telefono registrado => ' + @pnewTelefono + ' ';
-		END;
-
-		IF @pmensaje <> '' BEGIN
-			SET @pcodigoMensaje = 5;
-			SET @pmensaje = 'Error: Validacion en la condicion del procdimiento: ' + @pmensaje;
-			RETURN;
-		END;
 		
 
 		
 		-- Accion del procedimiento 
-		DELETE FROM Telefono WHERE idTelefono = @pidTelefono;
+		SELECT 
+			U.idUsuario
+			, nombreUsuario
+			, dbo.FN_ENCRIPTAR( contrasenia ) AS 'Contrasenia'
+			, E.codigoEmpleado
+			, (
+				SELECT C.descripcion FROM Cargo C 
+				WHERE C.idCargo = E.Cargo_idCargo
+			) AS 'Cargo'
+			, (
+				SELECT ART.descripcion FROM AreaTrabajo ART
+				WHERE ART.idAreaTrabajo = E.AreaTrabajo_idAreaTrabajo
+			) AS 'AreaTrabajo'
+			, CONCAT (
+				P.primerNombre
+				, ' '
+				, P.segundoNombre
+				, ' '
+				, P.primerApellido
+				, ' '
+				, P.segundoApellido
+			) AS 'NombreCompleto'
+			, P.numeroIdentidad
+			, P.correoElectronico
+			, P.direccion
+			, (
+				SELECT G.descripcion FROM Genero G
+				WHERE G.idGenero = P.Genero_idGenero
+			) AS 'Genero'
+			, P.fechaIngreso
+		FROM Usuarios U
+		INNER JOIN Empleado E ON E.idEmpleado = U.Empleado_idEmpleado
+		INNER JOIN Persona P ON P.idPersona = E.Persona_idPersona
+		WHERE U.nombreUsuario = @pnombreUsuario
 
 
 
-        SET @pmensaje = 'Telefono eliminado con exito';
+        SET @pmensaje = 'Consulta finalizada con exito';
 	END;
 
 
@@ -715,10 +629,6 @@ BEGIN
 			SET @pmensaje = @pmensaje + ' nombreUsuario ';
 		END;
 
-		IF @pnewTelefono = '' OR @pnewTelefono IS NULL BEGIN
-			SET @pmensaje = @pmensaje + ' @pidTelefono ';
-		END;
-		
 		IF @pmensaje <> '' BEGIN
 			SET @pcodigoMensaje = 3;
 			SET @pmensaje = 'Error: Campos vacios: ' + @pmensaje;
@@ -749,32 +659,29 @@ BEGIN
 
 		
 		-- Validacion de procedimientos
-		SELECT @vconteo = COUNT(*) FROM Telefono
-		WHERE Persona_idPersona = (
-			SELECT Persona_idPersona FROM Empleado
-			WHERE idEmpleado = (
-				SELECT Empleado_idEmpleado FROM Usuarios
-				WHERE nombreUsuario = @pnombreUsuario COLLATE SQL_Latin1_General_CP1_CS_AS
+		
+
+		
+		-- Accion del procedimiento
+		SELECT 
+			(
+				SELECT idUsuario FROM Usuarios
+				WHERE nombreUsuario = @pnombreUsuario
 			)
-		) AND idTelefono = @pidTelefono
-		IF @vconteo <> 0 BEGIN
-			SET @pmensaje = @pmensaje + ' El usuario no tiene este numero de telefono registrado => ' + @pnewTelefono + ' ';
-		END;
-
-		IF @pmensaje <> '' BEGIN
-			SET @pcodigoMensaje = 5;
-			SET @pmensaje = 'Error: Validacion en la condicion del procdimiento: ' + @pmensaje;
-			RETURN;
-		END;
-		
-
-		
-		-- Accion del procedimiento 
-		DELETE FROM Telefono WHERE idTelefono = @pidTelefono;
+			, @pnombreUsuario
+			, T.idTelefono
+			, T.numeroTelefono
+		FROM Telefono T
+		WHERE Persona_idPersona = (
+			SELECT idPersona FROM Usuarios U
+			INNER JOIN Empleado E ON E.idEmpleado = U.Empleado_idEmpleado
+			INNER JOIN Persona P ON P.idPersona = E.Persona_idPersona
+			WHERE U.nombreUsuario = @pnombreUsuario
+		);
 
 
 
-        SET @pmensaje = 'Telefono eliminado con exito';
+        SET @pmensaje = 'Consulta finalizda con exito';
 	END;
 
 	-- En caso de no elegir una accion
