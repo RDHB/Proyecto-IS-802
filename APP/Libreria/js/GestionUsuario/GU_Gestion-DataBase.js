@@ -2,8 +2,8 @@ $(Document).ready(function(){
     $.ajax({
 		url: "https://localhost:3000/volvo/api/GU/GU_LOGIN",
 		data: {
-            "usuario" : 'Murphy',
-            "password" : 'FSJ44MIN4FJ',
+            "usuario" : 'LuisFer15',
+            "password" : 'Extremo15',
         },
 		dataType: "json",
 		method: "POST",

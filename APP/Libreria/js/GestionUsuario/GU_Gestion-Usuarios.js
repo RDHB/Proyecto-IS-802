@@ -42,9 +42,8 @@ $(Document).ready(function(){
 
 $('#plus').click(function(){
     $('#newNotificacion').empty();
-    $('#newCodigoEmpleado').val('');
-    $('#newUser').val('');
-    $('#newPassword').val('');
+    $('#newCodigoEmpleado').val("");
+    $('#newUser').val("");
     $('#plusUser').modal({
         fadeDuration: 250,
         fadeDelay: 1.5,
@@ -64,13 +63,13 @@ $('#selectAreaTrabajo').change(function(){
 
 
 $('#agregarUser').click(function(){
+    $('#bodyTable').empty();
     $.ajax({
         url: "https://localhost:3000/volvo/api/GU/GU_GESTION_USUARIOS",
         headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')},
 		data: {
             "codigoEmpleado" : $('#newCodigoEmpleado').val(),
             "nombreUsuario" : $('#newUser').val(),
-            "contrasenia" : $('#newPassword').val(),
             "accion" : 'INSERT'
         },
 		dataType: "json",
@@ -85,9 +84,8 @@ $('#agregarUser').click(function(){
         error : function(error){
             $("#newNotificacion").replaceWith('<span  id="newNotificacion" style="color: brown;">'+error.responseText+'</span>');
         }
-    });
+    }).then(informacionUsuarios);
 });    
-
 
 $('#searchName').keyup(function(){
     if($('#searchName').val()!= ''){
@@ -189,7 +187,7 @@ function informacionUsuarios(){
 }
 
 
-$('#btnEditarUsuario').click(function(){
+/*$('#btnEditarUsuario').click(function(){
     var seleccionados = new Array();
     $('input[type=checkbox]:checked').each(function() {
         seleccionados.push($(this).val());
@@ -207,3 +205,4 @@ $('#btnEditarUsuario').click(function(){
     }
     
 });
+*/

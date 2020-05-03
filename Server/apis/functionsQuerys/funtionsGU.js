@@ -2,6 +2,7 @@
 
 // IMPORTANDO LOS MODULOS NECESARIOS
 const sql = require('mssql');
+const generatorPaswword = require('generate-password');
 const conn = require('../../db/connectionDB');
 const messagesMiscelaneos = require('../../others/messagesMiscelaneos');
 const functionsMiscelaneos = require('../functionsMiscelaneos/functionsMiscelaneos');
@@ -46,6 +47,9 @@ function GU_LOGIN(req,res){
 function GU_GESTION_USUARIOS(req,res){
     conn.connect().then(function(){
         var reqDB = new sql.Request(conn);
+        if(req.body.accion === 'INSERT'){
+            req.body.contrasenia = generatorPaswword.generate({length: 10,numbers: true, symbols: true, lowercase: true, uppercase: true});
+        }
         reqDB.input('pidUsuario',sql.Int,req.body.idUsuario);
         reqDB.input('pcodigoEmpleado',sql.VarChar,req.body.codigoEmpleado);
         reqDB.input('pnombreUsuario',sql.VarChar,req.body.nombreUsuario);
@@ -60,6 +64,9 @@ function GU_GESTION_USUARIOS(req,res){
         reqDB.output('pmensaje', sql.VarChar);
         reqDB.execute('GU_GESTION_USUARIOS').then(function(result){
             conn.close();
+            if(result.output.pcodigoMensaje == 0 && req.body.accion === 'INSERT'){
+                functionsMiscelaneos.sendEmail('testproject588@gmail.com','MLRroot3','test.usuarioprueba@gmail.com','VOLVO AUTOPARTES (PROJECT-PRUEBA) Creacion de Usuario',`Su usuario ha sido creado en el sistema, por favor reinicie la contraseña. Ingrese al sistema con usuario: ${req.body.nombreUsuario} y  contraseña: +${req.body.contrasenia}`);
+            }
             res.send({output: result.output, data: result.recordsets[0]});
         }).catch(function(err){
             conn.close();

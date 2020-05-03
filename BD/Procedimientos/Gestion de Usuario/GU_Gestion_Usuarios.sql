@@ -72,14 +72,17 @@ BEGIN
         
 		-- Validacion de campos nulos
 		IF @pcodigoEmpleado = '' OR @pcodigoEmpleado IS NULL BEGIN
+			SET @pcodigoMensaje = 3;
 			SET @pmensaje=@pmensaje + ' codigoEmpleado ';
 		END;
 		
 		IF @pnombreUsuario = '' OR @pnombreUsuario IS NULL BEGIN
+			SET @pcodigoMensaje = 3;
 			SET @pmensaje=@pmensaje + ' nombreUsuario ';
 		END;
 
 		IF @pcontrasenia = '' OR @pcontrasenia IS NULL BEGIN
+			SET @pcodigoMensaje = 3;
 			SET @pmensaje=@pmensaje + ' contrasenia ';
 		END;
 
@@ -95,6 +98,7 @@ BEGIN
 		SELECT @vconteo = COUNT(*) FROM Empleado
 		WHERE codigoEmpleado = @pcodigoEmpleado;
 		IF @vconteo = 0 BEGIN
+			SET @pcodigoMensaje = 4;
 			SET @pmensaje = @pmensaje + 'No hay un empleado asociado a este codigo: ' + @pcodigoEmpleado;
 		END;
 
@@ -102,6 +106,7 @@ BEGIN
 		INNER JOIN Usuarios U ON U.Empleado_idEmpleado = E.idEmpleado
 		WHERE E.codigoEmpleado = @pcodigoEmpleado;
 		IF @vconteo <> 0 BEGIN
+			SET @pcodigoMensaje = 4;
 			SET @pmensaje = @pmensaje + 'Ya existe un usuario asociado a este codigo: ' + @pcodigoEmpleado;
 		END;
 
@@ -117,6 +122,7 @@ BEGIN
 		SELECT @vconteo = COUNT(*)  FROM Usuarios
 		where nombreUsuario = @pnombreUsuario COLLATE SQL_Latin1_General_CP1_CS_AS
 		IF @vconteo <> 0 BEGIN
+			SET @pcodigoMensaje = 5;
 			SET @pmensaje = @pmensaje + 'Ya hay un usuario registrado con este nombre: ' + @pnombreUsuario;
 		END;
 

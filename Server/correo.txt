@@ -1,0 +1,14 @@
+CORREO EMPRESA
+''''''''''''''
+TEST PROJECT
+
+correo : testproject588@gmail.com
+contrasenia : MLRroot3
+
+
+CORREO USUARIO
+''''''''''''''
+TEST CLIENTE
+
+correo : test.usuarioprueba@gmail.com
+contrasenia : MLRroot3

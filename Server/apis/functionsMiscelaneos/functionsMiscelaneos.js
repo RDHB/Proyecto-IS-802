@@ -3,6 +3,7 @@
 // IMPORTANDO LOS MODULOS NECESARIOS
 const sql = require('mssql');
 const jwt = require('jsonwebtoken');
+const nodemailer = require('nodemailer')
 const conn = require('../../db/connectionDB');
 const messagesMiscelaneos = require('../../others/messagesMiscelaneos');
 const secretToken = require('../../settings/config')
@@ -98,6 +99,30 @@ function authToken(req, res, next){
     }
 }
 
+
+function sendEmail(emailRemitente, passwordRemitente,emailDestinatario, subjectEmail, mensajeEmail){
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+            user: emailRemitente,
+            pass: passwordRemitente
+        }
+    });
+    var mailOptions = {
+        from: emailRemitente,
+        to: emailDestinatario,
+        subject: subjectEmail,
+        text: mensajeEmail
+    };
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error){
+            return false;
+        } else {
+            return true;
+        }
+    });
+}
+
 // EXPORTANDO FUNCIONES MISCELANEAS
 module.exports = {
     GENERIC_GESTION_TABLAS,
@@ -106,4 +131,5 @@ module.exports = {
     GET_CAMPOS_TABLE_DB,
     generateToken,
     authToken,
+    sendEmail
 };
