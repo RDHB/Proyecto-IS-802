@@ -72,14 +72,38 @@ function GU_GESTION_USUARIOS(req,res){
             conn.close();
             res.send(messagesMiscelaneos.errorC2);
         });
-    })
-    .catch(function(err){
+    }).catch(function(err){
         res.send(messagesMiscelaneos.errorC1);
     });
 };
 
+
+function GU_REINICIO_CONTRASENIA(req,res){
+    conn.connect().then(function(){
+        var reqDB = new sql.Request(conn);
+        reqDB.input('pnombreUsuario',sql.VarChar,req.body.nombreUsuario);
+        reqDB.input('paccion',sql.VarChar,req.body.accion);
+        reqDB.output('pcodigoMensaje', sql.Int);
+        reqDB.output('pmensaje', sql.VarChar);
+        reqDB.output('presetContrasenia', sql.VarChar);
+        reqDB.execute('GU_REINICIO_CONTRASENIA').then(function(result){
+            conn.close();
+            if(result.output.pcodigoMensaje == 0 && req.body.accion === 'RESET'){
+                functionsMiscelaneos.sendEmail('testproject588@gmail.com','MLRroot3','test.usuarioprueba@gmail.com','VOLVO AUTOPARTES (PROJECT-PRUEBA) Creacion de Usuario',`Su usuario ha sido creado en el sistema, por favor reinicie la contraseña. Ingrese al sistema con usuario: ${req.body.nombreUsuario} y  contraseña: +${result.output.presetContrasenia}`);
+            }
+            res.send({output: result.output, data: result.recordsets[0]});
+        }).catch(function(err){
+            conn.close();
+            res.send(messagesMiscelaneos.errorC2);
+        });
+    }).catch(function(err){
+        res.send(messagesMiscelaneos.errorC1);
+    });
+}
+
 // EXPORTANDO LAS FUNCIONES QUE ATENDERAN LAS PETICIONES
 module.exports = {
     GU_LOGIN,
-    GU_GESTION_USUARIOS
+    GU_GESTION_USUARIOS,
+    GU_REINICIO_CONTRASENIA
 };

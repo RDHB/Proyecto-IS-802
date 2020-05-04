@@ -71,11 +71,9 @@
                                             <div style="display: flexbox; flex-direction: column;">
                                                 <ul class="actions" style="display: flexbox; justify-content: center; align-content: center;">
                                                     <li><buttom id="btnEditarUsuario" class="button small" style="width: 90%; display:block; margin: 20;">Editar Usuario Seleccionado</buttom></li>
-                                                    <li><buttom id="btnEliminarUsuario" class="button small" style="width: 90%; display:block; margin: 20 ;">Eliminar Usuarios Seleccionados</buttom></li>
-                                                </ul>
-                                                <ul class="actions" style="display: flexbox; justify-content: center; align-content: center;">
                                                     <li><buttom id="btnActivarUsuario" class="button small" style="width: 90%; display:block; margin: 20 ;">Activar Usuarios Seleccionados</buttom></li>
                                                     <li><buttom id="btnDesactivarUsuario" class="button small" style="width: 90%; display:block; margin: 20 ;">Desactivar Usuarios Seleccionados</buttom></li>
+                                                    <!-- <li><buttom id="btnEliminarUsuario" class="button small" style="width: 90%; display:block; margin: 20 ;">Eliminar Usuarios Seleccionados</buttom></li> -->
                                                 </ul>
                                             </div>
                                         </div>
@@ -161,6 +159,77 @@
                         </div>
                         <div align="center" style="margin: 25;">
                             <span  id="updateNotificacion" style="color: brown;  display: none;"></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div id="eliminateUser" class="modal">
+            <section style="display: flexbox; justify-content: center; align-items: center;">
+                <header style="display: flexbox; justify-content: center; align-items: center;">
+                    <h3 style="text-align: center; ">Está seguro que desea eliminar los siguientes usuarios seleccionados:</h3>
+                </header>
+                <div id="eliminateNombresUsuarios" style="display: flexbox; align-items: center; justify-content: start;">
+                    <!-- LISTA DE LOS USUARIOS SELECCIONADOS -->
+                    <!-- LISTA DE LOS USUARIOS SELECCIONADOS -->
+                </div>
+                <div class="content" style="display: flexbox; justify-content: center; align-items: center;">
+                    <div class="table-wrapper" style="margin: 25; display: flexbox; justify-content: center; align-items: center;">
+                        <div align="center" style="margin: 25; display: flexbox; justify-content: space-between;">
+                            <a id="aceptarEliminateUser" class="button small">Aceptar</a>
+                            <a id="cancelarEliminateUser" class="button small" rel="modal:close">Cancelar</a>
+                        </div>
+                        <div align="center" style="margin: 25;">
+                            <span  id="eliminateNotificacion" style="color: brown;  display: none;"></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div id="activateUser" class="modal">
+            <section style="display: flexbox; justify-content: center; align-items: center;">
+                <header style="display: flexbox; justify-content: center; align-items: center;">
+                    <h3 style="text-align: center; ">Está seguro que desea habilitar los siguientes usuarios seleccionados:</h3>
+                </header>
+                <div id="activateNombresUsuarios" style="display: flexbox; align-items: center; justify-content: start;">
+                    <!-- LISTA DE LOS USUARIOS SELECCIONADOS -->
+                    <!-- LISTA DE LOS USUARIOS SELECCIONADOS -->
+                </div>
+                <div align="center" id="activateNotificacion" style="margin: 25; display: flexbox; justify-content: center; align-content: center; flex-direction: column;">
+                    <!-- LISTA DE MENSAJES A MOSTRAR -->
+                </div>
+                <div class="content" style="display: flexbox; justify-content: center; align-items: center;">
+                    <div class="table-wrapper" style="margin: 25; display: flexbox; justify-content: center; align-items: center;">
+                        <div align="center" style="margin: 25; display: flexbox; justify-content: space-between;">
+                            <a id="aceptarActivateUser" class="button small">Aceptar</a>
+                            <a id="cancelarActivateUser" class="button small" rel="modal:close">Cancelar</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
+
+        <div id="desactivateUser" class="modal">
+            <section style="display: flexbox; justify-content: center; align-items: center;">
+                <header style="display: flexbox; justify-content: center; align-items: center;">
+                    <h3 style="text-align: center; ">Está seguro que desea deshabilitar los siguientes usuarios seleccionados:</h3>
+                </header>
+                <div id="desactivateNombresUsuarios" style="display: flexbox; align-items: center; justify-content: start;">
+                    <!-- LISTA DE LOS USUARIOS SELECCIONADOS -->
+                    <!-- LISTA DE LOS USUARIOS SELECCIONADOS -->
+                </div>
+                <div align="center" id="desactivateNotificacion" style="margin: 25; display: flexbox; justify-content: center; align-content: center; flex-direction: column;">
+                    <!-- LISTA DE MENSAJES A MOSTRAR -->
+                </div>
+                <div class="content" style="display: flexbox; justify-content: center; align-items: center;">
+                    <div class="table-wrapper" style="margin: 25; display: flexbox; justify-content: center; align-items: center;">
+                        <div align="center" style="margin: 25; display: flexbox; justify-content: space-between;">
+                            <a id="aceptarDesactivateUser" class="button small">Aceptar</a>
+                            <a id="cancelarDesactivateUser" class="button small" rel="modal:close">Cancelar</a>
                         </div>
                     </div>
                 </div>
