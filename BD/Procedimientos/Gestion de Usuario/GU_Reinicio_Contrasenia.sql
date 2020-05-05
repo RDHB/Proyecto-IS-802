@@ -1,7 +1,7 @@
 -- <=== Pantalla ===>
 /* Requisitos de las acciones:
  * RESET: @pnombreUsuario
- * Salida: @presetContrasenia
+ * Salida: @presetContrasenia, @pcorreoElectronico
 */
 CREATE PROCEDURE GU_REINICIO_CONTRASENIA(
     -- Parametros de Entrada
@@ -14,7 +14,8 @@ CREATE PROCEDURE GU_REINICIO_CONTRASENIA(
 	@pmensaje 					VARCHAR(1000) OUTPUT,
 
     -- Otros parametros de salida
-	@presetContrasenia			VARCHAR(45) OUTPUT
+	@presetContrasenia			VARCHAR(45) OUTPUT,
+	@pcorreoElectronico			VARCHAR(45) OUTPUT
 ) AS
 BEGIN
     -- Declaracion de Variables
@@ -24,7 +25,7 @@ BEGIN
 
     /* Funcionalidad: <nombre_funcionalidad>
      * Construir un update con la sigueinte informacion:
-     * Datos: @pnombreUsuario, @presetContrasenia
+     * Datos: @pnombreUsuario, @presetContrasenia, @pcorreoElectronico
      *
      * Actualizar los sigueintes datos en la tabla Usuarios:
      * contrasenia
@@ -82,6 +83,13 @@ BEGIN
 		-- Inserta la contrasenia reiniciada pero encriptada
 		UPDATE Usuarios SET contrasenia = dbo.FN_ENCRIPTAR( @presetContrasenia )
 		WHERE nombreUsuario = @pnombreUsuario  COLLATE SQL_Latin1_General_CP1_CS_AS;
+
+		SET @pcorreoElectronico = (
+			SELECT P.correoElectronico FROM Usuarios U
+			INNER JOIN Empleado E ON E.idEmpleado = U.Empleado_idEmpleado
+			INNER JOIN Persona P ON P.idPersona = E.Persona_idPersona
+			WHERE U.nombreUsuario = @pnombreUsuario COLLATE SQL_Latin1_General_CP1_CS_AS
+		);
 
 
 
