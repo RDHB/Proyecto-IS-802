@@ -26,7 +26,7 @@ CREATE PROCEDURE OT_A_CONTRATAR_SERVICIOS (
 ) AS
 BEGIN
     -- Declaracion de Variables
-    DECLARE	@vconteo INT; @servicioEfectuado INT;
+    DECLARE	@vconteo INT, @vservicioEfectuado INT;
 
 
 
@@ -41,7 +41,7 @@ BEGIN
 		-- Setear Valores
 		SET @pcodigoMensaje=0;
 		SET @pmensaje='';
-		SET @servicioEfectuado=0;
+		SET @vservicioEfectuado=0;
 
 
 
@@ -49,7 +49,7 @@ BEGIN
 		IF @pidOrdenTrabajo = '' OR @pidOrdenTrabajo IS NULL BEGIN
 			SET @pmensaje = @pmensaje + ' idOrdenTrabajo ';
 		END;
-		IF @idServicios = '' OR @idServicios IS NULL BEGIN
+		IF @pidServicios = '' OR @pidServicios IS NULL BEGIN
 			SET @pmensaje = @pmensaje + ' idServicios ';
 		END;
 		IF @pmensaje <> '' BEGIN
@@ -64,23 +64,13 @@ BEGIN
         SELECT @vconteo = COUNT(*) FROM OrdenTrabajo
 		WHERE idOrdenTrabajo = @pidOrdenTrabajo;
 		IF @vconteo = 0 BEGIN
-			SET @pmensaje = @pmensaje + ' No existe el identificador => ' + @pidOrdenTrabajo + ' ';
-		END;
-        SELECT @vconteo = COUNT(*) FROM OrdenTrabajo
-		WHERE idOrdenTrabajo = @pidOrdenTrabajo;
-		IF @vconteo <> 0 BEGIN
-			SET @pmensaje = @pmensaje + ' Ya existe el identificador => ' + @pidOrdenTrabajo + ' ';
+			SET @pmensaje = @pmensaje + ' No existe el identificador => ' + CAST(@pidOrdenTrabajo AS VARCHAR) + ' ';
 		END;
 
 		SELECT @vconteo = COUNT(*) FROM Servicios
 		WHERE idServicios = @pidServicios;
 		IF @vconteo = 0 BEGIN
-			SET @pmensaje = @pmensaje + ' No existe el identificador => ' + @pidServicios + ' ';
-		END;
-        SELECT @vconteo = COUNT(*) FROM Servicios
-		WHERE idServicios = @pidServicios;
-		IF @vconteo <> 0 BEGIN
-			SET @pmensaje = @pmensaje + ' Ya existe el identificador => ' + @pidServicios + ' ';
+			SET @pmensaje = @pmensaje + ' No existe el identificador => ' + CAST(@pidServicios AS VARCHAR) + ' ';
 		END;
 
 		IF @pmensaje <> '' BEGIN
@@ -98,8 +88,8 @@ BEGIN
 
 		SELECT @vconteo=COUNT(*) FROM OrdenTrabajo ot
 		INNER JOIN EstadoOT e ON ot.EstadoOT_idEstadoOT=e.idEstadoOT
-		WHERE idEstadoOT=13 AND idOrdenTrabajo=@pidOrdenTrabajo AND idServicios=@pidServicios;
-		IF @vconteo>1 BEGIN
+		WHERE idEstadoOT=13 AND idOrdenTrabajo=@pidOrdenTrabajo
+		IF @vconteo <> 0 BEGIN
 			SET @pmensaje= @pmensaje + 'Solo se puede agregar servicios a ordenes de trabajo no finalizadas =>';
 		END;
 		
@@ -111,7 +101,7 @@ BEGIN
 
 		-- Accion del procedimiento 
 		INSERT Lista_Servicios (OrdenTrabajo_idOrdenTrabajo, Servicios_idServicios, servicioEfectuado)
-		VALUES (@pidOrdenTrabajo, @pidServicios, @servicioEfectuado);
+		VALUES (@pidOrdenTrabajo, @pidServicios, @vservicioEfectuado);
 
         SET @pmensaje = 'Finalizado con exito';
 	END;
@@ -143,9 +133,6 @@ BEGIN
 		IF @pidOrdenTrabajo = '' OR @pidOrdenTrabajo IS NULL BEGIN
 			SET @pmensaje = @pmensaje + ' idOrdenTrabajo ';
 		END;
-		IF @idServicios = '' OR @idServicios IS NULL BEGIN
-			SET @pmensaje = @pmensaje + ' idServicios ';
-		END;
 
 		IF @pmensaje <> '' BEGIN
 			SET @pcodigoMensaje = 3;
@@ -159,23 +146,7 @@ BEGIN
         SELECT @vconteo = COUNT(*) FROM OrdenTrabajo
 		WHERE idOrdenTrabajo = @pidOrdenTrabajo;
 		IF @vconteo = 0 BEGIN
-			SET @pmensaje = @pmensaje + ' No existe el identificador => ' + @pidOrdenTrabajo + ' ';
-		END;
-        SELECT @vconteo = COUNT(*) FROM OrdenTrabajo
-		WHERE idOrdenTrabajo = @pidOrdenTrabajo;
-		IF @vconteo <> 0 BEGIN
-			SET @pmensaje = @pmensaje + ' Ya existe el identificador => ' + @pidOrdenTrabajo + ' ';
-		END;
-
-		SELECT @vconteo = COUNT(*) FROM Servicios
-		WHERE idServicios = @pidServicios;
-		IF @vconteo = 0 BEGIN
-			SET @pmensaje = @pmensaje + ' No existe el identificador => ' + @pidServicios + ' ';
-		END;
-        SELECT @vconteo = COUNT(*) FROM Servicios
-		WHERE idServicios = @pidServicios;
-		IF @vconteo <> 0 BEGIN
-			SET @pmensaje = @pmensaje + ' Ya existe el identificador => ' + @pidServicios + ' ';
+			SET @pmensaje = @pmensaje + ' No existe el identificador => ' + CAST(@pidOrdenTrabajo AS VARCHAR) + ' ';
 		END;
 
 		IF @pmensaje <> '' BEGIN
@@ -192,11 +163,17 @@ BEGIN
 
 
 		-- Accion del procedimiento 
-		SELECT * FROM Lista_Servicios ls
-		RIGHT JOIN Servicios s ON ls.Servicios_idServicios=s.idServicios
-		WHERE OrdenTrabajo_idOrdenTrabajo=@pidOrdenTrabajo;
-
-        SET @pmensaje = 'Finalizado con exito';
+		SELECT * FROM (
+			SELECT 
+				ls.OrdenTrabajo_idOrdenTrabajo
+				, ls.Servicios_idServicios 
+				, ls.servicioEfectuado
+			FROM Lista_Servicios ls
+			WHERE OrdenTrabajo_idOrdenTrabajo = @pidOrdenTrabajo
+		) AS T
+		RIGHT JOIN Servicios s ON T.Servicios_idServicios=s.idServicios
+		
+        SET @pmensaje = 'Consulta inalizada con exito';
 	END;
 
 
@@ -226,7 +203,8 @@ BEGIN
 		IF @pidOrdenTrabajo = '' OR @pidOrdenTrabajo IS NULL BEGIN
 			SET @pmensaje = @pmensaje + ' idOrdenTrabajo ';
 		END;
-		IF @idServicios = '' OR @idServicios IS NULL BEGIN
+
+		IF @pidServicios = '' OR @pidServicios IS NULL BEGIN
 			SET @pmensaje = @pmensaje + ' idServicios ';
 		END;
 
@@ -244,21 +222,11 @@ BEGIN
 		IF @vconteo = 0 BEGIN
 			SET @pmensaje = @pmensaje + ' No existe el identificador => ' + @pidOrdenTrabajo + ' ';
 		END;
-        SELECT @vconteo = COUNT(*) FROM OrdenTrabajo
-		WHERE idOrdenTrabajo = @pidOrdenTrabajo;
-		IF @vconteo <> 0 BEGIN
-			SET @pmensaje = @pmensaje + ' Ya existe el identificador => ' + @pidOrdenTrabajo + ' ';
-		END;
 
 		SELECT @vconteo = COUNT(*) FROM Servicios
 		WHERE idServicios = @pidServicios;
 		IF @vconteo = 0 BEGIN
 			SET @pmensaje = @pmensaje + ' No existe el identificador => ' + @pidServicios + ' ';
-		END;
-        SELECT @vconteo = COUNT(*) FROM Servicios
-		WHERE idServicios = @pidServicios;
-		IF @vconteo <> 0 BEGIN
-			SET @pmensaje = @pmensaje + ' Ya existe el identificador => ' + @pidServicios + ' ';
 		END;
 
 		IF @pmensaje <> '' BEGIN
@@ -273,7 +241,9 @@ BEGIN
 		-- Solo se pueden borrar servicios a ordenes de trabajo que no esten finalizadas. Es decir idEstadoOT = 13
 		SELECT @vconteo=COUNT(*) FROM OrdenTrabajo ot
 		INNER JOIN EstadoOT e ON ot.EstadoOT_idEstadoOT=e.idEstadoOT
-		WHERE idEstadoOT=13 AND idOrdenTrabajo=@pidOrdenTrabajo AND idServicios=@pidServicios;;
+		INNER JOIN Lista_Servicios ls ON ls.OrdenTrabajo_idOrdenTrabajo = ot.idOrdenTrabajo
+		WHERE idEstadoOT=13 AND idOrdenTrabajo=@pidOrdenTrabajo AND ls.Servicios_idServicios=@pidServicios
+		AND servicioEfectuado = 0;
 		IF @vconteo<>0 BEGIN
 			SET @pmensaje= @pmensaje + 'Solo se puede borrar servicios a ordenes de trabajo no finalizadas =>';
 		END;
@@ -288,7 +258,7 @@ BEGIN
 		DELETE FROM Lista_Servicios
 		WHERE OrdenTrabajo_idOrdenTrabajo = @pidOrdenTrabajo AND Servicios_idServicios = @pidServicios;
 
-        SET @pmensaje = 'Finalizado con exito';
+        SET @pmensaje = 'Servicio removido con exito';
 	END;
 
 	-- En caso de no elegir una accion

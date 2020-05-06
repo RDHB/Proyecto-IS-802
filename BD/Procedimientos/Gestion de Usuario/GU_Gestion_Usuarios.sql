@@ -2,17 +2,30 @@
 /* Requisitos de las acciones:
  * INSERT: @pcodigoEmpleado, @pnombreUsuario, @pcontrasenia
  *
- * UPDATE: @pnombreUsuario, @pcontrasenia
+ * UPDATE: @pidUsuario, @pnombreUsuario, @pcontrasenia, @pcorreoElectronico, @ptelefono
+ *
+ * SELECT: 
+ * Opcionales: @pnombrePersona, idEstadoUsuario, idAreaTrabajo
+ * Salida-Data: idUsuario, nombrePersona, nombreUsuario, contrasenia, correoElectronico, telefono
  *
  * DESACTIVATE: @pnombreUsuario
  *
  * ACTIVATE: @pnombreUsuario
 */
-CREATE PROCEDURE GU_GESTION_USUARIOS(
+ALTER PROCEDURE [dbo].[GU_GESTION_USUARIOS](
     --Informacion Usuario
+	@pidUsuario					INT,
 	@pcodigoEmpleado			VARCHAR(45),
 	@pnombreUsuario				VARCHAR(45),
 	@pcontrasenia				VARCHAR(45),
+	
+	@pcorreoElectronico			VARCHAR(45),
+	@ptelefono					VARCHAR(45),
+
+	@pnombrePersona				VARCHAR(45),
+	@pidEstadoUsuario			INT,
+	@pidAreaTrabajo				INT,
+
 	@pAccion					VARCHAR(45),
 	
 	-- Parametros de Salida
@@ -25,6 +38,25 @@ CREATE PROCEDURE GU_GESTION_USUARIOS(
 BEGIN
 	-- Declaracion de Variables
 	DECLARE @vconteo INT;
+
+	DECLARE @Temp1 TABLE (
+		idUsuario INT
+		, nombrePersona VARCHAR(1000)
+		, nombreUsuario VARCHAR(45)
+		, contrasenia VARCHAR(45)
+		, correoElectronico VARCHAR(45)
+		, numeroTelefono VARCHAR(45)
+		, AreaTrabajo VARCHAR(45)
+	);
+	DECLARE @Temp2 TABLE (
+		idUsuario INT
+		, nombrePersona VARCHAR(1000)
+		, nombreUsuario VARCHAR(45)
+		, contrasenia VARCHAR(45)
+		, correoElectronico VARCHAR(45)
+		, numeroTelefono VARCHAR(45)
+		, AreaTrabajo VARCHAR(45)
+	);
 
     /* Funcionalidad: Añadir usuarios al sistema
     * Construir un Insert con la sigueinte informacion:
@@ -133,10 +165,16 @@ BEGIN
 
     /* Funcionalidad: Modificar usuarios del sistema
     * Construir un Update con la sigueinte informacion:
-    * nombreUsuario, contrasenia (nueva)
+    * @pidUsuario, @pnombreUsuario, @pcontrasenia, @pcorreoElectronico, @ptelefono
 	*
-    * Modificar los sigueintes datos en la tabla usuario:
-    * contrasenia (nueva)
+    * Modificar los sigueintes datos en la tabla Usuario:
+    * nombreUsuario, contrasenia
+	*
+	* Modificar los sigueintes datos en la tabla Persona:
+	* correoElectronico
+	*
+	* Modificar los sigueintes datos en la tabla Telefono:
+	* telefono
     */
 	IF @paccion = 'UPDATE' BEGIN
 		-- Setear Valores
@@ -146,12 +184,24 @@ BEGIN
 
 
 		-- Validacion de campos nulos
+		IF @pidUsuario = 0 BEGIN
+			SET @pmensaje=@pmensaje + ' idUsuario ';
+		END;
+
 		IF @pnombreUsuario = '' OR @pnombreUsuario IS NULL BEGIN
 			SET @pmensaje=@pmensaje + ' nombreUsuario ';
 		END;
 
 		IF @pcontrasenia = '' OR @pcontrasenia IS NULL BEGIN
 			SET @pmensaje=@pmensaje + ' contrasenia ';
+		END;
+		
+		IF @pcorreoElectronico = '' OR @pcorreoElectronico IS NULL BEGIN
+			SET @pmensaje=@pmensaje + ' correoElectronico ';
+		END;
+		
+		IF @ptelefono = '' OR @ptelefono IS NULL BEGIN
+			SET @pmensaje=@pmensaje + ' telefono ';
 		END;
 
 		IF @pmensaje <> '' BEGIN
@@ -164,9 +214,9 @@ BEGIN
 
 		-- Validacion de identificadores
 		SELECT @vconteo = COUNT(*)  FROM Usuarios
-		where nombreUsuario = @pnombreUsuario 
+		where idUsuario = @pidUsuario
 		IF @vconteo = 0 BEGIN
-			SET @pmensaje = @pmensaje + 'El usuario ' + @pnombreUsuario + ' no existe: ';
+			SET @pmensaje = @pmensaje + 'El usuario ' + CAST(@pidUsuario AS VARCHAR) + ' no existe: ';
 		END;
 
 		IF @pmensaje <> '' BEGIN
@@ -179,9 +229,10 @@ BEGIN
 
 		-- Validacion de procedimientos
 		SELECT @vconteo = COUNT(*)  FROM Usuarios
-		where nombreUsuario = @pnombreUsuario and contrasenia = @pcontrasenia
+		where nombreUsuario = @pnombreUsuario 
+		
 		IF @vconteo <> 0 BEGIN
-			SET @pmensaje = @pmensaje + 'El usuario ya tiene esta contraseña';
+			SET @pmensaje = @pmensaje + 'Ya hay un usuario registrado con este nombre: ' + @pnombreUsuario;
 		END;
 
 		IF @pmensaje <> '' BEGIN
@@ -191,17 +242,189 @@ BEGIN
 		END;
 
 
+		-- Accion del procedimiento
+		-- Actualizar informacion Usuario
+		UPDATE Usuarios SET 
+			nombreUsuario = @pnombreUsuario
+			, contrasenia = @pcontrasenia
+		WHERE idUsuario = @pidUsuario
 
-		-- Accion del procedimiento 
-		UPDATE Usuarios SET contrasenia = @pcontrasenia WHERE nombreUsuario = @pnombreUsuario
+		-- Actualizar informacion Usuario
+		UPDATE Persona SET
+			correoElectronico = @pcorreoElectronico
+		WHERE idPersona = (
+			SELECT Persona_idPersona FROM Empleado
+			WHERE idEmpleado = (
+				SELECT Empleado_idEmpleado FROM Usuarios WHERE idUsuario = @pidUsuario
+			)
+		)
 
-		SET @pmensaje = 'Contrasenia guardada';
+		-- Actualizar informacion Usuario
+		UPDATE Telefono SET
+			numeroTelefono = @ptelefono
+		WHERE Persona_idPersona = (
+			SELECT Persona_idPersona FROM Empleado
+			WHERE idEmpleado = (
+				SELECT Empleado_idEmpleado FROM Usuarios WHERE idUsuario = @pidUsuario
+			)
+		)
+		SET @pmensaje = 'Datos del usuario actualizados con exito';
 	END;
 
 
 
 
 
+
+
+
+
+
+
+
+	
+
+	/* Funcionalidad: Seleccionar usuarios del sistema
+    * Construir un select con la sigueinte informacion:
+    * Opcionales: @pnombrePersona, idEstadoUsuario, idAreaTrabajo
+	* Salida-Data: idUsuario, nombrePersona, nombreUsuario, contrasenia, correoElectronico, telefono
+	*
+    * Seleccionar los sigueintes datos en la tabla Usuario:
+    * idUsuario, nombreUsuario, contrasenia
+	*
+	* Seleccionar los sigueintes datos en la tabla EstadoUsuario:
+    * descripcion
+	*
+	* Seleccionar los sigueintes datos en la tabla Persona:
+	* correoElectronico
+	*
+	* Seleccionar los sigueintes datos en la tabla Telefono:
+	* telefono
+    */
+	IF @paccion = 'SELECT' BEGIN
+		-- Setear Valores
+		SET @pcodigoMensaje=0;
+		SET @pmensaje='';
+
+
+
+		-- Validacion de campos nulos
+		
+		-- Validacion de identificadores
+		
+		-- Validacion de procedimientos
+		
+
+
+		-- Accion del procedimiento
+		-- Guardando informacion de los usuarios del sistema
+		INSERT INTO @Temp1 
+		SELECT 
+			U.idUsuario
+			, CONCAT(
+				P.primerNombre
+				, ' '
+				, P.segundoNombre
+				, ' '
+				, P.primerApellido
+				, ' '
+				, P.segundoApellido
+			) AS 'nombrePersona'
+			, U.nombreUsuario
+			, U.contrasenia
+			, p.correoElectronico
+			, (
+				SELECT numeroTelefono FROM Telefono
+				WHERE Persona_idPersona = P.idPersona
+			) AS 'numeroTelefono'
+			, (
+				SELECT descripcion FROM AreaTrabajo WHERE idAreaTrabajo = E.AreaTrabajo_idAreaTrabajo
+			) AS 'AreaTrabajo'
+		FROM Usuarios U
+		INNER JOIN Empleado E ON E.idEmpleado = U.Empleado_idEmpleado
+		INNER JOIN Persona P ON P.idPersona = E.Persona_idPersona
+		;
+
+
+
+		-- Filtro nombrePersona
+		IF @pnombrePersona <> '' OR @pnombrePersona <> NULL BEGIN
+			
+			-- Ejecuta el filtro en la variable @Temp2
+			INSERT INTO @Temp2
+				SELECT * FROM @Temp1 T
+				WHERE T.nombrePersona LIKE '%' + @pnombrePersona + '%'
+			;
+			
+			-- Guarda el filtro en la variable @Temp1
+			DELETE FROM @Temp1;
+			INSERT INTO @Temp1
+				SELECT * FROM @Temp2
+			;
+			
+			-- Vacia el filtro de la variable @Temp2
+			DELETE FROM @Temp2;
+
+		END;
+
+
+
+		-- Filtro EstadoUsuario
+		IF @pidEstadoUsuario <> 0 BEGIN
+			
+			-- Ejecuta el filtro en la variable @Temp2
+			INSERT INTO @Temp2
+				SELECT * FROM @Temp1 T
+				WHERE T.idUsuario IN (
+					SELECT idUsuario FROM Usuarios
+					WHERE Estado_Usuario_idEstado_Usuario = @pidEstadoUsuario
+				)
+			;
+			
+			-- Guarda el filtro en la variable @Temp1
+			DELETE FROM @Temp1;
+			INSERT INTO @Temp1
+				SELECT * FROM @Temp2
+			;
+			
+			-- Vacia el filtro de la variable @Temp2
+			DELETE FROM @Temp2;
+
+		END;
+
+
+
+		-- Filtro AreaTrabajo
+		IF @pidAreaTrabajo <> 0 BEGIN
+
+			-- Ejecuta el filtro en la variable @Temp2
+			INSERT INTO @Temp2
+				SELECT * FROM @Temp1 T
+				WHERE T.idUsuario IN (
+					SELECT U.idUsuario FROM Empleado E
+					INNER JOIN Usuarios U ON E.idEmpleado = U.Empleado_idEmpleado
+					WHERE E.AreaTrabajo_idAreaTrabajo = @pidAreaTrabajo
+				)
+			;
+			
+			-- Guarda el filtro en la variable @Temp1
+			DELETE FROM @Temp1;
+			INSERT INTO @Temp1
+				SELECT * FROM @Temp2
+			;
+			
+			-- Vacia el filtro de la variable @Temp2
+			DELETE FROM @Temp2;
+
+		END;
+		
+
+
+		-- Retornar consulta filtrada o no
+		SELECT * FROM @Temp1;
+		
+		SET @pmensaje = 'Consulta finalizada con exito';
+	END;
 
 
 

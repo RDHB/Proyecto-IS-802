@@ -1,12 +1,14 @@
 -- <=== Pantalla ===>
 /* Requisitos de las acciones:
- * <ACCION 1>: <@parametro1>, <@parametro2> ...
- * Opcional: <@parametro3>, <@parametro4> ...
+ * INSERT: @pvin, @pnumeroIdentidad
  * 
- * <ACCION 2>: ...
+ * SELECT: <No hay parametros>
+ * Salida: Select(idOrdenTrabajo, nombreCliente, (Marca y Modelo), EstadoOT)
 */
-CREATE PROCEDURE SIGLAS_NOMBRE_PA (
+CREATE PROCEDURE OT_A_GENERAR_OT (
     -- Parametros de Entrada
+	@pvin						VARCHAR(45),
+	@pnumeroIdentidad			VARCHAR(45),
     @paccion					VARCHAR(45),
     
     -- Parametros de Salida
@@ -19,19 +21,21 @@ CREATE PROCEDURE SIGLAS_NOMBRE_PA (
 ) AS
 BEGIN
     -- Declaracion de Variables
-    DECLARE	@vconteo INT;
+    DECLARE	@vconteo INT
+		, @vidVehiculo INT
+		, @vidCliente INT
+	;
 
 
 
-    /* Funcionalidad: <nombre_funcionalidad>
-     * Construir un (select, insert, update o delete) con la sigueinte informacion:
-     * Datos: parametro1, parametro2, parametro3...
-     * Datos Opcionales: parametro4, parametro5
+    /* Funcionalidad: GenerarOT
+     * Construir un select con la sigueinte informacion:
+     * Datos: @pvin, @pnumeroIdentidad
      *
-     * (Consultar, insertar, actualizar o eliminar) los sigueintes datos en la tabla <nombre_tabla>:
-     * campo1, campo2, campo3
+     * Insertar los sigueintes datos en la tabla OrdenTrabajo:
+     * idOrdenTrabajo, Cliente_idCliente, EstadoOT_idEstadoOT, Vehiculo_idVehiculo
     */
-    IF @paccion = 'ACTION' BEGIN
+    IF @paccion = 'INSERT' BEGIN
 		-- Setear Valores
 		SET @pcodigoMensaje=0;
 		SET @pmensaje='';
@@ -39,8 +43,12 @@ BEGIN
 
 
 		-- Validacion de campos nulos
-		IF @parametro1 = '' OR @parametro1 IS NULL BEGIN
-			SET @pmensaje = @pmensaje + ' campo1 ';
+		IF @pvin = '' OR @pvin IS NULL BEGIN
+			SET @pmensaje = @pmensaje + ' vin ';
+		END;
+
+		IF @pnumeroIdentidad = '' OR @pnumeroIdentidad IS NULL BEGIN
+			SET @pmensaje = @pmensaje + ' numeroIdentidad ';
 		END;
 
 		IF @pmensaje <> '' BEGIN
@@ -52,16 +60,16 @@ BEGIN
 
 
 		-- Validacion de identificadores
-        SELECT @vconteo = COUNT(*) FROM Tabla
-		WHERE campo1 = @parametro1;
+        SELECT @vconteo = COUNT(*) FROM Vehiculos
+		WHERE vin = @pvin
 		IF @vconteo = 0 BEGIN
-			SET @pmensaje = @pmensaje + ' No existe el identificador => ' + @parametro1 + ' ';
+			SET @pmensaje = @pmensaje + ' No existe el identificador => ' + @pvin + ' ';
 		END;
 
-        SELECT @vconteo = COUNT(*) FROM Tabla
-		WHERE campo1 = @parametro1;
-		IF @vconteo <> 0 BEGIN
-			SET @pmensaje = @pmensaje + ' Ya existe el identificador => ' + @parametro1 + ' ';
+		SELECT @vconteo = COUNT(*) FROM Persona
+		WHERE numeroIdentidad = @pnumeroIdentidad
+		IF @vconteo = 0 BEGIN
+			SET @pmensaje = @pmensaje + ' No existe el identificador => ' + @pnumeroIdentidad + ' ';
 		END;
 
 		IF @pmensaje <> '' BEGIN
@@ -73,6 +81,21 @@ BEGIN
 
 
 		-- Validacion de procedimientos
+		SELECT @vidCliente = C.idCliente FROM Persona P
+		INNER JOIN Cliente C ON C.Persona_idPersona = P.idPersona
+		WHERE numeroIdentidad = @pnumeroIdentidad
+
+		SELECT @vidVehiculo = idVehiculos FROM Vehiculos
+		WHERE vin = @pvin
+
+		SELECT @vconteo = COUNT(*) FROM OrdenTrabajo
+		WHERE Vehiculos_idVehiculos = @vidVehiculo
+		AND EstadoOT_idEstadoOT <> 13
+
+		IF @vconteo <> 0 BEGIN
+			SET @pmensaje = @pmensaje + ' La orden de trabajo para este vehiculo aun no ha finalizado => ' + @pvin + ' ';
+		END;
+
 		IF @pmensaje <> '' BEGIN
 			SET @pcodigoMensaje = 5;
 			SET @pmensaje = 'Error: Validacion en la condicion del procdimiento: ' + @pmensaje;
@@ -82,12 +105,86 @@ BEGIN
 
 		
 		-- Accion del procedimiento 
-
-
-
-        SET @pmensaje = 'Finalizado con exito';
+		INSERT INTO OrdenTrabajo (
+			idOrdenTrabajo
+			, Cliente_idCliente
+			, EstadoOT_idEstadoOT
+			, Vehiculos_idVehiculos
+		) VALUES (
+			(SELECT MAX(idOrdenTrabajo) + 1 FROM OrdenTrabajo)
+			, @vidCliente
+			, 2
+			, @vidVehiculo
+		);
+		
+        SET @pmensaje = 'Orden de Trabajo agregada con exito';
 	END;
     
+
+
+
+
+
+
+
+
+
+	/* Funcionalidad: GenerarOT
+     * Construir un select con la sigueinte informacion:
+     * Datos: @pvin, @pnumeroIdentidad
+     *
+     * SELECT: <No hay parametros>
+	 * Salida: Select(idOrdenTrabajo, nombreCliente, (Marca y Modelo), EstadoOT)
+    */
+    IF @paccion = 'SELECT' BEGIN
+		-- Setear Valores
+		SET @pcodigoMensaje=0;
+		SET @pmensaje='';
+
+		-- Validacion de campos nulos
+		
+		-- Validacion de identificadores
+        
+		-- Validacion de procedimientos
+		
+		-- Accion del procedimiento 
+		SELECT 
+			OT.idOrdenTrabajo
+			, V.vin
+			, CONCAT ( 
+				(
+					SELECT MA.descripcion FROM Modelo MO 
+					INNER JOIN Marca MA ON MA.idMarca = MO.Marca_idMarca
+					WHERE MO.idModelo = V.Modelo_idModelo
+				)
+				, ' '
+				, (
+					SELECT descripcion FROM Modelo MO WHERE MO.idModelo = V.Modelo_idModelo
+				)
+			) AS 'Vehiculo'
+			, (
+				SELECT CONCAT(
+					P.primerNombre
+					, ' '
+					, P.segundoNombre
+					, ' '
+					, P.primerApellido
+					, ' '
+					, P.segundoApellido
+				) FROM Cliente C
+				INNER JOIN Persona P ON P.idPersona = C.idCliente
+				WHERE C.idCliente = OT.Cliente_idCliente
+			) AS 'Cliente'
+			, (
+				SELECT descripcion FROM EstadoOT WHERE idEstadoOT = OT.EstadoOT_idEstadoOT
+			) AS 'EstadoOT'
+		FROM OrdenTrabajo OT
+		INNER JOIN Vehiculos V ON V.idVehiculos = OT.Vehiculos_idVehiculos
+		INNER JOIN Cliente C ON C.idCliente = OT.Cliente_idCliente
+		
+        SET @pmensaje = 'Orden de Trabajo consultada con exito';
+	END;
+
 	-- En caso de no elegir una accion
 	IF @pmensaje = '' BEGIN
 		SET @pcodigoMensaje = -1;

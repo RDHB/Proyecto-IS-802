@@ -42,7 +42,7 @@ BEGIN
 
 
 		-- Validacion de campos nulos
-		IF @pidOrdenTrabajo = '' OR @pidOrdenTrabajo IS NULL BEGIN
+		IF @pidOrdenTrabajo = 0 BEGIN
 			SET @pmensaje = @pmensaje + ' id Orden de Trabajo ';
 		END;
 		IF @pfechaInicio = '' OR @pfechaInicio IS NULL BEGIN
@@ -63,49 +63,11 @@ BEGIN
 
 
 		-- Validacion de identificadores
+		-- Solo se puede dar revicion a ordenes de trabajo que tengan el idEstadoOT = 2
         SELECT @vconteo = COUNT(*) FROM OrdenTrabajo
 		WHERE idOrdenTrabajo = @pidOrdenTrabajo;
 		IF @vconteo = 0 BEGIN
-			SET @pmensaje = @pmensaje + ' No existe el identificador => ' + @pidOrdenTrabajo + ' ';
-		END;
-        SELECT @vconteo = COUNT(*) FROM OrdenTrabajo
-		WHERE idOrdenTrabajo = @pidOrdenTrabajo;
-		IF @vconteo <> 0 BEGIN
-			SET @pmensaje = @pmensaje + ' Ya existe el identificador => ' + @pidOrdenTrabajo + ' ';
-		END;
-
-		SELECT @vconteo = COUNT(*) FROM OrdenTrabajo
-		WHERE fechaInicio = @pfechaInicio;
-		IF @vconteo = 0 BEGIN
-			SET @pmensaje = @pmensaje + ' No existe el identificador => ' + @pfechaInicio + ' ';
-		END;
-        SELECT @vconteo = COUNT(*) FROM OrdenTrabajo
-		WHERE fechaInicio = @pfechaInicio;
-		IF @vconteo <> 0 BEGIN
-			SET @pmensaje = @pmensaje + ' Ya existe el identificador => ' + @pfechaInicio + ' ';
-		END;
-
-		SELECT @vconteo = COUNT(*) FROM OrdenTrabajo
-		WHERE estado_del_vehiculo = @pestado_del_vehiculo;
-		IF @vconteo = 0 BEGIN
-			SET @pmensaje = @pmensaje + ' No existe el identificador => ' + @pestado_del_vehiculo + ' ';
-		END;
-        SELECT @vconteo = COUNT(*) FROM OrdenTrabajo
-		WHERE estado_del_vehiculo = @pestado_del_vehiculo;
-		IF @vconteo <> 0 BEGIN
-			SET @pmensaje = @pmensaje + ' Ya existe el identificador => ' + @pestado_del_vehiculo + ' ';
-		END;
-
-		SELECT @vconteo = COUNT(*) FROM OrdenTrabajo
-		WHERE objetosPersonales = @pobjetosPersonales;
-		IF @vconteo = 0 BEGIN
-			SET @pmensaje = @pmensaje + ' No existe el identificador => ' + @pobjetosPersonales + ' ';
-		END;
-
-        SELECT @vconteo = COUNT(*) FROM OrdenTrabajo
-		WHERE objetosPersonales = @pobjetosPersonales;
-		IF @vconteo <> 0 BEGIN
-			SET @pmensaje = @pmensaje + ' Ya existe el identificador => ' + @pobjetosPersonales + ' ';
+			SET @pmensaje = @pmensaje + ' No existe el identificador => ' + CAST(@pidOrdenTrabajo AS VARCHAR) + ' ';
 		END;
 
 		IF @pmensaje <> '' BEGIN
@@ -114,13 +76,16 @@ BEGIN
 			RETURN;
 		END;
 
+
+
 		-- Validacion de procedimientos
+		-- Validar 
 		SELECT @vconteo=COUNT(*) FROM OrdenTrabajo ot
 		INNER JOIN EstadoOT e ON ot.EstadoOT_idEstadoOT=e.idEstadoOT
-		WHERE idEstadoOT=2 AND idOrdenTrabajo=@pidOrdenTrabajo AND fechaInicio=@pfechaInicio 
-		AND estado_del_vehiculo=@pestado_del_vehiculo;
-		IF @vconteo=0 BEGIN
-			SET @pmensaje= @pmensaje + 'Error =>';
+		WHERE idEstadoOT=2 AND idOrdenTrabajo=@pidOrdenTrabajo
+
+		IF @vconteo <> 0 BEGIN
+			SET @pmensaje= @pmensaje + 'Error: No se puede dar reivision del vehiculo en este momento, consulte el estado de la Orden de Trabajo';
 		END;
 		IF @pmensaje <> '' BEGIN
 			SET @pcodigoMensaje = 5;
@@ -133,8 +98,8 @@ BEGIN
 		UPDATE OrdenTrabajo SET idOrdenTrabajo=@pidOrdenTrabajo, fechaInicio= @pfechaInicio,
 			estado_del_vehiculo= @pestado_del_vehiculo, objetosPersonales=@pobjetosPersonales
 		WHERE idOrdenTrabajo=@pidOrdenTrabajo;
-        SET @pmensaje = 'Finalizado con exito';
 
+        SET @pmensaje = 'Revision del vehiculo finalizado con exito';
 	END;
     
 	-- En caso de no elegir una accion
