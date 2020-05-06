@@ -5,70 +5,68 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="../assets/css/header.css" />
         <link rel="stylesheet" href="../assets/css/main.css" />
+        <link rel="stylesheet" href="../Libreria/css/Vehiculos/VE_RegistrarCliente.css" />
 		<link rel="icon" type="image" href="../images/Volvo-Emblema.ico" sizes="64x64">
 		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
-		<h1 align="center"><i><b><img  src="../images/source.gif" width="70xp" border-radius="100%">Volvo Partes</b></i></h1> 	
     </head>
     <body background="">
 		<div id="main">
 		<section>
-			<div>
-                <img src="../images/clientes.jpg" width="70xp" height="80xp">
-				<h2>Registro de Clientes</h2>
+			<div class="content1">
+                <img class="circulo_small" src="../images/clientes.jpg" width="70xp" height="80xp">
+				<h2>Registro de Clientes</h2><br><br>
 				<div>
 					<section>
                         <div class="content">
 
                             <form method="post" action="#">
                                 <div class="fields">
-                                    <div class="field" style="width: 48%; float:left; display:block; margin: 10;">
+                                    <div class="field zoom" align="left" style="width: auto; float:left; display:block; margin: auto;">
                                         <label for="name" align="left">Primer Nombre</label>
-                                        <input type="text" style="width:450px" name="name" id="name" value=""/>
+                                        <input type="text" style="width:auto" name="name" id="name" value=""/>
                                         <br>
                                     </div>
-                                    <div class="field" style="width: 48%; float:left; display:block; margin: 10;">
+                                    <div class="field zoom" align="left" style="width: auto; float:left; display:block; margin: auto;">
                                         <label for="name" align="left">Segundo Nombre</label>
-                                        <input type="text" style="width:450px" name="name" id="name" value=""/>
+                                        <input type="text" style="width:auto" name="name" id="name" value=""/>
                                         <br>
                                     </div>
-                                    <div class="field" style="width: 48%; float:left; display:block; margin: 10;">
+                                    <div class="field zoom" align="left" style="width: auto; float:left; display:block; margin: auto;">
                                         <label for="name" align="left">Primer Apellido</label>
-                                        <input type="text" style="width:450px" name="name" id="name" value=""/>
+                                        <input type="text" style="width:auto" name="name" id="name" value=""/>
                                         <br>
                                     </div>
-                                    <div class="field" style="width: 48%; float:left; display:block; margin: 10;">
+                                    <div class="field zoom" align="left" style="width: auto; float:left; display:block; margin: auto;">
                                         <label for="name" align="left">Segundo Apellido</label>
-                                        <input type="text" style="width:450px" name="name" id="name" value=""/>
+                                        <input type="text" style="width:auto" name="name" id="name" value=""/>
                                         <br>
                                     </div>
-                                    <div class="field" style="width: 48%; float:left; display:block; margin: 10;">
+                                    <div class="field zoom" align="left" style="width: auto; float:left; display:block; margin: auto;">
                                         <label for="name" align="left">Número de Identidad</label>
-                                        <input type="text" style="width:450px" name="name" id="name" value=""/>
+                                        <input type="text" style="width:auto" name="name" id="name" value=""/>
                                         <br>
                                     </div>
-                                    <div class="field" style="width: 48%; float:left; display:block; margin: 10;">
+                                    <div class="field zoom" align="left" style="width: auto; float:left; display:block; margin: auto;">
                                         <label for="name" align="left">Correo Electrónico</label>
-                                        <input type="text" style="width:450px" name="name" id="name" value=""/>
-                                        <br>
+                                        <input type="text" style="width:auto" name="name" id="name" value=""/>
+                                        
                                     </div>
-                                    <div class="field" style="width: 100%; float:left; display:block; margin: 10;">
-                                        <label for="name" align="left">Número de Télefono</label>
-                                        <input type="text" style="width:450px" name="name" id="name" value=""/>
-                                        <br>
+                                    <div class="field zoom" align="left" style="width: auto; float:left; display:block; margin: auto;">
+                                        <label for="name" align="left">Número de Teléfono</label>
+                                        <input type="text" style="width:auto" name="name" id="name" value=""/>
                                     </div>
-                                    <div style="width: 10%; float:left; display:block; margin: 25;">
-                                        <h3>Sexo</h3>
+                                    <div class="field" style="width: auto; float:left; display:block; margin: auto;">
+                                        <h4 align="center"><b>Género</b></h4>
+                                        <div style="width: auto; margin-left: auto;" >
+                                            <input type="radio" style="width: auto;" id="priority-low" name="priority" checked />
+                                            <label for="priority-low">Másculino</label>
+                                            <input type="radio" style="width: auto" id="priority-normal" name="priority" />
+                                            <label for="priority-normal">Femenino</label>
+                                        </div>
                                     </div>
-                                    <div class="field third" style="width: 35%" >
-                                        <input type="radio" id="priority-low" name="priority" checked />
-                                        <label for="priority-low">Másculino</label>
-                                    </div>
-                                    <div class="field third" style="width: 35%">
-                                        <input type="radio" id="priority-normal" name="priority" />
-                                        <label for="priority-normal">Fémenino</label>
-                                    </div>
-                                    <div style="width: 35%; float:left; display:block; margin: 25;">
-                                        <a href="#" class="button primary fit">Guardar</a>
+                                    <div align="center" style="width: inherit; float:left; display:block; margin-right: auto; margin-top: 2%;">
+                                        <br><a href="#" align="right" class="button primary" style="margin-left: 0;">Guardar</a>
+                                        <a href="#" align="right" class="button primary" style="margin-left: 100;">Cancelar</a>
                                     </div>
                                 </div>        
                             </form>

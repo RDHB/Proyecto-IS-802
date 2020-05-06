@@ -1,0 +1,188 @@
+<html>
+	<head>
+		<title>Configuración Usuario</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../assets/css/header.css" />
+        <link rel="stylesheet" href="../assets/css/main.css" />
+        <link rel="stylesheet" href="../Libreria/css/GestionUsuario/GU_Gestion-Configuracion.css" />
+		<link rel="icon" type="image" href="../images/Volvo-Emblema.ico" sizes="64x64">
+		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
+    </head>
+    <body background="">
+		<div id="main">
+		<section>
+            <div align="left" style="width: inherit; margin-left: 10%; margin-top: 2%;">
+                <h3 align="left"><img class="circulo_small" src="../images/login1.png">Nombre del Empleado</h3>
+            </div>
+            <div class="content1">
+                <div align="left" style="width: inherit;">
+                    <h3>Nombre del Empleado</h3>
+                </div><br><br>
+				<div>
+                    <div class="content">
+                        <form method="post" action="#">
+                            <div class="fields">
+                                <div class="field" align="left" style="width: auto; float:left; display:block; margin-right: auto;">
+                                    <label for="name" align="left">Correo Electrónico</label>
+                                    <input type="text" style="width:auto" name="name" id="name" value=""/>
+                                    <br>
+                                </div>
+                                <div class="field" align="left" style="width: auto; float:left; display:block; margin-right: auto;">
+                                    <label for="name" align="left">Dirección</label>
+                                    <input type="text" style="width:auto" name="name" id="name" value=""/>
+                                    <br>
+                                </div>
+                                <div class="field" align="left" style="width:fit-content; float:left; display:block; margin-right: auto; margin-top: 5%;">
+                                    <div>
+                                        <input class="button small1" type="button" style="width:auto" value="Cambiar Información"/>
+                                        <br>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="fields">
+                                <div class="field" align="left" style="width: auto; float:left; display:block; margin-right: auto;">
+														<select name="department" id="department">
+															<option value="">-Números Telefónicos-</option>
+															<option value="1">Manufacturing</option>
+															<option value="2">Shipping</option>
+															<option value="3">Administration</option>
+															<option value="4">Human Resources</option>
+														</select>
+                                </div>
+                                <div class="field" align="left" style="width:auto; float:left; display:block; margin-right: auto; margin-top: 2%;">
+                                    <div>
+                                        <input class="button small1" type="button" style="width:auto" value="Eliminar Teléfono"/>
+                                        <br>
+                                    </div>
+                                </div>
+                                <div class="field" align="left" style="width:auto; float:left; display:block; margin-right: auto; margin-top: 2%;">
+                                    <div>
+                                        <input class="button small1" type="button" style="width:auto" value="Modificar Teléfono"/>
+                                        <br>
+                                    </div>
+                                </div>
+                                <div class="field" align="left" style="width:auto; float:left; display:block; margin-right: auto; margin-top: 2%;">
+                                    <div>
+                                        <input class="button small1" type="button" style="width:auto" value="Agregar Teléfono"/>
+                                        <br>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>  
+				    </div> 
+				</div>
+            </div>
+            <div class="content1">
+                <div align="left" style="width: inherit;">
+                    <h3>Información de la Cuenta</h3>
+                </div><br><br>
+				<div>
+                    <div class="content">
+                        <form method="post" action="#">
+                            <div class="fields">
+                                <div class="field" align="left" style="width: auto; float:left; display:block; margin-right: auto;">
+                                    <label for="name" align="left">Nombre del Usuario</label>
+                                    <input type="text" style="width:auto" name="name" id="name" value=""/>
+                                    <br>
+                                    <div class="field" align="center" style="width:auto; float:left; display:block; margin-right: auto; margin-top: 2%;">
+                                        <div>
+                                            <input class="button small1" type="button" style="width:auto" value="Cambiar Nombre de Usuario"/>
+                                            <br>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="field" align="left" style="width: auto; float:left; display:block; margin-right: auto;">
+                                    <label for="name" align="left">Contraseña</label>
+                                    <input type="password" style="width:auto" name="name" id="name" value=""/>
+                                    <br>
+                                    <div class="field" align="center" style="width:auto; float:left; display:block; margin-right: auto; margin-top: 2%;">
+                                        <div>
+                                            <input class="button small1" type="button" style="width:auto" value="Cambiar Contraseña de Usuario"/>
+                                            <br>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="field" align="left" style="width:auto; float:left; display:block; margin-right: auto; margin-top: 1%;">
+                                    <label>Subir nueva foto de perfil</label>
+                                        <fieldset>
+                                            <input type="file" tabindex="1" style="width: 100px;">
+                                        </fieldset><br><br>
+                                        <div class="field" align="center" style="width:auto; float:left; display:block; margin-right: auto; margin-top: 2%;">
+                                            <div>
+                                                <input class="button small1" type="button" style="width:auto" value="Actualizar Foto de Perfil"/>
+                                                <br>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </form>  
+				    </div> 
+				</div>
+            </div>
+            <div class="content1">
+                <div align="left" style="width: inherit;">
+                    <h3>Información del Trabajo</h3>
+                </div><br><br>
+				<div>
+                    <div class="content">
+                        <form method="post" action="#">
+                            <div class="fields">
+                                <div class="field" align="left" style="width: auto; float:left; display:block; margin-right: inherit;">
+                                    <label for="name" align="left">Código del Empleado</label>
+                                    <input type="text" style="width:auto" name="name" id="name" value=""/>
+                                    <br>
+                                </div>
+                                <div class="field" align="left" style="width: auto; float:left; display:block; margin-right: inherit;">
+                                    <label for="name" align="left">Área de Trabajo</label>
+                                    <input type="text" style="width:auto" name="name" id="name" value=""/>
+                                    <br>
+                                </div>
+                                <div class="field" align="left" style="width: auto; float:left; display:block; margin-right: inherit;">
+                                    <label for="name" align="left">Cargo</label>
+                                    <input type="text" style="width:auto" name="name" id="name" value=""/>
+                                    <br>
+                                </div>
+                            </div>
+                            <div class="fields"><div class="field" align="left" style="width: auto; float:left; display:block; margin-right: inherit;">
+                                <label for="name" align="left">Hora de Entrada</label>
+                                <input type="text" style="width:auto" name="name" id="name" value=""/>
+                                <br>
+                            </div>
+                            <div class="field" align="left" style="width: auto; float:left; display:block; margin-right: inherit;">
+                                <label for="name" align="left">Hora de Salida</label>
+                                <input type="text" style="width:auto" name="name" id="name" value=""/>
+                                <br>
+                            </div>
+                            <div class="field" align="left" style="width: auto; float:left; display:block; margin-right: inherit;">
+                                <label for="name" align="left">Total de horas extras elaboradas</label>
+                                <input type="text" style="width:auto" name="name" id="name" value=""/>
+                                <br>
+                            </div>
+                            </div>
+                        </form>  
+				    </div> 
+				</div>
+            </div>
+		</section>
+		
+		<!-- ------------------------------------------------------------ -->
+		<!-- Hasta aquí se puede Editar -->
+		<!-- ------------------------------------------------------------ -->
+		</div>
+
+		<!-- Scripts Necesarios -->
+		<script src="../assets/js/jquery.min.js"></script><script src="../assets/js/demo.js"></script>
+		<script src="../assets/js/jquery.scrollex.min.js"></script>
+		<script src="../assets/js/jquery.scrolly.min.js"></script>
+		<script src="../assets/js/browser.min.js"></script>
+		<script src="../assets/js/breakpoints.min.js"></script>
+		<script src="../assets/js/util.js"></script>
+		<script src="../assets/js/main.js"></script>
+
+		<!-- Header -->
+		<script src="../assets/js/header.js"></script>
+		<script src="../Libreria/cargar-header.js"></script>
+    </body>
+</html>

@@ -13,27 +13,50 @@
 		<div id="main">
 		<section>
 			<div>
-                <img src="../images/gestoria-vehiculos.png" width="70xp" height="80xp">
+                <img class="circulo_small" src="../images/gestoria-vehiculos.png" width="70xp" height="80xp">
 				<h2>Registro de Vehiculos</h2>
 				<div>
 					<section>
-                        <div class="content">
+                        <div class="content" >
 
                             <form method="post" action="#">
                                 <div class="fields">
-                                    <div class="field" style="width: 48%; float:left; display:block; margin: 10;">
-                                        <label for="name" align="left">Vin</label>
+                                    <div class="field zoom" align="center" style="width: 48%; float:left; display:block;">
+                                        <label for="name" align="center">Vin</label>
                                         <input type="text" style="width:450px" name="name" id="name" value=""/>
                                         <br>
                                     </div>
-                                    <div class="field" style="width: 48%; float:left; display:block; margin: 10;">
-                                        <label for="name" align="left">Color</label>
+                                    <div class="field zoom" align="center" style="width: 48%; float:left; display:block;">
+                                        <label for="name" align="center">Color</label>
                                         <input type="text" style="width:450px" name="name" id="name" value=""/>
                                         <br>
                                     </div>
-                                    <div class="field" style="width: 25%; float:right; display:block;margin: 10;">
-                                        <label for="department" align="left">Marca</label>
-                                        <select name="department" style="width:340px" id="department">
+                                    <div class="field zoom" align="center" style="width: 48%; float:left; display:block; ">
+                                        <label for="name" align="center">Placa</label>
+                                        <input type="text" style="width:450px" name="name" id="name" value=""/>
+                                        <br>
+                                    </div>
+                                    <div class="field zoom" align="center" style="width: 48%; float:left; display:block; ">
+                                        <label for="name" align="center">Número de Placa</label>
+                                        <input type="text" style="width:450px" name="name" id="name" value=""/>
+                                        <br>
+                                    </div>
+                                    <div class="field" align="center" style="width: 25%; float:left; display:block; margin-left:30;">
+                                        <label for="department" align="center">Marca</label>
+                                        <select name="department" style="width:355px" id="department">
+                                            <option value="">- Marca -</option>
+                                            <option value="1">Manufacturing</option>
+                                            <option value="2">Shipping</option>
+                                            <option value="3">Administration</option>
+                                            <option value="4">Human Resources</option>
+                                        </select>
+                                    </div>
+                                    <div style=" margin: 5; padding: 80px; margin-left: 30;">
+                                        <a href="#" class="button small"><h3>+</h3></a>
+                                    </div>
+                                    <div class="field" style="width: 25%; float:left; display:block;">
+                                        <label for="department" align="center">Modelo</label>
+                                        <select name="department" style="width: 330px;" id="department">
                                             <option value="">- Category -</option>
                                             <option value="1">Manufacturing</option>
                                             <option value="2">Shipping</option>
@@ -41,49 +64,27 @@
                                             <option value="4">Human Resources</option>
                                         </select>
                                     </div>
-                                    <div style=" margin: 10; padding: 80px;">
+                                    <div style=" margin: 5; padding: 80px; margin-right: 45;">
                                         <a href="#" class="button small"><h3>+</h3></a>
                                     </div>
-                                    <div class="field" style="width: 25%; float:right; display:block; margin: 10;">
-                                        <label for="department" align="left">Modelo</label>
-                                        <select name="department" style="width:340px" id="department">
-                                            <option value="">- Category -</option>
-                                            <option value="1">Manufacturing</option>
-                                            <option value="2">Shipping</option>
-                                            <option value="3">Administration</option>
-                                            <option value="4">Human Resources</option>
-                                        </select>
+                                   <div style="width: 7%; float:left; display:block; margin: 25; margin-left: 50;">
+                                        <h4><b>Caja de Cambios</b></h4>
                                     </div>
-                                    <div style=" margin: 10; padding: 80px;">
-                                        <a href="#" class="button small"><h3>+</h3></a>
-                                    </div>
-                                    <div class="field" style="width: 48%; float:left; display:block; margin: 10;">
-                                        <label for="name" align="left">Placa</label>
-                                        <input type="text" style="width:450px" name="name" id="name" value=""/>
-                                        <br>
-                                    </div>
-                                    <div class="field" style="width: 48%; float:left; display:block; margin: 10;">
-                                        <label for="name" align="left">Número de Placa</label>
-                                        <input type="text" style="width:450px" name="name" id="name" value=""/>
-                                        <br>
-                                    </div>
-                                    <div style="width: 7%; float:left; display:block; margin: 25;">
-                                        <h4>Caja de Cambios</h4>
-                                    </div>
-                                    <div class="field third" style="width: 30%" >
+                                    <div class="field third zoom" style="width: 28%" >
                                         <input type="radio" id="priority-low" name="priority" checked />
                                         <label for="priority-low">Mecánico</label>
                                     </div>
-                                    <div class="field third" style="width: 28%">
+                                    <div class="field third zoom" style="width: 28%">
                                         <input type="radio" id="priority-normal" name="priority" />
                                         <label for="priority-normal">Automático</label>
                                     </div>
-                                    <div class="field third" style="width: 30%">
-                                        <input type="radio" id="priority-normal" name="priority" />
-                                        <label for="priority-normal">Semiautomático</label>
+                                    <div class="field third zoom" style="width: 28%">
+                                        <input type="radio" id="priority-normal1" name="priority" />
+                                        <label for="priority-normal1">Semiautomático</label>
                                     </div>
-                                    <div style="width: 35%; float:left; display:block; margin: 25;">
-                                        <a href="#" class="button primary fit">Guardar</a>
+                                    <div align="left" style="width: 100%; float:left; display:block; margin-right: 50; margin-top: 50;">
+                                        <br><a href="#" align="right" class="button primary" style="margin-left: 70;">Guardar</a>
+                                        <a href="#" align="right" class="button primary" style="margin-left: 100;">Cancelar</a>
                                     </div>
                                 </div>        
                             </form>
