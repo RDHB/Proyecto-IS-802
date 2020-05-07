@@ -65,7 +65,8 @@ function GU_GESTION_USUARIOS(req,res){
         reqDB.execute('GU_GESTION_USUARIOS').then(function(result){
             conn.close();
             if(result.output.pcodigoMensaje == 0 && req.body.accion === 'INSERT'){
-                functionsMiscelaneos.sendEmail('testproject588@gmail.com','MLRroot3','test.usuarioprueba@gmail.com','VOLVO AUTOPARTES (PROJECT-PRUEBA) Creacion de Usuario',`Su usuario ha sido creado en el sistema, por favor reinicie la contraseña. Ingrese al sistema con usuario: ${req.body.nombreUsuario} y  contraseña: +${req.body.contrasenia}`);
+                functionsMiscelaneos.sendEmail('testproject588@gmail.com','MLRroot3','test.usuarioprueba@gmail.com','VOLVO AUTOPARTES (PROJECT-PRUEBA) Creacion de Usuario',`Su usuario ha sido creado en el sistema, por favor reinicie la contraseña.
+                Ingrese al sistema con usuario: ${req.body.nombreUsuario} y  contraseña: +${req.body.contrasenia}`);
             }
             res.send({output: result.output, data: result.recordsets[0]});
         }).catch(function(err){
@@ -89,7 +90,8 @@ function GU_REINICIO_CONTRASENIA(req,res){
         reqDB.execute('GU_REINICIO_CONTRASENIA').then(function(result){
             conn.close();
             if(result.output.pcodigoMensaje == 0 && req.body.accion === 'RESET'){
-                functionsMiscelaneos.sendEmail('testproject588@gmail.com','MLRroot3','test.usuarioprueba@gmail.com','VOLVO AUTOPARTES (PROJECT-PRUEBA) Creacion de Usuario',`Su usuario ha sido creado en el sistema, por favor reinicie la contraseña. Ingrese al sistema con usuario: ${req.body.nombreUsuario} y  contraseña: +${result.output.presetContrasenia}`);
+                functionsMiscelaneos.sendEmail('testproject588@gmail.com','MLRroot3','test.usuarioprueba@gmail.com','VOLVO AUTOPARTES (PROJECT-PRUEBA) Reinicio de Contraseña',`Su contraseña ha sido reiniciada por el administrador del sistema. Por favor cambie su contraseña. 
+                Ingrese al sistema con usuario: ${req.body.nombreUsuario} y  contraseña: +${result.output.presetContrasenia}`);
             }
             res.send({output: result.output, data: result.recordsets[0]});
         }).catch(function(err){

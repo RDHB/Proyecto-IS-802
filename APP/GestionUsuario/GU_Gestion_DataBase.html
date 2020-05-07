@@ -25,18 +25,18 @@
                                     <div class="field" style="width: 25%; float:right; display:block; margin: 10;">
                                         <label for="department" align="left">Seleccionar Tabla</label>
                                         <select id="selectNombresTablaDB" name="department" style="width:100%" id="department">
-                                            <option value="- Seleccione Tabla -">- Seleccione Tabla -</option>
+                                            <option value="">- Seleccione Tabla -</option>
                                         </select>
                                     </div>
                                     <div class="field" style="width: 25%; float:right; display:block; margin: 10;">
                                         <label for="department" align="left">Filtrar Tabla por Campo</label>
                                         <select id="selectCamposTabla" name="department" style="width:100%" id="department">
-                                            <option value="ninguna">- Seleccione Campo Tabla -</option>
+                                            <option value="">- Seleccione Campo Tabla -</option>
                                         </select>
                                     </div>
                                     <div class="field" style="width: 25%; float:left; display:block; margin: 10 10 10 50;">
                                         <label for="name" align="left">Buscar Registro</label>
-                                        <input type="text" style="width:100%" name="name" id="name" value=""/>
+                                        <input type="text" style="width:100%" name="name" id="inputFiltroCampo" value=""/>
                                         <br>
                                     </div>
                                 </div>
@@ -46,64 +46,112 @@
                                     </header>
                                     <div class="content"> 
                                         <div class="table-wrapper" style="width: 90%; display:block; margin: 50;">
-                                            <table>
+                                            <table id="table">
                                                 <thead>
-                                                    <tr>
+                                                    <tr id="encabezadoTable">
+                                                        <!-- HEADER Y BODY DE LA TABLA -->
                                                         <th></th>
-                                                        <th>Id</th>
-                                                        <th>Nombre</th>
-                                                        <th>Correo</th>
-                                                        <th>Teléfono</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <th>
-                                                            <input type="checkbox" id="copy" name="copy" />
-                                                            <label for="copy">.</label>
-                                                        </th>
-                                                        <td>1</td>
-                                                        <td>Luis Solano</td>
-                                                        <td>luis@unah.hn</td>
-                                                        <td>96458212</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>
-                                                            <input type="checkbox" id="copy" name="copy" />
-                                                            <label for="copy">.</label>
-                                                        </th>
-                                                        <td>2</td>
-                                                        <td>Rene Hernandez</td>
-                                                        <td>rene@unah.hn</td>
-                                                        <td>45802356</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>
-                                                            <input type="checkbox" id="copy" name="copy" />
-                                                            <label for="copy">.</label>
-                                                        </th>
-                                                        <td>3</td>
-                                                        <td>Mariela Rodriguez</td>
-                                                        <td>mariela@unah.hn</td>
-                                                        <td>78451236</td>
-                                                    </tr>
+                                                <tbody id="cuerpoTable" style="display: flexbox; align-content: center;">
+                                                    <!-- HEADER Y BODY DE LA TABLA -->
                                                 </tbody>
                                                 <tfoot>
-                                                    <td colspan="4"></td>
-															<td><a href="#" class="button small"><h3>+</h3></a></td>
+                                                    <td colspan="1"></td>
+													<td><buttom id="plus" class="button small"><h3>+</h3></buttom></td>
                                                 </tfoot>
                                             </table>
                                             <ul class="actions" style="display: flexbox; justify-content: center;align-content: center;">
-                                                <li><a href="#" class="button small" style="width: 90%; display:block; margin: 20;">Editar Registro Seleccionado</a></li>
-                                                <li><a href="#" class="button small" style="width: 90%; display:block; margin: 20 ;">Eliminar Registro Seleccionados</a></li>
+                                                <li><buttom  id="btnEditarRegistro"  class="button small" style="width: 90%; display:block; margin: 20;">Editar Registro Seleccionado</buttom></li>
+                                                <li><buttom id="btnEliminarRegistro"  class="button small" style="width: 90%; display:block; margin: 20 ;">Eliminar Registro Seleccionados</buttom></li>
 										    </ul>
-                                        </div>                
+                                        </div>  
+                                    </div> 
+                                </section>             
                             </form>
                         </div>
 					</section>
 				</div>
 			</div>
-		</section>
+        </section>
+        
+        <!-- ------------------------------------------------------------ -->
+		<!-- Ventanas modales -->
+        <!-- ------------------------------------------------------------ -->
+
+        <div id="eliminateRegistro" class="modal">
+            <section style="display: flexbox; justify-content: center; align-items: center;">
+                <header style="display: flexbox; justify-content: center; align-items: center;">
+                    <h3 style="text-align: center; ">Está seguro que desea eliminar los siguientes registros seleccionados:</h3>
+                </header>
+                <div style="display: flexbox; align-items: center; justify-content: start;">
+                    <table id="table">
+                        <tbody id="eliminateCamposRegistros" style="display: flexbox; align-content: center;">
+                            <!-- BODY DE LA TABLA -->
+                        </tbody>
+                    </table>
+                    <div align="center" style="margin: 25;" id="eliminateNotificacion"></div>
+                </div>
+                <div class="content" style="display: flexbox; justify-content: center; align-items: center;">
+                    <div class="table-wrapper" style="margin: 25; display: flexbox; justify-content: center; align-items: center;">
+                        <div align="center" style="margin: 25; display: flexbox; justify-content: space-between;">
+                            <a id="aceptarEliminateRegistro" class="button small">Aceptar</a>
+                            <a id="cancelarEliminateRegistro" class="button small" rel="modal:close">Cancelar</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div id="updateRegistro" class="modal">
+            <section style="display: flexbox; justify-content: center; align-items: center;">
+                <header style="display: flexbox; justify-content: center; align-items: center;">
+                    <h3 style="text-align: center; ">Ingrese la información que desea modificar:</h3>
+                </header>
+                <div style="display: flexbox; align-items: center; justify-content: start;">
+                    <table id="table">
+                        <tbody id="updateCamposRegistro" style="display: flexbox; align-content: center;">
+                            <!-- BODY DE LA TABLA -->
+                        </tbody>
+                    </table>
+                    <div align="center" style="margin: 25;" id="updateNotificacion"></div>
+                </div>
+                <div class="content" style="display: flexbox; justify-content: center; align-items: center;">
+                    <div class="table-wrapper" style="margin: 25; display: flexbox; justify-content: center; align-items: center;">
+                        <div align="center" style="margin: 25; display: flexbox; justify-content: space-between;">
+                            <a id="aceptarUpdateRegistro" class="button small">Aceptar</a>
+                            <a id="cancelarUpdateRegistro" class="button small" rel="modal:close">Cancelar</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div id="agregarRegistro" class="modal">
+            <section style="display: flexbox; justify-content: center; align-items: center;">
+                <header style="display: flexbox; justify-content: center; align-items: center;">
+                    <h3 style="text-align: center; ">Ingrese la información para ingresar el registro:</h3>
+                </header>
+                <div style="display: flexbox; align-items: center; justify-content: start;">
+                    <table id="table">
+                        <tbody id="agregarCamposRegistro" style="display: flexbox; align-content: center;">
+                            <!-- BODY DE LA TABLA -->
+                        </tbody>
+                    </table>
+                    <div align="center" style="margin: 25;" id="agregarNotificacion"></div>
+                </div>
+                <div class="content" style="display: flexbox; justify-content: center; align-items: center;">
+                    <div class="table-wrapper" style="margin: 25; display: flexbox; justify-content: center; align-items: center;">
+                        <div align="center" style="margin: 25; display: flexbox; justify-content: space-between;">
+                            <a id="aceptarAgregarRegistro" class="button small">Aceptar</a>
+                            <a id="cancelarAgregarRegistro" class="button small" rel="modal:close">Cancelar</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
 		
 		<!-- ------------------------------------------------------------ -->
 		<!-- Hasta aquí se puede Editar -->

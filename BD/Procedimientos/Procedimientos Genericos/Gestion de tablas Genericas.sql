@@ -26,7 +26,7 @@ CREATE PROCEDURE [dbo].[GENERIC_GESTION_TABLAS](
 BEGIN
     -- Declaracion de Variables
 	DECLARE	@vconteo INT;
-	DECLARE @ConsultaSQL NVARCHAR(500);
+	DECLARE @ConsultaSQL NVARCHAR(MAX);
 	DECLARE @tmpTabla TABLE (columna VARCHAR(45));
 	DECLARE @vnombre_idCampo VARCHAR(45);
 	DECLARE @vidCampo INT;

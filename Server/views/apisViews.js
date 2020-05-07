@@ -44,7 +44,7 @@ apisViews.get('/gestionUsuario/GU_Gestion_Usuarios',functionsAuth.authAdmin, (re
     res.sendFile(path + '/GestionUsuario/GU_Gestion_Usuarios.html');
 });
 
-apisViews.get('/gestionUsuario/GU_DataBase'/*,functionsAuth.authAdmin*/,(req,res) => {
+apisViews.get('/gestionUsuario/GU_DataBase',functionsAuth.authAdmin,(req,res) => {
     res.sendFile(path + '/GestionUsuario/GU_Gestion_DataBase.html');
 });
 

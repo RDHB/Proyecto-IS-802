@@ -46,7 +46,7 @@ function GET_DATA_USER(req, res){
 function GET_TABLESNAMES_DB(req, res){
     conn.connect().then(function(result){
         var reqDB = new sql.Request(conn);
-        reqDB.query('SELECT * FROM INFORMATION_SCHEMA.TABLES').then(function(result){
+        reqDB.query('SELECT * FROM INFORMATION_SCHEMA.TABLES ORDER BY TABLE_NAME').then(function(result){
             conn.close();
             res.send({data: result.recordsets[0]});
         })
@@ -63,7 +63,7 @@ function GET_TABLESNAMES_DB(req, res){
 function GET_CAMPOS_TABLE_DB(req, res){
     conn.connect().then(function(result){
         var reqDB = new sql.Request(conn);
-        reqDB.query("SELECT COLUMN_NAME FROM Information_Schema.Columns WHERE TABLE_NAME = '"+req.body.nombreTabla+"' ORDER BY COLUMN_NAME")
+        reqDB.query("SELECT COLUMN_NAME, DATA_TYPE FROM Information_Schema.Columns WHERE TABLE_NAME = '"+req.body.nombreTabla+"'")// ORDER BY COLUMN_NAME")
         .then(function(result){
             conn.close();
             res.send({data: result.recordsets[0]});
