@@ -1,8 +1,8 @@
 .content1 {
     width: auto;
     margin-top: 1.5%;
-    margin-left:10%;
-    margin-right:10%;
+    margin-left:6%;
+    margin-right:6%;
     padding-bottom: 65px;
     padding-left: 10px;
     color: #ffffff;
@@ -58,4 +58,9 @@
     border-radius: 0.825em;
     padding: 0 1em;
     margin-top: auto;
+}
+
+.linea1 {
+    display: inline-block;
+    margin-right: 25px;
 }
