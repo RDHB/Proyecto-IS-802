@@ -1,15 +1,15 @@
 -- <=== GU_Gestion_Usuarios ===>
 /* Requisitos de las acciones:
  * INSERT: @pcodigoEmpleado, @pnombreUsuario, @pcontrasenia
- *
+ * 
  * UPDATE: @pidUsuario, @pnombreUsuario, @pcorreoElectronico, @ptelefono
- *
+ * 
  * SELECT: 
  * Opcionales: @pnombrePersona, idEstadoUsuario, idAreaTrabajo
  * Salida-Data: idUsuario, nombrePersona, nombreUsuario, correoElectronico, telefono
- *
+ * 
  * DESACTIVATE: @pnombreUsuario
- *
+ * 
  * ACTIVATE: @pnombreUsuario
 */
 CREATE PROCEDURE GU_GESTION_USUARIOS(
@@ -139,6 +139,7 @@ BEGIN
 			idUsuario
 			, nombreUsuario
 			, contrasenia
+			, nombreArchivo
 			, Empleado_idEmpleado
 			, Estado_Usuario_idEstado_Usuario
 		)
@@ -146,6 +147,7 @@ BEGIN
 			(SELECT MAX(idUsuario) + 1 FROM Usuarios)
 			, @pnombreUsuario
 			, dbo.FN_ENCRIPTAR(@pcontrasenia)
+			, 'default.png'
 			, (SELECT idEmpleado FROM Empleado WHERE codigoEmpleado = @pcodigoEmpleado)
 			, 1
 		);

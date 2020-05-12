@@ -234,14 +234,14 @@ VALUES
 -- Table ContratoPersonal
 INSERT INTO ContratoPersonal([idContratoPersonal],[fechaContrato],[Sueldo],[HoraEntrada],[HoraSalida],[TipoContrato_idTipoContrato]) 
 VALUES
-(1,'2020-01-29',16229,'20:14:33','13:16:19',1),
+(1,'2020-01-29',16229,'13:16:19','20:14:33',1),
 (2,'2019-04-19',5735,'06:55:48','08:02:23',2),
 (3,'2020-01-18',10446,'11:27:13','17:51:23',1),
-(4,'2020-12-29',15730,'21:25:34','07:21:43',2),
+(4,'2020-12-29',15730,'07:21:43','21:25:34',2),
 (5,'2019-03-08',4361,'12:34:40','17:32:16',1),
 (6,'2020-07-10',24789,'10:13:58','11:24:33',1),
-(7,'2019-08-19',7488,'09:03:42','00:43:28',1),
-(8,'2019-06-24',19434,'08:40:07','05:02:42',2),
+(7,'2019-08-19',7488,'00:43:28','09:03:42',1),
+(8,'2019-06-24',19434,'05:02:42','08:40:07',2),
 (9,'2021-02-11',21813,'03:39:55','10:13:36',2),
 (10,'2020-12-27',6718,'03:34:49','07:17:11',2);
 
@@ -640,28 +640,28 @@ VALUES
 (2,'Deshabilitado');
 
 -- Table Usuarios
-INSERT INTO Usuarios([idUsuario],[nombreUsuario],[contrasenia],[Empleado_idEmpleado],[Estado_Usuario_idEstado_Usuario]) 
+INSERT INTO Usuarios([idUsuario],[nombreUsuario],[contrasenia],[nombreArchivo],[Empleado_idEmpleado],[Estado_Usuario_idEstado_Usuario]) 
 VALUES
-(1,'LuisFer15','3xtr1+0eA',1,1), -- Extremo15
-(2,'Rene2','.6s6-0p8rt6-7l8sU',2,1), -- Fisicoparticulas2
-(3,'Mary17','G8+14!Thr0 1sie',3,1), -- GameOfThrones61
-(4,'MarvinPonce','V8s0UEe',4,1), -- Vaso231
-(5,'Goku10','K8+1H8+1H8',5,1), -- KameHameHa
-(6,'Vegeta20','R1spl8 _0r.6 8l',6,1), -- ResplandorFinal
-(7,'elRubius','G8t0e',7,1), -- Gato1
-(8,'MasterChief','?0rt0 8',8,1), -- Cortona
-(9,'Link20','Z1l_84-8r6 84!T6+1U',9,1), -- ZeldaOcarinaOfTime2
-(10,'Dazu','2/5HUoUo',10,1), -- UNAH2020
-(11,'Hu','PQU24OYM5OU',11,1),
-(12,'Denton','NAG63DHW6XI',12,1),
-(13,'Emerson','QMF57AGC8LI',13,1),
-(14,'Rajah','JED04HBG6GS',14,1),
-(15,'Ferris','FCU55FMI1MJ',15,2),
-(16,'Elliott','GBB29FUO7LZ',16,1),
-(17,'Logan','HLV64AZT9VC',17,1),
-(18,'Prescott','TEN88XYH0ZN',18,1),
-(19,'Nissim','GKR57UFE1NF',19,1),
-(20,'Zachary','NQI46GIZ7XV',20,2);
+(1,'LuisFer15','3xtr1+0eA'              ,'LuisFer15.jpg',1,1), -- Extremo15
+(2,'Rene2','.6s6-0p8rt6-7l8sU'          ,'Rene.png',2,1), -- Fisicoparticulas2
+(3,'Mary17','G8+14!Thr0 1sie'           ,'Mary17.jpg',3,1), -- GameOfThrones61
+(4,'MarvinPonce','V8s0UEe'              ,'default.png',4,1), -- Vaso231
+(5,'Goku10','K8+1H8+1H8'                ,'default.png',5,1), -- KameHameHa
+(6,'Vegeta20','R1spl8 _0r.6 8l'         ,'default.png',6,1), -- ResplandorFinal
+(7,'elRubius','G8t0e'                   ,'default.png',7,1), -- Gato1
+(8,'MasterChief','?0rt0 8'              ,'default.png',8,1), -- Cortona
+(9,'Link20','Z1l_84-8r6 84!T6+1U'       ,'default.png',9,1), -- ZeldaOcarinaOfTime2
+(10,'Dazu','2/5HUoUo'                   ,'default.png',10,1), -- UNAH2020
+(11,'Hu','PQU24OYM5OU'                  ,'default.png',11,1),
+(12,'Denton','NAG63DHW6XI'              ,'default.png',12,1),
+(13,'Emerson','QMF57AGC8LI'             ,'default.png',13,1),
+(14,'Rajah','JED04HBG6GS'               ,'default.png',14,1),
+(15,'Ferris','FCU55FMI1MJ'              ,'default.png',15,2),
+(16,'Elliott','GBB29FUO7LZ'             ,'default.png',16,1),
+(17,'Logan','HLV64AZT9VC'               ,'default.png',17,1),
+(18,'Prescott','TEN88XYH0ZN'            ,'default.png',18,1),
+(19,'Nissim','GKR57UFE1NF'              ,'default.png',19,1),
+(20,'Zachary','NQI46GIZ7XV'             ,'default.png',20,2);
 
 -- Table Accion
 

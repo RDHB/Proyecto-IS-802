@@ -172,7 +172,8 @@ inner join Empleado e on u.Empleado_idEmpleado = e.idEmpleado;
 
 
 -- LLamar al procedimiento almacenado: GU_CONFIG
--- select * from telefono
+-- select * from Telefono
+
 DECLARE
 	-- Parametros de Entrada
 	-- ID
@@ -183,6 +184,7 @@ DECLARE
 	@pnewNombreUsuario			VARCHAR(45),
 	@pnewCorreoElectronico		VARCHAR(45),
 	@pnewDireccion				VARCHAR(45),
+	@pextensionArchivo			VARCHAR(45),
 
 	-- ADD
 	@pnewTelefono				VARCHAR(45),
@@ -195,28 +197,30 @@ DECLARE
     -- Parametros de Salida
     -- Codigo de mensaje
     @pcodigoMensaje				INT,
-	@pmensaje 					VARCHAR(1000)
+	@pmensaje 					VARCHAR(1000),
 
     -- Otros parametros de salida
-
+	@pnombreArchivo				VARCHAR(45)
 ;
 
 SET @pnombreUsuario = 'LuisFer15';
 
-SET @pnewContrasenia = 'Extremo15';
+SET @pnewContrasenia = '';
 SET	@pnewNombreUsuario = '';
 SET	@pnewCorreoElectronico = '';
 SET	@pnewDireccion = '';
+SET	@pextensionArchivo = '';
 
-SET @pnewTelefono = '';
+SET @pnewTelefono = '+504 32550664';
 
-SET @pidTelefono = 61;
+SET @pidTelefono = 0;
 
 
-SET @pAccion = 'UPDATE-CONTRASENIA';
+SET @pAccion = 'ADD-TELEFONO';
 
 SET @pcodigoMensaje = 0;
 SET @pmensaje = '';
+SET	@pnombreArchivo = '';
 
 EXEC GU_CONFIG
 	-- INTPUT
@@ -226,6 +230,7 @@ EXEC GU_CONFIG
 	@pnewNombreUsuario,
 	@pnewCorreoElectronico,
 	@pnewDireccion,
+	@pextensionArchivo,
 
 	@pnewTelefono,
 
@@ -235,13 +240,20 @@ EXEC GU_CONFIG
 	
 	-- OUTPUT
 	@pcodigoMensaje OUTPUT,
-	@pmensaje OUTPUT;
+	@pmensaje OUTPUT,
+	@pnombreArchivo OUTPUT
 ;
 
 -- OUTPUT
 SELECT @pcodigoMensaje;
 SELECT @pmensaje;
+SELECT @pnombreArchivo;
 
+/*
+select * from telefono T
+INNER JOIN Persona P ON P.idPersona = T.Persona_idPersona
+WHERE P.idPersona = 11
+*/
 
 
 
