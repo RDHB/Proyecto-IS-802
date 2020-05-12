@@ -119,6 +119,7 @@ BEGIN
 		, u.idUsuario
 		, u.nombreUsuario
 		, u.contrasenia
+		, u.nombreArchivo
 		, u.Estado_Usuario_idEstado_Usuario 
 		, (
 			SELECT descripcion FROM Estado_Usuario eu5

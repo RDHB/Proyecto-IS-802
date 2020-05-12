@@ -450,6 +450,7 @@ CREATE TABLE Usuarios (
 	idUsuario INT NOT NULL,
 	nombreUsuario VARCHAR(45) COLLATE SQL_Latin1_General_CP1_CS_AS NOT NULL,
 	contrasenia VARCHAR(45) NOT NULL,
+	nombreArchivo VARCHAR(45) COLLATE SQL_Latin1_General_CP1_CS_AS NULL,
 	Empleado_idEmpleado INT NOT NULL,
 	Estado_Usuario_idEstado_Usuario INT NOT NULL,
 	PRIMARY KEY (idUsuario)
