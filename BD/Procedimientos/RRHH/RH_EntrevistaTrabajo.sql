@@ -118,6 +118,16 @@ BEGIN
 			SET @pmensaje = 'El aspirante ya esta registrado como un empleado: ' + @pprimerNombre + ' ' + @pprimerApellido;
 		END;
 		
+		SELECT @vconteo = COUNT(*) FROM Telefono
+		WHERE Persona_idPersona = (
+			SELECT idPersona FROM Persona
+			WHERE numeroIdentidad = @pnumeroIdentidad
+		)
+		AND numeroTelefono = @pnumeroTelefono
+		IF @vconteo <> 0 BEGIN
+			SET @pmensaje = @pmensaje + ' El usuario ya cuenta con este numero de telefono => ' + @pnumeroTelefono + ' ';
+		END;
+
 		IF @pmensaje <> '' BEGIN
 			SET @pcodigoMensaje = 5;
 			SET @pmensaje = 'Error: Validacion en la condicion del procdimiento: ' + @pmensaje;

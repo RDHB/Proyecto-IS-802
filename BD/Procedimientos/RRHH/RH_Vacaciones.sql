@@ -7,7 +7,7 @@
  * SELECT: @pcodigoEmpleado
  * Salida: @pnombreCompleto, @pcargo
 */
-ALTER PROCEDURE [dbo].[RH_VACACIONES] (
+CREATE PROCEDURE RH_VACACIONES (
     -- Parametros de Entrada
 	@pcodigoEmpleado			VARCHAR(45),
 	@pcantidadDias				INT,
