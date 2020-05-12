@@ -12,6 +12,7 @@ const apisGU = express.Router();
 apisGU.post('/GU_LOGIN',functionsGU.GU_LOGIN);
 apisGU.post('/GU_GESTION_USUARIOS',functionsMiscelaneos.authToken,functionsGU.GU_GESTION_USUARIOS);
 apisGU.post('/GU_REINICIO_CONTRASENIA',functionsMiscelaneos.authToken,functionsGU.GU_REINICIO_CONTRASENIA);
+apisGU.post('/GU_CONFIG'/*,functionsMiscelaneos.authToken*/,functionsGU.GU_CONFIG);
 
 
 // EXPORTANDO EL OBJETO DESEADO

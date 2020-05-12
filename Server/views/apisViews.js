@@ -26,6 +26,11 @@ apisViews.get('/login', (req,res) => {
     }
 });
 
+// -- VISTA CONFIGURACION DE USUARIO
+apisViews.get('/gestionUsuario/GU_Configuracion_Usuario',functionsAuth.authLogin,(req,res) => {
+    res.sendFile(path + '/GestionUsuario/GU_Configuracion_Usuario.html');
+});    
+
 // -- VISTAS FACTURACION
 apisViews.get('/facturacion/FA_Home',/*functionsAuth.authCajero,*/ (req,res) => {
     res.sendFile(path + '/Facturacion/FA_Home.html');

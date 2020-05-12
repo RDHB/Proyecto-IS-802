@@ -103,9 +103,51 @@ function GU_REINICIO_CONTRASENIA(req,res){
     });
 }
 
+function GU_CONFIG (req,res){
+    conn.connect().then(function(){
+        var reqDB = new sql.Request(conn);
+        reqDB.input('paccion',sql.VarChar,req.body.accion);
+        reqDB.input('pnombreUsuario',sql.VarChar,req.body.nombreUsuario);
+        reqDB.input('pnewContrasenia',sql.VarChar,req.body.newContrasenia);
+        reqDB.input('pnewNombreUsuario',sql.VarChar,req.body.newNombreUsuario);
+        reqDB.input('pnewCorreoElectronico',sql.VarChar,req.body.newCorreoElectronico);
+        reqDB.input('pnewDireccion',sql.VarChar,req.body.newDireccion);
+        reqDB.input('pnewTelefono',sql.VarChar,req.body.newTelefono);
+        reqDB.input('pidTelefono',sql.Int,req.body.idTelefono);
+        reqDB.output('pcodigoMensaje', sql.Int);
+        reqDB.output('pmensaje', sql.VarChar);
+        reqDB.execute('GU_CONFIG').then(function(result){
+            conn.close();
+            if(result.output.pcodigoMensaje == 0){
+                switch(req.body.accion){
+                    case 'UPDATE-CONTRASENIA':{
+                        functionsMiscelaneos.sendEmail('testproject588@gmail.com','MLRroot3','test.usuarioprueba@gmail.com','VOLVO AUTOPARTES (PROJECT-PRUEBA) Cambio de Contraseña',`Su contraseña ha sido cambiada recientemente.
+                        Recuerde ingresar al sistema con usuario: ${req.body.nombreUsuario} y  contraseña: ${req.body.newContrasenia}. 
+                        Si usted no ha realizado estos cambios reporte inmediatamente con el administrador del sistema`);
+                        break;
+                    }
+                    case 'UPDATE-USUARIO':{
+                        functionsMiscelaneos.sendEmail('testproject588@gmail.com','MLRroot3','test.usuarioprueba@gmail.com','VOLVO AUTOPARTES (PROJECT-PRUEBA) Cambio de Nombre de Usuario',`Su nombre de usuario ha sido cambiado recientemente. 
+                        Recuerde ingresar al sistema con el nombre de usuario: ${req.body.newNombreUsuario}.
+                        Si usted no ha realizado estos cambios reporte inmediatamente con el administrador del sistema`);
+                        break;
+                    }
+                }
+            }
+            res.send({output: result.output, data: result.recordsets[0]});
+        }).catch(function(err){
+            conn.close();
+            res.send(messagesMiscelaneos.errorC2);
+        });
+    }).catch(function(err){
+        res.send(messagesMiscelaneos.errorC1);
+    });
+}
+
 // EXPORTANDO LAS FUNCIONES QUE ATENDERAN LAS PETICIONES
 module.exports = {
     GU_LOGIN,
     GU_GESTION_USUARIOS,
-    GU_REINICIO_CONTRASENIA
+    GU_REINICIO_CONTRASENIA,
+    GU_CONFIG
 };

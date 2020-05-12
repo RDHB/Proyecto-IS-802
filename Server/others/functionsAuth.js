@@ -4,6 +4,14 @@
 
 
 // FUNCIONES PARA AUTENTICAR LA VISITA A UN PAGINA DEPENDIENDO DE LA SESSION INICIADA
+function authLogin(req,res,next){
+    if (req.session.name){
+        return next();
+    }else{
+        return res.redirect('/volvo/view/login');
+    }
+}
+
 function authCajero(req,res,next){
     if (req.session.name && req.session.idCargo == 14){
         return next();
@@ -86,6 +94,7 @@ function authHomeRRHH(req,res,next){
 
 // EXPORTANDO LAS FUNCIONES VALIDADORAS
 module.exports = {
+    authLogin,
     authCajero,
     authAdmin,
     authAsesorServicios,

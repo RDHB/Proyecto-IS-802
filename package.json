@@ -27,6 +27,7 @@
     "generate-password": "^1.5.1",
     "https": "^1.0.0",
     "jsonwebtoken": "^8.5.1",
+    "jwt-redis": "^5.0.11",
     "jwt-simple": "^0.5.6",
     "moment": "^2.24.0",
     "mssql": "^6.1.0",
