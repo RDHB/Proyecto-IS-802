@@ -13,34 +13,37 @@
     <body background="">
 		<div id="main">
 		<section>
-			<div >
+			<div class="content1">
                 <img class="circulo_small" src="../images/vehiculo-cliente.jpg">
-				<h3>Asociación Cliente-Vehículo</h3>
+				<h3>Asociación Cliente-Vehículo</h3><br>
 				<div>
 					<section>
                         <div class="content">
 
                             <form method="post" action="#">
                                 <div class="fields">
-                                    <div class="field" align="center" style="width: 35%; float:left; display:block; margin-left: 10;">
+                                    <div class="field" align="center" style="width: auto; float:left; display:block; margin: auto;">
                                         <label for="name" align="center">Número de Identidad</label>
-                                        <input type="text" class="zoom" placeholder="ejemplo 0000-0000-0000" style="width:300px" name="name" id="name" value=""/>
+                                        <input type="text" style="width:auto" name="name" id="name" value="" placeholder="ejemplo: 000000000000"/>
+                                        <br>
                                     </div>
-                                    <div class="field" align="center" style="width: 35%; float:left; display:block; margin-left: 10;">
+                                    <div class="field" align="center" style="width: auto; float:left; display:block; margin: auto;">
                                         <label for="name" align="center">Vin</label>
-                                        <input type="text" class="zoom" style="width:300px" name="name" id="name" value=""/>
+                                        <input type="text" style="width:auto" name="name" id="name" value=""/>
+                                        <br>
                                     </div>
-                                    <div class="field" align="center" style="width: 20%; float:left; display:block; margin-top: 45;">
-                                        <a href="#" class="button1 b-blue" style="width: 70%; display:block; margin-right:10;" >Vincular</a>
+                                    <div class="field" align="center" style="width: auto; float:left; display:block; margin: auto; margin-right:10%;">
+                                        <a href="#" class="button1 b-blue" style="width: auto; display:block" >Vincular</a>
                                     </div>
                                 </div>
                                 <section>
                                     <header>
-                                        <h3>Vehículos del Cliente</h3>
+                                        <h3>Vehículos del Cliente</h3><br>
                                     </header>
                                     <div class="content"> 
-                                        <div class="table-wrapper" style="width: 90%; display:block; margin-left: 50;">
-                                            <table>
+                                        <div class="table-wrapper" style="width: 90%; display:block; margin-left: 6%; margin-right: 10%;">
+                                            
+                                            <div class="datagrid"><table>
                                                 <thead>
                                                     <tr>
                                                         <th></th>
@@ -50,66 +53,76 @@
                                                         <th>VIN</th>
                                                     </tr>
                                                 </thead>
+                                                <tfoot>
+                                                    <tr>
+                                                        <td colspan="5">
+                                                        <div id="paging">
+                                                            <ul>
+                                                                <li><a href="#"><span>Anterior</span></a></li>
+                                                                <li><a href="#" class="active"><span>1</span></a></li>
+                                                                <li><a href="#"><span>2</span></a></li>
+                                                                <li><a href="#"><span>Siguiente</span></a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </tr>
+                                                </tfoot>
                                                 <tbody>
                                                     <tr>
-                                                        <th>
-                                                            <div class="field half">
-                                                                <input type="checkbox" id="copy1" name="" />
-                                                                <label for="copy1">.</label>
-                                                            </div>
-                                                        </th>
+                                                        <td style="width: 0.5%;">
+                                                            <input type="checkbox" id="check" name="check">
+                                                            <label for="check"></label>
+                                                        </td>
                                                         <td>1</td>
                                                         <td>Mariela Rodriguez</td>
                                                         <td>Toyota 4x4 Hilux</td>
                                                         <td>1234</td>
                                                     </tr>
                                                     <tr>
-                                                        <th>
-                                                            <div class="field half">
-                                                                <input type="checkbox" id="copy2" name="copy" />
-                                                                <label for="copy2">.</label>
-                                                            </div>
-                                                        </th>
+                                                        <td style="width: 0.5%;">
+                                                            <input type="checkbox" id="check1" name="check1">
+                                                            <label for="check1"></label>
+                                                        </td>
                                                         <td>2</td>
                                                         <td>Mariela Rodriguez</td>
                                                         <td>Camioneta Ford</td>
                                                         <td>5678</td>
                                                     </tr>
                                                     <tr>
-                                                        <th>
-                                                            <div class="field half">
-                                                                <input type="checkbox" id="copy3" name="" />
-                                                                <label for="copy3">.</label>
-                                                            </div>
-                                                        </th>
-                                                        <td>3</td>
+                                                        <td style="width: 0.5%;">
+                                                            <input type="checkbox" id="check2" name="check2">
+                                                            <label for="check2"></label>
+                                                        </td>
+                                                        <td>1</td>
                                                         <td>Mariela Rodriguez</td>
-                                                        <td>Honda Civic Rojo</td>
-                                                        <td>8975</td>
+                                                        <td>Honda Civic</td>
+                                                        <td>7542</td>
                                                     </tr>
                                                 </tbody>
-                                                <tfoot>
-                                                    <td colspan="4"></td>
-															<td><a href="#" class="button small"><h3>+</h3></a></td>
-                                                </tfoot>
-                                            </table>
+                                                </table></div>
+                                                <div class="field" align="center" style="width: auto; float:left; display:block; margin: 10; margin-left: 10%; margin-right: auto;">
                                             <ul class="actions">
                                                 <li>
-                                                    <div class="field" align="center" style="width: 30%; float:left; display:block; margin: 10;">
-                                                        <a href="#" class="button small" style="width: 300%; display:block; margin: 10;">Eliminar Registros Seleccionados</a>
+                                                    <div class="field" align="center" style="width: auto; float:left; display:block; margin: 10; margin-left: auto; margin-right: auto;">
+                                                        <a href="#" class="button small" style="width: auto; display:block; margin: 10;">Agregar</a>
                                                     </div>
                                                 </li>
                                                 <li>
-                                                    <div class="field" align="center" style="width: 30%; float:left; display:block; margin: 10;">
-                                                        <a href="#" class="button small" style="width: 300%; display:block; margin: 10; margin-left: 50;">Revertir Cambios</a>
+                                                    <div class="field" align="center" style="width: auto; float:left; display:block; margin: 10; margin-left: auto; margin-right: auto;">
+                                                        <a href="#" class="button small" style="width: auto; display:block; margin: 10;">Eliminar Registros Seleccionados</a>
                                                     </div>
                                                 </li>
                                                 <li>
-                                                    <div class="field" align="right" style="width: 30%; float:left; display:block; margin: 10;">
-                                                        <a href="#" class="button small" style="width: 300%; display:block; margin: 10; margin-left: 50;">Guardar Cambios</a>
+                                                    <div class="field" align="center" style="width: auto; float:left; display:block; margin: 10; margin-left: auto; margin-right: auto;">
+                                                        <a href="#" class="button small" style="width: auto; display:block; margin: 10;">Revertir Cambios</a>
                                                     </div>
                                                 </li>
-										    </ul>
+                                                <li>
+                                                    <div class="field" align="right" style="width: auto; float:left; display:block; margin: 10; margin-left: auto; margin-right: auto;">
+                                                        <a href="#" class="button small" style="width: auto; display:block; margin: 10;">Guardar Cambios</a>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                            </div>
                                         </div>
                                 </section>        
                             </form>

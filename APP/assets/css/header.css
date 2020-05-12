@@ -149,7 +149,7 @@
 				transition: color 0.35s ease-in-out;
 			}
 
-				#header .icons a:hover {
+				#header .icons a: {
 					color: #fff;
 				}
 
