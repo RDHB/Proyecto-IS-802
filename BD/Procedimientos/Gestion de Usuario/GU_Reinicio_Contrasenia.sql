@@ -73,9 +73,9 @@ BEGIN
 		/* Consultas para la funcion FN_RANDOM_STRING
 		 * SELECT dbo.FN_RANDOM_STRING(8,'C') AS 'Cadena aleatoria','Solo Letras' AS Contiene  --Cadena aleatoria que contiene Letras.
 		 * UNION ALL
-		 * SELECT dbo.FN_RANDOM_STRING(8,'N'),'Solo Números'  --Cadena aleatoria que contiene Números.
+		 * SELECT dbo.FN_RANDOM_STRING(8,'N'),'Solo Nï¿½meros'  --Cadena aleatoria que contiene Nï¿½meros.
 		 * UNION ALL
-		 * SELECT dbo.FN_RANDOM_STRING(8,'CN'), 'Letras y Números'--Cadena aleatoria que contiene Letras y Números.
+		 * SELECT dbo.FN_RANDOM_STRING(8,'CN'), 'Letras y Nï¿½meros'--Cadena aleatoria que contiene Letras y Nï¿½meros.
 		*/
 		-- Devolver la contrasenia reiniciada
 		SET @presetContrasenia = dbo.FN_RANDOM_STRING(8,'CN');

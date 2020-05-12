@@ -5,37 +5,7 @@
     * 3. Reemplaze el codigo que esta dentro de las comillas simples de .preapend()
     * 4. Listo el Header se aplicado a todas las paginas
 */
-$(Document).ready(function(){
-    /*$.ajax({
-		url: "https://localhost:3000/volvo/api/GU/GU_LOGIN",
-		data: {
-            "usuario" : 'Murphy',
-            "password" : 'FSJ44MIN4FJ',
-        },
-		dataType: "json",
-		method: "POST",
-		success: function (respuesta) {
-			if (respuesta.pcodigoMensaje == 0) {
-				localStorage.setItem('token',respuesta.token);
-			}
-		}
-	}).then((res)=>{
-        $.ajax({
-            url: "https://localhost:3000/volvo/api/Miscelaneos/GET_DATA_USER",
-            headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')},
-            dataType: "json",
-            method: "POST",
-            success: function (respuesta) {
-                $('body').prepend('<!-- Header --><div id="header"><div class="top"><!-- Usuario --><div id="perfil-usuario"><!-- Información del usuario --><span class="image avatar48"> <img src="../images/images1.png" alt="" /></span><h1>' + respuesta.user +'</h1><p>' + respuesta.name + '</p></div><!-- Menu (Nav) --><nav class="nav"><ul id="menu-accion"><!-- Lista de acciones del usuario --><li> <a href="#top"> <span class="icon solid fa-home"></span> <span>Home</span></a></li><li> <a href="#portfolio"> <span class="icon solid fa-th"></span> <span>Pagina 1</span> </a> </li></ul></nav></div><div class="bottom"></div></div>');
-            },
-            error: function (error) {
-                $("#notificacion").append(error.responseText);
-            }
-        });
-    }).catch((err)=>{
-        alert('error');
-    });*/
-    
+$(Document).ready(function(){    
     $.ajax({
         url: "https://localhost:3000/volvo/api/Miscelaneos/GET_DATA_USER",
         headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')},
@@ -44,7 +14,7 @@ $(Document).ready(function(){
 		success: function (respuesta) {
             switch (respuesta.idCargo){
                 case 19:{
-                    $('body').prepend('<!-- Header --><div id="header"><div class="top"><!-- Usuario --><div id="perfil-usuario"><!-- Información del usuario --><span class="image avatar48"> <img src="../images/images1.png" alt="" /></span><h1>' + respuesta.user +'</h1><p>' + respuesta.name + '</p></div><!-- Menu (Nav) --><nav class="nav"><ul id="menu-accion"><!-- Lista de acciones del usuario --><li> <a href="https://localhost:3000/volvo/view/gestionUsuario/GU_Home" id="btnHome"> <span class="icon solid fa-home"></span> <span>Home</span></a></li>          <li> <a href="https://localhost:3000/volvo/view/gestionUsuario/GU_Gestion_Usuarios"> <span class="icon solid fa-th"></span> <span>Gestión de Usuarios</span> </a> </li>           <li> <a href="https://localhost:3000/volvo/view/gestionUsuario/GU_DataBase"> <span class="icon solid fa-th"></span> <span>Control Base de Datos</span> </a> </li>            </ul></nav></div><div class="bottom"></div></div>');
+                    $('body').prepend('<!-- Header --><div id="header"><div class="top"><!-- Usuario --><div id="perfil-usuario"><!-- Información del usuario --><span class="image avatar48"> <img src="../images/images1.png" alt="" /></span><h1>' + respuesta.user +'</h1><p>' + respuesta.name + '</p></div><!-- Menu (Nav) --><nav class="nav"><ul id="menu-accion"><!-- Lista de acciones del usuario --><li> <a href="https://localhost:3000/volvo/view/gestionUsuario/GU_Home" id="btnHome"> <span class="icon solid fa-home"></span> <span>Inicio</span></a></li>          <li> <a href="https://localhost:3000/volvo/view/gestionUsuario/GU_Gestion_Usuarios"> <span class="icon solid fa-th"></span> <span>Gestión de Usuarios</span> </a> </li>           <li> <a href="https://localhost:3000/volvo/view/gestionUsuario/GU_DataBase"> <span class="icon solid fa-th"></span> <span>Control Base de Datos</span> </a> </li>            </ul></nav></div><div class="bottom"></div></div>');
                     break;
                 }
                 case 17:{
