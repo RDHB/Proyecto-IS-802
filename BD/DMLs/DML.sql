@@ -197,18 +197,18 @@ VALUES
 -- Table EstadoOT
 INSERT INTO EstadoOT([idEstadoOT],[descripcion]) 
 VALUES
-(1,'Creando Orden de Trabajo'),
-(2,'Revision del vehiculo'),
-(3,'Contratar servicios'),
-(4,'Cotizar repuestos'),
-(5,'Aprobar cotizacion Cliente'),
-(6,'Aprobar cotizacion JefeTaller'),
-(7,'Generar lista de materiales'),
-(8,'Aprobar lista de materiales'),
-(9,'Rebajar productos del inventario'),
-(10,'Finalizar mantenimiento'),
-(11,'Aprobar control de calidad'),
-(12,'Crear lista de sugerencias'),
+(1,'Revision del vehiculo'),
+(2,'Contratar servicios'),
+(3,'Cotizar repuestos'),
+(4,'Aprobar cotizacion Cliente'),
+(5,'Aprobar cotizacion JefeTaller'),
+(6,'Generar lista de materiales'),
+(7,'Aprobar lista de materiales'),
+(8,'Rebajar productos del inventario'),
+(9,'Finalizar mantenimiento'),
+(10,'Aprobar control de calidad'),
+(11,'Crear lista de sugerencias'),
+(12,'Facturar Orden de Trabajo'),
 (13,'Orden de Trabajo finalizada');
 
 -- Table OrdenTrabajo
