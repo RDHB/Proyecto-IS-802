@@ -212,6 +212,7 @@ CREATE TABLE EstadoOT (
 -- -----------------------------------------------------
 CREATE TABLE OrdenTrabajo (
 	idOrdenTrabajo INT NOT NULL,
+	numeroOT VARCHAR(45) NOT NULL,
 	fechaInicio DATE NULL,
 	fechaFin DATE NULL,
 	estado_del_vehiculo VARCHAR(1000) NULL,
@@ -254,6 +255,7 @@ CREATE TABLE Descuento (
 -- -----------------------------------------------------
 CREATE TABLE Factura (
 	idFactura INT NOT NULL,
+	numeroFactura VARCHAR(45) NOT NULL,
 	fecha DATETIME NULL,
 	precio DECIMAL NULL,
 	total_a_pagar DECIMAL NULL,
@@ -382,6 +384,7 @@ CREATE TABLE Historico_HE (
 -- -----------------------------------------------------
 CREATE TABLE RolPago (
 	idRolPago INT NOT NULL,
+	numeroPago VARCHAR(45) NOT NULL,
 	cargo VARCHAR(45) NULL,
 	fecha DATE NULL,
 	sueldoBase DECIMAL NULL,

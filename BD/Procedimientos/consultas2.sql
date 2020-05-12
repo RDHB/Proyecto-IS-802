@@ -276,10 +276,11 @@ DECLARE
 	@prpagoHE						DECIMAL(18,4) = 0,
 	@prcomisiones					DECIMAL(18,4) = 0,
 	@prdeducciones					DECIMAL(18,4) = 0,
-    @praccion						VARCHAR(45) = 'SELECT',
+    @praccion						VARCHAR(45) = 'INSERT',
     
 	@prcodigoMensaje INT = 0,
-	@prmensaje VARCHAR(1000) = ''
+	@prmensaje VARCHAR(1000) = '',
+	@prnumeroPago VARCHAR(45) = ''
 ;
 
 
@@ -293,10 +294,13 @@ EXEC RH_ROL_PAGO
 
 	-- OUTPUT
 	@prcodigoMensaje OUTPUT,
-	@prmensaje OUTPUT
+	@prmensaje OUTPUT,
+	@prnumeroPago OUTPUT
 ;
 
-
+select @prcodigoMensaje OUTPUT;
+select @prmensaje OUTPUT;
+select @prnumeroPago OUTPUT;
 
 
 

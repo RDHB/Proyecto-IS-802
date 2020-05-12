@@ -212,18 +212,18 @@ VALUES
 (13,'Orden de Trabajo finalizada');
 
 -- Table OrdenTrabajo
-INSERT INTO OrdenTrabajo([idOrdenTrabajo],[fechaInicio],[fechaFin],[estado_del_vehiculo],[objetosPersonales],[reparacionesEfectuadas],[reparacionesNoEfectuadas],[Recomendaciones],     [Cliente_idCLiente],[EstadoOT_idEstadoOT],[Vehiculos_idVehiculos]) 
+INSERT INTO OrdenTrabajo([idOrdenTrabajo],[numeroOT],[fechaInicio],[fechaFin],[estado_del_vehiculo],[objetosPersonales],[reparacionesEfectuadas],[reparacionesNoEfectuadas],[Recomendaciones],     [Cliente_idCLiente],[EstadoOT_idEstadoOT],[Vehiculos_idVehiculos]) 
 VALUES
-(1,'2019-10-03','2020-05-20',   'Perfecto estado',              'Sin objetos personales',   'Cambio de aceite, Fuga de agua',   'Calibrado de suspensión',  'Se recomienda cambiar las llantas',        1,1,1),
-(2,'2018-12-20','2019-03-06',   'Abolladuras en las puertas',   'Llaves',                   'Cambio de aceite, Fuga de agua',   'Calibrado de suspensión',  'Se recomienda cambiar las llantas',        2,2,2),
-(3,'2013-06-19','2020-03-19',   'Abolladuras en las puertas',   'Monederos',                'Cambio de aceite, Fuga de agua',   'Reparacion del motor',     'Se recomienda revisar la caja de cambios', 3,3,3),
-(4,'2020-01-20','2020-02-20',   'Perfecto estado',              'Tarjetas Bancarias',       'Mantenimiento 100 KM',             'Reparacion del motor',     '',                                         4,4,4),
-(5,'2020-01-21','2020-10-20',   'Perfecto estado',              'Alimentos y Refrescos',    'Mantenimiento 100 KM',             'Reparacion del motor',     '',                                         5,5,5),
-(6,'2019-02-19','2020-02-21',   'Abolladuras en las puertas',   'Computadora ASUS',         'Mantenimiento 100 KM',             'Pintura del Vehiculo',     '',                                         6,6,6),
-(7,'2019-05-20','2020-06-19',   'Perfecto estado',              '2 Celulares Huawei',       'Todas las reparaciones',           '',                         '',                                         7,7,7),
-(8,'2019-06-19','2020-12-20',   'Perfecto estado',              'Sin objetos personales',   'Todas las reparaciones',           '',                         '',                                         8,8,8),
-(9,'2020-05-19','2020-09-19',   'Sin retrovisores',             'Sin objetos personales',   'Todas las reparaciones',           '',                         '',                                         9,9,9),
-(10,'2020-04-20','2020-10-20',  'Ventanas quebrados',           'Sin objetos personales',   'Todas las reparaciones',           '',                         '',                                         10,10,10);
+(1, 'OT0000001','2019-10-03','2020-05-20',   'Perfecto estado',              'Sin objetos personales',   'Cambio de aceite, Fuga de agua',   'Calibrado de suspensión',  'Se recomienda cambiar las llantas',        1,1,1),
+(2, 'OT0000002','2018-12-20','2019-03-06',   'Abolladuras en las puertas',   'Llaves',                   'Cambio de aceite, Fuga de agua',   'Calibrado de suspensión',  'Se recomienda cambiar las llantas',        2,2,2),
+(3, 'OT0000003','2013-06-19','2020-03-19',   'Abolladuras en las puertas',   'Monederos',                'Cambio de aceite, Fuga de agua',   'Reparacion del motor',     'Se recomienda revisar la caja de cambios', 3,3,3),
+(4, 'OT0000004','2020-01-20','2020-02-20',   'Perfecto estado',              'Tarjetas Bancarias',       'Mantenimiento 100 KM',             'Reparacion del motor',     '',                                         4,4,4),
+(5, 'OT0000005','2020-01-21','2020-10-20',   'Perfecto estado',              'Alimentos y Refrescos',    'Mantenimiento 100 KM',             'Reparacion del motor',     '',                                         5,5,5),
+(6, 'OT0000006','2019-02-19','2020-02-21',   'Abolladuras en las puertas',   'Computadora ASUS',         'Mantenimiento 100 KM',             'Pintura del Vehiculo',     '',                                         6,6,6),
+(7, 'OT0000007','2019-05-20','2020-06-19',   'Perfecto estado',              '2 Celulares Huawei',       'Todas las reparaciones',           '',                         '',                                         7,7,7),
+(8, 'OT0000008','2019-06-19','2020-12-20',   'Perfecto estado',              'Sin objetos personales',   'Todas las reparaciones',           '',                         '',                                         8,8,8),
+(9, 'OT0000009','2020-05-19','2020-09-19',   'Sin retrovisores',             'Sin objetos personales',   'Todas las reparaciones',           '',                         '',                                         9,9,9),
+(10,'OT00000010','2020-04-20','2020-10-20',  'Ventanas quebrados',           'Sin objetos personales',   'Todas las reparaciones',           '',                         '',                                         10,10,10);
 
 -- Table TipoContrato
 INSERT INTO TipoContrato([idTipoContrato],[descripcion]) 
@@ -578,18 +578,18 @@ VALUES
 (10,10,10);
 
 -- Table RolPago
-INSERT INTO RolPago([idRolPago],[cargo],[fecha],[sueldoBase],[cantidadHE],[pagoHE],[comisiones],[deducciones],[totalPago],[Empleado_idEmpleado]) 
+INSERT INTO RolPago([idRolPago],[numeroPago],[cargo],[fecha],[sueldoBase],[cantidadHE],[pagoHE],[comisiones],[deducciones],[totalPago],[Empleado_idEmpleado]) 
 VALUES
-(1,'Asesor de Servicios'   ,'2013-08-21',9555,10,40,483     ,666,13869,4),
-(2,'Asesor de Servicios'   ,'2019-03-14',7894,12,40,199     ,1436,6095,4),
-(3,'Jefe de RRHH'          ,'2016-05-15',14292,12,20,229    ,673,5749,10),
-(4,'Administrador Sistema' ,'2013-05-10',11449,11,10,456    ,889,14303,3),
-(5,'Administrador Sistema' ,'2018-06-09',8120,12,10,317     ,1488,7187,3),
-(6,'Asistente de RRHH'     ,'2017-03-03',13569,11,20,191    ,1456,9484,9),
-(7,'Cajero'                ,'2018-06-23',10917,12,40,377    ,1878,14109,2),
-(8,'Asesor de Servicios'   ,'2016-04-06',5962,10,10,361     ,1277,5580,4),
-(9,'Cajero'                ,'2011-08-12',12844,11,40,268    ,1984,5915,2),
-(10,'Jefe de RRHH'         ,'2014-03-14',13930,12,20,223    ,554,13398,10);
+(1, 'RP0000001','Asesor de Servicios'   ,'2013-08-21',9555,10,40,483     ,666,13869,4),
+(2, 'RP0000002','Asesor de Servicios'   ,'2019-03-14',7894,12,40,199     ,1436,6095,4),
+(3, 'RP0000003','Jefe de RRHH'          ,'2016-05-15',14292,12,20,229    ,673,5749,10),
+(4, 'RP0000004','Administrador Sistema' ,'2013-05-10',11449,11,10,456    ,889,14303,3),
+(5, 'RP0000005','Administrador Sistema' ,'2018-06-09',8120,12,10,317     ,1488,7187,3),
+(6, 'RP0000006','Asistente de RRHH'     ,'2017-03-03',13569,11,20,191    ,1456,9484,9),
+(7, 'RP0000007','Cajero'                ,'2018-06-23',10917,12,40,377    ,1878,14109,2),
+(8, 'RP0000008','Asesor de Servicios'   ,'2016-04-06',5962,10,10,361     ,1277,5580,4),
+(9, 'RP0000009','Cajero'                ,'2011-08-12',12844,11,40,268    ,1984,5915,2),
+(10,'RP0000010','Jefe de RRHH'         ,'2014-03-14',13930,12,20,223    ,554,13398,10);
 
 -- Table Lista_Servicios
 INSERT INTO Lista_Servicios([OrdenTrabajo_idOrdenTrabajo],[Servicios_idServicios],[servicioEfectuado]) 
