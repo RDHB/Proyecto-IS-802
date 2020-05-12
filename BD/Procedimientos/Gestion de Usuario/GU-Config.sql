@@ -61,7 +61,7 @@ CREATE PROCEDURE GU_CONFIG (
 	@pmensaje 					VARCHAR(1000) OUTPUT,
 
     -- Otros parametros de salida
-	@pnombreArchivo				VARCHAR(45) OUTPUT
+	@pnombreArchivo				VARCHAR(55) OUTPUT
 ) AS
 BEGIN
     -- Declaracion de Variables
@@ -510,7 +510,9 @@ BEGIN
 		
 		-- Accion del procedimiento 
 		SET @pnombreArchivo = CONCAT(
-			@pnombreUsuario
+			(SELECT idUsuario FROM Usuarios WHERE nombreUsuario = @pnombreUsuario)
+			, '. '
+			, @pnombreUsuario
 			, @pextensionArchivo
 		);
 		UPDATE Usuarios SET nombreArchivo = @pnombreArchivo
