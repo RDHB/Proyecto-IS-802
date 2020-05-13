@@ -212,6 +212,7 @@ CREATE TABLE EstadoOT (
 -- -----------------------------------------------------
 CREATE TABLE OrdenTrabajo (
 	idOrdenTrabajo INT NOT NULL,
+	numeroOT VARCHAR(45) NOT NULL,
 	fechaInicio DATE NULL,
 	fechaFin DATE NULL,
 	estado_del_vehiculo VARCHAR(1000) NULL,
@@ -254,6 +255,7 @@ CREATE TABLE Descuento (
 -- -----------------------------------------------------
 CREATE TABLE Factura (
 	idFactura INT NOT NULL,
+	numeroFactura VARCHAR(45) NOT NULL,
 	fecha DATETIME NULL,
 	precio DECIMAL NULL,
 	total_a_pagar DECIMAL NULL,
@@ -382,6 +384,7 @@ CREATE TABLE Historico_HE (
 -- -----------------------------------------------------
 CREATE TABLE RolPago (
 	idRolPago INT NOT NULL,
+	numeroPago VARCHAR(45) NOT NULL,
 	cargo VARCHAR(45) NULL,
 	fecha DATE NULL,
 	sueldoBase DECIMAL NULL,
@@ -413,6 +416,7 @@ CREATE TABLE Lista_Servicios (
 CREATE TABLE Lista_MyR (
 	OrdenTrabajo_idOrdenTrabajo INT NOT NULL,
 	Producto_idProducto INT NOT NULL,
+	cantidad INT NULL,
 	rebajados INT NOT NULL,
 	PRIMARY KEY (
 		OrdenTrabajo_idOrdenTrabajo,
@@ -426,6 +430,7 @@ CREATE TABLE Lista_MyR (
 CREATE TABLE Lista_Cotizacion (
 	OrdenTrabajo_idOrdenTrabajo INT NOT NULL,
 	Producto_idProducto INT NOT NULL,
+	cantidad INT NULL,
 	aprovados INT NOT NULL,
 	PRIMARY KEY (
 		OrdenTrabajo_idOrdenTrabajo,
@@ -450,7 +455,7 @@ CREATE TABLE Usuarios (
 	idUsuario INT NOT NULL,
 	nombreUsuario VARCHAR(45) COLLATE SQL_Latin1_General_CP1_CS_AS NOT NULL,
 	contrasenia VARCHAR(45) NOT NULL,
-	nombreArchivo VARCHAR(45) COLLATE SQL_Latin1_General_CP1_CS_AS NULL,
+	nombreArchivo VARCHAR(55) COLLATE SQL_Latin1_General_CP1_CS_AS NULL,
 	Empleado_idEmpleado INT NOT NULL,
 	Estado_Usuario_idEstado_Usuario INT NOT NULL,
 	PRIMARY KEY (idUsuario)

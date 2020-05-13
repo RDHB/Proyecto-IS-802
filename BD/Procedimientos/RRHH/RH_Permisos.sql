@@ -6,7 +6,7 @@
  * SELECT: @pcodigoEmpleado
  * Salida: @pnombreCompleto, @pcargo
 */
-ALTER PROCEDURE [dbo].[RH_PERMISOS] (
+CREATE PROCEDURE RH_PERMISOS (
     -- Parametros de Entrada
 	@pcodigoEmpleado			VARCHAR(45),
 	@pmotivo					VARCHAR(45),

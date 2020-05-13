@@ -1,18 +1,17 @@
 -- <=== OT_A_CONTRATAR_SERVICIOS ===>
 /* Requisitos de las acciones:
- * INSERT: @pidOrdenTrabajo, @pidServicios
+ * INSERT: @pnumeroOT, @pidServicios
  * 
- * SELECT: @pidOrdenTrabajo
- * Salida: Hacer una consulta de las tablas Lista_Servicios y Servicios
- *			Los servicios que se muestren en pantalla deben corresponder al idOrdenTrabajo
- *			Usar RIGHT JOIN
+ * SELECT: @pnumeroOT
+ * Salida: idOrdenTrabajo, numeroOT, idServicio, nombre, servicioEfectuado, precioCosto, duracion
  *
- * DELETE: @pidOrdenTrabajo, @pidServicios
+ * DELETE: @pnumeroOT, @pidServicios
+ * 
+ * SAVE: @pnumeroOT
 */
-
 CREATE PROCEDURE OT_A_CONTRATAR_SERVICIOS (
     -- Parametros de Entrada
-	@pidOrdenTrabajo			INT,
+	@pnumeroOT					VARCHAR(45),
 	@pidServicios				INT,
     @paccion					VARCHAR(45),
     
@@ -26,13 +25,15 @@ CREATE PROCEDURE OT_A_CONTRATAR_SERVICIOS (
 ) AS
 BEGIN
     -- Declaracion de Variables
-    DECLARE	@vconteo INT, @vservicioEfectuado INT;
+    DECLARE	@vconteo INT
+		, @vservicioEfectuado INT = 0
+	;
 
 
 
     /* Funcionalidad: Contratar Sericios
      * Construir un insert con la sigueinte informacion:
-     * Datos: @pidOrdenTrabajo, @pidServicios
+     * Datos: @pnumeroOT, @pidServicios
      *
      * Insertar los sigueintes datos en la tabla Lista_Servicios:
      * OrdenTrabajo_idOrdenTrabajo, Servicios_idServicios, servicioEfectuado = 0
@@ -46,12 +47,14 @@ BEGIN
 
 
 		-- Validacion de campos nulos
-		IF @pidOrdenTrabajo = '' OR @pidOrdenTrabajo IS NULL BEGIN
-			SET @pmensaje = @pmensaje + ' idOrdenTrabajo ';
+		IF @pnumeroOT = '' OR @pnumeroOT IS NULL BEGIN
+			SET @pmensaje = @pmensaje + ' numeroOT ';
 		END;
-		IF @pidServicios = '' OR @pidServicios IS NULL BEGIN
+
+		IF @pidServicios = 0 BEGIN
 			SET @pmensaje = @pmensaje + ' idServicios ';
 		END;
+
 		IF @pmensaje <> '' BEGIN
 			SET @pcodigoMensaje = 3;
 			SET @pmensaje = 'Error: Campos vacios: ' + @pmensaje;
@@ -62,9 +65,9 @@ BEGIN
 
 		-- Validacion de identificadores
         SELECT @vconteo = COUNT(*) FROM OrdenTrabajo
-		WHERE idOrdenTrabajo = @pidOrdenTrabajo;
+		WHERE numeroOT = @pnumeroOT;
 		IF @vconteo = 0 BEGIN
-			SET @pmensaje = @pmensaje + ' No existe el identificador => ' + CAST(@pidOrdenTrabajo AS VARCHAR) + ' ';
+			SET @pmensaje = @pmensaje + ' No existe el identificador => ' + @pnumeroOT + ' ';
 		END;
 
 		SELECT @vconteo = COUNT(*) FROM Servicios
@@ -82,15 +85,20 @@ BEGIN
 
 
 		-- Validacion de procedimientos
-		-- En la orden de trabajo no pueden contratarse dos servicios del mismo tipo 
-
-		-- Solo se puede agregar servicios a ordenes de trabajo que no esten finalizadas. Es decir idEstadoOT = 13
-
-		SELECT @vconteo=COUNT(*) FROM OrdenTrabajo ot
-		INNER JOIN EstadoOT e ON ot.EstadoOT_idEstadoOT=e.idEstadoOT
-		WHERE idEstadoOT=13 AND idOrdenTrabajo=@pidOrdenTrabajo
+		-- En la orden de trabajo no pueden contratarse dos servicios del mismo tipo
+		SELECT @vconteo=COUNT(*) FROM OrdenTrabajo OT
+		INNER JOIN Lista_Servicios LS ON LS.OrdenTrabajo_idOrdenTrabajo = OT.idOrdenTrabajo
+		WHERE numeroOT = @pnumeroOT
+		AND LS.Servicios_idServicios = @pidServicios
 		IF @vconteo <> 0 BEGIN
-			SET @pmensaje= @pmensaje + 'Solo se puede agregar servicios a ordenes de trabajo no finalizadas =>';
+			SET @pmensaje= @pmensaje + ' Ya esta este servicio en la orden de Trabajo';
+		END;
+
+		-- No se puede dar reivision del vehiculo en este momento, consulte el estado de la Orden de Trabajo
+		SELECT @vconteo=COUNT(*) FROM OrdenTrabajo
+		WHERE EstadoOT_idEstadoOT = 2 AND numeroOT = @pnumeroOT
+		IF @vconteo = 0 BEGIN
+			SET @pmensaje= @pmensaje + ' No se puede contratar servicios en este momento, consulte el estado de la Orden de Trabajo';
 		END;
 		
 		IF @pmensaje <> '' BEGIN
@@ -99,11 +107,21 @@ BEGIN
 			RETURN;
 		END;
 
-		-- Accion del procedimiento 
-		INSERT Lista_Servicios (OrdenTrabajo_idOrdenTrabajo, Servicios_idServicios, servicioEfectuado)
-		VALUES (@pidOrdenTrabajo, @pidServicios, @vservicioEfectuado);
 
-        SET @pmensaje = 'Finalizado con exito';
+
+		-- Accion del procedimiento 
+		INSERT Lista_Servicios (
+			OrdenTrabajo_idOrdenTrabajo
+			, Servicios_idServicios
+			, servicioEfectuado
+		)
+		VALUES (
+			(SELECT idOrdenTrabajo FROM OrdenTrabajo WHERE numeroOT = @pnumeroOT)
+			, @pidServicios
+			, @vservicioEfectuado
+		);
+
+        SET @pmensaje = 'Servicio contratado con exito';
 	END;
     
 
@@ -117,10 +135,11 @@ BEGIN
 
 	/* Funcionalidad: Consultar Sericios
      * Construir un select con la sigueinte informacion:
-     * Datos: @pidOrdenTrabajo
+     * Datos: @pnumeroOT
+	 * Salida: idOrdenTrabajo, numeroOT, idServicio, nombre, servicioEfectuado, precioCosto, duracion
      *
      * Seleccionar los sigueintes datos en la tabla Lista_Servicios y Servicios:
-     * OrdenTrabajo_idOrdenTrabajo, Servicios_idServicios, servicioEfectuado, nombre, precioCosto, duracion
+     * OrdenTrabajo_idOrdenTrabajo, numeroOT, Servicios_idServicios, nombre, servicioEfectuado, precioCosto, duracion
     */
     IF @paccion = 'SELECT' BEGIN
 		-- Setear Valores
@@ -130,8 +149,8 @@ BEGIN
 
 
 		-- Validacion de campos nulos
-		IF @pidOrdenTrabajo = '' OR @pidOrdenTrabajo IS NULL BEGIN
-			SET @pmensaje = @pmensaje + ' idOrdenTrabajo ';
+		IF @pnumeroOT = '' OR @pnumeroOT IS NULL BEGIN
+			SET @pmensaje = @pmensaje + ' numeroOT ';
 		END;
 
 		IF @pmensaje <> '' BEGIN
@@ -144,9 +163,9 @@ BEGIN
 
 		-- Validacion de identificadores
         SELECT @vconteo = COUNT(*) FROM OrdenTrabajo
-		WHERE idOrdenTrabajo = @pidOrdenTrabajo;
+		WHERE numeroOT = @pnumeroOT;
 		IF @vconteo = 0 BEGIN
-			SET @pmensaje = @pmensaje + ' No existe el identificador => ' + CAST(@pidOrdenTrabajo AS VARCHAR) + ' ';
+			SET @pmensaje = @pmensaje + ' No existe el identificador => ' + @pnumeroOT + ' ';
 		END;
 
 		IF @pmensaje <> '' BEGIN
@@ -163,17 +182,31 @@ BEGIN
 
 
 		-- Accion del procedimiento 
-		SELECT * FROM (
+		SELECT 
+			T.OrdenTrabajo_idOrdenTrabajo AS 'idOrdenTrabajo'
+			, (
+				SELECT numeroOT FROM OrdenTrabajo OT
+				WHERE OT.idOrdenTrabajo = T.OrdenTrabajo_idOrdenTrabajo
+			) AS 'numerOT'
+			, S.idServicios
+			, S.nombre
+			, T.servicioEfectuado AS 'servicioEfectuado'
+			, S.precioCosto
+			, S.duracion
+		FROM (
 			SELECT 
-				ls.OrdenTrabajo_idOrdenTrabajo
-				, ls.Servicios_idServicios 
-				, ls.servicioEfectuado
-			FROM Lista_Servicios ls
-			WHERE OrdenTrabajo_idOrdenTrabajo = @pidOrdenTrabajo
+				LS.OrdenTrabajo_idOrdenTrabajo
+				, LS.Servicios_idServicios 
+				, LS.servicioEfectuado
+			FROM Lista_Servicios LS
+			WHERE OrdenTrabajo_idOrdenTrabajo = (
+				SELECT idOrdenTrabajo FROM OrdenTrabajo
+				WHERE numeroOT = @pnumeroOT
+			)
 		) AS T
-		RIGHT JOIN Servicios s ON T.Servicios_idServicios=s.idServicios
+		RIGHT JOIN Servicios S ON T.Servicios_idServicios = S.idServicios
 		
-        SET @pmensaje = 'Consulta inalizada con exito';
+        SET @pmensaje = 'Consulta finalizada con exito';
 	END;
 
 
@@ -187,10 +220,10 @@ BEGIN
 
 	/* Funcionalidad: Cancelar Sericios
      * Construir un delete con la sigueinte informacion:
-     * Datos: @pidOrdenTrabajo, @pidServicios
+     * Datos: @pnumeroOT, @pidServicios
      *
      * Borrar los sigueintes datos en la tabla Lista_Servicios segun los siguientes campos:
-     * OrdenTrabajo_idOrdenTrabajo = @pidOrdenTrabajo, Servicios_idServicios = @pidServicios
+     * OrdenTrabajo_idOrdenTrabajo = idOrdenTrabajo, Servicios_idServicios = @pidServicios
     */
     IF @paccion = 'DELETE' BEGIN
 		-- Setear Valores
@@ -200,8 +233,8 @@ BEGIN
 
 
 		-- Validacion de campos nulos
-		IF @pidOrdenTrabajo = '' OR @pidOrdenTrabajo IS NULL BEGIN
-			SET @pmensaje = @pmensaje + ' idOrdenTrabajo ';
+		IF @pnumeroOT = '' OR @pnumeroOT IS NULL BEGIN
+			SET @pmensaje = @pmensaje + ' @pnumeroOT ';
 		END;
 
 		IF @pidServicios = '' OR @pidServicios IS NULL BEGIN
@@ -218,15 +251,15 @@ BEGIN
 
 		-- Validacion de identificadores
         SELECT @vconteo = COUNT(*) FROM OrdenTrabajo
-		WHERE idOrdenTrabajo = @pidOrdenTrabajo;
+		WHERE numeroOT = @pnumeroOT;
 		IF @vconteo = 0 BEGIN
-			SET @pmensaje = @pmensaje + ' No existe el identificador => ' + @pidOrdenTrabajo + ' ';
+			SET @pmensaje = @pmensaje + ' No existe el identificador => ' + @pnumeroOT + ' ';
 		END;
 
 		SELECT @vconteo = COUNT(*) FROM Servicios
 		WHERE idServicios = @pidServicios;
 		IF @vconteo = 0 BEGIN
-			SET @pmensaje = @pmensaje + ' No existe el identificador => ' + @pidServicios + ' ';
+			SET @pmensaje = @pmensaje + ' No existe el identificador => ' + CAST(@pidServicios AS VARCHAR) + ' ';
 		END;
 
 		IF @pmensaje <> '' BEGIN
@@ -239,13 +272,27 @@ BEGIN
 
 		-- Validacion de procedimientos
 		-- Solo se pueden borrar servicios a ordenes de trabajo que no esten finalizadas. Es decir idEstadoOT = 13
-		SELECT @vconteo=COUNT(*) FROM OrdenTrabajo ot
-		INNER JOIN EstadoOT e ON ot.EstadoOT_idEstadoOT=e.idEstadoOT
-		INNER JOIN Lista_Servicios ls ON ls.OrdenTrabajo_idOrdenTrabajo = ot.idOrdenTrabajo
-		WHERE idEstadoOT=13 AND idOrdenTrabajo=@pidOrdenTrabajo AND ls.Servicios_idServicios=@pidServicios
-		AND servicioEfectuado = 0;
-		IF @vconteo<>0 BEGIN
-			SET @pmensaje= @pmensaje + 'Solo se puede borrar servicios a ordenes de trabajo no finalizadas =>';
+		SELECT @vconteo=COUNT(*) FROM OrdenTrabajo
+		WHERE EstadoOT_idEstadoOT = 2 AND numeroOT=@pnumeroOT
+		IF @vconteo = 0 BEGIN
+			SET @pmensaje= @pmensaje + ' No se puede eliminar servicios en este momento, consulte el estado de la Orden de Trabajo';
+		END;
+
+		SELECT @vconteo=COUNT(*) FROM OrdenTrabajo OT
+		INNER JOIN Lista_Servicios LS ON LS.OrdenTrabajo_idOrdenTrabajo = OT.idOrdenTrabajo
+		WHERE numeroOT = @pnumeroOT
+		AND LS.Servicios_idServicios = @pidServicios
+		IF @vconteo = 0 BEGIN
+			SET @pmensaje= @pmensaje + ' Este servicio no ha sido contratado';
+		END;
+
+		SELECT @vconteo=COUNT(*) FROM OrdenTrabajo OT
+		INNER JOIN Lista_Servicios LS ON LS.OrdenTrabajo_idOrdenTrabajo = OT.idOrdenTrabajo
+		WHERE numeroOT = @pnumeroOT
+		AND LS.Servicios_idServicios = @pidServicios
+		AND LS.servicioEfectuado = 1
+		IF @vconteo <> 0 BEGIN
+			SET @pmensaje= @pmensaje + ' El servicio ya se ha efectuado';
 		END;
 
 		IF @pmensaje <> '' BEGIN
@@ -256,9 +303,101 @@ BEGIN
 
 		-- Accion del procedimiento 
 		DELETE FROM Lista_Servicios
-		WHERE OrdenTrabajo_idOrdenTrabajo = @pidOrdenTrabajo AND Servicios_idServicios = @pidServicios;
+		WHERE OrdenTrabajo_idOrdenTrabajo = (
+			SELECT idOrdenTrabajo FROM OrdenTrabajo 
+			WHERE numeroOT = @pnumeroOT
+		)
+		AND Servicios_idServicios = @pidServicios;
 
         SET @pmensaje = 'Servicio removido con exito';
+	END;
+
+
+
+
+
+
+
+
+
+
+	/* Funcionalidad: Guardar cambios
+     * Construir un update con la sigueinte informacion:
+     * Datos: @pnumeroOT
+     *
+     * Actualizar los sigueintes datos en la tabla OrdenTrabajo:
+     * EstadoOT_idEstadoOT = 3
+    */
+    IF @paccion = 'SAVE' BEGIN
+		-- Setear Valores
+		SET @pcodigoMensaje=0;
+		SET @pmensaje='';
+
+
+
+		-- Validacion de campos nulos
+		IF @pnumeroOT = '' OR @pnumeroOT IS NULL BEGIN
+			SET @pmensaje = @pmensaje + ' numeroOT ';
+		END;
+
+		IF @pmensaje <> '' BEGIN
+			SET @pcodigoMensaje = 3;
+			SET @pmensaje = 'Error: Campos vacios: ' + @pmensaje;
+			RETURN;
+		END;
+
+
+
+		-- Validacion de identificadores
+        SELECT @vconteo = COUNT(*) FROM OrdenTrabajo
+		WHERE numeroOT = @pnumeroOT;
+		IF @vconteo = 0 BEGIN
+			SET @pmensaje = @pmensaje + ' No existe el identificador => ' + @pnumeroOT + ' ';
+		END;
+
+		IF @pmensaje <> '' BEGIN
+			SET @pcodigoMensaje = 4;
+			SET @pmensaje = 'Error: Identificadores no validos: ' + @pmensaje;
+			RETURN;
+		END;
+
+
+
+		-- Validacion de procedimientos
+		SELECT @vconteo=COUNT(*) FROM OrdenTrabajo
+		WHERE EstadoOT_idEstadoOT = 2 AND numeroOT=@pnumeroOT
+		IF @vconteo = 0 BEGIN
+			SET @pmensaje= @pmensaje + ' No se puede guardar cambios en este momento, consulte el estado de la Orden de Trabajo';
+		END;
+
+		IF @pmensaje <> '' BEGIN
+			SET @pcodigoMensaje = 5;
+			SET @pmensaje = 'Error: Validacion en la condicion del procdimiento: ' + @pmensaje;
+			RETURN;
+		END;
+		
+
+
+		-- Accion del procedimiento
+		SELECT @vconteo = COUNT(*) FROM Lista_Servicios
+		WHERE OrdenTrabajo_idOrdenTrabajo = (
+			SELECT idOrdenTrabajo FROM OrdenTrabajo
+			WHERE numeroOT = @pnumeroOT
+		)
+		AND servicioEfectuado = 0
+		IF @vconteo = 0 BEGIN
+			UPDATE OrdenTrabajo SET 
+				EstadoOT_idEstadoOT = 11
+			WHERE numeroOT = @pnumeroOT
+		END ELSE BEGIN
+			UPDATE OrdenTrabajo SET 
+				EstadoOT_idEstadoOT = 3
+			WHERE numeroOT = @pnumeroOT
+		END;
+
+
+		
+        SET @pmensaje = 'Estado de Orden de Trabajo actualizado con exito';
 	END;
 
 	-- En caso de no elegir una accion

@@ -2,6 +2,7 @@
 /* Requisitos de las acciones:
  * INSERT: @pcodigoEmpleado
  * Opcional: @pcomisiones, @pdeducciones, @ppagoHE
+ * Salida: @pnumeroPago
  *
  * SELECT: @pcodigoEmpleado
 */
@@ -16,13 +17,15 @@ CREATE PROCEDURE RH_ROL_PAGO (
     -- Parametros de Salida
     -- Codigo de mensaje
     @pcodigoMensaje				INT OUTPUT,
-	@pmensaje 					VARCHAR(1000) OUTPUT
+	@pmensaje 					VARCHAR(1000) OUTPUT,
 
     -- Otros parametros de salida
+	@pnumeroPago				VARCHAR(45) OUTPUT
 ) AS
 BEGIN
     -- Declaracion de Variables
     DECLARE	@vconteo INT = 0
+		, @vidRolPago INT = 0
 		, @vidEmpleado INT = 0
 		, @vfecha DATE = GETDATE()
 		, @vcargo VARCHAR(45) = ''
@@ -98,9 +101,15 @@ BEGIN
 
 		
 		-- Accion del procedimiento 
+		SET @vidRolPago = (
+			SELECT MAX(idRolPago) + 1 FROM RolPago
+		);
+
 		SET @vidEmpleado = (
 			SELECT idEmpleado FROM Empleado WHERE codigoEmpleado = @pcodigoEmpleado
 		);
+		
+		SET @pnumeroPago = (select dbo.FN_GENERAR_CODIGO_EMP('RP',@vidRolPago,7) AS numeroPago);
 
 		SET @vcargo = (
 			SELECT C.descripcion FROM Empleado E 
@@ -124,6 +133,7 @@ BEGIN
 
 		INSERT INTO RolPago (
 			idRolPago
+			, numeroPago
 			, cargo
 			, fecha
 			, sueldoBase
@@ -134,7 +144,8 @@ BEGIN
 			, totalPago
 			, Empleado_idEmpleado
 		) VALUES (
-			(SELECT MAX(idRolPago) + 1 FROM RolPago)
+			@vidRolPago
+			, @pnumeroPago
 			, @vcargo
 			, @vfecha
 			, @vsueldoBase

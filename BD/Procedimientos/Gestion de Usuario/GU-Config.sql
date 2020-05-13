@@ -1,7 +1,7 @@
 -- <=== GU_Configuraciones ===>
 /* Requisitos de las acciones:
  * SELECT-INFO: @pnombreUsaurio
- * Salida: idUsaurio, nombreUsuario, contrasenia, codigoEmpleado, AreaTrabajo, Cargo
+ * Salida: idUsaurio, nombreUsuario, contrasenia, nombreArchivo, codigoEmpleado, AreaTrabajo, Cargo
  *			, nombreCompleto, numeroIdentidad, correoElectronico, direccion, Genero, fechaIngreso
  *			, HoraEntrada, HoraSalida, HorasExtras
  * 
@@ -61,7 +61,7 @@ CREATE OR ALTER PROCEDURE GU_CONFIG (
 	@pmensaje 					VARCHAR(1000) OUTPUT,
 
     -- Otros parametros de salida
-	@pnombreArchivo				VARCHAR(45) OUTPUT
+	@pnombreArchivo				VARCHAR(55) OUTPUT
 ) AS
 BEGIN
     -- Declaracion de Variables
@@ -74,7 +74,7 @@ BEGIN
      * Datos: @pnombreUsuario
      * 
 	 * Seleccionar los sigueintes datos en la tabla Usuarios:
-     * idUsuario, @nombreUsuario, contrasenia
+     * idUsuario, @nombreUsuario, contrasenia, nombreArchivo
 	 * 
 	 * Seleccionar los sigueintes datos en la tabla Empleado:
      * codigoEmpleado
@@ -137,6 +137,7 @@ BEGIN
 			, nombreUsuario
 			, nombreArchivo
 			, dbo.FN_ENCRIPTAR( contrasenia ) AS 'Contrasenia'
+			, nombreArchivo
 			, E.codigoEmpleado
 			, (
 				SELECT C.descripcion FROM Cargo C 
@@ -511,7 +512,9 @@ BEGIN
 		
 		-- Accion del procedimiento 
 		SET @pnombreArchivo = CONCAT(
-			@pnombreUsuario
+			(SELECT idUsuario FROM Usuarios WHERE nombreUsuario = @pnombreUsuario)
+			, '. '
+			, @pnombreUsuario
 			, @pextensionArchivo
 		);
 		UPDATE Usuarios SET nombreArchivo = @pnombreArchivo

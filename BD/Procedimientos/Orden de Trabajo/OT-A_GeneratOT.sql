@@ -1,6 +1,7 @@
 -- <=== Pantalla ===>
 /* Requisitos de las acciones:
  * INSERT: @pvin, @pnumeroIdentidad
+ * Salida: @pnumeroOT
  * 
  * SELECT: <No hay parametros>
  * Salida: Select(idOrdenTrabajo, nombreCliente, (Marca y Modelo), EstadoOT)
@@ -14,14 +15,15 @@ CREATE PROCEDURE OT_A_GENERAR_OT (
     -- Parametros de Salida
     -- Codigo de mensaje
     @pcodigoMensaje				INT OUTPUT,
-	@pmensaje 					VARCHAR(1000) OUTPUT
+	@pmensaje 					VARCHAR(1000) OUTPUT,
 
     -- Otros parametros de salida
-
+	@pnumeroOT					VARCHAR(45) OUTPUT
 ) AS
 BEGIN
     -- Declaracion de Variables
     DECLARE	@vconteo INT
+		, @vidOrdenTrabajo INT
 		, @vidVehiculo INT
 		, @vidCliente INT
 	;
@@ -29,8 +31,9 @@ BEGIN
 
 
     /* Funcionalidad: GenerarOT
-     * Construir un select con la sigueinte informacion:
+     * Construir un insert con la sigueinte informacion:
      * Datos: @pvin, @pnumeroIdentidad
+	 * Salida: @pnumeroOT
      *
      * Insertar los sigueintes datos en la tabla OrdenTrabajo:
      * idOrdenTrabajo, Cliente_idCliente, EstadoOT_idEstadoOT, Vehiculo_idVehiculo
@@ -81,12 +84,15 @@ BEGIN
 
 
 		-- Validacion de procedimientos
-		SELECT @vidCliente = C.idCliente FROM Persona P
-		INNER JOIN Cliente C ON C.Persona_idPersona = P.idPersona
-		WHERE numeroIdentidad = @pnumeroIdentidad
-
-		SELECT @vidVehiculo = idVehiculos FROM Vehiculos
-		WHERE vin = @pvin
+		SET @vidCliente = (
+			SELECT C.idCliente FROM Persona P
+			INNER JOIN Cliente C ON C.Persona_idPersona = P.idPersona
+			WHERE numeroIdentidad = @pnumeroIdentidad
+		)
+		SET @vidVehiculo = (
+			SELECT idVehiculos FROM Vehiculos
+			WHERE vin = @pvin
+		)
 
 		SELECT @vconteo = COUNT(*) FROM OrdenTrabajo
 		WHERE Vehiculos_idVehiculos = @vidVehiculo
@@ -105,15 +111,23 @@ BEGIN
 
 		
 		-- Accion del procedimiento 
+		SET @vidOrdenTrabajo = (SELECT MAX(idOrdenTrabajo) + 1 FROM OrdenTrabajo);
+		
+		SET @pnumeroOT = (SELECT dbo.FN_GENERAR_CODIGO_EMP('OT',@vidOrdenTrabajo,7));
+		
 		INSERT INTO OrdenTrabajo (
 			idOrdenTrabajo
+			, numeroOT
+			, fechaInicio
 			, Cliente_idCliente
 			, EstadoOT_idEstadoOT
 			, Vehiculos_idVehiculos
 		) VALUES (
-			(SELECT MAX(idOrdenTrabajo) + 1 FROM OrdenTrabajo)
+			@vidOrdenTrabajo
+			, @pnumeroOT
+			, GETDATE()
 			, @vidCliente
-			, 2
+			, 1
 			, @vidVehiculo
 		);
 		
@@ -134,7 +148,7 @@ BEGIN
      * Datos: @pvin, @pnumeroIdentidad
      *
      * SELECT: <No hay parametros>
-	 * Salida: Select(idOrdenTrabajo, nombreCliente, (Marca y Modelo), EstadoOT)
+	 * Salida: Select(idOrdenTrabajo, numeroOT, nombreCliente, (Marca y Modelo), EstadoOT)
     */
     IF @paccion = 'SELECT' BEGIN
 		-- Setear Valores
@@ -150,18 +164,7 @@ BEGIN
 		-- Accion del procedimiento 
 		SELECT 
 			OT.idOrdenTrabajo
-			, V.vin
-			, CONCAT ( 
-				(
-					SELECT MA.descripcion FROM Modelo MO 
-					INNER JOIN Marca MA ON MA.idMarca = MO.Marca_idMarca
-					WHERE MO.idModelo = V.Modelo_idModelo
-				)
-				, ' '
-				, (
-					SELECT descripcion FROM Modelo MO WHERE MO.idModelo = V.Modelo_idModelo
-				)
-			) AS 'Vehiculo'
+			, OT.numeroOT
 			, (
 				SELECT CONCAT(
 					P.primerNombre
@@ -176,6 +179,23 @@ BEGIN
 				WHERE C.idCliente = OT.Cliente_idCliente
 			) AS 'Cliente'
 			, (
+				SELECT numeroIdentidad FROM Cliente C
+				INNER JOIN Persona P ON P.idPersona = C.idCliente
+				WHERE C.idCliente = OT.Cliente_idCliente
+			) AS 'numeroIdentidad'
+			, CONCAT ( 
+				(
+					SELECT MA.descripcion FROM Modelo MO 
+					INNER JOIN Marca MA ON MA.idMarca = MO.Marca_idMarca
+					WHERE MO.idModelo = V.Modelo_idModelo
+				)
+				, ' '
+				, (
+					SELECT descripcion FROM Modelo MO WHERE MO.idModelo = V.Modelo_idModelo
+				)
+			) AS 'Vehiculo'
+			, V.vin
+			, (
 				SELECT descripcion FROM EstadoOT WHERE idEstadoOT = OT.EstadoOT_idEstadoOT
 			) AS 'EstadoOT'
 		FROM OrdenTrabajo OT
@@ -186,7 +206,7 @@ BEGIN
 	END;
 
 	-- En caso de no elegir una accion
-	IF @pmensaje = '' BEGIN
+	IF @paccion = '' BEGIN
 		SET @pcodigoMensaje = -1;
 		SET @pmensaje = 'Error: No se definio la accion a realizar ' + @pmensaje;
 	END;

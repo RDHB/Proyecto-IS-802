@@ -79,6 +79,8 @@ ALTER TABLE Reservacion ADD
 
 -- Table OrdenTrabajo
 ALTER TABLE OrdenTrabajo ADD
+	CONSTRAINT numeroOT_UNIQUE 
+		UNIQUE (numeroOT),
 	CONSTRAINT fk_Orden_de_Trabajo_Cliente1 
 		FOREIGN KEY (Cliente_idCliente) 
 		REFERENCES Cliente (idCliente),
@@ -91,6 +93,8 @@ ALTER TABLE OrdenTrabajo ADD
 
 -- Table Factura
 ALTER TABLE Factura ADD
+	CONSTRAINT numeroFactura_UNIQUE 
+		UNIQUE (numeroFactura),
 	CONSTRAINT fk_Factura_Cliente1 
 		FOREIGN KEY (Cliente_idCliente) 
 		REFERENCES Cliente (idCliente),
@@ -166,6 +170,8 @@ ALTER TABLE Historico_HE ADD
 
 -- Table RolPago
 ALTER TABLE RolPago ADD
+	CONSTRAINT numeroPago_UNIQUE 
+		UNIQUE (numeroPago),
 	CONSTRAINT fk_RolPago_Empleado1 
 		FOREIGN KEY (Empleado_idEmpleado) 
 		REFERENCES Empleado (idEmpleado)
