@@ -140,7 +140,7 @@ BEGIN
 
 
 		-- Validacion de procedimientos
-		-- Hay una relacion del vehiculo con otro cliente? Si (el vehiculo ya tiene dueño)
+		-- Hay una relacion del vehiculo con otro cliente? Si (el vehiculo ya tiene dueÃ±o)
 		SELECT @vconteo = COUNT(*) FROM VinculoCyV
 		WHERE Vehiculos_idVehiculos = (
 			SELECT idVehiculos 
@@ -148,7 +148,14 @@ BEGIN
 			WHERE vin = @pvin
 		)
 		IF @vconteo <> 0 BEGIN
-			SET @pmensaje = @pmensaje + ' El vehiculo ya tiene dueño ';
+			SET @pmensaje = @pmensaje + ' El vehiculo ya tiene dueÃ±o ';
+		END;
+
+		SELECT @vconteo = COUNT(*) FROM Cliente C
+		INNER JOIN Persona P ON P.idPersona = C.Persona_idPersona
+		WHERE P.numeroIdentidad = @pnumeroIdentidad
+		IF @vconteo = 0 BEGIN
+			SET @pmensaje = @pmensaje + ' No hay cliente registrado con este numero de identidad => ' + @pnumeroIdentidad + ' ';
 		END;
 
 		IF @pmensaje <> '' BEGIN
@@ -245,6 +252,21 @@ BEGIN
 
 
 		-- Validacion de procedimientos
+		SELECT @vconteo = COUNT(*) FROM Cliente C
+		INNER JOIN Persona P ON P.idPersona = C.Persona_idPersona
+		WHERE P.numeroIdentidad = @pnumeroIdentidad
+		IF @vconteo = 0 BEGIN
+			SET @pmensaje = @pmensaje + ' No hay cliente registrado con este numero de identidad => ' + @pnumeroIdentidad + ' ';
+		END;
+
+		IF @pmensaje <> '' BEGIN
+			SET @pcodigoMensaje = 5;
+			SET @pmensaje = 'Error: Validacion en la condicion del procdimiento: ' + @pmensaje;
+			RETURN;
+		END;
+
+
+
 		-- Hay una relacion cliente vehiculo? No (No hay vinculo que desactivar)
 		SELECT @vconteo = COUNT(*) FROM VinculoCyV
 		WHERE Vehiculos_idVehiculos = (

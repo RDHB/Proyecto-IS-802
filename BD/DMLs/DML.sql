@@ -207,7 +207,7 @@ VALUES
 (8,'Rebajar productos del inventario'),
 (9,'Finalizar mantenimiento'),
 (10,'Aprobar control de calidad'),
-(11,'Crear lista de sugerencias'),
+(11,'Finalizar Orden de Trabajo'),
 (12,'Facturar Orden de Trabajo'),
 (13,'Orden de Trabajo finalizada');
 
@@ -606,32 +606,32 @@ VALUES
 (10,10,1);
 
 -- Table Lista_MyR
-INSERT INTO Lista_MyR([OrdenTrabajo_idOrdenTrabajo],[Producto_idProducto],[rebajados]) 
+INSERT INTO Lista_MyR([OrdenTrabajo_idOrdenTrabajo],[Producto_idProducto],[cantidad],[rebajados]) 
 VALUES
-(1,1,1),
-(2,2,0),
-(3,3,0),
-(4,4,0),
-(5,5,1),
-(6,6,1),
-(7,7,1),
-(8,8,1),
-(9,9,0),
-(10,10,1);
+(1,1,5,1),
+(2,2,5,0),
+(3,3,10,0),
+(4,4,10,0),
+(5,5,100,1),
+(6,6,2,1),
+(7,7,2,1),
+(8,8,1,1),
+(9,9,1,0),
+(10,10,1,1);
 
 -- Table Lista_Cotizacion
-INSERT INTO Lista_Cotizacion([OrdenTrabajo_idOrdenTrabajo],[Producto_idProducto],[aprovados]) 
+INSERT INTO Lista_Cotizacion([OrdenTrabajo_idOrdenTrabajo],[Producto_idProducto],[cantidad],[aprovados]) 
 VALUES
-(1,1,0),
-(2,2,0),
-(3,3,1),
-(4,4,1),
-(5,5,0),
-(6,6,0),
-(7,7,0),
-(8,8,1),
-(9,9,0),
-(10,10,1);
+(1,1,5,0),
+(2,2,5,0),
+(3,3,10,1),
+(4,4,10,1),
+(5,5,100,0),
+(6,6,2,0),
+(7,7,2,0),
+(8,8,1,1),
+(9,9,1,0),
+(10,10,1,1);
 
 -- Table Estado_Usuario
 INSERT INTO Estado_Usuario([idEstado_Usuario],[descripcion]) 

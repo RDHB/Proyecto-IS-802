@@ -397,7 +397,7 @@ SELECT * FROM Cliente C INNER JOIN Persona P ON P.idPersona = C.Persona_idPerson
 SELECT * FROM Vehiculos
 
 DECLARE
-	@pvin	 							VARCHAR(45) = '1PCH23DF56GHJ3DF34A',
+	@pvin	 							VARCHAR(45) = '1PCH23DF56GHJ3DF34P',
 	@pcolor								VARCHAR(45) = 'Plateado',
 	@pplaca								VARCHAR(45) = 'PCH-2345',
 	@pnumeroMotor						VARCHAR(45) = 'R134J4768341',
@@ -454,9 +454,9 @@ select * from Persona p
 inner join Cliente c on c.Persona_idPersona = p.idPersona;
 
 DECLARE
-	@pvin						VARCHAR(45) = '1PCH23DF56GHJ3DF341', -- 1PCH23DF56GHJ3DF341
-	@pnumeroIdentidad			VARCHAR(45) = '1804-1998-00220', -- 1804-1998-00220
-    @paccion					VARCHAR(45) = 'UNLINK',
+	@pvin						VARCHAR(45) = '1PCH23DF56GHJ3DF34P', -- 1PCH23DF56GHJ3DF34P
+	@pnumeroIdentidad			VARCHAR(45) = '1690-0325-91448', -- 1690-0325-91448
+    @paccion					VARCHAR(45) = 'LINK',
 
 	@prcodigoMensaje				INT = 0,
 	@prmensaje						VARCHAR(1000) = ''

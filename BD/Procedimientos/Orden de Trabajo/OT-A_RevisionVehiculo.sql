@@ -1,13 +1,12 @@
 -- <=== OT-A_RevisionVehiculo ===>
 /* Requisitos de las acciones:
- * UPDATE: @idOrdenTrabajo, @pfechaInicio, @pestado_del_vehiculo
+ * UPDATE: @pnumeroOT, @pestado_del_vehiculo
  * Opcional: @pobjetosPersonales
  * 
 */
 CREATE PROCEDURE OT_A_REVISION_VEHICULO (
     -- Parametros de Entrada
-	@pidOrdenTrabajo				INT,
-	@pfechaInicio					DATE,
+	@pnumeroOT						VARCHAR(45),
 	@pestado_del_vehiculo			VARCHAR(1000),
 	@pobjetosPersonales				VARCHAR(1000),
     @paccion						VARCHAR(45),
@@ -28,11 +27,11 @@ BEGIN
 
     /* Funcionalidad: Registrar la revision del vehiculo
      * Construir un Update con la sigueinte informacion:
-     * Datos: @pidOrdenTrabajo, @pfechaInicio, @pestado_del_vehiculo
+     * Datos: @pnumeroOT, @pestado_del_vehiculo
      * Datos Opcionales: @pobjetosPersonales
      *
      * Actualizar, los sigueintes datos en la tabla OrdenTrabajo:
-     * fechaInicio, estado_del_vehiculo, objetosPersonales
+     * estado_del_vehiculo, objetosPersonales
     */
     IF @paccion = 'UPDATE' BEGIN
 		-- Setear Valores
@@ -42,18 +41,14 @@ BEGIN
 
 
 		-- Validacion de campos nulos
-		IF @pidOrdenTrabajo = 0 BEGIN
-			SET @pmensaje = @pmensaje + ' id Orden de Trabajo ';
+		IF @pnumeroOT = '' OR @pnumeroOT IS NULL BEGIN
+			SET @pmensaje = @pmensaje + ' numeroOT ';
 		END;
-		IF @pfechaInicio = '' OR @pfechaInicio IS NULL BEGIN
-			SET @pmensaje = @pmensaje + ' Fecha Inicio ';
-		END;
+
 		IF @pestado_del_vehiculo = '' OR @pestado_del_vehiculo IS NULL BEGIN
-			SET @pmensaje = @pmensaje + ' Estado del vehiculo ';
+			SET @pmensaje = @pmensaje + ' estadoVehiculo ';
 		END;
-		IF @pobjetosPersonales = '' OR @pobjetosPersonales IS NULL BEGIN
-			SET @pmensaje = @pmensaje + ' Objetos Personales  ';
-		END;
+
 		IF @pmensaje <> '' BEGIN
 			SET @pcodigoMensaje = 3;
 			SET @pmensaje = 'Error: Campos vacios: ' + @pmensaje;
@@ -63,11 +58,10 @@ BEGIN
 
 
 		-- Validacion de identificadores
-		-- Solo se puede dar revicion a ordenes de trabajo que tengan el idEstadoOT = 2
         SELECT @vconteo = COUNT(*) FROM OrdenTrabajo
-		WHERE idOrdenTrabajo = @pidOrdenTrabajo;
+		WHERE numeroOT = @pnumeroOT;
 		IF @vconteo = 0 BEGIN
-			SET @pmensaje = @pmensaje + ' No existe el identificador => ' + CAST(@pidOrdenTrabajo AS VARCHAR) + ' ';
+			SET @pmensaje = @pmensaje + ' No existe el identificador => ' + @pnumeroOT + ' ';
 		END;
 
 		IF @pmensaje <> '' BEGIN
@@ -80,12 +74,11 @@ BEGIN
 
 		-- Validacion de procedimientos
 		-- Validar 
-		SELECT @vconteo=COUNT(*) FROM OrdenTrabajo ot
-		INNER JOIN EstadoOT e ON ot.EstadoOT_idEstadoOT=e.idEstadoOT
-		WHERE idEstadoOT=2 AND idOrdenTrabajo=@pidOrdenTrabajo
+		SELECT @vconteo=COUNT(*) FROM OrdenTrabajo
+		WHERE EstadoOT_idEstadoOT = 1 AND numeroOT = @pnumeroOT
 
-		IF @vconteo <> 0 BEGIN
-			SET @pmensaje= @pmensaje + 'Error: No se puede dar reivision del vehiculo en este momento, consulte el estado de la Orden de Trabajo';
+		IF @vconteo = 0 BEGIN
+			SET @pmensaje= @pmensaje + ' No se puede dar reivision del vehiculo en este momento, consulte el estado de la Orden de Trabajo';
 		END;
 		IF @pmensaje <> '' BEGIN
 			SET @pcodigoMensaje = 5;
@@ -95,9 +88,11 @@ BEGIN
 
 		
 		-- Accion del procedimiento 
-		UPDATE OrdenTrabajo SET idOrdenTrabajo=@pidOrdenTrabajo, fechaInicio= @pfechaInicio,
-			estado_del_vehiculo= @pestado_del_vehiculo, objetosPersonales=@pobjetosPersonales
-		WHERE idOrdenTrabajo=@pidOrdenTrabajo;
+		UPDATE OrdenTrabajo SET 
+			estado_del_vehiculo = @pestado_del_vehiculo
+			, objetosPersonales = @pobjetosPersonales
+			, EstadoOT_idEstadoOT = 2
+		WHERE numeroOT = @pnumeroOT;
 
         SET @pmensaje = 'Revision del vehiculo finalizado con exito';
 	END;

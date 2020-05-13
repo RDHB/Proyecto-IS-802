@@ -416,6 +416,7 @@ CREATE TABLE Lista_Servicios (
 CREATE TABLE Lista_MyR (
 	OrdenTrabajo_idOrdenTrabajo INT NOT NULL,
 	Producto_idProducto INT NOT NULL,
+	cantidad INT NULL,
 	rebajados INT NOT NULL,
 	PRIMARY KEY (
 		OrdenTrabajo_idOrdenTrabajo,
@@ -429,6 +430,7 @@ CREATE TABLE Lista_MyR (
 CREATE TABLE Lista_Cotizacion (
 	OrdenTrabajo_idOrdenTrabajo INT NOT NULL,
 	Producto_idProducto INT NOT NULL,
+	cantidad INT NULL,
 	aprovados INT NOT NULL,
 	PRIMARY KEY (
 		OrdenTrabajo_idOrdenTrabajo,
