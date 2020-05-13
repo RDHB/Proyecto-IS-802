@@ -1,7 +1,7 @@
 -- <=== GU_Configuraciones ===>
 /* Requisitos de las acciones:
  * SELECT-INFO: @pnombreUsaurio
- * Salida: idUsaurio, nombreUsuario, contrasenia, codigoEmpleado, AreaTrabajo, Cargo
+ * Salida: idUsaurio, nombreUsuario, contrasenia, nombreArchivo, codigoEmpleado, AreaTrabajo, Cargo
  *			, nombreCompleto, numeroIdentidad, correoElectronico, direccion, Genero, fechaIngreso
  *			, HoraEntrada, HoraSalida, HorasExtras
  * 
@@ -74,7 +74,7 @@ BEGIN
      * Datos: @pnombreUsuario
      * 
 	 * Seleccionar los sigueintes datos en la tabla Usuarios:
-     * idUsuario, @nombreUsuario, contrasenia
+     * idUsuario, @nombreUsuario, contrasenia, nombreArchivo
 	 * 
 	 * Seleccionar los sigueintes datos en la tabla Empleado:
      * codigoEmpleado
@@ -136,6 +136,7 @@ BEGIN
 			U.idUsuario
 			, nombreUsuario
 			, dbo.FN_ENCRIPTAR( contrasenia ) AS 'Contrasenia'
+			, nombreArchivo
 			, E.codigoEmpleado
 			, (
 				SELECT C.descripcion FROM Cargo C 
