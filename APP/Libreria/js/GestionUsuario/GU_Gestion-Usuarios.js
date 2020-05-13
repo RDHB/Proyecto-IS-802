@@ -6,7 +6,7 @@
     - SE RELLENAN SELECT AREA DE TRABAJO
     - SE RELLENAN SELECT ESTADO DE USUARIO
 */
-$(Document).ready(function(){
+$(Document.body).ready(function(){
     $.ajax({
         url: "https://localhost:3000/volvo/api/Miscelaneos/GENERIC_GESTION_TABLAS",
         headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')},

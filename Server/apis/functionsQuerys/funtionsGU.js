@@ -29,6 +29,7 @@ function GU_LOGIN(req,res){
                 token = functionsMiscelaneos.generateToken(req.session.name)
                 result.output.nombre = result.recordset[0].Nombre;
                 result.output.token = token;
+                result.output.usuario = req.body.usuario;
                 res.send(result.output);
             }else{
                 res.send({pcodigoMensaje: result.output.pcodigoMensaje, pmensaje: result.output.pmensaje});    
@@ -112,10 +113,12 @@ function GU_CONFIG (req,res){
         reqDB.input('pnewNombreUsuario',sql.VarChar,req.body.newNombreUsuario);
         reqDB.input('pnewCorreoElectronico',sql.VarChar,req.body.newCorreoElectronico);
         reqDB.input('pnewDireccion',sql.VarChar,req.body.newDireccion);
+        reqDB.input('pextensionArchivo',sql.VarChar,req.body.extensionArchivo);
         reqDB.input('pnewTelefono',sql.VarChar,req.body.newTelefono);
         reqDB.input('pidTelefono',sql.Int,req.body.idTelefono);
         reqDB.output('pcodigoMensaje', sql.Int);
         reqDB.output('pmensaje', sql.VarChar);
+        reqDB.output('pnombreArchivo', sql.VarChar);
         reqDB.execute('GU_CONFIG').then(function(result){
             conn.close();
             if(result.output.pcodigoMensaje == 0){

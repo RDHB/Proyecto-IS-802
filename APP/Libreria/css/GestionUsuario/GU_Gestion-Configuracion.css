@@ -30,3 +30,8 @@
     display: inline-block;
     margin-right: 25px;
 }
+
+.jquery-modal  .modal{
+    background-color: #d5d9e5;
+    max-width: 900px;
+}

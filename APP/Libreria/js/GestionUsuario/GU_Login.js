@@ -17,6 +17,9 @@ $("#btn-login").click(function () {
 		success: function (respuesta) {
 			if (respuesta.pcodigoMensaje == 0) {
 				localStorage.setItem('token',respuesta.token);
+				localStorage.setItem('usuario',respuesta.usuario);
+				localStorage.setItem('nombre',respuesta.nombre);
+				//localStorage.setItem('nombreArchivo',respuesta.nombreArchivo);
 				window.location.href = "https://localhost:3000/volvo";
 			}else{
 				$("#notificacion").replaceWith('<label  id="notificacion" style="color: brown;">'+respuesta.pmensaje+'</label>');

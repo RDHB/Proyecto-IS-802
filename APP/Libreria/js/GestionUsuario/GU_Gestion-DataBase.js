@@ -10,7 +10,7 @@ var dataTypeColumn = {};
     - SE RELLENAN SELECT DE TABLAS 
     POR DEFECTO SE DEJA SIN SELECCIONAR TABLA Y CAMPO DE ALGUNAS DE LAS TABLAS
 */
-$(Document).ready(function(){
+$(Document.body).ready(function(){
     $.ajax({
         url: "https://localhost:3000/volvo/api/Miscelaneos/GET_TABLESNAMES_DB",
         headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')},
@@ -464,15 +464,12 @@ async function agregarRegistros(){
             success: function(respuesta){
                 if(respuesta.output.pcodigoMensaje == 0){
                     messages.push({pcodigoMensaje: respuesta.output.pcodigoMensaje});
-                    console.log(respuesta.output.pmensaje)
                 }else{
                     messages.push({pcodigoMensaje: respuesta.output.pcodigoMensaje});
-                    console.log(respuesta.output.pmensaje)
                 }
             },
             error : function(error){
                 messages.push({pcodigoMensaje: respuesta.output.pcodigoMensaje});
-                console.log(respuesta.output.pmensaje)
             }
         });
     return messages;

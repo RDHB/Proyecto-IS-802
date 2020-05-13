@@ -135,6 +135,7 @@ BEGIN
 		SELECT 
 			U.idUsuario
 			, nombreUsuario
+			, nombreArchivo
 			, dbo.FN_ENCRIPTAR( contrasenia ) AS 'Contrasenia'
 			, E.codigoEmpleado
 			, (
