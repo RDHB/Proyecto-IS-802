@@ -16,7 +16,7 @@
  * 
  * 
  * UPDATE-FPERFIL: @pnombreUsuario, @pextensionArchivo(.png, .jpg y .jpeg)
- * Salida: @pnombreArchivo
+ * Salida: @pnombreArchivo, @pnombreArchivoAnterior
  * 
  * 
  * DELETE-FPERFIL: @pnombreUsuario
@@ -61,7 +61,8 @@ CREATE OR ALTER PROCEDURE GU_CONFIG (
 	@pmensaje 					VARCHAR(1000) OUTPUT,
 
     -- Otros parametros de salida
-	@pnombreArchivo				VARCHAR(55) OUTPUT
+	@pnombreArchivo				VARCHAR(55) OUTPUT,
+	@pnombreArchivoAnterior		VARCHAR(55) OUTPUT
 ) AS
 BEGIN
     -- Declaracion de Variables
@@ -453,7 +454,7 @@ BEGIN
 	/* Funcionalidad: Actualizar foto de Perfil
      * Construir un update con la sigueinte informacion:
      * Datos: @pnombreUsuario, @pextensionArchivo
-     * Salida: @pnombreArchivo
+     * Salida: @pnombreArchivo, @pnombreArchivoAnterior
 	 *
      * Actualizar los sigueintes datos en la tabla Usuarios:
      * nombreArchivo
@@ -511,10 +512,13 @@ BEGIN
 
 		
 		-- Accion del procedimiento 
+		SET @pnombreArchivoAnterior = (
+			SELECT nombreArchivo FROM Usuarios 
+			WHERE nombreUsuario = @pnombreUsuario
+		)
+
 		SET @pnombreArchivo = CONCAT(
 			(SELECT idUsuario FROM Usuarios WHERE nombreUsuario = @pnombreUsuario)
-			, '. '
-			, @pnombreUsuario
 			, @pextensionArchivo
 		);
 		UPDATE Usuarios SET nombreArchivo = @pnombreArchivo

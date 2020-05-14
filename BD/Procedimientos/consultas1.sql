@@ -200,7 +200,8 @@ DECLARE
 	@pmensaje 					VARCHAR(1000),
 
     -- Otros parametros de salida
-	@pnombreArchivo				VARCHAR(45)
+	@pnombreArchivo				VARCHAR(45),
+	@pnombreArchivoAnterior		VARCHAR(45)
 ;
 
 SET @pnombreUsuario = 'LuisFer15';
@@ -209,18 +210,19 @@ SET @pnewContrasenia = '';
 SET	@pnewNombreUsuario = '';
 SET	@pnewCorreoElectronico = '';
 SET	@pnewDireccion = '';
-SET	@pextensionArchivo = '';
+SET	@pextensionArchivo = '.jpg';
 
-SET @pnewTelefono = '+504 32550664';
+SET @pnewTelefono = '';
 
 SET @pidTelefono = 0;
 
 
-SET @pAccion = 'ADD-TELEFONO';
+SET @pAccion = 'UPDATE-FPERFIL';
 
 SET @pcodigoMensaje = 0;
 SET @pmensaje = '';
 SET	@pnombreArchivo = '';
+SET	@pnombreArchivoAnterior = '';
 
 EXEC GU_CONFIG
 	-- INTPUT
@@ -241,7 +243,8 @@ EXEC GU_CONFIG
 	-- OUTPUT
 	@pcodigoMensaje OUTPUT,
 	@pmensaje OUTPUT,
-	@pnombreArchivo OUTPUT
+	@pnombreArchivo OUTPUT,
+	@pnombreArchivoAnterior OUTPUT
 ;
 
 -- OUTPUT
