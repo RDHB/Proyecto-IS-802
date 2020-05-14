@@ -397,7 +397,7 @@ BEGIN
 
 
 		
-        SET @pmensaje = 'Estado de Orden de Trabajo actualizado con exito';
+        SET @pmensaje = 'Datos guardados con exito';
 	END;
 
 	-- En caso de no elegir una accion

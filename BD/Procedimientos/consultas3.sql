@@ -139,6 +139,7 @@ SELECT @pmensaje;
 
 -- LLamar al procedimiento almacenado: OT_A_CONTRATAR_SERVICIOS
 select * from Lista_Servicios
+select * from OrdenTrabajo
 
 DECLARE
 	-- Parametros de Entrada
@@ -235,6 +236,128 @@ EXEC OT_A_COTIZACION
 	@pidProductos,
 	@pcantidad,
 	
+	@paccion,
+	
+	-- OUTPUT
+	@pcodigoMensaje OUTPUT,
+	@pmensaje OUTPUT
+;
+
+-- OUTPUT
+SELECT @pcodigoMensaje;
+SELECT @pmensaje;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- LLamar al procedimiento almacenado: OT_A_APROVACION_COTIZACION
+select * from Lista_Servicios
+select * from Lista_Cotizacion
+select * from OrdenTrabajo
+
+DECLARE
+	-- Parametros de Entrada
+	@pnumeroOT						VARCHAR(45),
+    @paccion						VARCHAR(45),
+    
+    -- Parametros de Salida
+    -- Codigo de mensaje
+    @pcodigoMensaje					INT,
+	@pmensaje 						VARCHAR(1000)
+
+    -- Otros parametros de salida
+
+;
+
+SET @pnumeroOT = 'OT0000011';
+SET @paccion = 'SAVE';
+
+SET @pcodigoMensaje = 0;
+SET @pmensaje = '';
+
+
+EXEC OT_A_APROVACION_COTIZACION
+	-- INTPUT
+	@pnumeroOT,
+	@paccion,
+	
+	-- OUTPUT
+	@pcodigoMensaje OUTPUT,
+	@pmensaje OUTPUT
+;
+
+-- OUTPUT
+SELECT @pcodigoMensaje;
+SELECT @pmensaje;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- LLamar al procedimiento almacenado: OT_J_APROVACION_COTIZACION
+select * from Lista_Servicios
+select * from Lista_Cotizacion
+select numeroOT, EstadoOT_idEstadoOT from OrdenTrabajo
+
+DECLARE
+	-- Parametros de Entrada
+	@pnumeroOT						VARCHAR(45),
+    @paccion						VARCHAR(45),
+    
+    -- Parametros de Salida
+    -- Codigo de mensaje
+    @pcodigoMensaje					INT,
+	@pmensaje 						VARCHAR(1000)
+
+    -- Otros parametros de salida
+
+;
+
+SET @pnumeroOT = 'OT0000011';
+SET @paccion = 'SAVE';
+
+SET @pcodigoMensaje = 0;
+SET @pmensaje = '';
+
+
+EXEC OT_J_APROVACION_COTIZACION
+	-- INTPUT
+	@pnumeroOT,
 	@paccion,
 	
 	-- OUTPUT

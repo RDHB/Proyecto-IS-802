@@ -249,7 +249,7 @@ BEGIN
 
 
 
-	/* Funcionalidad: Seleccionar Lista de Cotizacion
+	/* Funcionalidad: Guardar Cambios
      * Construir un select con la sigueinte informacion:
      * Datos: @pnumeroOT
      *
