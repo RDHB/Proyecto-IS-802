@@ -2,8 +2,6 @@
 
 // IMPORTANDO LOS MODULOS NECESARIOS
 const express = require('express');
-const jwt = require('jsonwebtoken');
-const config = require('../settings/config');
 const functionsAuth = require('../others/functionsAuth')
 const directorio = require('../../ruta');
 

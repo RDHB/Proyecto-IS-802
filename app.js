@@ -4,6 +4,7 @@
 const bodyParser = require('body-parser');
 const express = require('express');
 const session = require('express-session');
+const filesUpload = require('express-fileupload');
 const config = require('./Server/settings/config');
 const apisGU = require('./Server/apis/apisGU');
 const apisVE = require('./Server/apis/apisVE');
@@ -15,9 +16,10 @@ const functionsMiscelaneos = require('./Server/others/functionsMiscelaneos');
 const app = express();
 
 //DEFINIENDO MIDDLEWARE'S
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(session(config.configSession));
+app.use(filesUpload());
 app.use('/volvo/api/GU',apisGU);
 app.use('/volvo/api/VE',apisVE);
 app.use('/volvo/api/Miscelaneos',apisMiscelaneos);

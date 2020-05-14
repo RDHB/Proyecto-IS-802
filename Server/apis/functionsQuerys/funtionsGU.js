@@ -3,9 +3,14 @@
 // IMPORTANDO LOS MODULOS NECESARIOS
 const sql = require('mssql');
 const generatorPaswword = require('generate-password');
+const fs = require('fs');
 const conn = require('../../db/connectionDB');
 const messagesMiscelaneos = require('../../others/messagesMiscelaneos');
 const functionsMiscelaneos = require('../functionsMiscelaneos/functionsMiscelaneos');
+const directorio = require('../../../ruta');
+
+// DEFINIENDO OBJETOS IMPORTANTES
+const pathFoto = directorio.ruta.replace(/\\/g,'/') + "/APP/images/Usuarios/";
 
 // DEFINIENDO LAS FUNCIONES
 function GU_LOGIN(req,res){
@@ -30,6 +35,7 @@ function GU_LOGIN(req,res){
                 result.output.nombre = result.recordset[0].Nombre;
                 result.output.token = token;
                 result.output.usuario = req.body.usuario;
+                result.output.nombreArchivo = '../images/Usuarios/'+result.recordsets[0][0].nombreArchivo;
                 res.send(result.output);
             }else{
                 res.send({pcodigoMensaje: result.output.pcodigoMensaje, pmensaje: result.output.pmensaje});    
@@ -105,6 +111,14 @@ function GU_REINICIO_CONTRASENIA(req,res){
 }
 
 function GU_CONFIG (req,res){
+    if( req.body.accion === 'UPDATE-FPERFIL' ){
+        if( req.files.nombreArchivo.mimetype.indexOf('image/') !== -1 ){
+            req.body.extensionArchivo = '.' + req.files.nombreArchivo.mimetype.replace('image/','');
+        }else{
+            res.send({output : messagesMiscelaneos.errorC5});
+            return;
+        }
+    }
     conn.connect().then(function(){
         var reqDB = new sql.Request(conn);
         reqDB.input('paccion',sql.VarChar,req.body.accion);
@@ -135,6 +149,25 @@ function GU_CONFIG (req,res){
                         Si usted no ha realizado estos cambios reporte inmediatamente con el administrador del sistema`);
                         break;
                     }
+                    case 'UPDATE-FPERFIL':{            
+                        var error = 0;
+                        var foto = req.files.nombreArchivo;
+                        var fotoName = result.output.pnombreArchivo;
+                        //var oldFotoName = result.output.pnombreArchivoOld;
+                        //fs.unlink( pathFoto + oldFotoName, (error)=>{});
+                        foto.mv( pathFoto + fotoName, function(err){if(err){error = 7;}});
+                        if(error !=0){
+                            res.send({output : messagesMiscelaneos.errorC7});
+                            return;
+                        }
+                        result.output.pnombreArchivo = '../images/Usuarios/'+result.output.pnombreArchivo;
+                        break;
+                    }
+                    case 'DELETE-FPERFIL':{
+                        result.output.pnombreArchivo = '../images/Usuarios/'+result.output.pnombreArchivo;
+                        break;
+                    }
+                        
                 }
             }
             res.send({output: result.output, data: result.recordsets[0]});
@@ -146,6 +179,7 @@ function GU_CONFIG (req,res){
         res.send(messagesMiscelaneos.errorC1);
     });
 }
+
 
 // EXPORTANDO LAS FUNCIONES QUE ATENDERAN LAS PETICIONES
 module.exports = {

@@ -13,7 +13,7 @@
 		<div id="main">
 		<section>
             <div align="left" style="width: inherit; margin-left: 6%; margin-top: 2%;">
-                <h3 id="nombreOfUsuario" align="left"><img id="imgUsuario" class="circulo_small" src="../images/login1.png"></h3>
+                <h3 align="left"><img id="imgUsuario" class="circulo_small" src="../images/login1.png"><span id="nombreOfUsuario" align="left"></span></h3>
             </div>
             <div class="content1">
                 <div align="left" style="width: inherit;">
@@ -76,35 +76,37 @@
                             <div class="fields">
                                 <div class="field" align="left" style="width: auto; float:left; display:block; margin-right: auto;">
                                     <label for="name" align="left">Nombre del Usuario</label>
-                                    <input type="text" style="width:auto" name="name" id="name" value=""/>
+                                    <input type="text" style="width:auto" id="iNombreUsuario" disabled value=""/>
                                     <br>
-                                    <div class="field" align="center" style="width:auto; float:left; display:block; margin-right: auto; margin-top: 2%;">
+                                    <div class="field" align="center" style="width:100%; float:left; display:block; margin-right: auto; margin-top: 2%;">
                                         <div>
-                                            <input class="button small1" type="button" style="width:auto" value="Cambiar Nombre de Usuario"/>
+                                            <input id="btnCambiarINombreUsuario" class="button small1" type="button" style="width:100%" value="Cambiar Nombre de Usuario"/>
                                             <br>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="field" align="left" style="width: auto; float:left; display:block; margin-right: auto;">
                                     <label for="name" align="left">Contraseña</label>
-                                    <input type="password" style="width:auto" name="name" id="name" value=""/>
+                                    <input type="password" style="width:auto" id="iPassword" disabled value=""/>
                                     <br>
-                                    <div class="field" align="center" style="width:auto; float:left; display:block; margin-right: auto; margin-top: 2%;">
+                                    <div class="field" align="center" style="width:100%; float:left; display:block; margin-right: auto; margin-top: 2%;">
                                         <div>
-                                            <input class="button small1" type="button" style="width:auto" value="Cambiar Contraseña de Usuario"/>
+                                            <input id="btnCambiarIPassword" class="button small1" type="button" style="width:100%" value="Cambiar Contraseña de Usuario"/>
                                             <br>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="field" align="left" style="width:auto; float:left; display:block; margin-right: auto; margin-top: 1%;">
+                                <div class="field" align="left" style="width:auto; float:left; display:flexbox; margin-right: auto; margin-top: 0%;">
                                     <label>Subir nueva foto de perfil</label>
-                                        <fieldset>
-                                            <input type="file" tabindex="1" style="width: 100px;">
+                                        <fieldset style="width: 100%;;">
+                                            <label for="iNewFilePhoto" style="margin: 0%; display: flexbox; justify-content: center;"><a style="text-decoration:none"><span class="fas fa-cloud-upload-alt" style="text-align: center; font-size: xx-large;"></span><span id="nameFileChoose" style="margin-left: 2%;">Elegir Foto</span></a></label>
+                                            <input id="iNewFilePhoto" type="file" style="width: 100%; display: none;" accept=".png, .jpeg, .jpg" name="nombreArchivo">
                                         </fieldset><br><br>
-                                        <div class="field" align="center" style="width:auto; float:left; display:block; margin-right: auto; margin-top: 2%;">
+                                        <div class="field" align="center" style="width:100%; float:left; display:block; margin-right: auto; margin-top: 0%;">
                                             <div>
-                                                <input class="button small1" type="button" style="width:auto" value="Actualizar Foto de Perfil"/>
+                                                <input id="btnCambiarFotoPerfil" class="button small1" type="button" style="width:100%" value="Actualizar Foto de Perfil"/>
                                                 <br>
+                                                <input id="btnFotoPerfilDefecto" class="button small1" type="button" style="width:100%" value="No Usar Foto de Perfil"/>
                                             </div>
                                         </div>
                                 </div>
@@ -123,33 +125,33 @@
                             <div class="fields">
                                 <div class="field" align="left" style="width: auto; float:left; display:block; margin-right: auto;">
                                     <label for="name" align="left">Código del Empleado</label>
-                                    <input type="text" style="width:auto" name="name" id="name" value=""/>
+                                    <input type="text" style="width:auto" disabled id="iCodigoEmpleado" value=""/>
                                     <br>
                                 </div>
                                 <div class="field" align="left" style="width: auto; float:left; display:block; margin-right: auto;">
                                     <label for="name" align="left">Área de Trabajo</label>
-                                    <input type="text" style="width:auto" name="name" id="name" value=""/>
+                                    <input type="text" style="width:auto" disabled id="iAreaTrabajo" value=""/>
                                     <br>
                                 </div>
                                 <div class="field" align="left" style="width: auto; float:left; display:block; margin-right: auto;">
                                     <label for="name" align="left">Cargo</label>
-                                    <input type="text" style="width:auto" name="name" id="name" value=""/>
+                                    <input type="text" style="width:auto" disabled id="iCargo" value=""/>
                                     <br>
                                 </div>
                             </div>
                             <div class="fields"><div class="field" align="left" style="width: auto; float:left; display:block; margin-right: auto;">
                                 <label for="name" align="left">Hora de Entrada</label>
-                                <input type="text" style="width:auto" name="name" id="name" value=""/>
+                                <input type="text" style="width:auto" disabled id="iHoraEntrada" value=""/>
                                 <br>
                             </div>
                             <div class="field" align="left" style="width: auto; float:left; display:block; margin-right: auto;">
                                 <label for="name" align="left">Hora de Salida</label>
-                                <input type="text" style="width:auto" name="name" id="name" value=""/>
+                                <input type="text" style="width:auto" disabled id="iHoraSalida" value=""/>
                                 <br>
                             </div>
                             <div class="field" align="left" style="width: auto; float:left; display:block; margin-right: auto;">
                                 <label for="name" align="left">Total de horas extras elaboradas</label>
-                                <input type="text" style="width:auto" name="name" id="name" value=""/>
+                                <input type="text" style="width:auto" disabled id="iHorasExtras" value=""/>
                                 <br>
                             </div>
                             </div>
@@ -258,6 +260,72 @@
                 </div>
             </section>
         </div>
+
+        <div id="cambiarNombreUsuario" class="modal">
+            <section style="display: flexbox; justify-content: center; align-items: center;">
+                <header style="display: flexbox; justify-content: center; align-items: center;">
+                    <h3 style="text-align: center; ">Ingrese el nuevo nombre del usuario:</h3>
+                </header>
+                <div style="display: flexbox; align-items: center; justify-content: start;">
+                    <table id="table">
+                        <tbody id="cambiarNombreUsuarioCampo" style="display: flexbox; align-content: center;">
+                            <!-- BODY DE LA TABLA -->
+                        </tbody>
+                    </table>
+                    <div align="center" style="margin: 25;" id="cambiarNombreUsuarioNotificacion"></div>
+                </div>
+                <div class="content" style="display: flexbox; justify-content: center; align-items: center;">
+                    <div class="table-wrapper" style="margin: 25; display: flexbox; justify-content: center; align-items: center;">
+                        <div align="center" style="margin: 25; display: flexbox; justify-content: space-between;">
+                            <a id="aceptarCambiarNombreUsuario" class="button small">Aceptar</a>
+                            <a id="cancelarCambiarNombreUsuario" class="button small" rel="modal:close">Cancelar</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
+        <div id="cambiarContrasenia" class="modal">
+            <section style="display: flexbox; justify-content: center; align-items: center;">
+                <header style="display: flexbox; justify-content: center; align-items: center;">
+                    <h3 style="text-align: center; ">Ingrese la nueva contraseña:</h3>
+                </header>
+                <div style="display: flexbox; align-items: center; justify-content: start;">
+                    <table id="table">
+                        <tbody id="cambiarContraseniaCampo" style="display: flexbox; align-content: center;">
+                            <!-- BODY DE LA TABLA -->
+                        </tbody>
+                    </table>
+                    <div align="center" style="margin: 25;" id="cambiarContraseniaNotificacion"></div>
+                </div>
+                <div class="content" style="display: flexbox; justify-content: center; align-items: center;">
+                    <div class="table-wrapper" style="margin: 25; display: flexbox; justify-content: center; align-items: center;">
+                        <div align="center" style="margin: 25; display: flexbox; justify-content: space-between;">
+                            <a id="aceptarCambiarContrasenia" class="button small">Aceptar</a>
+                            <a id="cancelarCambiarContrasenia" class="button small" rel="modal:close">Cancelar</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div id="cambiarFotoPerfil" class="modal">
+            <section style="display: flexbox; justify-content: center; align-items: center;">
+                <div style="display: flexbox; align-items: center; justify-content: start;">
+                    <div align="center" style="margin: 25;" id="cambiarFotoPerfilNotificacion"></div>
+                </div>
+            </section>
+        </div>
+        
+        <div id="fotoPerfilDefecto" class="modal">
+            <section style="display: flexbox; justify-content: center; align-items: center;">
+                <div style="display: flexbox; align-items: center; justify-content: start;">
+                    <div align="center" style="margin: 25;" id="fotoPerfilDefectoNotificacion"></div>
+                </div>
+            </section>
+        </div>
+		
 		
 		<!-- ------------------------------------------------------------ -->
 		<!-- Hasta aquí se puede Editar -->

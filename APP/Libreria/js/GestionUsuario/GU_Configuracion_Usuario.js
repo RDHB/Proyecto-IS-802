@@ -6,9 +6,11 @@
 */
 $(Document.body).ready(async function(){
     $('#nombreOfUsuario').append(localStorage.getItem('usuario'));
-    //$('#imgUsuario').attr("src","second.jpg");
+    $('#imgUsuario').attr("src",localStorage.getItem('nombreArchivo'));
     await rellenarNumerosTelefonos();
     await rellenarCorreoDireccion();
+    await rellenarInformacionCuenta();
+    await rellenarInformacionTrabajo ()
 })
 
 
@@ -194,13 +196,176 @@ $('#aceptarAgregarTelefono').click(async function(){
         $('#agregarCamposTelefono').empty();
         $('#agregarTelefonoNotificacion').append('<p style="color: green" >El número teléfonico fue agregado exitosamente</p>');
     }else {
-        $('#eliminateTelefonoNotificacion').append('<p style="color: brown" >El número de teléfono no pudo ser agregado</p>');
+        $('#agregarTelefonoNotificacion').append('<p style="color: brown" >El número de teléfono no pudo ser agregado</p>');
     }
     $("#selectNumerosTelefonos").empty();
     $("#selectNumerosTelefonos").append(`<option value="">Números Telefónicos</option>`);
     await rellenarNumerosTelefonos();
     $('#cancelarAgregarTelefono').text('Cerrar');
 });
+
+/**
+ * FUNCIONALIDAD PARA CAMBIAR NOMBRE USUARIO
+ */
+$('#btnCambiarINombreUsuario').click(function(){
+    $('#cambiarNombreUsuarioCampo').empty();
+    $('#cambiarNombreUsuarioNotificacion').empty();
+    $('#cambiarNombreUsuario').modal({
+        fadeDuration: 250,
+        fadeDelay: 1.5,
+        modalClass: "modal"
+    });
+    $('#cambiarNombreUsuarioCampo').append(
+        `
+        <tr>
+            <td>Nuevo nombre de usuario</td>
+            <td>
+                <input  type="text" style="" id="cambiarNombreUsuarioNew" value="${$('#iNombreUsuario').val()}">
+            </td>
+        </tr>
+        `
+    );
+});
+
+/**
+ * FUNCIONALIDAD PARA ACEPTAR DE CAMBIAR NOMBRE USUARIO
+ */
+$('#aceptarCambiarNombreUsuario').click(async function(){
+    var codigoMessage = await cambiarNombreUsuario();
+    $('#cambiarNombreUsuarioNotificacion').empty();
+    if(codigoMessage == 0){
+        $('#cambiarNombreUsuarioCampo').empty();
+        $('#cambiarNombreUsuarioNotificacion').append('<p style="color: green" >El nombre del usuario fue modificado exitosamente</p>');
+    }else if(codigoMessage == 5){
+        $('#cambiarNombreUsuarioNotificacion').append('<p style="color: brown" >El nombre del usuario no fue modificado</p>');
+    }else{
+        $('#cambiarNombreUsuarioNotificacion').append('<p style="color: brown" >El nombre del usuario no pudo ser modificado</p>');
+    }
+    await rellenarInformacionCuenta();
+    $('#cancelarCambiarNombreUsuario').text('Cerrar');
+});
+
+/**
+ * FUNCIONALIDAD PARA CAMBIAR CONTRASENIA
+ */
+$('#btnCambiarIPassword').click(function(){
+    $('#cambiarContraseniaCampo').empty();
+    $('#cambiarContraseniaNotificacion').empty();
+    $('#cambiarContrasenia').modal({
+        fadeDuration: 250,
+        fadeDelay: 1.5,
+        modalClass: "modal"
+    });
+    $('#cambiarContraseniaCampo').append(
+        `
+        <tr>
+            <td>Nueva contraseña</td>
+            <td>
+                <input  type="password" style="" id="cambiarContraseniaNew" value="">
+            </td>
+        </tr>
+        `
+    );
+    $('#cambiarContraseniaCampo').append(
+        `
+        <tr>
+            <td>Repetir contraseña</td>
+            <td>
+                <input  type="password" style="" id="cambiarContraseniaNewRepit" value="">
+            </td>
+        </tr>
+        `
+    );
+});
+
+/**
+ * FUNCIONALIDAD PARA ACEPTAR DE CAMBIAR CONTRASENIA
+ */
+$('#aceptarCambiarContrasenia').click(async function(){
+    var codigoMessage = await cambiarContrasenia();
+    $('#cambiarContraseniaNotificacion').empty();
+    switch(codigoMessage){
+        case 0:{
+            $('#cambiarContraseniaCampo').empty();
+            $('#cambiarContraseniaNotificacion').append('<p style="color: green" >La contraseña fue modificada exitosamente</p>');
+            break;
+        }
+        case 10:{
+            $('#cambiarContraseniaNotificacion').append('<p style="color: brown" >Las contraseñas escritas no coinciden</p>');
+            break;
+        }
+        case 11:{
+            $('#cambiarContraseniaNotificacion').append('<p style="color: brown" >Rellene los campos solicitados</p>');
+            break;
+        }
+        case 5:{
+            $('#cambiarContraseniaNotificacion').append('<p style="color: brown" >La contraseña del usuario no fue modificada</p>');
+            break;
+        }
+        default:{
+            $('#cambiarContraseniaNotificacion').append('<p style="color: brown" >La contraseña del usuario no pudo ser modificado</p>');
+            break;
+        }
+    }
+    $('#cancelarCambiarContrasenia').text('Cerrar');
+});
+
+/**
+ * FUNCIONALIDAD ELECCION ARCHIVO, MOSTRAR CUAL ELIGIO
+ */
+$("#iNewFilePhoto").change(function(){
+    if($("#iNewFilePhoto").val() !== ''){
+        $('#nameFileChoose').text($("#iNewFilePhoto").val().replace(/C:\\fakepath\\/i, ''));
+    }else{
+        $('#nameFileChoose').text('Elegir Foto');
+    }
+});
+
+/**
+ * FUNCIONALIDAD MODIFICAR FOTO
+ */
+$("#btnCambiarFotoPerfil").click(async function(){
+    $('#cambiarFotoPerfilNotificacion').empty();
+    $('#cambiarFotoPerfil').modal({
+        fadeDuration: 250,
+        fadeDelay: 1.5,
+        modalClass: "modal"
+    });
+    if( $('#nameFileChoose').text() != "" && $('#nameFileChoose').text() != "Elegir Foto" ){
+        var codigoMessage = await subirArchivoCambiarFoto();
+        if( codigoMessage == 0 ){
+            location.reload();
+        }else{
+            $('#cambiarFotoPerfilNotificacion').append('<p style="color: brown" >La imagen de perfil no pudo ser modificada. Asegúrese el archivo sea una imagen</p>');    
+        }
+    }else{
+        $('#cambiarFotoPerfilNotificacion').append('<p style="color: brown" >Necesita elegir un archivo primero</p>');
+    }
+});
+
+/**
+ * FUNCIONALIDAD NO USAR FOTO DE PERFIL
+ */
+$("#btnFotoPerfilDefecto").click(async function(){
+    $('#cambiarFotoPerfilNotificacion').empty();
+    $('#cambiarFotoPerfil').modal({
+        fadeDuration: 250,
+        fadeDelay: 1.5,
+        modalClass: "modal"
+    });
+    var codigoMessage = await usarFotoPerfilDefecto();
+    if( codigoMessage == 0 ){
+        location.reload();
+    }else{
+        $('#cambiarFotoPerfilNotificacion').append('<p style="color: brown" >La imagen de perfil no pudo ser eliminada.</p>');    
+    }
+});
+
+
+
+
+
+
 
 
 
@@ -266,6 +431,54 @@ function rellenarCorreoDireccion(){
     });
 }
 
+/*
+    FUNCION PARA RELLENAR INFORMACION DEL TRABAJO DEL USUARIO ESTA INFORMACION SOLO SE MUESTRA NO SE MODIFICA 
+*/
+function rellenarInformacionTrabajo (){   
+    $.ajax({
+        url: "https://localhost:3000/volvo/api/GU/GU_CONFIG",
+        headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')},
+        data: {
+            "accion" : 'SELECT-INFO',
+            "nombreUsuario" : localStorage.getItem('usuario')
+        },
+        dataType: "json",
+        method: "POST",
+        success: function(respuesta){
+            if(respuesta.output.pcodigoMensaje == 0){
+                $('#iCodigoEmpleado').val(respuesta.data[0].codigoEmpleado);
+                $('#iAreaTrabajo').val(respuesta.data[0].AreaTrabajo);
+                $('#iCargo').val(respuesta.data[0].Cargo);
+                $('#iHoraEntrada').val(respuesta.data[0].HoraEntrada);
+                $('#iHoraSalida').val(respuesta.data[0].HoraSalida);
+                $('#iHorasExtras').val(respuesta.data[0].HorasExtras);
+            }
+        }
+    });
+}
+
+/*
+    FUNCION PARA RELLENAR INFORMACION DEL CUENTA DEL USUARIO
+*/
+function rellenarInformacionCuenta (){   
+    $.ajax({
+        url: "https://localhost:3000/volvo/api/GU/GU_CONFIG",
+        headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')},
+        data: {
+            "accion" : 'SELECT-INFO',
+            "nombreUsuario" : localStorage.getItem('usuario')
+        },
+        dataType: "json",
+        method: "POST",
+        success: function(respuesta){
+            if(respuesta.output.pcodigoMensaje == 0){
+                $('#iNombreUsuario').val(respuesta.data[0].nombreUsuario);
+                $('#iPassword').val(respuesta.data[0].Contrasenia);
+            }
+        }
+    });
+}
+
 /**
  * FUNCION PARA MODIFICAR EL CORREO Y LA DIRECCION
  */
@@ -285,11 +498,7 @@ async function updateCorreoDireccion(){
             dataType: "json",
             method: "POST",
             success: function(respuesta){
-                if(respuesta.output.pcodigoMensaje == 0){
-                    codigoMessage = respuesta.output.pcodigoMensaje;
-                }else{
-                    codigoMessage = respuesta.output.pcodigoMensaje;
-                }
+                codigoMessage = respuesta.output.pcodigoMensaje;
             }        
         });
     }else{
@@ -317,11 +526,7 @@ async function updateTelefono(){
             dataType: "json",
             method: "POST",
             success: function(respuesta){
-                if(respuesta.output.pcodigoMensaje == 0){
-                    codigoMessage = respuesta.output.pcodigoMensaje;
-                }else{
-                    codigoMessage = respuesta.output.pcodigoMensaje;
-                }
+                codigoMessage = respuesta.output.pcodigoMensaje;
             }        
         });
     }else{
@@ -346,11 +551,7 @@ async function eliminateTelefono(){
         dataType: "json",
         method: "POST",
         success: function(respuesta){
-            if(respuesta.output.pcodigoMensaje == 0){
-                codigoMessage = respuesta.output.pcodigoMensaje;
-            }else{
-                codigoMessage = respuesta.output.pcodigoMensaje;
-            }
+            codigoMessage = respuesta.output.pcodigoMensaje;
         }        
     });
     return codigoMessage;
@@ -372,12 +573,116 @@ async function agregarTelefono(){
         dataType: "json",
         method: "POST",
         success: function(respuesta){
+            codigoMessage = respuesta.output.pcodigoMensaje;
+        }        
+    });
+    return codigoMessage;
+}
+
+/**
+ * FUNCION PARA CAMBIAR EL NOMBRE DEL USUARIO
+ */
+async function cambiarNombreUsuario(){
+    var codigoMessage;
+    await $.ajax({
+        url: "https://localhost:3000/volvo/api/GU/GU_CONFIG",
+        headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')},
+        data: {
+            "accion" : 'UPDATE-USUARIO',
+            "nombreUsuario" : localStorage.getItem('usuario'),
+            "newNombreUsuario": $('#cambiarNombreUsuarioNew').val()
+        },
+        dataType: "json",
+        method: "POST",
+        success: function(respuesta){
             if(respuesta.output.pcodigoMensaje == 0){
                 codigoMessage = respuesta.output.pcodigoMensaje;
+                localStorage.setItem('usuario', $('#cambiarNombreUsuarioNew').val());
+                $('#nombreOfUsuario').text($('#cambiarNombreUsuarioNew').val());
+                $('#nickNameUser').text($('#cambiarNombreUsuarioNew').val());
+
             }else{
                 codigoMessage = respuesta.output.pcodigoMensaje;
             }
         }        
+    });
+    return codigoMessage;
+}
+
+/**
+ * FUNCION PARA CAMBIAR LA CONTRASENIA
+ */
+async function cambiarContrasenia(){
+    var codigoMessage;
+    if($('#cambiarContraseniaNew').val() === "" || $('#cambiarContraseniaNewRepit').val() === ""){
+        codigoMessage = 11;
+    }else if( $('#cambiarContraseniaNew').val() !== $('#cambiarContraseniaNewRepit').val() ){
+        codigoMessage = 10;
+    }else{
+        await $.ajax({
+            url: "https://localhost:3000/volvo/api/GU/GU_CONFIG",
+            headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')},
+            data: {
+                "accion" : 'UPDATE-CONTRASENIA',
+                "nombreUsuario" : localStorage.getItem('usuario'),
+                "newContrasenia": $('#cambiarContraseniaNew').val()
+            },
+            dataType: "json",
+            method: "POST",
+            success: function(respuesta){
+                codigoMessage = respuesta.output.pcodigoMensaje;
+            }        
+        });
+    }
+    return codigoMessage;
+}
+
+/**
+ * FUNCION PARA CAMBIAR LA FOTO DE PERFIL
+ */
+async function subirArchivoCambiarFoto () {
+    var codigoMessage;
+    var fileFoto = new FormData();
+    fileFoto.append('nombreArchivo' , $("#iNewFilePhoto")[0].files[0]);
+    fileFoto.append('nombreUsuario' , localStorage.getItem('usuario'));
+    fileFoto.append('accion' , 'UPDATE-FPERFIL');
+    await $.ajax({
+        url: "https://localhost:3000/volvo/api/GU/GU_CONFIG",
+        headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')},
+        dataType: "json",
+        method: "POST",
+        type: 'POST',
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: fileFoto,
+        success: function(respuesta){
+            codigoMessage = respuesta.output.pcodigoMensaje;
+            if(codigoMessage == 0){localStorage.setItem('nombreArchivo',respuesta.output.pnombreArchivo);}
+        }
+    });
+    return codigoMessage;
+}
+
+/**
+ * FUNCION PARA ELIMINAR LA FOTO DE PERFIL Y USAR LA DE DEFECTO
+ */
+async function usarFotoPerfilDefecto(){
+    var codigoMessage;
+    await $.ajax({
+        url: "https://localhost:3000/volvo/api/GU/GU_CONFIG",
+        headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')},
+        dataType: "json",
+        method: "POST",
+        type: 'POST',
+        data: {
+            "accion" : "DELETE-FPERFIL",
+            "nombreUsuario" : localStorage.getItem('usuario')
+        },
+        success: function(respuesta){
+            codigoMessage = respuesta.output.pcodigoMensaje;
+            if(codigoMessage == 0){localStorage.setItem('nombreArchivo',respuesta.output.pnombreArchivo);}
+        }
     });
     return codigoMessage;
 }
