@@ -586,6 +586,11 @@ BEGIN
 
 		
 		-- Accion del procedimiento 
+		SET @pnombreArchivoAnterior = (
+			SELECT nombreArchivo FROM Usuarios 
+			WHERE nombreUsuario = @pnombreUsuario
+		)
+
 		SET @pnombreArchivo = 'default.png';
 		UPDATE Usuarios SET nombreArchivo = @pnombreArchivo
 		WHERE nombreUsuario = @pnombreUsuario COLLATE SQL_Latin1_General_CP1_CS_AS;

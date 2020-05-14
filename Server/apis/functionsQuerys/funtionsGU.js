@@ -142,6 +142,7 @@ function GU_CONFIG (req,res){
         reqDB.output('pcodigoMensaje', sql.Int);
         reqDB.output('pmensaje', sql.VarChar);
         reqDB.output('pnombreArchivo', sql.VarChar);
+        reqDB.output('pnombreArchivoAnterior', sql.VarChar);
         reqDB.execute('GU_CONFIG').then(function(result){
             conn.close();
             if(result.output.pcodigoMensaje == 0){
@@ -162,8 +163,10 @@ function GU_CONFIG (req,res){
                         var error = 0;
                         var foto = req.files.nombreArchivo;
                         var fotoName = result.output.pnombreArchivo;
-                        //var oldFotoName = result.output.pnombreArchivoOld;
-                        //fs.unlink( pathFoto + oldFotoName, (error)=>{});
+                        if( result.output.pnombreArchivoAnterior !== 'default.png' ){
+                            var oldFotoName = result.output.pnombreArchivoAnterior;
+                            fs.unlink( pathFoto + oldFotoName, (error)=>{});
+                        }
                         foto.mv( pathFoto + fotoName, function(err){if(err){error = 7;}});
                         if(error !=0){
                             res.send({output : messagesMiscelaneos.errorC7});
@@ -173,6 +176,10 @@ function GU_CONFIG (req,res){
                         break;
                     }
                     case 'DELETE-FPERFIL':{
+                        if( result.output.pnombreArchivoAnterior !== 'default.png' ){
+                            var oldFotoName = result.output.pnombreArchivoAnterior;
+                            fs.unlink( pathFoto + oldFotoName, (error)=>{});
+                        }
                         result.output.pnombreArchivo = '../images/Usuarios/'+result.output.pnombreArchivo;
                         break;
                     }
