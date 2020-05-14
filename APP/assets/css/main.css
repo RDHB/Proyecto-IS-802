@@ -7664,7 +7664,7 @@ input, select, textarea {
 			}
 
 		.items.style1.medium > * {
-			padding: 1.1875rem 2.1875rem 0.1875rem 2.1875rem ;
+			padding: 1.1875rem 1.1875rem 2.1875rem 1.1875rem ;
 			width: 33.33333%;
 		}
 
@@ -8627,13 +8627,6 @@ input, select, textarea {
 		}
 		.zoom:hover{
 			transform: scale(1.1);
-		}
-		
-		.content1 {
-			width: 600px;
-			padding: 20px;
-			color: purple;
-			background: rgba(0, 0, 0, 0.2);
 		}
 
 		.content2 {
