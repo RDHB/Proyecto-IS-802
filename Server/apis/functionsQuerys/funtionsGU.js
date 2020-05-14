@@ -51,6 +51,15 @@ function GU_LOGIN(req,res){
     });
 };
 
+function GU_LOGOUT(req,res){            
+    req.session.user = null;
+    req.session.password = null;
+    req.session.name = null;
+    req.session.idCargo = null;
+    req.session.codigoEmpleado = null;
+    res.send(messagesMiscelaneos.logOut);
+};
+
 function GU_GESTION_USUARIOS(req,res){
     conn.connect().then(function(){
         var reqDB = new sql.Request(conn);
@@ -184,6 +193,7 @@ function GU_CONFIG (req,res){
 // EXPORTANDO LAS FUNCIONES QUE ATENDERAN LAS PETICIONES
 module.exports = {
     GU_LOGIN,
+    GU_LOGOUT,
     GU_GESTION_USUARIOS,
     GU_REINICIO_CONTRASENIA,
     GU_CONFIG

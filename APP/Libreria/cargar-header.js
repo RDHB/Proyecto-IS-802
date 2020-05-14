@@ -14,7 +14,7 @@ $(Document.body).ready(function(){
 		success: function (respuesta) {
             switch (respuesta.idCargo){
                 case 19:{
-                    $('body').prepend('<!-- Header --><div id="header"><div class="top"><!-- Usuario --><div id="perfil-usuario"><!-- Información del usuario --><span class="image avatar48"><a title="avatarUsuario" href="https://localhost:3000/volvo/view/gestionUsuario/GU_Configuracion_Usuario" style="width:100%; height:100%;"><img src="'+localStorage.getItem('nombreArchivo')+'" alt="avatarUsuario"/></a></span> <h1><span id="nickNameUser">' + localStorage.getItem('usuario') +'</span></h1> <p id="nameOfUser">' + localStorage.getItem('nombre') + '</p></div><!-- Menu (Nav) --><nav class="nav"><ul id="menu-accion"><!-- Lista de acciones del usuario --><li> <a href="https://localhost:3000/volvo/view/gestionUsuario/GU_Home" id="btnHome"> <span class="icon solid fa-home"></span> <span>Inicio</span></a></li>          <li> <a href="https://localhost:3000/volvo/view/gestionUsuario/GU_Gestion_Usuarios"> <span class="icon solid fa-th"></span> <span>Gestión de Usuarios</span> </a> </li>           <li> <a href="https://localhost:3000/volvo/view/gestionUsuario/GU_DataBase"> <span class="icon solid fa-th"></span> <span>Control Base de Datos</span> </a> </li>            </ul></nav></div><div class="bottom"></div></div>');
+                    $('body').prepend('<!-- Header --><div id="header"><div class="top"><!-- Usuario --><div id="perfil-usuario"><!-- Información del usuario --><span class="image avatar48"><a title="avatarUsuario" href="https://localhost:3000/volvo/view/gestionUsuario/GU_Configuracion_Usuario" style="width:100%; height:100%;"><img src="'+localStorage.getItem('nombreArchivo')+'" alt="avatarUsuario"/></a></span> <h1><span id="nickNameUser">' + localStorage.getItem('usuario') +'</span></h1> <p id="nameOfUser">' + localStorage.getItem('nombre') + '</p></div><!-- Menu (Nav) --><nav class="nav"><ul id="menu-accion"><!-- Lista de acciones del usuario --><li> <a href="https://localhost:3000/volvo/view/gestionUsuario/GU_Home" id="btnHome"> <span class="icon solid fa-home"></span> <span>Inicio</span></a></li>          <li> <a href="https://localhost:3000/volvo/view/gestionUsuario/GU_Gestion_Usuarios"> <span class="icon solid fa-th"></span> <span>Gestión de Usuarios</span> </a> </li>           <li> <a href="https://localhost:3000/volvo/view/gestionUsuario/GU_DataBase"> <span class="icon solid fa-th"></span> <span>Control Base de Datos</span> </a> </li>            </ul></nav></div>      <div class="bottom nav"><ul><li><a href="#" onClick="cerrarSession();" style="width:auto; color:white;" class="icon solid fa-sign-out-alt"><span>Cerrar Sesión</span></a></li></ul></div>         </div>');
                     break;
                 }
                 case 17:{
@@ -45,6 +45,27 @@ $(Document.body).ready(function(){
 		}
     });
 });
+
+/**
+ * FUNCION PARA HACER SALIR DE LA CUENTA
+ */
+function cerrarSession(){
+    $.ajax({
+        url: "https://localhost:3000/volvo/api/GU/GU_LOGOUT",
+        headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')},
+		data: {},
+		dataType: "json",
+		method: "POST",
+		success: function (respuesta) {
+            localStorage.removeItem('token');
+            localStorage.removeItem('usuario');
+			localStorage.removeItem('nombre');
+			localStorage.removeItem('nombreArchivo');
+            location.reload();
+        }
+	});
+}
+
 
 //ESTA ES LA ESTRUCTURA DEL HEADER, SE SECAMBIA HACERLO DE AQUI, LUEGO COMPACTARLO PARA COPIARLO EN EL PREPEND
 /*
@@ -78,5 +99,14 @@ $(Document.body).ready(function(){
             </ul> 
         </div> 
     </div>
+
+
+
+            <ul class="icons"><li> <a href="#"> <span class="icon solid fa-sign-out-alt"></span> <span>Cerrar Sesión</span></a></li></ul>
+            
+
+
+            <ul class="icons"><li style="width:100%/"><a href="#" style="width:auto;" class="icon solid fa-sign-out-alt"><span>Cerrar Sesión</span></a></li></ul>
+
 */
 
