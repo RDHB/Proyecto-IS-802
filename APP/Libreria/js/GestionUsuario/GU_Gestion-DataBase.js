@@ -10,34 +10,19 @@ var dataTypeColumn = {};
     - SE RELLENAN SELECT DE TABLAS 
     POR DEFECTO SE DEJA SIN SELECCIONAR TABLA Y CAMPO DE ALGUNAS DE LAS TABLAS
 */
-$(Document).ready(function(){
+$(Document.body).ready(function(){
     $.ajax({
-		url: "https://localhost:3000/volvo/api/GU/GU_LOGIN",
-		data: {
-            "usuario" : 'LuisFer15',
-            "password" : 'Extremo15',
-        },
-		dataType: "json",
-		method: "POST",
-		success: function (respuesta) {
-			if (respuesta.pcodigoMensaje == 0) {
-                localStorage.setItem('token',respuesta.token);
-            }
-		}
-    }).then(function(){
-        $.ajax({
-            url: "https://localhost:3000/volvo/api/Miscelaneos/GET_TABLESNAMES_DB",
-            headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')},
-            dataType: "json",
-            method: "POST",
-            success: function (respuesta) {
-                    for(i=0; i< respuesta.data.length; i++){
-                        $('#selectNombresTablaDB').append('<option value="'+respuesta.data[i].TABLE_NAME+'">'+respuesta.data[i].TABLE_NAME+'</option>');
-                    }
-                    $("#displaNombreTabla").replaceWith('<h3 id="displaNombreTabla">- Seleccione Tabla -</h3>');
-            }
-        });
-    })
+        url: "https://localhost:3000/volvo/api/Miscelaneos/GET_TABLESNAMES_DB",
+        headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')},
+        dataType: "json",
+        method: "POST",
+        success: function (respuesta) {
+                for(i=0; i< respuesta.data.length; i++){
+                    $('#selectNombresTablaDB').append('<option value="'+respuesta.data[i].TABLE_NAME+'">'+respuesta.data[i].TABLE_NAME+'</option>');
+                }
+                $("#displaNombreTabla").replaceWith('<h3 id="displaNombreTabla">- Seleccione Tabla -</h3>');
+        }
+    });
 });
 
 /*
@@ -479,15 +464,12 @@ async function agregarRegistros(){
             success: function(respuesta){
                 if(respuesta.output.pcodigoMensaje == 0){
                     messages.push({pcodigoMensaje: respuesta.output.pcodigoMensaje});
-                    console.log(respuesta.output.pmensaje)
                 }else{
                     messages.push({pcodigoMensaje: respuesta.output.pcodigoMensaje});
-                    console.log(respuesta.output.pmensaje)
                 }
             },
             error : function(error){
                 messages.push({pcodigoMensaje: respuesta.output.pcodigoMensaje});
-                console.log(respuesta.output.pmensaje)
             }
         });
     return messages;

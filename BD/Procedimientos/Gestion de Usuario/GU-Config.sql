@@ -35,7 +35,7 @@
  * 
  * DELETE-TELEFONO: @pnombreUsuario, @pidTelefono
 */
-CREATE PROCEDURE GU_CONFIG (
+CREATE OR ALTER PROCEDURE GU_CONFIG (
     -- Parametros de Entrada
 	-- ID
 	@pnombreUsuario				VARCHAR(45),
@@ -135,6 +135,7 @@ BEGIN
 		SELECT 
 			U.idUsuario
 			, nombreUsuario
+			, nombreArchivo
 			, dbo.FN_ENCRIPTAR( contrasenia ) AS 'Contrasenia'
 			, nombreArchivo
 			, E.codigoEmpleado

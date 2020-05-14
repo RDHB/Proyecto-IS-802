@@ -2,8 +2,6 @@
 
 // IMPORTANDO LOS MODULOS NECESARIOS
 const express = require('express');
-const jwt = require('jsonwebtoken');
-const config = require('../settings/config');
 const functionsAuth = require('../others/functionsAuth')
 const directorio = require('../../ruta');
 
@@ -25,6 +23,11 @@ apisViews.get('/login', (req,res) => {
         res.sendFile(path + '/login.html');
     }
 });
+
+// -- VISTA CONFIGURACION DE USUARIO
+apisViews.get('/gestionUsuario/GU_Configuracion_Usuario',functionsAuth.authLogin,(req,res) => {
+    res.sendFile(path + '/GestionUsuario/GU_Configuracion_Usuario.html');
+});    
 
 // -- VISTAS FACTURACION
 apisViews.get('/facturacion/FA_Home',/*functionsAuth.authCajero,*/ (req,res) => {
