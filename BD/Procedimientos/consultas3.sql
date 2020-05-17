@@ -369,3 +369,149 @@ EXEC OT_J_APROVACION_COTIZACION
 SELECT @pcodigoMensaje;
 SELECT @pmensaje;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- LLamar al procedimiento almacenado: OT_A_GENERAR_LISTA
+select * from Lista_MyR;
+select numeroOT, EstadoOT_idEstadoOT from OrdenTrabajo;
+
+
+
+DECLARE
+	-- Parametros de Entrada
+	@pnumeroOT						VARCHAR(45),
+	@pidProducto				INT,
+	@pcantidad					INT,
+    @paccion						VARCHAR(45),
+    
+    -- Parametros de Salida
+    -- Codigo de mensaje
+    @pcodigoMensaje					INT,
+	@pmensaje 						VARCHAR(1000)
+
+    -- Otros parametros de salida
+
+;
+
+SET @pnumeroOT = 'OT0000011';
+SET @pidProducto = 0;
+SET @pcantidad = 0;
+SET @paccion = 'SAVE';
+
+SET @pcodigoMensaje = 0;
+SET @pmensaje = '';
+
+
+EXEC OT_A_GENERAR_LISTA
+	-- INTPUT
+	@pnumeroOT,
+	@pidProducto,
+	@pcantidad,
+	@paccion,
+	
+	-- OUTPUT
+	@pcodigoMensaje OUTPUT,
+	@pmensaje OUTPUT
+;
+
+-- OUTPUT
+SELECT @pcodigoMensaje;
+SELECT @pmensaje;
+
+
+SELECT 
+	OT.numeroOT
+	, OT.EstadoOT_idEstadoOT AS 'estadoOT'
+	, LMR.Producto_idProducto AS 'idProducto'
+	, P.nombre
+	, LMR.cantidad
+	, P.precioVenta
+	, (LMR.cantidad * P.precioVenta) AS 'subTotal'
+FROM Lista_MyR LMR
+INNER JOIN OrdenTrabajo OT ON OT.idOrdenTrabajo = LMR.OrdenTrabajo_idOrdenTrabajo
+INNER JOIN Producto P ON P.idProducto = LMR.Producto_idProducto
+WHERE OT.numeroOT = 'OT0000011'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- LLamar al procedimiento almacenado: OT_J_APROVACION_LISTA
+select * from Lista_MyR
+select numeroOT, EstadoOT_idEstadoOT from OrdenTrabajo
+
+
+DECLARE
+	-- Parametros de Entrada
+	@pnumeroOT						VARCHAR(45),
+    @paccion						VARCHAR(45),
+    
+    -- Parametros de Salida
+    -- Codigo de mensaje
+    @pcodigoMensaje					INT,
+	@pmensaje 						VARCHAR(1000)
+
+    -- Otros parametros de salida
+
+;
+
+SET @pnumeroOT = 'OT0000011';
+SET @paccion = 'SAVE';
+
+SET @pcodigoMensaje = 0;
+SET @pmensaje = '';
+
+
+EXEC OT_J_APROVACION_LISTA
+	-- INTPUT
+	@pnumeroOT,
+	@paccion,
+	
+	-- OUTPUT
+	@pcodigoMensaje OUTPUT,
+	@pmensaje OUTPUT
+;
+
+-- OUTPUT
+SELECT @pcodigoMensaje;
+SELECT @pmensaje;
+
+

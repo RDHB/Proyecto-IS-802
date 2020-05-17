@@ -1,4 +1,4 @@
--- <=== OT-A_AprovacionCotizacion ===>
+-- <=== OT_J_AprovacionCotizacion ===>
 /* Requisitos de las acciones:
  * SELECT-S: @pnumeroOT
  * Salida: idServicio, nombre, servicioEfectuado, precioCosto, duracion
