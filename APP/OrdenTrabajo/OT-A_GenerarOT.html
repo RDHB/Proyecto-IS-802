@@ -5,16 +5,16 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="../assets/css/header.css" />
         <link rel="stylesheet" href="../assets/css/main.css" />
+        <link rel="stylesheet" href="../Libreria/css/OrdenTrabajo/OT-A_GenerarOT.css" />
 		<link rel="icon" type="image" href="../images/Volvo-Emblema.ico" sizes="64x64">
 		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
-		<h1 align="center"><i><b><img  src="../images/source.gif" width="70xp" border-radius="100%">Volvo Partes</b></i></h1> 	
     </head>
     <body background="">
 		<div id="main">
 		<section>
-			<div>
+			<div class="content1">
                 <img src="../images/visualizar.png" width="70xp" height="80xp">
-				<h2>Generación y Visualización de la Orden de Trabajo</h2>
+				<h2><b>Generación y Visualización de la Orden de Trabajo</b></h2><hr>
 				<div>
 					<section>
                         <div class="content">
@@ -22,20 +22,21 @@
                             <form method="post" action="#">
                                 <br>
                                 <div class="fields">
-                                    <div class="field" align="center" style="width: 48%; float:left; display:block; margin: 10;">
+                                    <div class="field" style="width: auto; float:left; display:block; margin: auto;">
                                         <label for="name" align="center">VIN</label>
                                     </div>
-                                    <div class="field" align="left" style="width: 48%; float:left; display:block; margin: 10;">
-                                        <input type="text" style="width:400px" name="name" id="vin" value=""/>
+                                    <div class="field" style="width: auto; float:left; display:block; margin: auto;">
+                                        <input type="text" style="width:auto" name="name" id="vin" value=""/>
                                     </div>
-                                    <div class="field" align="center" style="width: 48%; float:left; display:block; margin: 10;">
+                                    <div class="field" style="width: auto; float: right;; display:block; margin: auto;">
                                         <label for="name" align="center">Número de Identidad</label>
                                     </div>
-                                    <div class="field" align="left" style="width: 48%; float:left; display:block; margin: 10;">
-                                        <input type="text" style="width:400px" name="name" id="id" value=""/>
-                                        <ul class="actions" align="left" style="width: 100%; float:left; display:block; margin: 10;">
-                                            <li><a href="#" class="button small" align="left" style="width: 65%; display:block; margin: 50;">Generar Orden de Trabajo</a></li>
-                                        </ul>
+                                    <div class="field" style="width: auto; float:right; display:block; margin: auto;">
+                                        <input type="text" style="width:auto" placeholder="ejemplo: 000000000000" name="name" id="id" value=""/>
+                                        
+                                    </div>
+                                    <div class="field"  style="width: auto; float:left; display:block; margin: auto;">
+                                        <a href="#" class="button small" align="left" style="width: auto; display:block; margin: auto;">Generar Orden de Trabajo</a>
                                     </div>
                                 </div>
                                 <section>
@@ -43,8 +44,9 @@
                                         <h3>Tabla de Ordenes de Trabajo</h3>
                                     </header>
                                     <div class="content"> 
-                                        <div class="table-wrapper" style="width: 90%; display:block; margin: 50;">
-                                            <table>
+                                        <div class="table-wrapper" style="width: auto; display:block; margin-left: auto; margin-right: auto;">
+                                            
+                                            <div class="datagrid"><table>
                                                 <thead>
                                                     <tr>
                                                         <th>Número de O.T</th>
@@ -53,6 +55,19 @@
                                                         <th>Estado</th>
                                                     </tr>
                                                 </thead>
+                                                <tfoot>
+                                                    <tr>
+                                                        <td colspan="5">
+                                                        <div id="paging">
+                                                            <ul>
+                                                                <li><a href="#"><span>Anterior</span></a></li>
+                                                                <li><a href="#" class="active"><span>1</span></a></li>
+                                                                <li><a href="#"><span>2</span></a></li>
+                                                                <li><a href="#"><span>Siguiente</span></a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </tr>
+                                                </tfoot>
                                                 <tbody>
                                                     <tr>
                                                         <td>OT-09001</td>
@@ -73,7 +88,8 @@
                                                         <td>Finalizado</td>
                                                     </tr>
                                                 </tbody>
-                                            </table>
+                                                </table></div><br><br>
+                                                
                                         </div>
                                 </section>        
                             </form>

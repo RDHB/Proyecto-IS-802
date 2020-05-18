@@ -277,7 +277,7 @@ input, select, textarea {
 	hr {
 		border: 0;
 		border-bottom: solid 1px;
-		margin: 2.5rem 0;
+		margin: 0.5rem 0;
 	}
 
 		hr.major {
@@ -2261,7 +2261,7 @@ input, select, textarea {
 			-ms-flex-wrap: wrap;
 			flex-wrap: wrap;
 			width: calc(100% + 3rem);
-			margin: -1.5rem 0 2rem -1.5rem;
+			margin: -1.5rem 0 1.5rem -1.5rem;
 		}
 
 			form > .fields > .field {
@@ -2385,7 +2385,7 @@ input, select, textarea {
 	}
 
 	textarea {
-		padding: 0.75rem 1rem;
+		padding: 1.75rem 1.75rem;
 	}
 
 	input[type="checkbox"],
@@ -2934,7 +2934,7 @@ input, select, textarea {
 
 	.table-wrapper {
 		-webkit-overflow-scrolling: touch;
-		margin: 0 0 0rem 0;
+		margin: 0 0 -2rem 0;
 		overflow-x: auto;
 	}
 

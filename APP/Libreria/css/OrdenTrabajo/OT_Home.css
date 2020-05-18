@@ -100,7 +100,7 @@ p { color: black;  }
 .box1{
     background-color:#d7d7d7;
     width: 210%;
-    height: 110%;
+    height: 120%;
     padding: 30%;
     border-radius: 50px;
     -moz-border-radius: 50px;
@@ -109,7 +109,7 @@ p { color: black;  }
 .box2{
     background-color:#fbb13c;
     width: 145%;
-    height: 110%;
+    height: 120%;
     padding: 20%;
     padding-bottom: 20%;
     border-radius: 50px;
@@ -118,7 +118,7 @@ p { color: black;  }
 }
 
 .content1 {
-    width: 95%;
+    width: auto;
     margin-top: 2%;
     margin-left: 3%;
     margin-right: 3%;

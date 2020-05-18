@@ -94,8 +94,8 @@ body {
     margin-top: 1.5%;
     margin-left:5%;
     margin-right:5%;
-    padding-bottom: 65px;
-    padding-left: 10px;
+    padding-left: 1%;
+    padding-right: 1%;
     color: #ffffff;
     background: white;
     border-radius: 50px;
@@ -103,7 +103,7 @@ body {
     -webkit-border-radius: 50px;
     padding-top: 3%;
     padding-bottom: 0%;
-    margin-bottom: 1%;
+    margin-bottom: 5%;
 }
 .datagrid table { 
   border-collapse: collapse; 
