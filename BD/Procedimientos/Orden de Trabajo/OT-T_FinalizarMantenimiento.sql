@@ -162,8 +162,24 @@ BEGIN
 
 
 		-- Accion del procedimiento
+		-- Servicios efectuados
+		UPDATE Lista_Servicios SET
+			servicioEfectuado = 1
+		FROM (
+			SELECT 
+				OT.idOrdenTrabajo
+				, S.idServicios
+				, servicioEfectuado
+			FROM Lista_Servicios LS
+			INNER JOIN OrdenTrabajo OT ON OT.idOrdenTrabajo = LS.OrdenTrabajo_idOrdenTrabajo
+			INNER JOIN Servicios S ON S.idServicios = LS.Servicios_idServicios
+			WHERE OT.numeroOT =@pnumeroOT
+		) AS T
+		WHERE Servicios_idServicios = T.idServicios
+		AND OrdenTrabajo_idOrdenTrabajo = T.idOrdenTrabajo
+
 		-- Actualiza la orden de trabajo 
-		UPDATE OrdenTrabajo SET 
+		UPDATE OrdenTrabajo SET
 			EstadoOT_idEstadoOT = 10
 			, reparacionesEfectuadas = @preparacionesEfectuadas
 			, reparacionesNoEfectuadas = @preparacionesNoEfectuadas

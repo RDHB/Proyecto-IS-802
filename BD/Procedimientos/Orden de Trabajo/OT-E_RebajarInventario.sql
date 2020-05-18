@@ -170,19 +170,35 @@ BEGIN
 
 		-- Accion del procedimiento
 		-- Rebaja productos del invetario
-		UPDATE Producto SET cantidad = T.cantidad
+		UPDATE Producto SET 
+			cantidad = T.cantidad
 		FROM (
 			SELECT 
 				LMR.Producto_idProducto
 				, (P.cantidad - LMR.cantidad) AS 'cantidad'
 			FROM Lista_MyR LMR
 			INNER JOIN Producto P ON P.idProducto = LMR.Producto_idProducto
-			WHERE LMR.OrdenTrabajo_idOrdenTrabajo = (
-				SELECT idOrdenTrabajo FROM OrdenTrabajo
-				WHERE numeroOT = @pnumeroOT
-			)
+			INNER JOIN OrdenTrabajo OT ON OT.idOrdenTrabajo = LMR.OrdenTrabajo_idOrdenTrabajo
+			WHERE OT.numeroOT = @pnumeroOT
 		) T
 		WHERE idProducto = T.Producto_idProducto
+
+		-- Productos rebajados del invetario = 1
+		UPDATE Lista_MyR SET 
+			rebajados = 1
+		FROM (
+			SELECT 
+				P.idProducto
+				, OT.idOrdenTrabajo
+				, (P.cantidad - LMR.cantidad) AS 'cantidad'
+				, rebajados
+			FROM Lista_MyR LMR
+			INNER JOIN Producto P ON P.idProducto = LMR.Producto_idProducto
+			INNER JOIN OrdenTrabajo OT ON OT.idOrdenTrabajo = LMR.OrdenTrabajo_idOrdenTrabajo
+			WHERE OT.numeroOT = @pnumeroOT
+		) T
+		WHERE Producto_idProducto = T.idProducto
+		AND OrdenTrabajo_idOrdenTrabajo = T.idOrdenTrabajo
 
 		-- Actualiza la orden de trabajo 
 		UPDATE OrdenTrabajo SET 

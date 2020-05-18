@@ -240,11 +240,27 @@ BEGIN
 
 
 		-- Accion del procedimiento
+		-- Productos aprovados
+		UPDATE Lista_Cotizacion SET
+			aprovados = 1
+		FROM (
+			SELECT 
+				P.idProducto
+				, OT.idOrdenTrabajo
+			FROM Lista_Cotizacion LC
+			INNER JOIN OrdenTrabajo OT ON OT.idOrdenTrabajo = LC.OrdenTrabajo_idOrdenTrabajo
+			INNER JOIN Producto P ON P.idProducto = LC.Producto_idProducto
+			WHERE numeroOT = @pnumeroOT
+		) AS T
+		WHERE OrdenTrabajo_idOrdenTrabajo = T.idOrdenTrabajo
+		AND Producto_idProducto = T.idProducto;
+		
+		-- EstadoOT modificado
 		UPDATE OrdenTrabajo SET 
 			EstadoOT_idEstadoOT = 6
 		WHERE numeroOT = @pnumeroOT;
 
-
+		
 		
         SET @pmensaje = 'Datos guardados con exito';
 	END;
