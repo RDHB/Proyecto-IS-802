@@ -6,7 +6,7 @@
  * SELECT: <No hay parametros>
  * Salida: Select(idOrdenTrabajo, nombreCliente, (Marca y Modelo), EstadoOT)
 */
-CREATE PROCEDURE OT_A_GENERAR_OT (
+CREATE OR ALTER PROCEDURE OT_A_GENERAR_OT (
     -- Parametros de Entrada
 	@pvin						VARCHAR(45),
 	@pnumeroIdentidad			VARCHAR(45),

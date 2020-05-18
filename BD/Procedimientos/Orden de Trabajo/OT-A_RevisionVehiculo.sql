@@ -4,7 +4,7 @@
  * Opcional: @pobjetosPersonales
  * 
 */
-CREATE PROCEDURE OT_A_REVISION_VEHICULO (
+CREATE OR ALTER PROCEDURE OT_A_REVISION_VEHICULO (
     -- Parametros de Entrada
 	@pnumeroOT						VARCHAR(45),
 	@pestado_del_vehiculo			VARCHAR(1000),

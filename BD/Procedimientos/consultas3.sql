@@ -515,3 +515,132 @@ SELECT @pcodigoMensaje;
 SELECT @pmensaje;
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- LLamar al procedimiento almacenado: OT_E_REBAJAR_INVENTARIO
+select * from Lista_MyR
+select numeroOT, EstadoOT_idEstadoOT from OrdenTrabajo
+
+
+DECLARE
+	-- Parametros de Entrada
+	@pnumeroOT						VARCHAR(45),
+    @paccion						VARCHAR(45),
+    
+    -- Parametros de Salida
+    -- Codigo de mensaje
+    @pcodigoMensaje					INT,
+	@pmensaje 						VARCHAR(1000)
+
+    -- Otros parametros de salida
+
+;
+
+SET @pnumeroOT = 'OT0000011';
+SET @paccion = 'SAVE';
+
+SET @pcodigoMensaje = 0;
+SET @pmensaje = '';
+
+
+EXEC OT_E_REBAJAR_INVENTARIO
+	-- INTPUT
+	@pnumeroOT,
+	@paccion,
+	
+	-- OUTPUT
+	@pcodigoMensaje OUTPUT,
+	@pmensaje OUTPUT
+;
+
+-- OUTPUT
+SELECT @pcodigoMensaje;
+SELECT @pmensaje;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- LLamar al procedimiento almacenado: OT_T_FINALIZAR_MANTENIMIENTO
+select * from Lista_MyR
+select * from OrdenTrabajo
+
+
+DECLARE
+	-- Parametros de Entrada
+	@pnumeroOT						VARCHAR(45),
+	@preparacionesEfectuadas		VARCHAR(45),
+	@preparacionesNoEfectuadas		VARCHAR(45),
+    @paccion						VARCHAR(45),
+    
+    -- Parametros de Salida
+    -- Codigo de mensaje
+    @pcodigoMensaje					INT,
+	@pmensaje 						VARCHAR(1000)
+
+    -- Otros parametros de salida
+
+;
+
+SET @pnumeroOT = 'OT0000011';
+SET @preparacionesEfectuadas = 'Se realizaron todas las reparaciones';
+SET @preparacionesNoEfectuadas = '';
+SET @paccion = 'SAVE';
+
+SET @pcodigoMensaje = 0;
+SET @pmensaje = '';
+
+
+EXEC OT_T_FINALIZAR_MANTENIMIENTO
+	-- INTPUT
+	@pnumeroOT,
+	@preparacionesEfectuadas,
+	@preparacionesNoEfectuadas,
+	@paccion,
+	
+	-- OUTPUT
+	@pcodigoMensaje OUTPUT,
+	@pmensaje OUTPUT
+;
+
+-- OUTPUT
+SELECT @pcodigoMensaje;
+SELECT @pmensaje;
+

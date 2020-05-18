@@ -7,7 +7,7 @@
  * 
  * CANCEL: @pnumeroOT
 */
-CREATE PROCEDURE OT_J_APROVACION_LISTA(
+CREATE OR ALTER PROCEDURE OT_J_APROVACION_LISTA(
     -- Parametros de Entrada
 	@pnumeroOT					VARCHAR(45),
     @paccion					VARCHAR(45),
@@ -175,7 +175,7 @@ BEGIN
 
 
 
-	/* Funcionalidad: Cancelar Cotizacion
+	/* Funcionalidad: Cancelar Lista de Materiales
      * Construir un update con la sigueinte informacion:
      * Datos: @pnumeroOT
      *

@@ -10,7 +10,7 @@
  * 
  * SAVE: @pnumeroOT
 */
-CREATE PROCEDURE OT_A_COTIZACION (
+CREATE OR ALTER PROCEDURE OT_A_COTIZACION (
     -- Parametros de Entrada
 	@pnumeroOT					VARCHAR(45),
 	@pidProducto				INT,
