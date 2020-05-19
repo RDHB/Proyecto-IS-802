@@ -3,8 +3,8 @@
     margin-top: 1.5%;
     margin-left:3%;
     margin-right:3%;
-    padding-left: 3%;
-    padding-right: 4%;
+    padding-left: 2%;
+    padding-right: 2%;
     color: #ffffff;
     background: white;
     border-radius: 50px;
@@ -40,7 +40,7 @@
     background:-moz-linear-gradient( center top, #006699 5%, #00557F 100% );
     filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#006699', endColorstr='#00557F');
     background-color:#006699; color:#FFFFFF; 
-    font-size: 15px; 
+    font-size: 13px; 
     font-weight: bold; 
     border-left: 1px solid #0070A8; 
   } 

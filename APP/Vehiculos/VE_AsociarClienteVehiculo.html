@@ -8,131 +8,130 @@
         <link rel="stylesheet" href="../Libreria/css/Vehiculos/VE_AsociarClienteVehiculo.css" />
 		<link rel="icon" type="image" href="../images/Volvo-Emblema.ico" sizes="64x64">
 		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
-		
     </head>
     <body background="">
 		<div id="main">
-		<section>
-			<div class="content1">
-                <img class="circulo_small" src="../images/vehiculo-cliente.jpg">
-				<h3>Asociación Cliente-Vehículo</h3><br>
-				<div>
-					<section>
-                        <div class="content">
+            <section>
+                <div class="content1">
+                    <img class="circulo_small" src="../images/vehiculo-cliente.jpg">
+                    <h3><b>Asociación Cliente-Vehículo</b></h3><hr><br><br>
+                    <div>
+                        <section>
+                            <div class="content">
 
-                            <form method="post" action="#">
-                                <div class="fields">
-                                    <div class="field" align="center" style="width: auto; float:left; display:block; margin: auto;">
-                                        <label for="name" align="center">Número de Identidad</label>
-                                        <input type="text" style="width:auto" name="name" id="name" value="" placeholder="ejemplo: 000000000000"/>
-                                        <br>
+                                <form method="post" action="#">
+                                    <div class="fields">
+                                        <div class="field" align="center" style="width: auto; float:left; display:block; margin: auto;">
+                                            <label for="name" align="center">Número de Identidad</label>
+                                            <input type="text" style="width:auto" name="name" id="name" value="" placeholder="ejemplo: 000000000000"/>
+                                            <br>
+                                        </div>
+                                        <div class="field" align="center" style="width: auto; float:left; display:block; margin: auto;">
+                                            <label for="name" align="center">Vin</label>
+                                            <input type="text" style="width:auto" name="name" id="name" value=""/>
+                                            <br>
+                                        </div>
+                                        <div class="field" align="center" style="width: auto; float:left; display:block; margin: auto; margin-right:7%;">
+                                            <a href="#" class="button1 b-blue" style="width: auto; display:block" >Vincular</a>
+                                        </div>
                                     </div>
-                                    <div class="field" align="center" style="width: auto; float:left; display:block; margin: auto;">
-                                        <label for="name" align="center">Vin</label>
-                                        <input type="text" style="width:auto" name="name" id="name" value=""/>
-                                        <br>
-                                    </div>
-                                    <div class="field" align="center" style="width: auto; float:left; display:block; margin: auto; margin-right:7%;">
-                                        <a href="#" class="button1 b-blue" style="width: auto; display:block" >Vincular</a>
-                                    </div>
-                                </div>
-                                <section>
-                                    <header>
-                                        <h3>Vehículos del Cliente</h3><br>
-                                    </header>
-                                    <div class="content"> 
-                                        <div class="table-wrapper" style="width: auto; display:block; margin-left: auto; margin-right: auto;">
-                                            
-                                            <div class="datagrid"><table>
-                                                <thead>
-                                                    <tr>
-                                                        <th></th>
-                                                        <th>Código</th>
-                                                        <th>Cliente</th>
-                                                        <th>Vehículo</th>
-                                                        <th>VIN</th>
-                                                    </tr>
-                                                </thead>
-                                                <tfoot>
-                                                    <tr>
-                                                        <td colspan="5">
-                                                        <div id="paging">
-                                                            <ul>
-                                                                <li><a href="#"><span>Anterior</span></a></li>
-                                                                <li><a href="#" class="active"><span>1</span></a></li>
-                                                                <li><a href="#"><span>2</span></a></li>
-                                                                <li><a href="#"><span>Siguiente</span></a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </tr>
-                                                </tfoot>
-                                                <tbody>
-                                                    <tr>
-                                                        <td style="width: 0.5%;">
-                                                            <input type="checkbox" id="check" name="check">
-                                                            <label for="check"></label>
-                                                        </td>
-                                                        <td>1</td>
-                                                        <td>Mariela Rodriguez</td>
-                                                        <td>Toyota 4x4 Hilux</td>
-                                                        <td>1234</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="width: 0.5%;">
-                                                            <input type="checkbox" id="check1" name="check1">
-                                                            <label for="check1"></label>
-                                                        </td>
-                                                        <td>2</td>
-                                                        <td>Mariela Rodriguez</td>
-                                                        <td>Camioneta Ford</td>
-                                                        <td>5678</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="width: 0.5%;">
-                                                            <input type="checkbox" id="check2" name="check2">
-                                                            <label for="check2"></label>
-                                                        </td>
-                                                        <td>1</td>
-                                                        <td>Mariela Rodriguez</td>
-                                                        <td>Honda Civic</td>
-                                                        <td>7542</td>
-                                                    </tr>
-                                                </tbody>
-                                                </table>
-                                            </div><br><br>
-                                                <div class="field" align="center" style="width: auto; display:block; margin: auto; margin-left: 4%; margin-right: auto;">
-                                                    <ul class="actions">
-                                                        <li>
-                                                            <div class="field" align="center" style="width: auto; display:block; margin: auto; margin-left: auto; margin-right: auto;">
-                                                                <a href="#" class="button small" style="width: auto; display:block; margin: auto;">Agregar nuevo registro a la tabla</a>
+                                    <section>
+                                        <header>
+                                            <h3>Vehículos del Cliente</h3>
+                                        </header>
+                                        <div class="content"> 
+                                            <div class="table-wrapper" style="width: auto; display:block; margin-left: auto; margin-right: auto;">
+                                                
+                                                <div class="datagrid"><table>
+                                                    <thead>
+                                                        <tr>
+                                                            <th></th>
+                                                            <th>Código</th>
+                                                            <th>Cliente</th>
+                                                            <th>Vehículo</th>
+                                                            <th>VIN</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tfoot>
+                                                        <tr>
+                                                            <td colspan="5">
+                                                            <div id="paging">
+                                                                <ul>
+                                                                    <li><a href="#"><span>Anterior</span></a></li>
+                                                                    <li><a href="#" class="active"><span>1</span></a></li>
+                                                                    <li><a href="#"><span>2</span></a></li>
+                                                                    <li><a href="#"><span>Siguiente</span></a></li>
+                                                                </ul>
                                                             </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="field" align="center" style="width: auto; display:block; margin: auto; margin-left: auto; margin-right: auto;">
-                                                                <a href="#" class="button small" style="width: auto; display:block; margin: auto;">Eliminar Registros Seleccionados</a>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="field" align="center" style="width: auto; display:block; margin: auto; margin-left: auto; margin-right: auto;">
-                                                                <a href="#" class="button small" style="width: auto; display:block; margin: auto;">Revertir Cambios</a>
-                                                            </div>
-                                                        </li>
-                                                        <li>
-                                                            <div class="field" align="right" style="width: auto; display:block; margin: auto; margin-left: auto; margin-right: auto;">
-                                                                <a href="#" class="button small" style="width: auto; display:block; margin: auto;">Guardar Cambios</a>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
+                                                        </tr>
+                                                    </tfoot>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td style="width: 0.5%;">
+                                                                <input type="checkbox" id="check" name="check">
+                                                                <label for="check"></label>
+                                                            </td>
+                                                            <td>1</td>
+                                                            <td>Mariela Rodriguez</td>
+                                                            <td>Toyota 4x4 Hilux</td>
+                                                            <td>1234</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="width: 0.5%;">
+                                                                <input type="checkbox" id="check1" name="check1">
+                                                                <label for="check1"></label>
+                                                            </td>
+                                                            <td>2</td>
+                                                            <td>Mariela Rodriguez</td>
+                                                            <td>Camioneta Ford</td>
+                                                            <td>5678</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="width: 0.5%;">
+                                                                <input type="checkbox" id="check2" name="check2">
+                                                                <label for="check2"></label>
+                                                            </td>
+                                                            <td>1</td>
+                                                            <td>Mariela Rodriguez</td>
+                                                            <td>Honda Civic</td>
+                                                            <td>7542</td>
+                                                        </tr>
+                                                    </tbody>
+                                                    </table>
+                                                </div><br><br>
+                                                    <div class="field" align="center" style="width: auto; display:block; margin: auto; margin-left: 3%; margin-right: auto;">
+                                                        <ul class="actions">
+                                                            <li>
+                                                                <div class="field" align="center" style="width: auto; display:block; margin: auto; margin-left: auto; margin-right: auto;">
+                                                                    <a href="#" class="button small" style="width: auto; display:block; margin: auto;">Agregar nuevo registro a la tabla</a>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="field" align="center" style="width: auto; display:block; margin: auto; margin-left: auto; margin-right: auto;">
+                                                                    <a href="#" class="button small" style="width: auto; display:block; margin: auto;">Eliminar Registros Seleccionados</a>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="field" align="center" style="width: auto; display:block; margin: auto; margin-left: auto; margin-right: auto;">
+                                                                    <a href="#" class="button small" style="width: auto; display:block; margin: auto;">Revertir Cambios</a>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="field" align="right" style="width: auto; display:block; margin: auto; margin-left: auto; margin-right: auto;">
+                                                                    <a href="#" class="button small" style="width: auto; display:block; margin: auto;">Guardar Cambios</a>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                </section>        
-                            </form>
-                        </div>
-					</section>
-				</div>
-			</div>
-		</section>
+                                    </section>        
+                                </form>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </section>
 		
 		<!-- ------------------------------------------------------------ -->
 		<!-- Hasta aquí se puede Editar -->

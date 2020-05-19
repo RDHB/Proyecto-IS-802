@@ -5,73 +5,77 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="../assets/css/header.css" />
         <link rel="stylesheet" href="../assets/css/main.css" />
+        <link rel="stylesheet" href="../Libreria/css/OrdenTrabajo/OT-J_ControlCalidad.css" />
 		<link rel="icon" type="image" href="../images/Volvo-Emblema.ico" sizes="64x64">
 		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
-		<h1 align="center"><i><b><img  src="../images/source.gif" width="70xp" border-radius="100%">Volvo Partes</b></i></h1> 	
     </head>
     <body background="">
 		<div id="main">
 		<section>
-			<div>
+			<div class="content1">
                 <img src="../images/filosofia-de-la-calidad.png" width="70xp" height="80xp">
-				<h2>Control de Calidad</h2>
+				<h3><b>Control de Calidad</b></h3><hr><br>
 				<div>
 					<section>
                         <div class="content">
-
                             <form method="post" action="#">
-                                <br>
                                 <div class="fields">
-                                    <div class="field" align="center" style="width: 48%; float:left; display:block; margin: 10;">
+                                    <div class="field" align="center" style="width: auto; float:left; display:block; margin: auto;">
                                         <label for="name" align="center">Número de Orden de Trabajo</label>
                                     </div>
-                                    <div class="field" align="left" style="width: 28%; float:left; display:block; margin: 10;">
-                                        <input type="text" style="width:320px" name="name" id="vin" value=""/>
+                                    <div class="field" style="width: auto; float:right; display:block; margin: auto;">
+                                        <input type="text" style="width:auto" name="name" id="vin" value=""/>
                                     </div>
-                                    <div style="width: 10%; float:right; display:block; margin: 40;">
-                                        <ul class="actions" align="right">
-                                            <li><a href="#" style="width:35px" class="button primary icon solid fa-search"></a></li>
-                                        </ul>
+                                    <div class="linea" style="width: auto; float: right; display:block; margin: auto; margin-top: 5%;">
+                                        <div class="linea" style="width: auto; float:left; display:block; margin: auto;">
+                                            <ul class="actions" align="center">
+                                                <li><a href="#" style="width:1%" class="button primary icon solid fa-search"></a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="linea" style="width: auto; float:left; display:block; margin: auto;">
+                                            <ul class="actions" align="center">
+                                                <li><a href="#" style="width:1%" class="button primary icon solid fa-save"></a></li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
+                                <h3 align="center" style="width: auto;">Detalles del Mantenimiento</h3><br>
                                 <div class="fields">
-                                    <h3 align="center" style="width: 100%;">Detalles del Mantenimiento</h3>
-                                    <div class="field" align="center" style="width: 48%; float:left; display:block; margin: 10;">
-                                        <label for="name" align="center">Reparaciones Efectuosas</label>
-                                    </div>
-                                    <div class="field" align="left" style="width: 39%; float:left; display:block; margin: 10;">
-										<textarea name="message" id="message" rows="3"></textarea>
-                                    </div>
-                                    <div class="field" align="center" style="width: 48%; float:left; display:block; margin: 10;">
-                                        <label for="name" align="center">Reparaciones no Efectuosas</label>
-                                    </div>
-                                    <div class="field" align="left" style="width: 39%; float:left; display:block; margin: 10;">
-                                        <textarea name="message" id="message" rows="3"></textarea>
-                                    </div>
-                                    <div class="field" align="center" style="width: 48%; float:left; display:block; margin: 10;">
-                                        <label for="name" align="center">Imprevistos</label>
-                                    </div>
-                                    <div class="field" align="left" style="width: 39%; float:left; display:block; margin: 10;">
-                                        <textarea name="message" id="message" rows="3"></textarea>
-                                    </div>
-                                    <div class="field" align="center" style="width: 48%; float:left; display:block; margin: 10;">
-                                        <label for="name" align="center">Sugerencia a imprevistos</label>
-                                    </div>
-                                    <div class="field" align="left" style="width: 39%; float:left; display:block; margin: 10;">
-                                        <textarea name="message" id="message" rows="3"></textarea>
-                                    </div>
-                                    <div class="field" align="center" style="width: 48%; float:left; display:block; margin: 10;">
-                                        <label for="name" align="center">Otros comentarios</label>
-                                    </div>
-                                    <div class="field" align="left" style="width: 39%; float:left; display:block; margin: 10;">
-                                        <textarea name="message" id="message" rows="3"></textarea>
-                                    </div>
-                                </div>
-                                <div style="width: 66%; float: right;; display:block; margin: 25;">
-                                    <ul class="actions" align="right">
-                                        <li><a href="#" class="button" style="width:320px">Aprobar Control de Calidad</a></li>
-                                        <li><a href="#" class="button" style="width:300px">Sugerir Cambios</a></li>
-                                    </ul>
+                                        <div class="field" style="width: auto; float:left; display:block; margin: auto;">
+                                            <label for="name" align="center">Reparaciones Efectuosas</label>
+                                            <div class="field" align="right" style="width: auto; float:right; display:block; margin: auto;">
+                                                <textarea name="message" id="message" rows="5" cols="30"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="field" style="width: auto; float:left; display:block; margin: auto;">
+                                            <label for="name" align="center">Reparaciones no Efectuosas</label>
+                                            <div class="field" align="right" style="width: auto; float:right; display:block; margin: auto;">
+                                                <textarea name="message" id="message" rows="5" cols="30"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="field" style="width: auto; float:left; display:block; margin: auto;">
+                                            <label for="name" align="center">Imprevistos</label>
+                                            <div class="field" align="left" style="width: auto; float:left; display:block; margin: auto;">
+                                                <textarea name="message" id="message" rows="5" cols="30"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="field" align="center" style="width: auto; float:left; display:block; margin: auto;">
+                                            <label for="name" align="center">Sugerencia a imprevistos</label>
+                                            <div class="field" align="left" style="width: auto; float:left; display:block; margin: auto;">
+                                                <textarea name="message" id="message" rows="5" cols="30"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="field" style="width: auto; float:left; display:block; margin: auto;">
+                                            <label for="name" align="center">Otros comentarios</label>
+                                            <div class="field"  style="width: auto; float:left; display:block; margin: auto;">
+                                                <textarea name="message" id="message" rows="5" cols="30" cols="30"></textarea>
+                                            </div>
+                                        </div><br><br>
+                                </div><br><hr><br>
+                                <div class="field" align="center" style="width: auto; display:block; margin: auto;">
+                                    <a href="#" class="button primary" style="width:auto">Aprobar control de calidad</a>
+                                    <a href="#" class="button primary" style="width:auto; margin-left: 2%;">Sugerir Cambios</a>
                                 </div>         
                             </form>
                         </div>

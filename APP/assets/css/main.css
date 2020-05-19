@@ -2146,7 +2146,7 @@ input, select, textarea {
 		input[type="button"].small,
 		button.small,
 		.button.small {
-			font-size: 0.5rem;
+			font-size: 0.6rem;
 			height: 3.325em;
 			line-height: 3.325em;
 			border-radius: 0em;
@@ -2261,7 +2261,7 @@ input, select, textarea {
 			-ms-flex-wrap: wrap;
 			flex-wrap: wrap;
 			width: calc(100% + 3rem);
-			margin: -1.5rem 0 1.5rem -1.5rem;
+			margin: -2rem 0 0.3rem -1.5rem;
 		}
 
 			form > .fields > .field {
@@ -8657,4 +8657,15 @@ input, select, textarea {
 			
 			.next {
 			float: right;
+		}
+
+		ul.actions1 {
+			display: -moz-flex;
+			display: -webkit-flex;
+			display: -ms-flex;
+			display: flex;
+			cursor: default;
+			list-style: none;
+			margin-left: -55%;
+			padding-left: 0;
 		}
