@@ -10,7 +10,7 @@
  * 
  * CANCEL: @pnumeroOT
 */
-CREATE PROCEDURE OT_A_APROVACION_COTIZACION(
+CREATE OR ALTER PROCEDURE OT_A_APROVACION_COTIZACION(
     -- Parametros de Entrada
 	@pnumeroOT					VARCHAR(45),
     @paccion					VARCHAR(45),

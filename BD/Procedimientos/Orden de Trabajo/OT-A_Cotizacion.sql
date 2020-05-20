@@ -3,14 +3,14 @@
  * INSERT: @pnumeroOT, @pidProducto, @pcantidad
  * 
  * SELECT-OT: @pnumeroOT
- * Salida: Select idProducto, NombreProducto, Cantidad, Precio, Subtotal
+ * Salida: Select idProducto, NombreProducto, Cantidad, precioVenta, Subtotal
  * 
  * SELECT-P: 
  * Salida: idProducto, nombre, precioVenta
  * 
  * SAVE: @pnumeroOT
 */
-CREATE PROCEDURE OT_A_COTIZACION (
+CREATE OR ALTER PROCEDURE OT_A_COTIZACION (
     -- Parametros de Entrada
 	@pnumeroOT					VARCHAR(45),
 	@pidProducto				INT,
@@ -141,7 +141,7 @@ BEGIN
      * Datos: @pnumeroOT
      *
      * Seleccionar los sigueintes datos en la tabla Lista_Cotizacion:
-     * idProducto, NombreProducto, Cantidad, Precio, Subtotal
+     * idProducto, NombreProducto, Cantidad, precioVenta, Subtotal
     */
     IF @paccion = 'SELECT-OT' BEGIN
 		-- Setear Valores

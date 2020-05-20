@@ -9,7 +9,7 @@
  * 
  * SAVE: @pnumeroOT
 */
-CREATE PROCEDURE OT_A_CONTRATAR_SERVICIOS (
+CREATE OR ALTER PROCEDURE OT_A_CONTRATAR_SERVICIOS (
     -- Parametros de Entrada
 	@pnumeroOT					VARCHAR(45),
 	@pidServicios				INT,

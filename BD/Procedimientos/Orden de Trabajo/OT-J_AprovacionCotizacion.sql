@@ -1,4 +1,4 @@
--- <=== OT-A_AprovacionCotizacion ===>
+-- <=== OT_J_AprovacionCotizacion ===>
 /* Requisitos de las acciones:
  * SELECT-S: @pnumeroOT
  * Salida: idServicio, nombre, servicioEfectuado, precioCosto, duracion
@@ -10,7 +10,7 @@
  * 
  * CANCEL: @pnumeroOT
 */
-CREATE PROCEDURE OT_J_APROVACION_COTIZACION(
+CREATE OR ALTER PROCEDURE OT_J_APROVACION_COTIZACION(
     -- Parametros de Entrada
 	@pnumeroOT					VARCHAR(45),
     @paccion					VARCHAR(45),
@@ -240,11 +240,27 @@ BEGIN
 
 
 		-- Accion del procedimiento
+		-- Productos aprovados
+		UPDATE Lista_Cotizacion SET
+			aprovados = 1
+		FROM (
+			SELECT 
+				P.idProducto
+				, OT.idOrdenTrabajo
+			FROM Lista_Cotizacion LC
+			INNER JOIN OrdenTrabajo OT ON OT.idOrdenTrabajo = LC.OrdenTrabajo_idOrdenTrabajo
+			INNER JOIN Producto P ON P.idProducto = LC.Producto_idProducto
+			WHERE numeroOT = @pnumeroOT
+		) AS T
+		WHERE OrdenTrabajo_idOrdenTrabajo = T.idOrdenTrabajo
+		AND Producto_idProducto = T.idProducto;
+		
+		-- EstadoOT modificado
 		UPDATE OrdenTrabajo SET 
 			EstadoOT_idEstadoOT = 6
 		WHERE numeroOT = @pnumeroOT;
 
-
+		
 		
         SET @pmensaje = 'Datos guardados con exito';
 	END;

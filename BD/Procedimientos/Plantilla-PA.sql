@@ -7,7 +7,7 @@
  * 
  * <ACCION 2>: ...
 */
-CREATE PROCEDURE SIGLAS_NOMBRE_PA (
+CREATE OR ALTER PROCEDURE SIGLAS_NOMBRE_PA (
     -- Parametros de Entrada
     @paccion					VARCHAR(45),
     

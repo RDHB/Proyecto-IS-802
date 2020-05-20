@@ -1,14 +1,15 @@
--- <=== Pantalla ===>
+-- <=== OT_J_AprovacionLista ===>
 /* Requisitos de las acciones:
- * <ACCION 1>: <@parametro1>, <@parametro2> ...
- * Opcional: <@parametro3>, <@parametro4> ...
- * Salida: <@parametro5>...
- * Salida: campo1...
+ * SELECT: @pnumeroOT
+ * Salida: idProducto, nombre, cantidad, precioVenta, subTotal
  * 
- * <ACCION 2>: ...
+ * SAVE: @pnumeroOT
+ * 
+ * CANCEL: @pnumeroOT
 */
-CREATE PROCEDURE SIGLAS_NOMBRE_PA (
+CREATE OR ALTER PROCEDURE OT_J_APROVACION_LISTA(
     -- Parametros de Entrada
+	@pnumeroOT					VARCHAR(45),
     @paccion					VARCHAR(45),
     
     -- Parametros de Salida
@@ -25,15 +26,15 @@ BEGIN
 
 
 
-    /* Funcionalidad: <nombre_funcionalidad>
-     * Construir un (select, insert, update o delete) con la sigueinte informacion:
-     * Datos: parametro1, parametro2, parametro3...
-     * Datos Opcionales: parametro4, parametro5
+    /* Funcionalidad: Seleccionar Lista de Materiales
+     * Construir un select con la sigueinte informacion:
+     * Datos: @pnumeroOT
+	 * Salida: idProducto, nombre, cantidad, precioVenta, subTotal
      *
-     * (Consultar, insertar, actualizar o eliminar) los sigueintes datos en la tabla <nombre_tabla>:
-     * campo1, campo2, campo3
+     * Seleccionar los sigueintes datos en la tabla Lista_MyR:
+     * idProducto, NombreProducto, Cantidad, Precio, Subtotal
     */
-    IF @paccion = 'ACTION' BEGIN
+    IF @paccion = 'SELECT' BEGIN
 		-- Setear Valores
 		SET @pcodigoMensaje=0;
 		SET @pmensaje='';
@@ -41,8 +42,8 @@ BEGIN
 
 
 		-- Validacion de campos nulos
-		IF @parametro1 = '' OR @parametro1 IS NULL BEGIN
-			SET @pmensaje = @pmensaje + ' campo1 ';
+		IF @pnumeroOT = '' OR @pnumeroOT IS NULL BEGIN
+			SET @pmensaje = @pmensaje + ' numeroOT ';
 		END;
 
 		IF @pmensaje <> '' BEGIN
@@ -54,16 +55,10 @@ BEGIN
 
 
 		-- Validacion de identificadores
-        SELECT @vconteo = COUNT(*) FROM Tabla
-		WHERE campo1 = @parametro1;
+        SELECT @vconteo = COUNT(*) FROM OrdenTrabajo
+		WHERE numeroOT = @pnumeroOT;
 		IF @vconteo = 0 BEGIN
-			SET @pmensaje = @pmensaje + ' No existe el identificador => ' + @parametro1 + ' ';
-		END;
-
-        SELECT @vconteo = COUNT(*) FROM Tabla
-		WHERE campo1 = @parametro1;
-		IF @vconteo <> 0 BEGIN
-			SET @pmensaje = @pmensaje + ' Ya existe el identificador => ' + @parametro1 + ' ';
+			SET @pmensaje = @pmensaje + ' No existe el identificador => ' + @pnumeroOT + ' ';
 		END;
 
 		IF @pmensaje <> '' BEGIN
@@ -75,19 +70,176 @@ BEGIN
 
 
 		-- Validacion de procedimientos
+		
+
+
+		-- Accion del procedimiento 
+		SELECT 
+			P.idProducto
+			, P.nombre
+			, LMR.cantidad
+			, P.precioVenta
+			, (LMR.cantidad * P.precioVenta) AS 'SubTotal'
+		FROM Lista_MyR LMR
+		INNER JOIN Producto P ON P.idProducto = LMR.Producto_idProducto
+		WHERE LMR.OrdenTrabajo_idOrdenTrabajo = (
+			SELECT idOrdenTrabajo FROM OrdenTrabajo
+			WHERE numeroOT = @pnumeroOT
+		);
+
+        SET @pmensaje = 'Consulta finalizada con exito';
+	END;
+
+
+
+
+
+
+
+
+
+
+	/* Funcionalidad: Guardar cambios
+     * Construir un update con la sigueinte informacion:
+     * Datos: @pnumeroOT
+     *
+     * Actualizar los sigueintes datos en la tabla OrdenTrabajo:
+     * EstadoOT_idEstadoOT = 8
+    */
+    IF @paccion = 'SAVE' BEGIN
+		-- Setear Valores
+		SET @pcodigoMensaje=0;
+		SET @pmensaje='';
+
+
+
+		-- Validacion de campos nulos
+		IF @pnumeroOT = '' OR @pnumeroOT IS NULL BEGIN
+			SET @pmensaje = @pmensaje + ' numeroOT ';
+		END;
+
+		IF @pmensaje <> '' BEGIN
+			SET @pcodigoMensaje = 3;
+			SET @pmensaje = 'Error: Campos vacios: ' + @pmensaje;
+			RETURN;
+		END;
+
+
+
+		-- Validacion de identificadores
+        SELECT @vconteo = COUNT(*) FROM OrdenTrabajo
+		WHERE numeroOT = @pnumeroOT;
+		IF @vconteo = 0 BEGIN
+			SET @pmensaje = @pmensaje + ' No existe el identificador => ' + @pnumeroOT + ' ';
+		END;
+
+		IF @pmensaje <> '' BEGIN
+			SET @pcodigoMensaje = 4;
+			SET @pmensaje = 'Error: Identificadores no validos: ' + @pmensaje;
+			RETURN;
+		END;
+
+
+
+		-- Validacion de procedimientos
+		SELECT @vconteo=COUNT(*) FROM OrdenTrabajo
+		WHERE EstadoOT_idEstadoOT = 7 AND numeroOT=@pnumeroOT
+		IF @vconteo = 0 BEGIN
+			SET @pmensaje= @pmensaje + ' No se puede guardar cambios en este momento, consulte el estado de la Orden de Trabajo';
+		END;
+
 		IF @pmensaje <> '' BEGIN
 			SET @pcodigoMensaje = 5;
 			SET @pmensaje = 'Error: Validacion en la condicion del procdimiento: ' + @pmensaje;
 			RETURN;
 		END;
+		
+
+
+		-- Accion del procedimiento
+		UPDATE OrdenTrabajo SET 
+			EstadoOT_idEstadoOT = 8
+		WHERE numeroOT = @pnumeroOT;
 
 
 		
-		-- Accion del procedimiento 
+        SET @pmensaje = 'Datos guardados con exito';
+	END;
 
 
 
-        SET @pmensaje = 'Finalizado con exito';
+
+
+
+
+
+
+
+	/* Funcionalidad: Cancelar Lista de Materiales
+     * Construir un update con la sigueinte informacion:
+     * Datos: @pnumeroOT
+     *
+     * Actualizar los sigueintes datos en la tabla OrdenTrabajo:
+     * EstadoOT_idEstadoOT = 6
+    */
+    IF @paccion = 'CANCEL' BEGIN
+		-- Setear Valores
+		SET @pcodigoMensaje=0;
+		SET @pmensaje='';
+
+
+
+		-- Validacion de campos nulos
+		IF @pnumeroOT = '' OR @pnumeroOT IS NULL BEGIN
+			SET @pmensaje = @pmensaje + ' numeroOT ';
+		END;
+
+		IF @pmensaje <> '' BEGIN
+			SET @pcodigoMensaje = 3;
+			SET @pmensaje = 'Error: Campos vacios: ' + @pmensaje;
+			RETURN;
+		END;
+
+
+
+		-- Validacion de identificadores
+        SELECT @vconteo = COUNT(*) FROM OrdenTrabajo
+		WHERE numeroOT = @pnumeroOT;
+		IF @vconteo = 0 BEGIN
+			SET @pmensaje = @pmensaje + ' No existe el identificador => ' + @pnumeroOT + ' ';
+		END;
+
+		IF @pmensaje <> '' BEGIN
+			SET @pcodigoMensaje = 4;
+			SET @pmensaje = 'Error: Identificadores no validos: ' + @pmensaje;
+			RETURN;
+		END;
+
+
+
+		-- Validacion de procedimientos
+		SELECT @vconteo=COUNT(*) FROM OrdenTrabajo
+		WHERE EstadoOT_idEstadoOT = 7 AND numeroOT=@pnumeroOT
+		IF @vconteo = 0 BEGIN
+			SET @pmensaje= @pmensaje + ' No se puede cancelar la transaccion en este momento, consulte el estado de la Orden de Trabajo';
+		END;
+
+		IF @pmensaje <> '' BEGIN
+			SET @pcodigoMensaje = 5;
+			SET @pmensaje = 'Error: Validacion en la condicion del procdimiento: ' + @pmensaje;
+			RETURN;
+		END;
+		
+
+
+		-- Accion del procedimiento
+		UPDATE OrdenTrabajo SET 
+			EstadoOT_idEstadoOT = 6
+		WHERE numeroOT = @pnumeroOT;
+
+
+		
+        SET @pmensaje = 'Transaccion cancelada con exito';
 	END;
     
 	-- En caso de no elegir una accion
