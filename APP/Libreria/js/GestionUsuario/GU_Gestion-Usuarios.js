@@ -404,7 +404,7 @@ function informacionUsuarios(){
                         <tr>
                             <th>
                                 <input type="checkbox" id="${respuesta.data[i].idUsuario}" value="${respuesta.data[i].idUsuario}" style="width:10px; height:100%;"/>  
-                                <label for="${respuesta.data[i].idUsuario}">.</label>
+                                <label for="${respuesta.data[i].idUsuario}"></label>
                             </th>
                             <td style="width:15px; text-align:center;">${respuesta.data[i].idUsuario}</td>
                             <td id="${'nombrePersona'+respuesta.data[i].idUsuario}">${respuesta.data[i].nombrePersona}</td>

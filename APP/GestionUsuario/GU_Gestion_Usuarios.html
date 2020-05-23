@@ -37,7 +37,7 @@
                                             <option value="">Todas las áreas</option>
                                         </select>
                                     </div>
-                                </div>
+                                </div><br>
                                 <section>
                                     <header>
                                         <h4>Tabla de Usuarios del Sistema</h4>
@@ -76,20 +76,11 @@
                                                     <!-- ------------------------------------------------------------ -->
 		                                            <!-- Relleno de la tabla  <td><a href="#" id="plus" class="button small"><h3>+</h3></a></td> -->
                                                     <!-- ------------------------------------------------------------ -->>
-                                                    <th>
-                                                        <input type="checkbox" id="${usuarioBackEnd.idUsuario}" value="${usuarioBackEnd.idUsuario}" style="width: 0.5%;"/>
-                                                        <label for="${usuarioBackEnd.idUsuario}"></label>
-                                                    </th>
-                                                    <td style="width:15px; text-align:center;"></td>
-                                                    <td id="${'nombrePersona'+usuarioBackEnd.idUsuario}">luis</td>
-                                                    <td id="${'nombreUsuario'+usuarioBackEnd.idUsuario}">luis</td>
-                                                    <td id="${'correoElectronico'+usuarioBackEnd.idUsuario}">luis@</td>
-                                                    <td id="${'numeroTelefono'+usuarioBackEnd.idUsuario}">895656</td>
-                                                    <td id="${'areaTrabajo'+usuarioBackEnd.idUsuario}">Trabajo</td>
+
                                                 </tbody>
                                                 </table>
                                             </div><br>
-                                            <div class="field" align="center" style="width: auto; display:block; margin: auto; margin-right: auto;">
+                                            <div class="field" align="center" style="width: auto; display:block; margin: auto; margin-right: auto; margin-left: 2%;">
                                                 <ul class="actions">
                                                     <li>
                                                         <div class="field" align="center" style="width: auto; display:block; margin: auto; margin-left: auto; margin-right: auto;">
@@ -114,47 +105,7 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                </section><br><br><br>
-
-                                <section >
-                                    <header>
-                                        <h3>Tabla de Usuarios del Sistema</h3>
-                                    </header>
-                                    <div class="content"> 
-                                        <div class="table-wrapper" style="display:block; margin: 50;">
-                                            <table style="width: 1300px;">
-                                                <thead>
-                                                    <tr>
-                                                        <th style="text-align: center; width:10px; margin: 0;"></th>
-                                                        <th style="text-align: center; width:15px; margin: 0;">Id</th>
-                                                        <th style="text-align: center; margin: 0;">Nombre</th>
-                                                        <th style="text-align: center; margin: 0;">Usuario</th>
-                                                        <th style="text-align: center; margin: 0;">Correo</th>
-                                                        <th style="text-align: center; margin: 0;">Teléfono</th>
-                                                        <th style="text-align: center; margin: 0;">Área de Trabajo</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="bodyTable">
-                                                    <!-- ------------------------------------------------------------ -->
-		                                            <!-- Relleno de la tabla  <td><a href="#" id="plus" class="button small"><h3>+</h3></a></td> -->
-                                                    <!-- ------------------------------------------------------------ -->
-                                                </tbody>
-                                                <tfoot > 
-                                                    <td colspan="1"></td>
-                                                    <td><buttom id="plus" class="button small"><h3>+</h3></buttom></td>
-                                                </tfoot>
-                                            </table>
-                                            <div style="display: flexbox; flex-direction: column;">
-                                                <ul class="actions" style="display: flexbox; justify-content: center; align-content: center;">
-                                                    <li><buttom id="btnEditarUsuario" class="button small" style="width: 90%; display:block; margin: 20;">Editar Usuario Seleccionado</buttom></li>
-                                                    <li><buttom id="btnActivarUsuario" class="button small" style="width: 90%; display:block; margin: 20 ;">Activar Usuarios Seleccionados</buttom></li>
-                                                    <li><buttom id="btnDesactivarUsuario" class="button small" style="width: 90%; display:block; margin: 20 ;">Desactivar Usuarios Seleccionados</buttom></li>
-                                                    <!-- <li><buttom id="btnEliminarUsuario" class="button small" style="width: 90%; display:block; margin: 20 ;">Eliminar Usuarios Seleccionados</buttom></li> -->
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </section>        
+                                </section><br><br><br>       
                             </form>
                         </div>
 					</section>
