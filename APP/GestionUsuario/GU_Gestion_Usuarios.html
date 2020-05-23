@@ -8,38 +8,114 @@
         <link rel="stylesheet" href="../Libreria/css/GestionUsuario/GU_Gestion-Usuarios.css" />
 		<link rel="icon" type="image" href="../images/Volvo-Emblema.ico" sizes="64x64">
 		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
-		<h1 align="center"><i><b><img  src="../images/source.gif" width="70xp" border-radius="100%">Volvo Partes</b></i></h1> 	
     </head>
     <body background="">
 		<div id="main">
 		<section>
-			<div>
+			<div class="content1">
                 <img src="../images/descarga.png" width="70xp" height="80xp">
-				<h2>Gestión de Usuarios</h2>
+				<h3><b>Gestión de Usuarios</b></h3><hr><br>
 				<div>
 					<section>
                         <div class="content">
 
                             <form method="post" action="#">
-                                <div class="fields" style="display: flex; justify-content: center; align-content: center; flex-wrap: wrap; margin-top: 30;">
-                                    <div  style="width: 25%; float:left; display:block; margin: 10 10 10 50;">
-                                        <label for="name" align="left">Buscar por Nombre</label>
-                                        <input type="text" style="width:100%" name="name" id="searchName" value=""/>
-                                        <br>
+                                <div class="fields">
+                                    <div  class="field" align="left" style="width: auto; float:left; display:block; margin: auto; margin-top: 1%;">
+                                        <label for="name" align="center">Buscar por Nombre</label>
+                                        <input type="text" style="width: auto;" name="name" id="searchName" value=""/>
                                     </div>
-                                    <div  style="width: 25%; float:right; display:block; margin: 10;">
-                                        <label for="department" align="left">Estado del Usuario</label>
-                                        <select id="selectEstadoUsuario" name="department" style="width:100%">
+                                    <div class="field" align="center" style="width: auto; float:left; display:block; margin: auto;">
+                                        <label for="department" align="center">Estado del Usuario</label>
+                                        <select id="selectEstadoUsuario" name="department" style="width: auto;">
                                             <option value="">Todos los estados</option>
                                         </select>
                                     </div>
-                                    <div  style="width: 25%; float:right; display:block; margin: 10;">
-                                        <label for="department" align="left">Area de Trabajo</label>
-                                        <select id="selectAreaTrabajo" name="department" style="width:100%">
-                                            <option value=""> Todas las áreas</option>
+                                    <div class="field" align="center" style="width: auto; float:left; display:block; margin: auto;">
+                                        <label for="department" align="center">Area de Trabajo</label>
+                                        <select id="selectAreaTrabajo" name="department" style="width: auto;">
+                                            <option value="">Todas las áreas</option>
                                         </select>
                                     </div>
                                 </div>
+                                <section>
+                                    <header>
+                                        <h4>Tabla de Usuarios del Sistema</h4>
+                                    </header>
+                                    <div class="content"> 
+                                        <div class="table-wrapper" style="width: auto; display:block; margin-left: auto; margin-right: auto;">
+                                            
+                                            <div class="datagrid"><table>
+                                                <thead>
+                                                    <tr>
+                                                        <tr>
+                                                            <th style="width: 0.5%;"></th>
+                                                            <th>Id</th>
+                                                            <th>Nombre</th>
+                                                            <th>Usuario</th>
+                                                            <th>Correo</th>
+                                                            <th>Teléfono</th>
+                                                            <th>Área de Trabajo</th>
+                                                        </tr>
+                                                    </tr>
+                                                </thead>
+                                                <tfoot>
+                                                    <tr>
+                                                        <td colspan="7">
+                                                        <div id="paging">
+                                                            <ul>
+                                                                <li><a href="#"><span>Anterior</span></a></li>
+                                                                <li><a href="#" class="active"><span>1</span></a></li>
+                                                                <li><a href="#"><span>2</span></a></li>
+                                                                <li><a href="#"><span>Siguiente</span></a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </tr>
+                                                </tfoot>
+                                                <tbody id="bodyTable">
+                                                    <!-- ------------------------------------------------------------ -->
+		                                            <!-- Relleno de la tabla  <td><a href="#" id="plus" class="button small"><h3>+</h3></a></td> -->
+                                                    <!-- ------------------------------------------------------------ -->>
+                                                    <th>
+                                                        <input type="checkbox" id="${usuarioBackEnd.idUsuario}" value="${usuarioBackEnd.idUsuario}" style="width: 0.5%;"/>
+                                                        <label for="${usuarioBackEnd.idUsuario}"></label>
+                                                    </th>
+                                                    <td style="width:15px; text-align:center;"></td>
+                                                    <td id="${'nombrePersona'+usuarioBackEnd.idUsuario}">luis</td>
+                                                    <td id="${'nombreUsuario'+usuarioBackEnd.idUsuario}">luis</td>
+                                                    <td id="${'correoElectronico'+usuarioBackEnd.idUsuario}">luis@</td>
+                                                    <td id="${'numeroTelefono'+usuarioBackEnd.idUsuario}">895656</td>
+                                                    <td id="${'areaTrabajo'+usuarioBackEnd.idUsuario}">Trabajo</td>
+                                                </tbody>
+                                                </table>
+                                            </div><br>
+                                            <div class="field" align="center" style="width: auto; display:block; margin: auto; margin-right: auto;">
+                                                <ul class="actions">
+                                                    <li>
+                                                        <div class="field" align="center" style="width: auto; display:block; margin: auto; margin-left: auto; margin-right: auto;">
+                                                            <a href="#" id="plus" class="button small" style="width: auto; display:block; margin: auto;">Agregar nuevo registro</a>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="field" align="center" style="width: auto; display:block; margin: auto; margin-left: auto; margin-right: auto;">
+                                                            <a href="#" id="btnEditarUsuario" class="button small" style="width: auto; display:block; margin: auto;">Editar usuario seleccionado</a>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="field" align="center" style="width: auto; display:block; margin: auto; margin-left: auto; margin-right: auto;">
+                                                            <a href="#" id="btnActivarUsuario" class="button small" style="width: auto; display:block; margin: auto;">Activar usuarios seleccionados</a>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="field" align="center" style="width: auto; display:block; margin: auto; margin-left: auto; margin-right: auto;">
+                                                            <a href="#" id="btnDesactivarUsuario" class="button small" style="width: auto; display:block; margin: auto;">Desactivar usuarios seleccionados</a>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                </section><br><br><br>
+
                                 <section >
                                     <header>
                                         <h3>Tabla de Usuarios del Sistema</h3>
