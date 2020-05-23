@@ -2820,6 +2820,7 @@
 [0420/143805.574:ERROR:crash_report_database_win.cc(469)] failed to stat report
 [0420/143805.574:ERROR:crash_report_database_win.cc(469)] failed to stat report
 [0420/143805.574:ERROR:crash_report_database_win.cc(469)] failed to stat report
+<<<<<<< HEAD
 [0519/213127.943:ERROR:crash_report_database_win.cc(469)] failed to stat report
 [0519/213127.967:ERROR:crash_report_database_win.cc(469)] failed to stat report
 [0519/213127.967:ERROR:crash_report_database_win.cc(469)] failed to stat report
@@ -3152,3 +3153,7 @@
 [0519/213132.437:ERROR:crash_report_database_win.cc(469)] failed to stat report
 [0519/213132.437:ERROR:crash_report_database_win.cc(469)] failed to stat report
 [0519/213132.438:ERROR:crash_report_database_win.cc(469)] failed to stat report
+=======
+[0519/204609.833:ERROR:file_io_win.cc(243)] SetEndOfFile: La operación solicitada no se puede realizar en un archivo con una sección asignada a usuario abierta. (0x4C8)
+[0519/204610.319:ERROR:file_io_win.cc(243)] SetEndOfFile: La operación solicitada no se puede realizar en un archivo con una sección asignada a usuario abierta. (0x4C8)
+>>>>>>> ramaAPP

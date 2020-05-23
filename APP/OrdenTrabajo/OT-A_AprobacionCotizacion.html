@@ -5,40 +5,44 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="../assets/css/header.css" />
         <link rel="stylesheet" href="../assets/css/main.css" />
+        <link rel="stylesheet" href="../Libreria/css/OrdenTrabajo/OT-A_AprovacionCotizacion.css" />
 		<link rel="icon" type="image" href="../images/Volvo-Emblema.ico" sizes="64x64">
 		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
-		<h1 align="center"><i><b><img  src="../images/source.gif" width="70xp" border-radius="100%">Volvo Partes</b></i></h1> 	
     </head>
     <body background="">
 		<div id="main">
 		<section>
-			<div>
-                <img src="../images/documento-aprobado_1325-173.jpg" width="70xp" height="80xp">
-				<h2>Aprobación de Cotización</h2>
+			<div class="content1">
+                <img class="circulo_small" src="../images/73941724-medalla-aprobada-y-rechazada-en-un-diseño-plano-ilustración-vectorial.jpg" width="70xp" height="80xp">
+				<h3><b>Aprobación de Cotización</b></h3><hr>
 				<div>
 					<section>
                         <div class="content">
 
                             <form method="post" action="#">
-                                <br>
                                 <div class="fields">
-                                    <div class="field" align="center" style="width: 30%; float:left; display:block; margin: 10;">
-                                        <label for="name" align="center"><h3>Código de la Orden de Trabajo</h3></label>
+                                    <div class="field" align="left" style="width: auto; float:left; display:block; margin: auto;">
+                                        <label for="name" align="center">Código de la Orden de Trabajo</label>
+                                        
                                     </div>
-                                    <div class="field" align="left" style="width: 36%; float:left; display:block; margin: 10;">
-                                        <input type="text" style="width:400px" name="name" id="repuesto" value=""/>
+                                    <div class="field" align="center" style="width: auto; float:left; display:block; margin: auto;">
+                                        <input type="text" style="width:auto" name="name" id="name" value=""/>
+                                        
                                     </div>
-                                    <div style="width: 8%; float:right; display:block; margin: 40;">
+                                    <div style="width: auto; float:left; display:block; margin: auto; margin-left: auto; margin-right: auto; margin-top: 6%;">
                                         <ul class="actions" align="right">
-                                            <li><a href="#" style="width:155px" class="button primary icon solid fa-search">Buscar</a></li>
+                                            <li><a href="#" style="width:auto" class="button primary icon solid fa-search">Buscar</a></li>
                                         </ul>
                                     </div>
                                 </div>
                                 <section>
-                                    <h3 align="left">Servicios</h3>
+                                    <header>
+                                        <h4>Servicios</h4>
+                                    </header>
                                     <div class="content"> 
-                                        <div class="table-wrapper" style="width: 90%; display:block; margin: 50;">
-                                            <table>
+                                        <div class="table-wrapper" style="width: auto; display:block; margin-left: auto; margin-right: auto;">
+                                            
+                                            <div class="datagrid"><table>
                                                 <thead>
                                                     <tr>
                                                         <th>Código</th>
@@ -47,6 +51,19 @@
                                                         <th>Duración</th>
                                                     </tr>
                                                 </thead>
+                                                <tfoot>
+                                                    <tr>
+                                                        <td colspan="5">
+                                                        <div id="paging">
+                                                            <ul>
+                                                                <li><a href="#"><span>Anterior</span></a></li>
+                                                                <li><a href="#" class="active"><span>1</span></a></li>
+                                                                <li><a href="#"><span>2</span></a></li>
+                                                                <li><a href="#"><span>Siguiente</span></a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </tr>
+                                                </tfoot>
                                                 <tbody>
                                                     <tr>
                                                         <td>1</td>
@@ -55,7 +72,6 @@
                                                         <td>4 horas</td>
                                                     </tr>
                                                     <tr>
-                                                        </th>
                                                         <td>2</td>
                                                         <td>Mantenimiento 20mil Km</td>
                                                         <td>200</td>
@@ -68,13 +84,17 @@
                                                         <td>1 semana</td>
                                                     </tr>
                                                 </tbody>
-                                            </table>
-                                </section>  
+                                                </table></div>
+                                        </div>
+                                </section><br><br><br>
                                 <section>
-                                    <h3 align="left">Recambios</h3>
+                                    <header>
+                                        <h4>Recambios</h4>
+                                    </header>
                                     <div class="content"> 
-                                        <div class="table-wrapper" style="width: 90%; display:block; margin: 50;">
-                                            <table>
+                                        <div class="table-wrapper" style="width: auto; display:block; margin-left:auto; margin-right: auto;">
+                                            
+                                            <div class="datagrid"><table>
                                                 <thead>
                                                     <tr>
                                                         <th>Código</th>
@@ -84,6 +104,19 @@
                                                         <th>SubTotal</th>
                                                     </tr>
                                                 </thead>
+                                                <tfoot>
+                                                    <tr>
+                                                        <td colspan="5">
+                                                        <div id="paging">
+                                                            <ul>
+                                                                <li><a href="#"><span>Anterior</span></a></li>
+                                                                <li><a href="#" class="active"><span>1</span></a></li>
+                                                                <li><a href="#"><span>2</span></a></li>
+                                                                <li><a href="#"><span>Siguiente</span></a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </tr>
+                                                </tfoot>
                                                 <tbody>
                                                     <tr>
                                                         <td>1</td>
@@ -107,25 +140,21 @@
                                                         <td>5421</td>
                                                     </tr>
                                                 </tbody>
-                                            </table>
-                                        </div>
+                                                </table></div>
+                                        </div><br><br><br><hr><br>
                                 </section>
-                                <div style="width: 25%; float:left; display:block; margin: 25;">
+                                <div class="fields"  style="width: auto; float:left; display:block; margin: auto; margin-top: auto; margin-left: 2%; margin-right: auto">
                                     <ul class="actions" align="left">
                                         <label for="name"><h4>Total a Pagar</h4></label>
-                                        <input type="text" style="width:180px" name="name" id="repuesto" value=""/>
+                                        <input type="text" style="width: 50%" name="name" id="repuesto" value=""/>
                                     </ul>
-                                </div> 
-                                <div style="width: 15%; float:right; display:block; margin: 25;">
+                                </div>
+                                <div class="fields" align="center" style="width: auto; float:right; display:block; margin: auto; margin-top: auto;">
                                     <ul class="actions" align="right">
                                         <li><a href="#" class="button">Rechazar</a></li>
-                                    </ul>
-                                </div> 
-                                <div style="width: 15%; float:right; display:block; margin: 25;">
-                                    <ul class="actions" align="right">
                                         <li><a href="#" class="button">Aprobar</a></li>
                                     </ul>
-                                </div>      
+                                </div>   
                             </form>
                         </div>
 					</section>

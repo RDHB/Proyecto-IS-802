@@ -277,7 +277,7 @@ input, select, textarea {
 	hr {
 		border: 0;
 		border-bottom: solid 1px;
-		margin: 2.5rem 0;
+		margin: 0.5rem 0;
 	}
 
 		hr.major {
@@ -2146,7 +2146,7 @@ input, select, textarea {
 		input[type="button"].small,
 		button.small,
 		.button.small {
-			font-size: 0.5rem;
+			font-size: 0.6rem;
 			height: 3.325em;
 			line-height: 3.325em;
 			border-radius: 0em;
@@ -2261,7 +2261,7 @@ input, select, textarea {
 			-ms-flex-wrap: wrap;
 			flex-wrap: wrap;
 			width: calc(100% + 3rem);
-			margin: -1.5rem 0 2rem -1.5rem;
+			margin: -2rem 0 0.3rem -1.5rem;
 		}
 
 			form > .fields > .field {
@@ -2385,7 +2385,7 @@ input, select, textarea {
 	}
 
 	textarea {
-		padding: 0.75rem 1rem;
+		padding: 1.75rem 1.75rem;
 	}
 
 	input[type="checkbox"],
@@ -2934,7 +2934,7 @@ input, select, textarea {
 
 	.table-wrapper {
 		-webkit-overflow-scrolling: touch;
-		margin: 0 0 0rem 0;
+		margin: 0 0 -2rem 0;
 		overflow-x: auto;
 	}
 
@@ -7664,7 +7664,7 @@ input, select, textarea {
 			}
 
 		.items.style1.medium > * {
-			padding: 1.1875rem 2.1875rem 0.1875rem 2.1875rem ;
+			padding: 1.1875rem 1.1875rem 2.1875rem 1.1875rem ;
 			width: 33.33333%;
 		}
 
@@ -8628,13 +8628,6 @@ input, select, textarea {
 		.zoom:hover{
 			transform: scale(1.1);
 		}
-		
-		.content1 {
-			width: 600px;
-			padding: 20px;
-			color: purple;
-			background: rgba(0, 0, 0, 0.2);
-		}
 
 		.content2 {
 			width: auto;
@@ -8664,4 +8657,15 @@ input, select, textarea {
 			
 			.next {
 			float: right;
+		}
+
+		ul.actions1 {
+			display: -moz-flex;
+			display: -webkit-flex;
+			display: -ms-flex;
+			display: flex;
+			cursor: default;
+			list-style: none;
+			margin-left: -55%;
+			padding-left: 0;
 		}

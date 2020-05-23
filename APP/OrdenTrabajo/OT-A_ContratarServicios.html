@@ -5,45 +5,45 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="../assets/css/header.css" />
         <link rel="stylesheet" href="../assets/css/main.css" />
+        <link rel="stylesheet" href="../Libreria/css/OrdenTrabajo/OT-A_ContratarServicios.css" />
 		<link rel="icon" type="image" href="../images/Volvo-Emblema.ico" sizes="64x64">
 		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
-		<h1 align="center"><i><b><img  src="../images/source.gif" width="70xp" border-radius="100%">Volvo Partes</b></i></h1> 	
     </head>
     <body background="">
 		<div id="main">
 		<section>
-			<div>
-                <img src="../images/contratar.jpg" width="70xp" height="80xp">
-				<h2>Contratar Servicios</h2>
+			<div class="content1">
+                <img src="../images/contratar.jpg" class="circulo_small" width="70xp" height="80xp">
+				<h3><b>Contratar Servicios</b></h3><hr><br><br>
 				<div>
 					<section>
                         <div class="content">
 
                             <form method="post" action="#">
                                 <div class="fields">
-                                    <div class="field" align="center" style="width: 48%; float:left; display:block; margin: 10;">
+                                    <div class="field" align="center" style="width: auto; float:left; display:block; margin: auto;">
                                         <label for="name" align="center">Número de Orden de Trabajo</label>
                                     </div>
-                                    <div class="field" align="left" style="width: 48%; float:left; display:block; margin: 10;">
-                                        <input type="text" style="width:400px" name="name" id="number" value=""/>
+                                    <div class="field" align="center" style="width: auto; float:left; display:block; margin: auto;">
+                                        <input type="text" style="width:100%" name="name" id="number" value=""/>
                                     </div>
                                 </div>
                                 <section>
                                     <header>
-                                        <h3 style="width: 40%; float:left; display:block; margin: 10;">Tabla de Servicios</h3>
-                                        <div class="field third" align="center" style="width: 20%; float:left; display:block; margin: 10;">
-                                            <input type="radio" id="priority-low" name="priority" checked />
-                                            <label for="priority-low">Contratar Servicios</label>
+                                        <h4><b>Servicios</b></h4>
+                                        <div class="field" align="center" style="width: auto; display:block; margin: auto;">
+                                            <div align="center" style="width: auto;" >
+                                                <input type="radio" style="width: auto;" id="priority-low" name="priority" checked />
+                                                <label for="priority-low">Contratar Servicios</label>
+                                                <input type="radio" style="width: auto" id="priority-normal" name="priority" />
+                                                <label for="priority-normal">Cancelar Servicios</label>
+                                            </div>
                                         </div>
-                                        <div class="field third" align="center" style="width: 20%; float:left; display:block; margin: 10;">
-                                            <input type="radio" id="priority-normal" name="priority" />
-                                            <label for="priority-normal">Cancelar Servicios</label>
-                                        </div>
-                                        <br>
-                                    </header>
+                                    </header><br>
                                     <div class="content"> 
-                                        <div class="table-wrapper" style="width: 90%; display:block; margin: 50;">
-                                            <table>
+                                        <div class="table-wrapper" style="width: auto; display:block; margin-left: auto; margin-right: auto;">
+                                            
+                                            <div class="datagrid"><table>
                                                 <thead>
                                                     <tr>
                                                         <th></th>
@@ -53,57 +53,73 @@
                                                         <th>Duración</th>
                                                     </tr>
                                                 </thead>
+                                                <tfoot>
+                                                    <tr>
+                                                        <td colspan="5">
+                                                        <div id="paging">
+                                                            <ul>
+                                                                <li><a href="#"><span>Anterior</span></a></li>
+                                                                <li><a href="#" class="active"><span>1</span></a></li>
+                                                                <li><a href="#"><span>2</span></a></li>
+                                                                <li><a href="#"><span>Siguiente</span></a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </tr>
+                                                </tfoot>
                                                 <tbody>
                                                     <tr>
-                                                        <th>
-                                                            <div class="field half">
-                                                                <input type="checkbox" id="check" name="check" />
-                                                                <label for="check">.</label>
-                                                            </div>
-                                                        </th>
+                                                        <td style="width: 0.5%;">
+                                                            <input type="checkbox" id="check" name="check">
+                                                            <label for="check"></label>
+                                                        </td>
                                                         <td>1</td>
                                                         <td>Cambio de Aceite</td>
                                                         <td>100</td>
                                                         <td>4 horas</td>
                                                     </tr>
                                                     <tr>
-                                                        <th>
-                                                            <div class="field half">
-                                                                <input type="checkbox" id="check2" name="check2" />
-                                                                <label for="check2">.</label>
-                                                            </div>
-                                                        </th>
+                                                        <td style="width: 0.5%;">
+                                                            <input type="checkbox" id="check" name="check">
+                                                            <label for="check"></label>
+                                                        </td>
                                                         <td>2</td>
                                                         <td>Mantenimiento 20mil Km</td>
                                                         <td>200</td>
                                                         <td>2 días</td>
                                                     </tr>
                                                     <tr>
-                                                        <th>
-                                                            <div class="field half">
-                                                                <input type="checkbox" id="check3" name="check3" />
-                                                                <label for="check3">.</label>
-                                                            </div>
-                                                        </th>
+                                                        <td style="width: 0.5%;">
+                                                            <input type="checkbox" id="check" name="check">
+                                                            <label for="check"></label>
+                                                        </td>
                                                         <td>3</td>
                                                         <td>Reparación</td>
                                                         <td>1300</td>
                                                         <td>1 semana</td>
                                                     </tr>
                                                 </tbody>
-                                                <tfoot>
-                                                    <td colspan="4"></td>
-															<td><a href="#" class="button small"><h3>+</h3></a></td>
-                                                </tfoot>
-                                            </table>
-                                            <ul class="actions">
-                                                <div class="field" align="center" style="width: 48%; float:left; display:block; margin: 10;"></div>
-                                                    <li><a href="#" class="button small" style="width: 80%; display:block; margin: 50;">Revertir Cambios</a></li>
-                                                    <li><a href="#" class="button small" style="width: 80%; display:block; margin: 50;">Guardar Cambios</a></li>
+                                                </table></div><br>
+                                                <div class="field" align="center" style="width: auto; display:block; margin: auto; margin-left: 16%; margin-right: auto;">
+                                                    <ul class="actions">
+                                                        <li>
+                                                            <div class="field" align="center" style="width: auto; display:block; margin: auto; margin-left: auto; margin-right: auto;">
+                                                                <a href="#" class="button small" style="width: auto; display:block; margin: auto;">Agregar nuevo registro a la tabla</a>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="field" align="center" style="width: auto; display:block; margin: auto; margin-left: auto; margin-right: auto;">
+                                                                <a href="#" class="button small" style="width: auto; display:block; margin: auto;">Revertir Cambios</a>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="field" align="center" style="width: auto; display:block; margin: auto; margin-left: auto; margin-right: auto;">
+                                                                <a href="#" class="button small" style="width: auto; display:block; margin: auto;">Guardar Cambios</a>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
                                                 </div>
-										    </ul>
                                         </div>
-                                </section>        
+                                </section>      
                             </form>
                         </div>
 					</section>

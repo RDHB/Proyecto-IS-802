@@ -5,54 +5,50 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="../assets/css/header.css" />
         <link rel="stylesheet" href="../assets/css/main.css" />
+        <link rel="stylesheet" href="../Libreria/css/RRHH/RH_HorasExtras.css" />
 		<link rel="icon" type="image" href="../images/Volvo-Emblema.ico" sizes="64x64">
 		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
-		<h1 align="center"><i><b><img  src="../images/source.gif" width="70xp" border-radius="100%">Volvo Partes</b></i></h1> 	
     </head>
     <body background="">
 		<div id="main">
 		<section>
-			<div>
+			<div class="content1">
                 <img class="circulo_small" src="../images/OJ8XYT0.jpg" width="70xp" height="80xp">
-				<h2>Horas Extras</h2>
+				<h3><b>Horas Extras</b></h3><hr><br><br>
 				<div>
 					<section>
                         <div class="content">
 
                             <form method="post" action="#">
-                                <div align="center" style="width: 100%; float:left; display:block; margin: 10;">
-                                    <div class="field" align="center" style="width: 100%; float:left; display:block; margin: 10;">
-                                        <select style="width: 450px;">
-                                            <option>Área de Trabajo</option>
-                                            <option>Vehículos</option>
-                                            <option>Recursos Humanos</option>
-                                            <option>Taller</option>
-                                            <option>Orden de Trabajo</option>
-                                        </select>
-                                        <br>
+                                <div class="fields">
+                                    <div class="field" align="center" style="width: 100%; float:left; display:block; margin: auto;">
+                                            <select style="width: auto;">
+                                                <option>Área de Trabajo</option>
+                                                <option>Vehículos</option>
+                                                <option>Recursos Humanos</option>
+                                                <option>Taller</option>
+                                                <option>Orden de Trabajo</option>
+                                            </select>
                                     </div>
-                                    <br>
+                                    <div class="field" align="center" style="width: auto; float:left; display:block; margin: auto;">
+                                        <label for="fecha" align="center">Hora Extra Inicio</label>
+                                        <input type="time" style="width:auto" name="name" id="name" value=""/>
+                                        
+                                    </div>
+                                    <div class="field" align="center" style="width: auto; float:left; display:block; margin: auto;">
+                                        <label for="fecha" align="center">Hora Extra Fin</label>
+                                        <input type="time" style="width:auto" name="name" id="name" value=""/>
+                                        
+                                    </div>
+                                    <div align="center" class="field" align="center" style="width: auto; float:left; display:block; margin: auto;">
+                                        <label>Fecha</label>
+                                        <input type="date" id="inicio" name="extra" style="width: auto;">
+                                    </div>      
+                                </div><br><hr><br>
+                                <div class="field" align="center" style="width: auto; display:block; margin: auto;">
+                                    <a href="#" style="width: 36.5%;" class="button primary fit">Guardar</a>
+                                    <a href="#" style="width: 36.5%;" class="button primary fit">Revertir</a>
                                 </div>
-                                <div align="center" style="width: 30%; float:left; display:block; margin: 10;">
-                                    <label>Hora Extra Inicio</label>
-                                    <input align="center" type="time" id="inicio" name="extra" style="width: 200px;">
-                                </div>
-                                <div align="center" style="width: 30%; float:left; display:block; margin: 10;">
-                                    <label>Hora Extra Fin</label>
-                                    <input type="time" id="fin" name="extra" style="width: 200px;">
-                                </div>
-                                
-                                <div align="center" style="width: 30%; float:left; display:block; margin: 10;">
-                                    <label>Fecha</label>
-                                    <input type="date" id="inicio" name="extra" style="width: 200px;">
-                                </div>
-                                <br><br>
-                                <div style="width: 40%; float:left; display:block; margin: 45;">
-                                    <a href="#" class="button primary fit">Guardar</a>
-                                </div>
-                                <div style="width: 40%; float:left; display:block; margin: 45;">
-                                    <a href="#" class="button primary fit">Revertir</a>
-                                </div>        
                             </form>
                         </div>
                     </section>    

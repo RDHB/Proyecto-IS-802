@@ -5,16 +5,16 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="../assets/css/header.css" />
         <link rel="stylesheet" href="../assets/css/main.css" />
+        <link rel="stylesheet" href="../Libreria/css/OrdenTrabajo/OT-E_RebajarInventario.css" />
 		<link rel="icon" type="image" href="../images/Volvo-Emblema.ico" sizes="64x64">
 		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
-		<h1 align="center"><i><b><img  src="../images/source.gif" width="70xp" border-radius="100%">Volvo Partes</b></i></h1> 	
     </head>
     <body background="">
 		<div id="main">
 		<section>
-			<div>
-                <img src="../images/kisspng-clip-art-inventory-management-software-computer-ic-stock-computer-sale-transparent-amp-png-clipart-5ca5691af373c8.01932694155434421.jpg" width="70xp" height="80xp">
-				<h2>Rebajar Inventario</h2>
+			<div class="content1">
+                <img class="circulo_small" src="../images/kisspng-clip-art-inventory-management-software-computer-ic-stock-computer-sale-transparent-amp-png-clipart-5ca5691af373c8.01932694155434421.jpg" width="70xp" height="80xp">
+				<h3><b>Rebajar Inventario</b></h3><hr>
 				<div>
 					<section>
                         <div class="content">
@@ -22,23 +22,26 @@
                             <form method="post" action="#">
                                 <br>
                                 <div class="fields">
-                                    <div class="field" align="center" style="width: 30%; float:left; display:block; margin: 10;">
-                                        <label for="name" align="center"><h3>Código de la Orden de Trabajo</h3></label>
+                                    <div class="field" align="center" style="width: auto; float:left; display:block; margin: auto;">
+                                        <label for="name" align="center"><h4>Código de la Orden de Trabajo</h4></label>
                                     </div>
-                                    <div class="field" align="left" style="width: 36%; float:left; display:block; margin: 10;">
-                                        <input type="text" style="width:400px" name="name" id="repuesto" value=""/>
+                                    <div class="field" align="left" style="width: auto; float:left; display:block; margin: auto;">
+                                        <input type="text" style="width:auto" name="name" id="repuesto" value=""/>
                                     </div>
-                                    <div style="width: 8%; float:right; display:block; margin: 40;">
+                                    <div style="width: auto; float:left; display:block; margin: auto; margin-top: 6%;">
                                         <ul class="actions" align="right">
-                                            <li><a href="#" style="width:100px" class="button primary icon solid fa-search"></a></li>
+                                            <li><a href="#" style="width:10%" class="button primary icon solid fa-search"></a></li>
                                         </ul>
                                     </div>
-                                </div>  
+                                </div>
                                 <section>
-                                    <h3 align="left">Lista de Recambios y Materiales</h3>
+                                    <header>
+                                        <h4><b>Lista de Recambios y Materiales</b></h4>
+                                    </header>
                                     <div class="content"> 
-                                        <div class="table-wrapper" style="width: 90%; display:block; margin: 50;">
-                                            <table>
+                                        <div class="table-wrapper" style="width: auto; display:block; margin-left: auto; margin-right: auto;">
+                                            
+                                            <div class="datagrid"><table>
                                                 <thead>
                                                     <tr>
                                                         <th>Código</th>
@@ -48,6 +51,19 @@
                                                         <th>SubTotal</th>
                                                     </tr>
                                                 </thead>
+                                                <tfoot>
+                                                    <tr>
+                                                        <td colspan="5">
+                                                        <div id="paging">
+                                                            <ul>
+                                                                <li><a href="#"><span>Anterior</span></a></li>
+                                                                <li><a href="#" class="active"><span>1</span></a></li>
+                                                                <li><a href="#"><span>2</span></a></li>
+                                                                <li><a href="#"><span>Siguiente</span></a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </tr>
+                                                </tfoot>
                                                 <tbody>
                                                     <tr>
                                                         <td>1</td>
@@ -71,19 +87,15 @@
                                                         <td>5421</td>
                                                     </tr>
                                                 </tbody>
-                                            </table>
+                                                </table>
+                                            </div>
                                         </div>
-                                </section>
-                                <div style="width: 20%; float:right; display:block; margin: 25;">
-                                    <ul class="actions" align="right">
-                                        <li><a href="#" class="button">Cancelar</a></li>
-                                    </ul>
-                                </div> 
-                                <div style="width: 13%; float:right; display:block; margin: 25;">
-                                    <ul class="actions" align="right">
-                                        <li><a href="#" class="button">Aceptar</a></li>
-                                    </ul>
-                                </div>      
+                                    </div>
+                                </section><br><br><br><hr><br>
+                                <div class="field" style="width: auto; display:block; margin: auto;">
+                                    <a href="#" style="width: 29%;" class="button primary">Aceptar</a>
+                                    <a href="#" style="width: 29%;" class="button primary">Cancelar</a>
+                                </div>  
                             </form>
                         </div>
 					</section>
