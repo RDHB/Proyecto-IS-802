@@ -7,8 +7,8 @@
 .content1 {
     width: auto;
     margin-top: 1.5%;
-    margin-left:6%;
-    margin-right:6%;
+    margin-left:3%;
+    margin-right:3%;
     padding-bottom: 65px;
     padding-left: 1%;
     padding-right: 1%;
@@ -24,7 +24,7 @@
 }
 .datagrid table { 
   border-collapse: collapse; 
-  text-align: left; 
+  text-align: center; 
   width: 100%; 
 } 
 
