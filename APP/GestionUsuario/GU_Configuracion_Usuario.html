@@ -24,18 +24,18 @@
                         <form method="post" action="#">
                             <div class="fields">
                                 <div class="field" align="left" style="width: auto; float:left; display:block; margin-right: auto;">
-                                    <label for="name" align="left">Correo Electrónico</label>
+                                    <label for="name" align="center">Correo Electrónico</label>
                                     <input type="text" style="width:auto" id="iCorreoElectronico" disabled value=""/>
                                     <br>
                                 </div>
                                 <div class="field" align="left" style="width: auto; float:left; display:block; margin-right: auto;">
-                                    <label for="name" align="left">Dirección</label>
+                                    <label for="name" align="center">Dirección</label>
                                     <input type="text" style="width:auto" id="iDireccion" disabled value=""/>
                                     <br>
                                 </div>
-                                <div class="field" align="left" style="width:fit-content; float:left; display:block; margin-top: 3.5%; margin-right: 10%;">
+                                <div class="field" align="left" style="width:fit-content; float:left; display:block; margin-top: 3.5%; margin-right: 7%;">
                                     <div>
-                                        <input id="btnCambiarCorreoDireccion" class="button small1" type="button" style="width:auto" value="Cambiar Información"/>
+                                        <input id="btnCambiarCorreoDireccion" class="button small" type="button" style="width:auto" value="Cambiar Información"/>
                                         <br>
                                     </div>
                                 </div>
@@ -43,21 +43,21 @@
                             
                             <div class="fields">
                                 <div class="field" align="left" style="width: auto; float:left; display:block; margin-right: auto;">
-														<select id="selectNumerosTelefonos">
+                                    <br><select id="selectNumerosTelefonos">
 															<option value="">Números Telefónicos</option>
 														</select>
                                 </div>
-                                <div class="field" align="left" style="width:auto; float:right; display:block; margin: auto; ">
+                                <div class="field" style="width:auto; display:block; margin: auto; margin-top: 3%; ">
                                     <div class="linea1">
-                                        <input id="btnEliminarTelefono" class="button small1" type="buttom" style="width:auto" value="Eliminar Teléfono"/>
+                                        <input id="btnEliminarTelefono" class="button small" type="buttom" style="widows: 105%;" value="Eliminar Teléfono"/>
                                         <br>
                                     </div>
                                     <div class="linea1">
-                                        <input id="btnModificarTelefono" class="button small1" type="buttom" style="width:auto" value="Modificar Teléfono"/>
+                                        <input id="btnModificarTelefono" class="button small" type="buttom" style="width:105%" value="Modificar Teléfono"/>
                                         <br>
                                     </div>
                                     <div class="linea1">
-                                        <input id="btnAgregarTelefono" class="button small1" type="buttom" style="width:auto" value="Agregar Teléfono"/>
+                                        <input id="btnAgregarTelefono" class="button small" type="buttom" style="widows: 105%;" value="Agregar Teléfono"/>
                                         <br>
                                     </div>
                                 </div>
@@ -66,7 +66,7 @@
 				    </div> 
 				</div>
             </div>
-            <div class="content1">
+            <div class="content2">
                 <div align="left" style="width: inherit;">
                     <h3>Información de la Cuenta</h3>
                 </div><br><br>
@@ -75,38 +75,41 @@
                         <form method="post" action="#">
                             <div class="fields">
                                 <div class="field" align="left" style="width: auto; float:left; display:block; margin-right: auto;">
-                                    <label for="name" align="left">Nombre del Usuario</label>
+                                    <label for="name" align="center">Nombre del Usuario</label>
                                     <input type="text" style="width:auto" id="iNombreUsuario" disabled value=""/>
                                     <br>
                                     <div class="field" align="center" style="width:100%; float:left; display:block; margin-right: auto; margin-top: 2%;">
                                         <div>
-                                            <input id="btnCambiarINombreUsuario" class="button small1" type="button" style="width:100%" value="Cambiar Nombre de Usuario"/>
+                                            <input id="btnCambiarINombreUsuario" class="button small" type="button" style="width:100%" value="Cambiar Nombre de Usuario"/>
                                             <br>
                                         </div>
                                     </div>
-                                </div>
+                                </div><br>
                                 <div class="field" align="left" style="width: auto; float:left; display:block; margin-right: auto;">
-                                    <label for="name" align="left">Contraseña</label>
+                                    <label for="name" align="center">Contraseña</label>
                                     <input type="password" style="width:auto" id="iPassword" disabled value=""/>
                                     <br>
                                     <div class="field" align="center" style="width:100%; float:left; display:block; margin-right: auto; margin-top: 2%;">
                                         <div>
-                                            <input id="btnCambiarIPassword" class="button small1" type="button" style="width:100%" value="Cambiar Contraseña de Usuario"/>
+                                            <input id="btnCambiarIPassword" class="button small" type="button" style="width:100%" value="Cambiar Contraseña de Usuario"/>
                                             <br>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="field" align="left" style="width:auto; float:left; display:flexbox; margin-right: auto; margin-top: 0%;">
-                                    <label>Subir nueva foto de perfil</label>
-                                        <fieldset style="width: 100%;;">
+                                <div class="field" align="left" style="width:auto; float:left; display:flexbox; margin-right: auto; margin-top: 0.7%;">
+                                    <label align="center">Subir nueva foto de perfil</label>
+                                        <fieldset align="center" style="width: 100%;;">
                                             <label for="iNewFilePhoto" style="margin: 0%; display: flexbox; justify-content: center;"><a style="text-decoration:none"><span class="fas fa-cloud-upload-alt" style="text-align: center; font-size: xx-large;"></span><span id="nameFileChoose" style="margin-left: 2%;">Elegir Foto</span></a></label>
                                             <input id="iNewFilePhoto" type="file" style="width: 100%; display: none;" accept=".png, .jpeg, .jpg" name="nombreArchivo">
                                         </fieldset><br><br>
-                                        <div class="field" align="center" style="width:100%; float:left; display:block; margin-right: auto; margin-top: 0%;">
-                                            <div>
-                                                <input id="btnCambiarFotoPerfil" class="button small1" type="button" style="width:100%" value="Actualizar Foto de Perfil"/>
+                                        <div class="field" align="center" style="width:auto; float:left; display:block; margin-right: auto; margin-top: 0%;">
+                                            <div class="linea2">
+                                                <input id="btnCambiarFotoPerfil" class="button small" type="buttom" style="width: 90%;" value="Actualizar Foto"/>
                                                 <br>
-                                                <input id="btnFotoPerfilDefecto" class="button small1" type="button" style="width:100%" value="No Usar Foto de Perfil"/>
+                                            </div>
+                                            <div class="linea2">
+                                                <input id="btnFotoPerfilDefecto" class="button small" type="buttom" style="width: 120%;" value="Usar foto por defecto"/>
+                                                <br>
                                             </div>
                                         </div>
                                 </div>
@@ -124,33 +127,33 @@
                         <form method="post" action="#">
                             <div class="fields">
                                 <div class="field" align="left" style="width: auto; float:left; display:block; margin-right: auto;">
-                                    <label for="name" align="left">Código del Empleado</label>
+                                    <label for="name" align="center">Código del Empleado</label>
                                     <input type="text" style="width:auto" disabled id="iCodigoEmpleado" value=""/>
                                     <br>
                                 </div>
                                 <div class="field" align="left" style="width: auto; float:left; display:block; margin-right: auto;">
-                                    <label for="name" align="left">Área de Trabajo</label>
+                                    <label for="name" align="center">Área de Trabajo</label>
                                     <input type="text" style="width:auto" disabled id="iAreaTrabajo" value=""/>
                                     <br>
                                 </div>
                                 <div class="field" align="left" style="width: auto; float:left; display:block; margin-right: auto;">
-                                    <label for="name" align="left">Cargo</label>
+                                    <label for="name" align="center">Cargo</label>
                                     <input type="text" style="width:auto" disabled id="iCargo" value=""/>
                                     <br>
                                 </div>
                             </div>
                             <div class="fields"><div class="field" align="left" style="width: auto; float:left; display:block; margin-right: auto;">
-                                <label for="name" align="left">Hora de Entrada</label>
+                                <br><label for="name" align="center">Hora de Entrada</label>
                                 <input type="text" style="width:auto" disabled id="iHoraEntrada" value=""/>
                                 <br>
                             </div>
                             <div class="field" align="left" style="width: auto; float:left; display:block; margin-right: auto;">
-                                <label for="name" align="left">Hora de Salida</label>
+                                <br><label for="name" align="center">Hora de Salida</label>
                                 <input type="text" style="width:auto" disabled id="iHoraSalida" value=""/>
                                 <br>
                             </div>
                             <div class="field" align="left" style="width: auto; float:left; display:block; margin-right: auto;">
-                                <label for="name" align="left">Total de horas extras elaboradas</label>
+                                <br><label for="name" align="center">Total de horas extras elaboradas</label>
                                 <input type="text" style="width:auto" disabled id="iHorasExtras" value=""/>
                                 <br>
                             </div>

@@ -78,7 +78,7 @@ p { color: black;  }
     height: inherit;
     position: absolute;
     top: 0;
-    z-index: 1000;
+    z-index: 900;
     -webkit-transform: rotateY(-180deg);
        -moz-transform: rotateY(-180deg);
     -webkit-transform-style: preserve-3d;
@@ -97,7 +97,7 @@ p { color: black;  }
     -moz-transform: rotateY(180deg);
 }
 .panel.flip .back {
-    z-index: 1000;
+    z-index: 900;
     -webkit-transform: rotateX(0deg) rotateY(0deg);
     -moz-transform: rotateX(0deg) rotateY(0deg);
 }
