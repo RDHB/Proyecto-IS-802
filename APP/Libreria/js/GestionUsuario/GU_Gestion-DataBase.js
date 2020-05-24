@@ -108,11 +108,11 @@ $('#inputFiltroCampo').keyup(function(){
                         }
                         if(cuerpoTable.innerHTML === ''){
                             cuerpoTable.innerHTML += `
-                                        <tr style="display:flexbox; justify-content: center; align-content: center; width:100%;">
+                                        <tr>
                                             <th></th>
                                             <th></th>
                                             <th>
-                                                <span style="width:100%; text-align:center;"> No hay registros con ese valor de campo</span>
+                                                <span> No hay registros con ese valor de campo</span>
                                             </th>
                                             <th></th>
                                             <th></th>
@@ -318,10 +318,10 @@ function rellenarCuerpoTabla(){
                     for(j = 0; j < columnNames.length; j++){
                         if(j == 0){
                             $('#cuerpoTable').append(
-                                `<tr id="registro${respuesta.data[i][columnNames[j]]}"  style="display:flexbox; align-content: center;">
+                                `<tr id="registro${respuesta.data[i][columnNames[j]]}">
                                     <th>
                                         <input type="checkbox" id="${i}" value="${i}" name="${i}"/>
-                                        <label for="${i}">.</label>
+                                        <label for="${i}"></label>
                                     </th>
                                     <td id="${columnNames[j]+i}" >${respuesta.data[i][columnNames[j]]}</td>
                                 </tr>`

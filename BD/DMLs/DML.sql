@@ -642,7 +642,7 @@ VALUES
 -- Table Usuarios
 INSERT INTO Usuarios([idUsuario],[nombreUsuario],[contrasenia],[nombreArchivo],[Empleado_idEmpleado],[Estado_Usuario_idEstado_Usuario]) 
 VALUES
-(1,'LuisFer15','3xtr1+0eA'              ,'1.jpg',1,1), -- Extremo15
+(1,'LuisFer15','3xtr1+0eA'              ,'1.jpeg',1,1), -- Extremo15
 (2,'Rene2','.6s6-0p8rt6-7l8sU'          ,'2.png',2,1), -- Fisicoparticulas2
 (3,'Mary17','G8+14!Thr0 1sie'           ,'3.jpg',3,1), -- GameOfThrones61
 (4,'MarvinPonce','V8s0UEe'              ,'default.png',4,1), -- Vaso231

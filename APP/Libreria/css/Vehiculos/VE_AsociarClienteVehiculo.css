@@ -10,11 +10,6 @@
     transform: scale(1.05);
 }
 
-body {
-    font-family: 'Roboto', sans-serif;
-    font-size: small;
-    text-align: center;
-  }
   .button1:after {
     background: #2c3e50;
   }
@@ -94,20 +89,20 @@ body {
     margin-top: 1.5%;
     margin-left:5%;
     margin-right:5%;
-    padding-bottom: 65px;
-    padding-left: 10px;
+    padding-left: 1%;
+    padding-right: 1%;
     color: #ffffff;
     background: white;
     border-radius: 50px;
     -moz-border-radius: 50px;
     -webkit-border-radius: 50px;
-    padding-top: 3%;
-    padding-bottom: 0%;
-    margin-bottom: 1%;
+    padding-top: 0.5%;
+    padding-bottom: -1%;
+    margin-bottom: 5%;
 }
 .datagrid table { 
   border-collapse: collapse; 
-  text-align: left; 
+  text-align: center; 
   width: 100%; 
 } 
 

@@ -63,11 +63,11 @@ p { color: black;  }
        -moz-transform-style: preserve-3d;
     -webkit-backface-visibility: hidden;
        -moz-backface-visibility: hidden;
-    -webkit-transition: all .4s ease-in-out;
-       -moz-transition: all .4s ease-in-out;
-        -ms-transition: all .4s ease-in-out;
-         -o-transition: all .4s ease-in-out;
-            transition: all .4s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+       -moz-transition: all .2s ease-in-out;
+        -ms-transition: all .2s ease-in-out;
+         -o-transition: all .2s ease-in-out;
+            transition: all .2s ease-in-out;
 }
 
 .panel .back {
@@ -81,11 +81,11 @@ p { color: black;  }
        -moz-transform-style: preserve-3d;
     -webkit-backface-visibility: hidden;
        -moz-backface-visibility: hidden;
-    -webkit-transition: all .4s ease-in-out;
-       -moz-transition: all .4s ease-in-out;
-        -ms-transition: all .4s ease-in-out;
-         -o-transition: all .4s ease-in-out;
-            transition: all .4s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+       -moz-transition: all .2s ease-in-out;
+        -ms-transition: all .2s ease-in-out;
+         -o-transition: all .2s ease-in-out;
+            transition: all .2s ease-in-out;
 }
 .panel.flip .front {
     z-index: 900;
@@ -100,7 +100,7 @@ p { color: black;  }
 .box1{
     background-color:#d7d7d7;
     width: 210%;
-    height: 110%;
+    height: 120%;
     padding: 30%;
     border-radius: 50px;
     -moz-border-radius: 50px;
@@ -108,8 +108,8 @@ p { color: black;  }
 }
 .box2{
     background-color:#fbb13c;
-    width: 145%;
-    height: 110%;
+    width: 210%;
+    height: 120%;
     padding: 20%;
     padding-bottom: 20%;
     border-radius: 50px;
@@ -118,7 +118,7 @@ p { color: black;  }
 }
 
 .content1 {
-    width: 95%;
+    width: auto;
     margin-top: 2%;
     margin-left: 3%;
     margin-right: 3%;

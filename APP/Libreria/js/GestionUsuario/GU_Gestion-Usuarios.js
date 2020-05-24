@@ -112,8 +112,8 @@ $('#searchName').keyup(function(){
                             bodyTable.innerHTML += `
                                     <tr>
                                         <th>
-                                            <input type="checkbox" id="${usuarioBackEnd.idUsuario}" value="${usuarioBackEnd.idUsuario}" style="width:10px; height:100%;"/>
-                                            <label for="${usuarioBackEnd.idUsuario}">.</label>
+                                            <input type="checkbox" id="${usuarioBackEnd.idUsuario}" value="${usuarioBackEnd.idUsuario}" style="width: 0.5%;"/>
+                                            <label for="${usuarioBackEnd.idUsuario}"></label>
                                         </th>
                                         <td style="width:15px; text-align:center;">${usuarioBackEnd.idUsuario}</td>
                                         <td id="${'nombrePersona'+usuarioBackEnd.idUsuario}">${usuarioBackEnd.nombrePersona}</td>
@@ -404,7 +404,7 @@ function informacionUsuarios(){
                         <tr>
                             <th>
                                 <input type="checkbox" id="${respuesta.data[i].idUsuario}" value="${respuesta.data[i].idUsuario}" style="width:10px; height:100%;"/>  
-                                <label for="${respuesta.data[i].idUsuario}">.</label>
+                                <label for="${respuesta.data[i].idUsuario}"></label>
                             </th>
                             <td style="width:15px; text-align:center;">${respuesta.data[i].idUsuario}</td>
                             <td id="${'nombrePersona'+respuesta.data[i].idUsuario}">${respuesta.data[i].nombrePersona}</td>

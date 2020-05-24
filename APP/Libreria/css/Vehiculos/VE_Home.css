@@ -63,11 +63,11 @@ p { color: #ffffff;  }
        -moz-transform-style: preserve-3d;
     -webkit-backface-visibility: hidden;
        -moz-backface-visibility: hidden;
-    -webkit-transition: all .4s ease-in-out;
-       -moz-transition: all .4s ease-in-out;
-        -ms-transition: all .4s ease-in-out;
-         -o-transition: all .4s ease-in-out;
-            transition: all .4s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+       -moz-transition: all .2s ease-in-out;
+        -ms-transition: all .2s ease-in-out;
+         -o-transition: all .2s ease-in-out;
+            transition: all .2s ease-in-out;
 }
 
 .panel .back {
@@ -81,11 +81,11 @@ p { color: #ffffff;  }
        -moz-transform-style: preserve-3d;
     -webkit-backface-visibility: hidden;
        -moz-backface-visibility: hidden;
-    -webkit-transition: all .4s ease-in-out;
-       -moz-transition: all .4s ease-in-out;
-        -ms-transition: all .4s ease-in-out;
-         -o-transition: all .4s ease-in-out;
-            transition: all .4s ease-in-out;
+    -webkit-transition: all .2s ease-in-out;
+       -moz-transition: all .2s ease-in-out;
+        -ms-transition: all .2s ease-in-out;
+         -o-transition: all .2s ease-in-out;
+            transition: all .2s ease-in-out;
 }
 .panel.flip .front {
     z-index: 900;
@@ -99,36 +99,46 @@ p { color: #ffffff;  }
 }
 .box1{
     background-color:#d7d7d7;
-    width: 400px;
-    height: 350px;
-    padding: 35px;
+    width: 200%;
+    height: 115%;
+    padding: 30%;
     border-radius: 50px;
     -moz-border-radius: 50px;
     -webkit-border-radius: 50px;
 }
 .box2{
     background-color:#fbb13c;
-    width: 400px;
-    height: 350px;
-    margin: 0 auto;
-    padding: 35px;
+    width: 200%;
+    height: 115%;
+    padding: 15%;
+    padding-bottom: 20%;
     border-radius: 50px;
     -moz-border-radius: 50px;
     -webkit-border-radius: 50px;
 }
 
 .content1 {
-    width: 1500px;
-    margin-top: 3%;
-    margin-left: 7%;
+    width: auto;
+    margin-top: 2%;
+    margin-left: 3%;
+    margin-right: 3%;
     padding-bottom: 65px;
-    padding-left: 10px;
+    padding-left: 1%;
     color: #ffffff;
     background: #57b8ff;
     border-radius: 50px;
     -moz-border-radius: 50px;
     -webkit-border-radius: 50px;
-    padding-top: 5%;
-    padding-bottom: 7%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-right: 2%;
+    margin-bottom: 2%;
 }
 
+
+.circuloS{
+    width: 50%;
+    height: 50%;
+    background-color: #1ebdd1;
+    border-radius: 100%;
+}

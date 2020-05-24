@@ -5,67 +5,62 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="../assets/css/header.css" />
         <link rel="stylesheet" href="../assets/css/main.css" />
+        <link rel="stylesheet" href="../Libreria/css/RRHH/RH_Permisos.css" />
 		<link rel="icon" type="image" href="../images/Volvo-Emblema.ico" sizes="64x64">
 		<noscript><link rel="stylesheet" href="../assets/css/noscript.css" /></noscript>
-		<h1 align="center"><i><b><img  src="../images/source.gif" width="70xp" border-radius="100%">Volvo Partes</b></i></h1> 	
     </head>
     <body background="">
 		<div id="main">
 		<section>
-			<div>
+			<div class="content1">
                 <img class="circulo_small" src="../images/Rol-de-pago3.jpg" width="70xp" height="80xp">
-				<h2>Permisos</h2>
+				<h3><b>Permisos</b></h3><hr><br>
 				<div>
 					<section>
                         <div class="content">
-
                             <form method="post" action="#">
-                                <div class="fields" align="center" style="width: 100%; float:left; display:block; margin: 10;">
-                                    <div class="field" style="width: 100%; float:left; display:block; margin: 10;">
+                                <div class="fields">
+                                    <div class="field" style="width: auto; float:left; display:block; margin: auto;">
                                         <label for="name" >Código Empleado</label>
-                                        <input type="textbox" style="width:450px" name="name" id="name" value=""/>
+                                        <input type="text" style="width:auto" name="name" id="name" value=""/>
                                     </div>
-                                    <div class="field" style="width: 100%; float:left; display:block; margin: 10;">
+                                    <div class="field" style="width: auto; float:left; display:block; margin: auto;">
                                         <label for="name" >Nombre Completo</label>
-                                        <input type="textbox" style="width:450px" name="name" id="name" value=""/>
+                                        <input type="text" style="width:auto" name="name" id="name" value=""/>
                                     </div>
-                                    <div class="field" style="width: 100%; float:left; display:block; margin: 10;">
+                                    <div class="field" style="width: auto; float:left; display:block; margin: auto;">
                                         <label for="name" >Cargo</label>
-                                        <input type="textbox" style="width:450px" name="name" id="name" value=""/>
+                                        <input type="text" style="width:auto" name="name" id="name" value=""/>
                                     </div>
-                                    <div class="field" id="select" style="width: 100%; float:left; display:block; margin: 10;">
-                                        <select style="width: 450px;">
+                                    <div class="field" style="width: auto; float:left; display:block; margin: auto;">
+                                        <br><select style="width: auto;">
                                             <option value="especial">Tipo de Solicitud</option>
                                             <option value="especial">Permiso Especial</option>
                                             <option value="vacacion">Vacaciones</option>
-                                        </select><br>
+                                        </select>
                                     </div>
-                                    <div id="myDIV" class="field" style="width: 100%; float:left; display:block; margin: 10;">
-                                        <div id="especial">
-                                            <select style="width: 450px;">
-                                                <option>Motivo</option>
+                                    <div class="field" style="width: auto; float:left; display:block; margin: auto;">
+                                        <br><select style="width: auto;">
+                                                <option>Tipo de Motivo</option>
                                                 <option>Permiso</option>
                                                 <option>Vacaciones</option>
                                                 <option>Familiar</option>
                                                 <option>Salud</option>
-                                            </select><br>
-                                        </div>
-                                        <div class="field" style="width: 100%; float:left; display:block;">
-                                            <label for="fecha">Descripción Adicional</label>
-                                            <input type="textbox" style="width:450px" name="name" id="name" value=""/><br><br>
-                                        </div>
-                                        <div class="field" style="width: 100%; float:left; display:block;">
-                                            <label for="fecha">Fecha</label>
-                                            <input type="date" style="width:450px" name="name" id="name" value=""/><br>
-                                        </div>
+                                            </select>
                                     </div>
+                                    <div class="field" style="width: auto; float:left; display:block; margin: auto;">
+                                        <label for="fecha">Descripción Adicional</label>
+                                        <input type="text" style="width:auto" name="name" id="name" value=""/>
+                                    </div>
+                                    <div class="field"style="width: auto; float:left; display:block; margin: auto;">
+                                        <label for="fecha">Fecha</label>
+                                        <input type="date" style="width:auto" name="name" id="name" value=""/>
+                                    </div>
+                                </div><br><hr><br>
+                                <div class="field" align="center" style="width: auto; display:block; margin: auto;">
+                                    <a href="#" style="width: 32%;" class="button primary fit">Enviar</a>
+                                    <a href="#" style="width: 34%;" class="button primary fit">Revertir</a>
                                 </div>
-                                <div style="width: 40%; float:left; display:block; margin: 49;">
-                                    <a href="#" class="button primary fit">Enviar</a>
-                                </div>
-                                <div style="width: 40%; float:left; display:block; margin: 49;">
-                                    <a href="#" class="button primary fit">Revertir</a>
-                                </div>        
                             </form>
                         </div>
                     </section>    
