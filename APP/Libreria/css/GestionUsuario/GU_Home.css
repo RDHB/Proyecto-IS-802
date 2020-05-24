@@ -67,11 +67,11 @@ p { color: black;  }
        -moz-transform-style: preserve-3d;
     -webkit-backface-visibility: hidden;
        -moz-backface-visibility: hidden;
-    -webkit-transition: all .2s ease-in-out;
-       -moz-transition: all .2s ease-in-out;
-        -ms-transition: all .2s ease-in-out;
-         -o-transition: all .2s ease-in-out;
-            transition: all .2s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+       -moz-transition: all .3s ease-in-out;
+        -ms-transition: all .3s ease-in-out;
+         -o-transition: all .3s ease-in-out;
+            transition: all .3s ease-in-out;
 }
 
 .panel .back {
@@ -85,11 +85,11 @@ p { color: black;  }
        -moz-transform-style: preserve-3d;
     -webkit-backface-visibility: hidden;
        -moz-backface-visibility: hidden;
-    -webkit-transition: all .2s ease-in-out;
-       -moz-transition: all .2s ease-in-out;
-        -ms-transition: all .2s ease-in-out;
-         -o-transition: all .2s ease-in-out;
-            transition: all .2s ease-in-out;
+    -webkit-transition: all .3s ease-in-out;
+       -moz-transition: all .3s ease-in-out;
+        -ms-transition: all .3s ease-in-out;
+         -o-transition: all .3s ease-in-out;
+            transition: all .3s ease-in-out;
 }
 .panel.flip .front {
     z-index: 900;
