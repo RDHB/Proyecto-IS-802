@@ -20,6 +20,7 @@ $("#btn-login").click(function () {
 				localStorage.setItem('usuario',respuesta.usuario);
 				localStorage.setItem('nombre',respuesta.nombre);
 				localStorage.setItem('nombreArchivo',respuesta.nombreArchivo);
+				localStorage.setItem('cargo',respuesta.pidCargo);
 				window.location.href = "https://localhost:3000/volvo";
 			}else{
 				$("#notificacion").replaceWith('<label  id="notificacion" style="color: brown;">'+respuesta.pmensaje+'</label>');

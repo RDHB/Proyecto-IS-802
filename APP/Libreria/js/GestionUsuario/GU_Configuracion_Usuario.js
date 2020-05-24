@@ -10,7 +10,7 @@ $(Document.body).ready(async function(){
     await rellenarNumerosTelefonos();
     await rellenarCorreoDireccion();
     await rellenarInformacionCuenta();
-    await rellenarInformacionTrabajo ()
+    await rellenarInformacionTrabajo ();
 })
 
 

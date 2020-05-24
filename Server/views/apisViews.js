@@ -52,7 +52,7 @@ apisViews.get('/gestionUsuario/GU_DataBase',functionsAuth.authAdmin,(req,res) =>
 });
 
 // -- VISTAS ORDEN DE TRABAJO
-apisViews.get('/ordenTrabajo/OT_Home',/*functionsAuth.authHomeOrdenTrabajo,*/ (req,res) => {
+apisViews.get('/ordenTrabajo/OT_Home',functionsAuth.authHomeOrdenTrabajo, (req,res) => {
     res.sendFile(path + '/OrdenTrabajo/OT_Home.html');
 });
 // asesor servicios
@@ -138,7 +138,7 @@ apisViews.get('/rrhh/RH_RolPago',/*functionsAuth.authAsistenteRRHH,*/ (req,res) 
 });
 
 // -- PANTALLAS VEHICULOS
-apisViews.get('/vehiculos/VE_Home',/*functionsAuth.authAsesorServicios,*/ (req,res) => {
+apisViews.get('/vehiculos/VE_Home',functionsAuth.authAsesorServicios, (req,res) => {
     res.sendFile(path + '/Vehiculos/VE_Home.html');
 });
 

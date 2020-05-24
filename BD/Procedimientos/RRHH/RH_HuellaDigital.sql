@@ -12,9 +12,6 @@
 CREATE PROCEDURE RH_HUELLA (
     -- Parametros de Entrada
 	@pcodigoEmpleado				VARCHAR(45),
-	@pdescripcion					VARCHAR(45) OUTPUT,
-	@phoraEntrada					TIME OUTPUT,
-	@phoraSalida					TIME OUTPUT,
 	@pfecha							DATE,
     @paccion						VARCHAR(45),
     
@@ -25,7 +22,10 @@ CREATE PROCEDURE RH_HUELLA (
 
     -- Otros parametros de salida @pAreaTrabajo, @pCargo
 	@pCargo 						VARCHAR(1000) OUTPUT,
-	@pAreaTrabajo 					VARCHAR(1000) OUTPUT
+	@pAreaTrabajo 					VARCHAR(1000) OUTPUT,
+	@pdescripcion					VARCHAR(45) OUTPUT,
+	@phoraEntrada					TIME OUTPUT,
+	@phoraSalida					TIME OUTPUT
 ) AS
 BEGIN
     -- Declaracion de Variables

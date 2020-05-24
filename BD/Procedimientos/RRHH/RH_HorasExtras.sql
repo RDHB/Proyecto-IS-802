@@ -8,15 +8,15 @@
 CREATE PROCEDURE RH_HORAS_EXTRAS (
     -- Parametros de Entrada
 	@pidAreaTrabajo				VARCHAR(45),
-	@phoraInicio				VARCHAR(45) OUTPUT,
-	@phoraFin					VARCHAR(45) OUTPUT,
 	@pfecha						VARCHAR(45),
     @paccion					VARCHAR(45),
     
     -- Parametros de Salida
     -- Codigo de mensaje
     @pcodigoMensaje				INT OUTPUT,
-	@pmensaje 					VARCHAR(1000) OUTPUT
+	@pmensaje 					VARCHAR(1000) OUTPUT,
+	@phoraInicio				VARCHAR(45) OUTPUT,
+	@phoraFin					VARCHAR(45) OUTPUT
 ) AS
 BEGIN
     -- Declaracion de Variables

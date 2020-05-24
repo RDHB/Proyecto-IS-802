@@ -18,6 +18,52 @@ $(Document.body).ready(function(){
                     break;
                 }
                 case 17:{
+                    $('body').prepend(`
+                        <!-- Header -->
+                        <div id="header">
+                            <div class="top">
+                                <!-- Usuario -->
+                                <div id="perfil-usuario">
+                                    <!-- Información del usuario -->
+                                    <span class="image avatar48">
+                                        <a title="avatarUsuario" href="https://localhost:3000/volvo/view/gestionUsuario/GU_Configuracion_Usuario" style="width:100%; height:100%;">
+                                            <img src="${localStorage.getItem('nombreArchivo')}" alt="avatarUsuario"/>
+                                        </a>
+                                    </span>
+                                    <h1>
+                                        <span id="nickNameUser">${localStorage.getItem('usuario')}</span>
+                                    </h1> 
+                                    <p id="nameOfUser">${localStorage.getItem('nombre')}</p>
+                                </div>
+                                <!-- Menu (Nav) -->
+                                <nav class="nav">
+                                    <ul id="menu-accion">
+                                        <!-- Lista de acciones del usuario en Orden Trabajo-->
+                                        <li> <a href="https://localhost:3000/volvo/view/ordenTrabajo/OT_Home" id="btnHome"> <span class="icon solid fa-home"></span><span>Inicio Gestión Orden de Trabajo</span></a></li>          
+                                        <li> <a href="https://localhost:3000/volvo/view/ordenTrabajo/OT-A_GenerarOT"> <span class="icon solid fa-th"></span> <span>Generar Orden de Trabajo</span> </a> </li> 
+                                        <li> <a href="https://localhost:3000/volvo/view/ordenTrabajo/OT-A_RevisionVehiculo"> <span class="icon solid fa-th"></span> <span>Revisión de Vehículo</span> </a> </li>            
+                                        <li> <a href="https://localhost:3000/volvo/view/ordenTrabajo/OT-A_ContratarServicios"> <span class="icon solid fa-th"></span> <span>Contratación de Servicios</span></a></li>
+                                        <li> <a href="https://localhost:3000/volvo/view/ordenTrabajo/OT-A_Cotizacion"> <span class="icon solid fa-th"></span> <span>Cotizaciones</span> </a> </li>            
+                                        <li> <a href="https://localhost:3000/volvo/view/ordenTrabajo/OT-A_AprovacionCotizacion"> <span class="icon solid fa-th"></span> <span>Aprobación de Cotización</span></a></li>
+                                        <li> <a href="https://localhost:3000/volvo/view/ordenTrabajo/OT-A_FinalizarOT"> <span class="icon solid fa-th"></span> <span>Finalizar Orden de Trabajo</span> </a> </li>            
+                                    </ul>
+                                    <ul id="menu-accion">
+                                        <!-- Lista de acciones del usuario Vehiculos -->
+                                        <li> <a href="https://localhost:3000/volvo/view/vehiculos/VE_Home" id="btnHome"> <span class="icon solid fa-home"></span><span>Inicio Gestión de Vehículos</span></a></li>          
+                                        <li> <a href="https://localhost:3000/volvo/view/vehiculos/VE_RegistrarCliente"> <span class="icon solid fa-th"></span> <span>Registro de Clientes</span></a></li>
+                                        <li> <a href="https://localhost:3000/volvo/view/vehiculos/VE_RegistrarVehiculos"> <span class="icon solid fa-th"></span> <span>Registro de Vehículos</span></a></li>
+                                        <li> <a href="https://localhost:3000/volvo/view/vehiculos/VE_AsociarClienteVehiculo"> <span class="icon solid fa-th"></span> <span>Asociar Clientes a Vehículos</span> </a> </li>            
+                                    </ul>
+                                </nav>
+                            </div>      
+                            <div class="bottom nav">
+                                <ul>
+                                    <li><a href="#" onClick="cerrarSession();" style="width:auto; color:white;" class="icon solid fa-sign-out-alt"><span>Cerrar Sesión</span></a></li>
+                                </ul>
+                            </div>         
+                        </div>                  
+                    
+                    `);
                     break;
                 }        
                 case 9:{
