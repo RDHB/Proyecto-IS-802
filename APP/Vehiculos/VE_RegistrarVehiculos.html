@@ -23,78 +23,130 @@
                                 <div class="fields">
                                     <div class="field" align="center" style="width: auto; float:left; display:block; margin: auto;">
                                         <label for="name" align="center">Vin</label>
-                                        <input type="text" style="width:auto" name="name" id="name" value=""/>
+                                        <input type="text" style="width:auto" id="iVin" value=""/>
                                         <br>
                                     </div>
                                     <div class="field" align="center" style="width: auto; float:left; display:block; margin: auto;">
                                         <label for="name" align="center">Color</label>
-                                        <input type="text" style="width:auto" name="name" id="name" value=""/>
+                                        <input type="text" style="width:auto" id="iColor" value=""/>
                                         <br>
                                     </div>
                                     <div class="field" align="center" style="width: auto; float:left; display:block; margin: auto; ">
                                         <label for="name" align="center">Placa</label>
-                                        <input type="text" style="width:auto" name="name" id="name" value=""/>
+                                        <input type="text" style="width:auto" id="iPlaca" value=""/>
                                         <br>
                                     </div>
                                     <div class="field" align="center" style="width: auto; float:left; display:block; margin: auto; ">
-                                        <label for="name" align="center">Número de Placa</label>
-                                        <input type="text" style="width:auto" name="name" id="name" value=""/>
+                                        <label for="name" align="center">Número de Motor</label>
+                                        <input type="text" style="width:auto" id="iNumeroMotor" value=""/>
                                         <br>
                                     </div>
                                     <div class="field" align="center" style="width: auto; float:left; display:block; margin:auto;">
                                         <div class="field" align="center" style="width: auto; float:left; display:block; margin:auto;">
                                             <div class="linea">
-                                                <select name="department" style="width:auto" id="department">
+                                                <select id="selectMarca" name="department" style="width:auto" id="department">
                                                     <option value="">Marca</option>
-                                                    <option value="1">Manufacturing</option>
-                                                    <option value="2">Shipping</option>
-                                                    <option value="3">Administration</option>
-                                                    <option value="4">Human Resources</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="linea" style="width: auto; float:left; display:block; margin: auto; margin-top: 4%;">
-                                            <a href="#" style=" margin: auto; padding-right: auto;" class="button small"><h6>Nuevo</h6></a>
+                                            <input  type="buttom" id="btnNuevaMarca" style="width:55px; margin: auto; padding-right: auto;" class="button small" value="Nuevo"></input>
                                         </div>
                                     </div>
                                     <div class="field" align="center" style="width: auto; float:left; display:block; margin:auto;">
                                         <div class="field" align="center" style="width: auto; float:left; display:block; margin:auto;">
                                             <div class="linea">
-                                                <select name="department" style="width:auto" id="department">
+                                                <select id="selectModelo" name="department" style="width:auto" id="department">
                                                     <option value="">Modelo</option>
-                                                    <option value="1">Manufacturing</option>
-                                                    <option value="2">Shipping</option>
-                                                    <option value="3">Administration</option>
-                                                    <option value="4">Human Resources</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="linea" style="width: auto; float:left; display:block; margin: auto; margin-top: 4%">
-                                            <a href="#" style=" margin: auto; padding-right: auto;" class="button small"><h6>Nuevo</h6></a>
+                                            <input type="buttom" disabled="disabled" id="btnNuevoModelo" style="width:55px; margin: auto; padding-right: auto;" class="button small" value="Nuevo"></input>
                                         </div>
                                     </div>
                                     <div class="field" style="width: auto; float:left; display:block; margin: auto;">
                                         <h4 align="center"><b>Caja de Cambios</b></h4>
                                         <div style="width: auto; margin-left: auto;" >
-                                            <input type="radio" style="width: auto;" id="priority-low" name="priority" checked />
+                                            <input type="radio" style="width: auto;" id="priority-low" name="priority" value="Mecánico" checked />
                                             <label for="priority-low">Mecánico</label>
-                                            <input type="radio" style="width: auto" id="priority-normal" name="priority" />
+                                            <input type="radio" style="width: auto" id="priority-normal" name="priority" value="Automático"/>
                                             <label for="priority-normal">Automático</label>
-                                            <input type="radio" style="width: auto" id="priority-normal1" name="priority" />
+                                            <input type="radio" style="width: auto" id="priority-normal1" name="priority" value="Semiautomático"/>
                                             <label for="priority-normal1">Semiautomático</label>
                                         </div>
                                     </div>
                                 </div><br><hr>      
                                 <div align="center" style="width: auto; display:block;margin-top:1%;">
-                                    <br><a href="#" align="right" class="button primary" >Guardar</a>
-                                    <a href="#" align="right" class="button primary" >Cancelar</a>
+                                    <br><buttom id="btnGuardar" align="right" class="button primary" >Guardar</buttom>
+                                    <buttom id="btnCancelar" align="right" class="button primary" >Cancelar</buttom>
                                 </div>
                             </form>
                         </div>
                     </section>    
 				</div>
 			</div>
-		</section>
+        </section>
+        
+        <!-- ------------------------------------------------------------ -->
+		<!-- Ventanas modales -->
+        <!-- ------------------------------------------------------------ -->
+
+        <div id="nuevaMarca" class="modal">
+            <section style="display: flexbox; justify-content: center; align-items: center;">
+                <header style="display: flexbox; justify-content: center; align-items: center;">
+                    <h3 style="text-align: center; ">Ingrese el nombre de la nueva marca:</h3>
+                </header>
+                <div style="display: flexbox; align-items: center; justify-content: start;">
+                    <table id="table">
+                        <tbody id="nuevaMarcaCampo" style="display: flexbox; align-content: center;">
+                            <!-- BODY DE LA TABLA -->
+                        </tbody>
+                    </table>
+                    <div align="center" style="margin: 25;" id="nuevaMarcaNotificacion"></div>
+                </div>
+                <div class="content" style="display: flexbox; justify-content: center; align-items: center;">
+                    <div class="table-wrapper" style="margin: 25; display: flexbox; justify-content: center; align-items: center;">
+                        <div align="center" style="margin: 25; display: flexbox; justify-content: space-between;">
+                            <a id="aceptarNuevaMarca" class="button small">Aceptar</a>
+                            <a id="cancelarNuevaMarca" class="button small" rel="modal:close">Cancelar</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div id="nuevoModelo" class="modal">
+            <section style="display: flexbox; justify-content: center; align-items: center;">
+                <header style="display: flexbox; justify-content: center; align-items: center;">
+                    <h3 style="text-align: center; ">Ingrese el nombre del nuevo modelo (se relacionará con la marca ya seleccionada):</h3>
+                </header>
+                <div style="display: flexbox; align-items: center; justify-content: start;">
+                    <table id="table">
+                        <tbody id="nuevoModeloCampo" style="display: flexbox; align-content: center;">
+                            <!-- BODY DE LA TABLA -->
+                        </tbody>
+                    </table>
+                    <div align="center" style="margin: 25;" id="nuevoModeloNotificacion"></div>
+                </div>
+                <div class="content" style="display: flexbox; justify-content: center; align-items: center;">
+                    <div class="table-wrapper" style="margin: 25; display: flexbox; justify-content: center; align-items: center;">
+                        <div align="center" style="margin: 25; display: flexbox; justify-content: space-between;">
+                            <a id="aceptarNuevoModelo" class="button small">Aceptar</a>
+                            <a id="cancelarNuevoModelo" class="button small" rel="modal:close">Cancelar</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div id="guardar" class="modal">
+            <section style="display: flexbox; justify-content: center; align-items: center;">
+                <div style="display: flexbox; align-items: center; justify-content: start;">
+                    <div align="center" style="margin: 25;" id="guardarNotificacion"></div>
+                </div>
+            </section>
+        </div>
 		
 		<!-- ------------------------------------------------------------ -->
 		<!-- Hasta aquí se puede Editar -->
@@ -108,10 +160,15 @@
 		<script src="../assets/js/browser.min.js"></script>
 		<script src="../assets/js/breakpoints.min.js"></script>
 		<script src="../assets/js/util.js"></script>
-		<script src="../assets/js/main.js"></script>
+        <script src="../assets/js/main.js"></script>
+        
+        <!-- jquery-modal -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 
 		<!-- Header -->
 		<script src="../assets/js/header.js"></script>
-		<script src="../Libreria/cargar-header.js"></script>
+        <script src="../Libreria/cargar-header.js"></script>
+        <script src="../Libreria/js/Vehiculos/VE_RegistrarVehiculos.js"></script>
     </body>
 </html>

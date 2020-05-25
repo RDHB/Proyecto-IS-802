@@ -46,7 +46,7 @@ $('#btnCancelar').click(async function(){
  * FUNCION QUE SIRVE PARA REGISTRAR EL CLIENTE HACIENDO USO DEL API
  */
 async function registrarCliente(){
-    var codigoMessage = 1;
+    var codigoMessage;
     if( $('#iPrimerNombre').val() == "" || $('#iPrimerApellido').val() == "" || $('#iSegundoApellido').val() == "" || $('#iNumeroIdentidad').val() == "" || $('#iNumeroTelefono').val() == "" ){
         codigoMessage = 10; //INDICA QUE FALTAN QUE LLENAR CAMPOS OBLIGATORIOS
     }else{
