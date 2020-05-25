@@ -19,7 +19,7 @@ function VE_ASOCIAR_CYV(req,res){
             if(req.body.accion === 'LINK' || req.body.accion === 'UNLINK'){
                 res.send(result.output);
             }else if(req.body.accion === 'SELECT'){
-                res.send({output:result.output,data: result.recordsets});
+                res.send({output:result.output, data: result.recordsets});
             }
         }).catch(function(err){
             conn.close();
@@ -36,8 +36,8 @@ function VE_GESTION_CLIENTES(req,res){
         var reqDB = new sql.Request(conn);
         reqDB.input('pprimerNombre',sql.VarChar,req.body.primerNombre);
         reqDB.input('psegundoNombre',sql.VarChar,req.body.segundoNombre	);
-        reqDB.input('pprimerapellido',sql.VarChar,req.body.primerapellido);
-        reqDB.input('psegundoapellido',sql.VarChar,req.body.segundoapellido);
+        reqDB.input('pprimerapellido',sql.VarChar,req.body.primerApellido);
+        reqDB.input('psegundoapellido',sql.VarChar,req.body.segundoApellido);
         reqDB.input('pcorreoElectronico',sql.VarChar,req.body.correoElectronico);
         reqDB.input('pdireccion',sql.VarChar,req.body.direccion);
         reqDB.input('pnumeroIdentidad',sql.VarChar,req.body.numeroIdentidad);
@@ -48,7 +48,7 @@ function VE_GESTION_CLIENTES(req,res){
         reqDB.output('pmensaje', sql.VarChar);
         reqDB.execute('VE_GESTION_CLIENTES').then(function(result){
             conn.close();
-            res.send(result.output);
+            res.send({output: result.output, data: result.recordsets[0]});
         }).catch(function(err){
             conn.close();
             res.send(messagesMiscelaneos.errorC2);
@@ -73,7 +73,7 @@ function VE_GESTION_VEHICULOS(req,res){
         reqDB.output('pmensaje', sql.VarChar);
         reqDB.execute('VE_GESTION_VEHICULOS').then(function(result){
             conn.close();
-            res.send(result.output);
+            res.send({output: result.output, data: result.recordsets[0]});
         }).catch(function(err){
             conn.close();
             res.send(messagesMiscelaneos.errorC2);
