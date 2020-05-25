@@ -183,16 +183,16 @@ VALUES
 -- Table Servicios
 INSERT INTO Servicios([idServicios],[nombre],[precioCosto],[duracion]) 
 VALUES
-(1,'Lavado de auto',220,'04:18:45'),
-(2,'Inspeccion del Vehiculo',651,'03:59:53'),
-(3,'Mantenimiento',418,'02:58:05'),
-(4,'Pintura',874,'02:13:54'),
-(5,'Cambio de llantas',486,'22:27:54'),
-(6,'Cambio de aceites',502,'06:35:31'),
-(7,'Cambio de amortiguadores',754,'02:30:54'),
-(8,'Reparacion de motor',245,'16:30:13'),
-(9,'Reparacion de abolladuras',479,'03:34:59'),
-(10,'Otras Reparaciones',802,'02:53:56');
+(1,'Lavado de auto',220,'04:00:00'),
+(2,'Inspeccion del Vehiculo',651,'03:00:00'),
+(3,'Mantenimiento',418,'02:00:00'),
+(4,'Pintura',874,'02:00:00'),
+(5,'Cambio de llantas',486,'22:00:00'),
+(6,'Cambio de aceites',502,'06:00:00'),
+(7,'Cambio de amortiguadores',754,'02:00:00'),
+(8,'Reparacion de motor',245,'16:00:00'),
+(9,'Reparacion de abolladuras',479,'03:00:00'),
+(10,'Otras Reparaciones',802,'02:00:00');
 
 -- Table EstadoOT
 INSERT INTO EstadoOT([idEstadoOT],[descripcion]) 

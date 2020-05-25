@@ -26,12 +26,12 @@
                                         
                                     </div>
                                     <div class="field" align="center" style="width: auto; float:left; display:block; margin: auto;">
-                                        <input type="text" style="width:auto" name="name" id="name" value=""/>
+                                        <input type="text" style="width:auto" name="name" id="txtnumeroOT" value=""/>
                                         
                                     </div>
                                     <div style="width: auto; float:left; display:block; margin: auto; margin-left: auto; margin-right: auto; margin-top: 6%;">
                                         <ul class="actions" align="right">
-                                            <li><a href="#" style="width:auto" class="button primary icon solid fa-search">Buscar</a></li>
+                                            <li><a href="#" id="btnBuscar" style="width:auto" class="button primary icon solid fa-search">Buscar</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -64,7 +64,7 @@
                                                         </div>
                                                     </tr>
                                                 </tfoot>
-                                                <tbody>
+                                                <tbody id="tbodyServicios">
                                                     <tr>
                                                         <td>1</td>
                                                         <td>Cambio de Aceite</td>
@@ -87,6 +87,7 @@
                                                 </table></div>
                                         </div>
                                 </section><br><br><br>
+                                
                                 <section>
                                     <header>
                                         <h4>Recambios</h4>
@@ -117,7 +118,7 @@
                                                         </div>
                                                     </tr>
                                                 </tfoot>
-                                                <tbody>
+                                                <tbody id="tbodyCotizacion">
                                                     <tr>
                                                         <td>1</td>
                                                         <td>Suspensión</td>
@@ -146,13 +147,13 @@
                                 <div class="fields"  style="width: auto; float:left; display:block; margin: auto; margin-top: auto; margin-left: 2%; margin-right: auto">
                                     <ul class="actions" align="left">
                                         <label for="name"><h4>Total a Pagar</h4></label>
-                                        <input type="text" style="width: 50%" name="name" id="repuesto" value=""/>
+                                        <input type="text" style="width: 50%" name="name" id="txtTotal" value=""/>
                                     </ul>
                                 </div>
                                 <div class="fields" align="center" style="width: auto; float:right; display:block; margin: auto; margin-top: auto;">
                                     <ul class="actions" align="right">
-                                        <li><a href="#" class="button primary">Rechazar</a></li>
-                                        <li><a href="#" class="button primary">Aprobar</a></li>
+                                        <li><a href="#" id="btnRechazar" class="button primary">Rechazar</a></li>
+                                        <li><a href="#" id="btnAprobar" class="button primary">Aprobar</a></li>
                                     </ul>
                                 </div>      
                             </form>
@@ -178,6 +179,7 @@
 
 		<!-- Header -->
 		<script src="../assets/js/header.js"></script>
-		<script src="../Libreria/cargar-header.js"></script>
+        <script src="../Libreria/cargar-header.js"></script>
+        <script src="../Libreria/js/OrdenTrabajo/OT-J_AprovacionCotizacion.js"></script>
     </body>
 </html>
