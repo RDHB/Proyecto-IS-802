@@ -17,7 +17,7 @@
 -- Pantallas Orden de Trabajo
 (17,'Asesor de Servicios'):
 	OT_Home
-	OT-A_AprovacionCotizacion
+	OT-A_AprobacionCotizacion
 	OT-A_ContratarServicios
 	OT-A_Cotizacion
 	OT-A_FinalizarOT
@@ -26,9 +26,9 @@
 
 (15,'Jefe de Taller'):
 	OT_Home
-	OT-J_AprovacionLista
+	OT-J_AprobacionLista
 	OT-J_ControlCalidad
-	OT-J_AprovacionCotizacion
+	OT-J_AprobacionCotizacion
 
 (16,'Tecnico'):
 	OT_Home
