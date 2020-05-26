@@ -33,8 +33,8 @@ $('#btnBuscar').on('click', function() {
         respuesta = await seleccionarInfoControlCalidad();
         switch (respuesta.output.pcodigoMensaje){
             case 0:{
-                $('#txtEfectuadas').val(respuesta.data[1].reparacionesEfectuadas);
-                $('#txtNoEfectuadas').val(respuesta.data[1].reparacionesNoEfectuadas);
+                $('#txtEfectuadas').val(respuesta.data[0].reparacionesEfectuadas);
+                $('#txtNoEfectuadas').val(respuesta.data[0].reparacionesNoEfectuadas);
                 break;
             }
             case 4:{

@@ -115,6 +115,27 @@ function OT_A_REVISION_VEHICULO(req,res){
 };
 
 
+function OT_A_FINALIZAR_OT(req,res){
+    conn.connect().then(function(){
+        var reqDB = new sql.Request(conn);
+        reqDB.input('pnumeroOT',sql.VarChar,req.body.numeroOT);
+        reqDB.input('paccion',sql.VarChar,req.body.accion);
+        reqDB.output('pcodigoMensaje', sql.Int);
+        reqDB.output('pmensaje', sql.VarChar);
+        reqDB.execute('OT_A_FINALIZAR_OT').then(function(result){
+            conn.close();
+            res.send({output: result.output, data: result.recordsets[0]});    
+        }).catch(function(err){
+            conn.close();
+            res.send(messagesMiscelaneos.errorC2);
+        });
+    })
+    .catch(function(err){
+        res.send(messagesMiscelaneos.errorC1);
+    });
+};
+
+
 function OT_E_REBAJAR_INVENTARIO(req,res){
     conn.connect().then(function(){
         var reqDB = new sql.Request(conn);
@@ -223,6 +244,27 @@ function OT_A_GENERAR_LISTA(req,res){
     });
 };
 
+function OT_J_CONTROL_CALIDAD(req,res){
+    conn.connect().then(function(){
+        var reqDB = new sql.Request(conn);
+        reqDB.input('pnumeroOT',sql.VarChar,req.body.numeroOT);
+        reqDB.input('precomendaciones',sql.VarChar,req.body.recomendaciones);
+        reqDB.input('paccion',sql.VarChar,req.body.accion);
+        reqDB.output('pcodigoMensaje', sql.Int);
+        reqDB.output('pmensaje', sql.VarChar);
+        reqDB.execute('OT_J_CONTROL_CALIDAD').then(function(result){
+            conn.close();
+            res.send({output: result.output, data: result.recordsets[0]});    
+        }).catch(function(err){
+            conn.close();
+            res.send(messagesMiscelaneos.errorC2);
+        });
+    })
+    .catch(function(err){
+        res.send(messagesMiscelaneos.errorC1);
+    });
+};
+
 
 
 // EXPORTANDO LAS FUNCIONES QUE ATENDERAN LAS PETICIONES
@@ -236,5 +278,7 @@ module.exports = {
     OT_J_APROVACION_COTIZACION,
     OT_J_APROVACION_LISTA,
     OT_T_FINALIZAR_MANTENIMIENTO,
-    OT_A_GENERAR_LISTA
+    OT_A_GENERAR_LISTA,
+    OT_A_FINALIZAR_OT,
+    OT_J_CONTROL_CALIDAD
 };

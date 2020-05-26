@@ -19,6 +19,8 @@ apisOT.post('/OT_J_APROVACION_COTIZACION',functionsMiscelaneos.authToken,functio
 apisOT.post('/OT_J_APROVACION_LISTA',functionsMiscelaneos.authToken,functionsOT.OT_J_APROVACION_LISTA);
 apisOT.post('/OT_T_FINALIZAR_MANTENIMIENTO',functionsMiscelaneos.authToken,functionsOT.OT_T_FINALIZAR_MANTENIMIENTO);
 apisOT.post('/OT_A_GENERAR_LISTA',functionsMiscelaneos.authToken,functionsOT.OT_A_GENERAR_LISTA);
+apisOT.post('/OT_A_FINALIZAR_OT',functionsMiscelaneos.authToken,functionsOT.OT_A_FINALIZAR_OT);
+apisOT.post('/OT_J_CONTROL_CALIDAD',functionsMiscelaneos.authToken,functionsOT.OT_J_CONTROL_CALIDAD);
 
 
 

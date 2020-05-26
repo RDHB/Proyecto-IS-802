@@ -9,7 +9,7 @@ const functionsMiscelaneos = require('./functionsMiscelaneos/functionsMiscelaneo
 const apisFA = express.Router();
 
 // DEFINIENDO SUBRUTAS Y ATENCION A PETICIONES AL SERVIDOR
-//apisFA.post('/OT_A_APROVACION_COTIZACION',/*functionsMiscelaneos.authToken,*/functionsFA.OT_A_APROVACION_COTIZACION);
+apisFA.post('/FA_FACTURA',/*functionsMiscelaneos.authToken,*/functionsFA.FA_FACTURA);
 
 
 

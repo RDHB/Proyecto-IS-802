@@ -257,14 +257,13 @@ CREATE TABLE Factura (
 	idFactura INT NOT NULL,
 	numeroFactura VARCHAR(45) NOT NULL,
 	fecha DATETIME NULL,
-	precio DECIMAL NULL,
 	total_a_pagar DECIMAL NULL,
 	Cliente_idCliente INT NOT NULL,
 	Empleado_idEmpleado INT NOT NULL,
 	FormaPago_idFormaPago INT NOT NULL,
 	OrdenTrabajo_idOrdenTrabajo INT NOT NULL,
-	Promociones_idPromociones INT NOT NULL,
-	Descuento_idDescuento INT NOT NULL,
+	Promociones_idPromociones INT NULL,
+	Descuento_idDescuento INT NULL,
 	PRIMARY KEY (idFactura)
 )
 

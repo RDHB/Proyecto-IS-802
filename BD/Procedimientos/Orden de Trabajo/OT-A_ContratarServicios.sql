@@ -206,6 +206,11 @@ BEGIN
 		) AS T
 		RIGHT JOIN Servicios S ON T.Servicios_idServicios = S.idServicios
 		ORDER BY idOrdenTrabajo DESC, idServicios ASC
+<<<<<<< HEAD
+=======
+		
+		
+>>>>>>> dedb37ddc8a31094d00315e713fa1df1e644a56d
         SET @pmensaje = 'Consulta finalizada con exito';
 	END;
 
