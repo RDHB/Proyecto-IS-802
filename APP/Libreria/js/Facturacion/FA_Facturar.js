@@ -5,11 +5,11 @@ $('#iNumeroOT').keyup(async function(){
     if( $('#iNumeroOT').val() !== "" ){
         $('#btnBuscarOT').prop('disabled', false);
         $('#btnFacturar').prop('disabled', false);
-        $('#btnVerReporte').prop('disabled', false);
+        $('#btnVerFactura').prop('disabled', false);
     }else{
         $('#btnBuscarOT').prop('disabled', true);
         $('#btnFacturar').prop('disabled', true);
-        $('#btnVerReporte').prop('disabled', true);
+        $('#btnVerFactura').prop('disabled', true);
         $('#iIdentidadCliente').val(data.numeroIdentidad); 
         $('#iNombreCliente').val(''); 
         $('#iInfoVehiculo').val(''); 
@@ -39,12 +39,13 @@ $('#btnBuscarOT').click(async function (){
 });
 
 
+
 /**
- * FUNCION CUANDO SE PRESIONA FINALIZAR ORDEN DE TRABAJO
+ * FUNCION CUANDO SE PRESIONA REGRESAR ORDEN DE TRABAJO
  */
-async function finalizarOT(){
-    $('#finalizarOTNotificacion').empty();
-    $('#finalizarOT').modal({
+async function facturar(){
+    $('#vFacturarNotificacion').empty();
+    $('#vFacturar').modal({
         fadeDuration: 250,
         fadeDelay: 1.5,
         modalClass: "modal"
@@ -55,7 +56,8 @@ async function finalizarOT(){
         headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')},
         data: {
             "accion" : 'SAVE',
-            "numeroOT" : $('#iNumeroOT').val()
+            "numeroOT" : $('#iNumeroOT').val(),
+            "idEmpleado": localStorage.getItem('idEmpleado')
         },
         dataType: "json",
         method: "POST",
@@ -65,48 +67,11 @@ async function finalizarOT(){
     });
     switch(codigoMessage){
         case 0:{
-            $('#finalizarOTNotificacion').append(`<p style="color: green" >La orden de trabajo fue finalizada</p>`);
+            $('#vFacturarNotificacion').append(`<p style="color: green" >La facturación fue realizada.</p>`);
             break;
         }
         default:{
-            $('#finalizarOTNotificacion').append(`<p style="color: brown" >La orden de trabajo no pudo ser finalizada</p>`);
-            break;
-        }
-    }
-}
-
-
-/**
- * FUNCION CUANDO SE PRESIONA REGRESAR ORDEN DE TRABAJO
- */
-async function regresarOT(){
-    $('#regresarOTNotificacion').empty();
-    $('#regresarOT').modal({
-        fadeDuration: 250,
-        fadeDelay: 1.5,
-        modalClass: "modal"
-    });
-    var codigoMessage;
-    await $.ajax({
-        url: "https://localhost:3000/volvo/api/OT/OT_A_FINALIZAR_OT",
-        headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')},
-        data: {
-            "accion" : 'CANCEL',
-            "numeroOT" : $('#iNumeroOT').val()
-        },
-        dataType: "json",
-        method: "POST",
-        success: function (respuesta) {
-            codigoMessage = respuesta.output.pcodigoMensaje;
-        }
-    });
-    switch(codigoMessage){
-        case 0:{
-            $('#regresarOTNotificacion').append(`<p style="color: green" >La orden de trabajo fue regresada a una etapa previa</p>`);
-            break;
-        }
-        default:{
-            $('#regresarOTNotificacion').append(`<p style="color: brown" >La orden de trabajo no pudo ser regresada a una etapa previa</p>`);
+            $('#vFacturarNotificacion').append(`<p style="color: brown" >La facturacion no pudo ser realizada.</p>`);
             break;
         }
     }
@@ -287,45 +252,92 @@ async function totalPagar(){
 
 /**
  * FUNCION QUE SIRVE PARA VISUALIZAR FACTURA
- 
+*/
 async function verFactura(){
     $('#verFacturaNotificacion').empty();
+    $('#verFacturaCampos').empty();
     $('#verFactura').modal({
         fadeDuration: 250,
         fadeDelay: 1.5,
         modalClass: "modal"
     });
-
-
-
-
-
-
-    var codigoMessage;
     await $.ajax({
         url: "https://localhost:3000/volvo/api/OT/OT_A_FINALIZAR_OT",
         headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')},
         data: {
-            "accion" : 'CANCEL',
+            "accion" : 'SELECT-FA',
             "numeroOT" : $('#iNumeroOT').val()
         },
         dataType: "json",
         method: "POST",
         success: function (respuesta) {
-            codigoMessage = respuesta.output.pcodigoMensaje;
+            if(respuesta.output.pcodigoMensaje == 0){
+                var keys = Object.keys(respuesta.data);
+                for(key of keys){
+                    switch(key){
+                        case 'numeroFactura':{
+                            $('#verFacturaCampos').append(
+                                `
+                                <tr>
+                                    <td>Numero de Factura</td>
+                                    <td>
+                                        <input disabled type="text" style="margin: 0 10 0 40" value="${respuesta.data[numeroFactura]}">
+                                    </td>
+                                </tr>
+                            
+                                `
+                            );
+                            break
+                        }
+                        case 'fecha':{
+                            $('#verFacturaCampos').append(
+                                `
+                                <tr>
+                                    <td>Fecha</td>
+                                    <td>
+                                        <input disabled type="text" style="margin: 0 10 0 40" value="${respuesta.data[fecha]}">
+                                    </td>
+                                </tr>
+                            
+                                `
+                            );
+                            break
+                        }
+                        case 'idOrdenTrabajo':{
+                            $('#verFacturaCampos').append(
+                                `
+                                <tr>
+                                    <td>Codigo Orden de Trabajo</td>
+                                    <td>
+                                        <input disabled type="text" style="margin: 0 10 0 40" value="${respuesta.data[idOrdenTrabajo]}">
+                                    </td>
+                                </tr>
+                            
+                                `
+                            );
+                            break
+                        }
+
+                        case 'total_a_pagar':{
+                            $('#verFacturaCampos').append(
+                                `
+                                <tr>
+                                    <td>Total a Pagar</td>
+                                    <td>
+                                        <input disabled type="text" style="margin: 0 10 0 40" value="${respuesta.data[total_a_pagar]}">
+                                    </td>
+                                </tr>
+                            
+                                `
+                            );
+                            break
+                        }
+                    }
+                }
+            }
         }
     });
-    switch(codigoMessage){
-        case 0:{
-            $('#regresarOTNotificacion').append(`<p style="color: green" >La orden de trabajo fue regresada a una etapa previa</p>`);
-            break;
-        }
-        default:{
-            $('#regresarOTNotificacion').append(`<p style="color: brown" >La orden de trabajo no pudo ser regresada a una etapa previa</p>`);
-            break;
-        }
-    }
-}*/
+}
 
 
 
