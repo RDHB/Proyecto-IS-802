@@ -47,7 +47,13 @@ $('#btnBuscar').on('click', function() {
                 break;
             }
         }
-
+        $('#updateNotoficacion').empty();
+        $('#modalServicios').modal({
+            fadeDuration: 250,
+            fadeDelay: 1.5,
+            modalClass: "modal"
+        });
+        $('#updateNotoficacion').empty();
     })()
 });
 

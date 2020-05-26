@@ -24,17 +24,17 @@
                                         <label for="name" align="center">Número de Orden de Trabajo</label>
                                     </div>
                                     <div class="field" style="width: auto; float:right; display:block; margin: auto;">
-                                        <input type="text" style="width:auto" name="name" id="vin" value=""/>
+                                        <input type="text" style="width:auto" name="name" id="txtnumeroOT" value=""/>
                                     </div>
                                     <div class="linea" style="width: auto; float: right; display:block; margin: auto; margin-top: 5%;">
                                         <div class="linea" style="width: auto; float:left; display:block; margin: auto;">
                                             <ul class="actions" align="center">
-                                                <li><a href="#" style="width:1%" class="button primary icon solid fa-search"></a></li>
+                                                <li><a href="#" id="btnBuscar" style="width:1%" class="button primary icon solid fa-search"></a></li>
                                             </ul>
                                         </div>
                                         <div class="linea" style="width: auto; float:left; display:block; margin: auto;">
                                             <ul class="actions" align="center">
-                                                <li><a href="#" style="width:1%" class="button primary icon solid fa-save"></a></li>
+                                                <li><a href="#" id="btnMostrar" style="width:1%" class="button primary icon solid fa-save"></a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -44,15 +44,16 @@
                                         <div class="field" style="width: auto; float:left; display:block; margin: auto;">
                                             <label for="name" align="center">Reparaciones Efectuosas</label>
                                             <div class="field" align="right" style="width: auto; float:right; display:block; margin: auto;">
-                                                <textarea name="message" id="message" rows="5" cols="30"></textarea>
+                                                <textarea name="message" id="txtEfectuadas" rows="5" cols="30"></textarea>
                                             </div>
                                         </div>
                                         <div class="field" style="width: auto; float:left; display:block; margin: auto;">
                                             <label for="name" align="center">Reparaciones no Efectuosas</label>
                                             <div class="field" align="right" style="width: auto; float:right; display:block; margin: auto;">
-                                                <textarea name="message" id="message" rows="5" cols="30"></textarea>
+                                                <textarea name="message" id="txtNoEfecturadas" rows="5" cols="30"></textarea>
                                             </div>
                                         </div>
+                                        <!--
                                         <div class="field" style="width: auto; float:left; display:block; margin: auto;">
                                             <label for="name" align="center">Imprevistos</label>
                                             <div class="field" align="left" style="width: auto; float:left; display:block; margin: auto;">
@@ -65,17 +66,17 @@
                                                 <textarea name="message" id="message" rows="5" cols="30"></textarea>
                                             </div>
                                         </div>
-
+                                        -->
                                         <div class="field" style="width: auto; float:left; display:block; margin: auto;">
-                                            <label for="name" align="center">Otros comentarios</label>
+                                            <label for="name" align="center">Recomendaciones</label>
                                             <div class="field"  style="width: auto; float:left; display:block; margin: auto;">
-                                                <textarea name="message" id="message" rows="5" cols="30" cols="30"></textarea>
+                                                <textarea disabled name="message" id="txtRecomendaciones" rows="5" cols="30" cols="30"></textarea>
                                             </div>
                                         </div><br><br>
                                 </div><br><hr><br>
                                 <div class="field" align="center" style="width: auto; display:block; margin: auto;">
-                                    <a href="#" class="button primary" style="width:auto">Cancelar</a>
-                                    <a href="#" class="button primary" style="width:auto; margin-left: 2%;">Finalizar Mantenimiento</a>
+                                    <a href="#" id="btnCancelar" class="button primary" style="width:auto">Cancelar</a>
+                                    <a href="#" id="btnFinalizar" class="button primary" style="width:auto; margin-left: 2%;">Finalizar Mantenimiento</a>
                                 </div>         
                             </form>
                         </div>
@@ -84,6 +85,72 @@
 			</div>
 		</section>
 		
+
+
+
+        <!-- ------------------------------------------------------------ -->
+        <!-- Ventanas modales -->
+        <!-- ------------------------------------------------------------ -->
+        <div id="modalServicios" class="modal">
+            <section style="display: flexbox; justify-content: center; align-items: center;">
+                <header style="display: flexbox; justify-content: center; align-items: center;">
+                    <h3 style="text-align: center; ">Lista de Servicios Efecutados</h3>
+                </header>
+                <div id="modalCuerpo" style="display: flexbox; align-items: center; justify-content: start;">
+                    
+                </div>
+                <div align="center" id="desactivateNotificacion" style="margin: 25; display: flexbox; justify-content: center; align-content: center; flex-direction: column;">
+                <!-- Cuerpo de la ventana Modal -->
+                    
+                <section>
+                    <header>
+                        <h4>Servicios</h4>
+                    </header>
+                    <div class="content"> 
+                        <div class="table-wrapper" style="width: auto; display:block; margin-left: auto; margin-right: auto;">
+                            <div class="datagrid"><table>
+                                <thead>
+                                    <tr>
+                                        <th>Código</th>
+                                        <th>Servicio</th>
+                                        <th>Costo Aproximado</th>
+                                        <th>Duración</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="5">
+                                        <div id="paging">
+                                            <ul>
+                                                <li><a href="#"><span>Anterior</span></a></li>
+                                                <li><a href="#" class="active"><span>1</span></a></li>
+                                                <li><a href="#"><span>2</span></a></li>
+                                                <li><a href="#"><span>Siguiente</span></a></li>
+                                            </ul>
+                                        </div>
+                                    </tr>
+                                </tfoot>
+                                <tbody id="tbodyServicios">
+                                    
+                                </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section><br><br><br>
+                <!-- Cuerpo de la ventana Modal -->
+                </div>
+                <div class="content" style="display: flexbox; justify-content: center; align-items: center;">
+                    <div class="table-wrapper" style="margin: 25; display: flexbox; justify-content: center; align-items: center;">
+                        <div align="center" style="margin: 25; display: flexbox; justify-content: space-between;">
+                            <a id="aceptarDesactivateUser" class="button small" rel="modal:close">Aceptar</a>
+                            <!--<a id="cancelarDesactivateUser" class="button small" rel="modal:close">Cancelar</a>-->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
 		<!-- ------------------------------------------------------------ -->
 		<!-- Hasta aquí se puede Editar -->
 		<!-- ------------------------------------------------------------ -->
@@ -97,9 +164,15 @@
 		<script src="../assets/js/breakpoints.min.js"></script>
 		<script src="../assets/js/util.js"></script>
 		<script src="../assets/js/main.js"></script>
+        
+        <!-- jquery-modal -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 
-		<!-- Header -->
+        <!-- Header -->
+        <script src="../Libreria/js/efecto.js"></script>
 		<script src="../assets/js/header.js"></script>
-		<script src="../Libreria/cargar-header.js"></script>
+        <script src="../Libreria/cargar-header.js"></script>
+        <script src="../Libreria/js/OrdenTrabajo/OT-T_FinalizarMantenimiento.js"></script>
     </body>
 </html>

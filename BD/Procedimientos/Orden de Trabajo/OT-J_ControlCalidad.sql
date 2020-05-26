@@ -160,6 +160,7 @@ BEGIN
 			numeroOT
 			, reparacionesEfectuadas
 			, reparacionesNoEfectuadas
+			, recomendaciones
 			, EstadoOT_idEstadoOT
 		FROM OrdenTrabajo
 		WHERE numeroOT = @pnumeroOT
