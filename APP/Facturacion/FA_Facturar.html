@@ -22,21 +22,84 @@
                             <form method="post" action="#">
                                 <div class="fields">
                                     <div class="field" align="left" style="width: auto; float:left; display:block; margin: auto;">
-                                        <label for="name" align="center">Código de la Orden de Trabajo</label>
-                                        
+                                        <label for="name" align="center">Número de Orden de Trabajo</label>                                        
                                     </div>
                                     <div class="field" align="center" style="width: auto; float:left; display:block; margin: auto;">
-                                        <input type="text" style="width:auto" name="name" id="name" value=""/>
-                                        
+                                        <input type="text" style="width:auto" name="name" id="iNumeroOT" value=""/>                                        
                                     </div>
                                     <div style="width: auto; float:left; display:block; margin: auto; margin-left: auto; margin-right: auto; margin-top: 6%;">
                                         <ul class="actions" align="right">
-                                            <li><a href="#" style="width:10%" class="button primary icon solid fa-search"></a></li>
-                                            <li><a href="#" style="width:10%" class="button primary icon solid fa-save"></a></li>
+                                            <li><input disabled type="button" id="btnBuscarOT" style="width:auto" class="button primary icon solid fa-search" value="Buscar Orden de Trabajo"></li>
                                         </ul>
                                         
                                     </div>
                                 </div>
+                                <h3 align="center" style="width: auto;">Detalles del Mantenimiento</h3><br>
+                                <div class="fields" style="margin-bottom: 5%;">
+                                    <div class="field" style="width: auto; float:left; display:block; margin: auto;">
+                                        <label for="name" align="center">Identidad Cliente</label>
+                                        <div class="field" align="right" style="width: auto; float:right; display:block; margin: auto;">
+                                            <input disabled type="text" name="message" id="iIdentidadCliente" rows="5" cols="30" value="">
+                                        </div>
+                                    </div>
+                                    <div class="field" style="width: auto; float:left; display:block; margin: auto;">
+                                        <label for="name" align="center">Nombre Cliente</label>
+                                        <div class="field" align="right" style="width: auto; float:right; display:block; margin: auto;">
+                                            <input disabled type="text" name="message" id="iNombreCliente" rows="5" cols="30" value="">
+                                        </div>
+                                    </div>
+
+                                    <div class="field" style="width: auto; float:left; display:block; margin: auto;">
+                                        <label for="name" align="center">Vehículo</label>
+                                        <div class="field" align="right" style="width: auto; float:right; display:block; margin: auto;">
+                                            <input disabled type="text" name="message" id="iInfoVehiculo" rows="5" cols="30" value="">
+                                        </div>
+                                    </div>
+                                    <div class="field" style="width: auto; float:left; display:block; margin: auto;">
+                                        <label for="name" align="center">Vin Vehículo</label>
+                                        <div class="field" align="right" style="width: auto; float:right; display:block; margin: auto;">
+                                            <input disabled type="text" name="message" id="iVin" rows="5" cols="30" value="">
+                                        </div>
+                                    </div>
+                                    <div class="field" style="width: auto; float:left; display:block; margin: auto;">
+                                        <label for="name" align="center">Fecha Inicio</label>
+                                        <div class="field" align="right" style="width: auto; float:right; display:block; margin: auto;">
+                                            <input disabled type="text" name="message" id="iFechaInicio" rows="5" cols="30" value="">
+                                        </div>
+                                    </div>
+                                    <div class="field" style="width: auto; float:left; display:block; margin: auto;">
+                                        <label for="name" align="center">Fecha Fin</label>
+                                        <div class="field" align="right" style="width: auto; float:right; display:block; margin: auto;">
+                                            <input disabled type="text" name="message" id="iFechaFin" rows="5" cols="30" value="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="fields">
+                                        <div class="field" style="width: auto; float:left; display:block; margin: auto;">
+                                            <label for="name" align="center">Estado del Vehículo</label>
+                                            <div class="field" align="right" style="width: auto; float:right; display:block; margin: auto;">
+                                                <textarea name="message" id="iEstadoVehiculo" rows="5" cols="30"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="field" style="width: auto; float:left; display:block; margin: auto;">
+                                            <label for="name" align="center">Objetos Personales</label>
+                                            <div class="field" align="right" style="width: auto; float:right; display:block; margin: auto;">
+                                                <textarea name="message" id="iObjetosPersonales" rows="5" cols="30"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="field" style="width: auto; float:left; display:block; margin: auto;">
+                                            <label for="name" align="center">Reparaciones Efectuadas</label>
+                                            <div class="field" align="right" style="width: auto; float:right; display:block; margin: auto;">
+                                                <textarea name="message" id="iReparacionesEfectuadas" rows="5" cols="30"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="field" style="width: auto; float:left; display:block; margin: auto;">
+                                            <label for="name" align="center">Reparaciones no Efectuadas</label>
+                                            <div class="field" align="right" style="width: auto; float:right; display:block; margin: auto;">
+                                                <textarea name="message" id="iReparacionesNoEfectuadas" rows="5" cols="30"></textarea>
+                                            </div>
+                                        </div>
+                                </div><br><hr><br>
                                 <section>
                                     <header>
                                         <h4>Servicios</h4>
@@ -44,121 +107,111 @@
                                     <div class="content"> 
                                         <div class="table-wrapper" style="width: auto; display:block; margin-left: auto; margin-right: auto;">
                                             
-                                            <div class="datagrid"><table>
-                                                <thead>
-                                                    <tr>
-                                                        <th>Código</th>
-                                                        <th>Servicio</th>
-                                                        <th>Costo Mano de Obra</th>
-                                                    </tr>
-                                                </thead>
-                                                <tfoot>
-                                                    <tr>
-                                                        <td colspan="5">
-                                                        <div id="paging">
-                                                            <ul>
-                                                                <li><a href="#"><span>Anterior</span></a></li>
-                                                                <li><a href="#" class="active"><span>1</span></a></li>
-                                                                <li><a href="#"><span>2</span></a></li>
-                                                                <li><a href="#"><span>Siguiente</span></a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </tr>
-                                                </tfoot>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>Cambio de Aceite</td>
-                                                        <td>100</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2</td>
-                                                        <td>Mantenimiento 20mil Km</td>
-                                                        <td>200</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3</td>
-                                                        <td>Reparación</td>
-                                                        <td>1300</td>
-                                                    </tr>
-                                                </tbody>
-                                                </table></div>
+                                            <div class="datagrid">
+                                                <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Código</th>
+                                                            <th>Servicio</th>
+                                                            <th>Servicio Efectuado</th>
+                                                            <th>Duración</th>
+                                                            <th>Costo Aproximado</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tfoot>
+                                                        
+                                                    </tfoot>
+                                                    <tbody id="cuerpoTablaServicios">
+                                                        <tr>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td>Rellene el campo correspondiente con el número de orden de trabajo</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>  
+                                                    </tbody>
+                                                </table>
                                         </div>
                                 </section><br><br><br>
+                                
                                 <section>
                                     <header>
-                                        <h4>Recambios</h4>
+                                        <h4>Productos</h4>
                                     </header>
                                     <div class="content"> 
                                         <div class="table-wrapper" style="width: auto; display:block; margin-left:auto; margin-right: auto;">
-                                            
-                                            <div class="datagrid"><table>
-                                                <thead>
-                                                    <tr>
-                                                        <th>Código</th>
-                                                        <th>Recambio</th>
-                                                        <th>Cantidad</th>
-                                                        <th>Precio</th>
-                                                        <th>SubTotal</th>
-                                                    </tr>
-                                                </thead>
-                                                <tfoot>
-                                                    <tr>
-                                                        <td colspan="5">
-                                                        <div id="paging">
-                                                            <ul>
-                                                                <li><a href="#"><span>Anterior</span></a></li>
-                                                                <li><a href="#" class="active"><span>1</span></a></li>
-                                                                <li><a href="#"><span>2</span></a></li>
-                                                                <li><a href="#"><span>Siguiente</span></a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </tr>
-                                                </tfoot>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>Suspensión</td>
-                                                        <td>2</td>
-                                                        <td>1234</td>
-                                                        <td>1234</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2</td>
-                                                        <td>Frenos</td>
-                                                        <td>2</td>
-                                                        <td>56789</td>
-                                                        <td>56789</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3</td>
-                                                        <td>Filtros</td>
-                                                        <td>3</td>
-                                                        <td>5421</td>
-                                                        <td>5421</td>
-                                                    </tr>
-                                                </tbody>
-                                                </table></div>
-                                        </div><br><br><br>
-                                </section><hr><br>
-                                <div class="fields"  style="width: auto; float:left; display:block; margin: auto; margin-top: auto; margin-left: 2%; margin-right: auto">
-                                    <ul class="actions" align="left">
-                                        <label for="name"><h4>Total a Pagar</h4></label>
-                                        <input type="text" style="width: 50%" name="name" id="repuesto" value=""/>
-                                    </ul>
-                                </div>
-                                <div class="fields" align="center" style="width: auto; float:right; display:block; margin: auto; margin-top: auto;">
-                                    <ul class="actions" align="right">
-                                        <li><a href="#" class="button primary">Facturar</a></li>
-                                        <li><a href="#" class="button primary">Ver Reporte</a></li>
-                                    </ul>
-                                </div>      
+                                            <div class="datagrid">
+                                                <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Código</th>
+                                                            <th>Nombre del Repuesto</th>
+                                                            <th>Cantidad</th>
+                                                            <th>Precio</th>
+                                                            <th>SubTotal</th>
+                                                            <th>Rebajado</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tfoot>
+                                                        
+                                                    </tfoot>
+                                                    <tbody id="cuerpoTablaProductos">
+                                                        <tr>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td>Rellene el campo correspondiente con el número de orden de trabajo</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>  
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                    </div><br><br><br>
+                                    <div class="fields"  style="width: auto; display:block; margin: auto; margin-top: auto; margin-left: 2%; margin-right: auto">
+                                        <ul class="actions" align="center">
+                                            <label for="name"><h4>Total a Pagar</h4></label>
+                                            <input disabled type="text" style="width: 13%; margin-left: 2%;" name="name" id="iTotalPagar" value=""/>
+                                        </ul>
+                                    </div>  
+                                </section><br><hr><br> 
                             </form>
+                            <div class="field" align="center" style="width: auto; display:block; margin-top: 10%;">
+                                <input disabled id="btnVerFactura" onclick="verFactura()" type="button" class="button primary" style="width:auto" value="Ver Factura">
+                            </div> 
                         </div>
 					</section>
 				</div>
 			</div>
-		</section>
+        </section>
+        
+
+        <!-- ------------------------------------------------------------ -->
+		<!-- Ventanas modales -->
+        <!-- ------------------------------------------------------------ -->
+        
+        <div id="verFactura" class="modal">
+            <section style="display: flexbox; justify-content: center; align-items: center;">
+                <header style="display: flexbox; justify-content: center; align-items: center;">
+                    <h3 style="text-align: center; ">Ingrese la información que desea modificar:</h3>
+                </header>
+                <div style="display: flexbox; align-items: center; justify-content: start;">
+                    <table id="table">
+                        <tbody id="verFacturaCampos" style="display: flexbox; align-content: center;">
+                            <!-- BODY DE LA TABLA -->
+                        </tbody>
+                    </table>
+                    <div align="center" style="margin: 25;" id="verFacturaNotificacion"></div>
+                </div>
+                <div class="content" style="display: flexbox; justify-content: center; align-items: center;">
+                    <div class="table-wrapper" style="margin: 25; display: flexbox; justify-content: center; align-items: center;">
+                        <div align="center" style="margin: 25; display: flexbox; justify-content: space-between;">
+                            <a id="aceptarVerFactura" class="button small" rel="modal:close">Aceptar</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
 		
 		<!-- ------------------------------------------------------------ -->
 		<!-- Hasta aquí se puede Editar -->
@@ -176,6 +229,7 @@
 
 		<!-- Header -->
 		<script src="../assets/js/header.js"></script>
-		<script src="../Libreria/cargar-header.js"></script>
+        <script src="../Libreria/cargar-header.js"></script>
+        <script src="../Libreria/js/Facturacion/FA_Facturar.js"></script>
     </body>
 </html>

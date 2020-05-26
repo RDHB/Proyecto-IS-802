@@ -33,6 +33,7 @@ function GU_LOGIN(req,res){
                 req.session.codigoEmpleado = result.output.pcodigoEmpleado;
                 token = functionsMiscelaneos.generateToken(req.session.name)
                 result.output.nombre = result.recordset[0].Nombre;
+                result.output.idEmpleado = result.recordset[0].idEmpleado;
                 result.output.token = token;
                 result.output.usuario = req.body.usuario;
                 result.output.nombreArchivo = '../images/Usuarios/'+result.recordsets[0][0].nombreArchivo;

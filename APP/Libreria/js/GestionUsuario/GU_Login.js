@@ -21,6 +21,8 @@ $("#btn-login").click(function () {
 				localStorage.setItem('nombre',respuesta.nombre);
 				localStorage.setItem('nombreArchivo',respuesta.nombreArchivo);
 				localStorage.setItem('cargo',respuesta.pidCargo);
+				localStorage.setItem('codigoEmpleado',respuesta.pcodigoEmpleado);
+				localStorage.setItem('idEmpleado',respuesta.idEmpleado);
 				window.location.href = "https://localhost:3000/volvo";
 			}else{
 				$("#notificacion").replaceWith('<label  id="notificacion" style="color: brown;">'+respuesta.pmensaje+'</label>');

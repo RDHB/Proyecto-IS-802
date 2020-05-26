@@ -1,3 +1,7 @@
+/**
+ * ES LA LISTA DE PRODUCTOS ASOCIADOS CON EL CLIENTE
+ */
+var listaProductos = new Array();
 
 /**
  * HABILITACION DEL BOTON BUSCAR COTIZACION
@@ -5,7 +9,6 @@
 $('#iNumeroOT').keyup(function(){
     if( $('#iNumeroOT').val() !== "" ){
         $('#btnBuscarCotizacion').prop('disabled', false);
-        $('#btnAgregarProductos').prop('disabled', false);
     }else{
         $('#btnBuscarCotizacion').prop('disabled', true);
         $('#btnAgregarProductos').prop('disabled', true);
@@ -28,6 +31,7 @@ $('#iNumeroOT').keyup(function(){
  */
 $('#btnBuscarCotizacion').click(async function(){
     await rellenarTabla();
+    $('#btnAgregarProductos').prop('disabled', false);
 });
 
 /**
@@ -82,8 +86,10 @@ async function rellenarTabla(){
         success: function (respuesta) {
             if (respuesta.output.pcodigoMensaje == 0) {
                 var bandera = 0;
+                listaProductos = [];
                 for(i=0; i< respuesta.data.length; i++){
                         bandera = 1;
+                        listaProductos.push(respuesta.data[i].nombre);
                         $('#cuerpoTabla').append(`
                             <tr>
                                 <td style="width: 0.5%;">
@@ -94,7 +100,7 @@ async function rellenarTabla(){
                                 <td id="${'nombreProducto'+respuesta.data[i].idProducto}">${respuesta.data[i].nombre}</td>
                                 <td>${respuesta.data[i].cantidad}</td>
                                 <td>${respuesta.data[i].precioVenta}</td>
-                                <td>${respuesta.data[i].Subtotal}</td>
+                                <td>${respuesta.data[i].SubTotal}</td>
                             </tr>
                         `);
                 }
@@ -143,6 +149,7 @@ async function rellenarTablaAgregarProductos() {
         success: function (respuesta) {
             if (respuesta.output.pcodigoMensaje == 0) {
                 for(i=0; i< respuesta.data.length; i++){
+                    if( listaProductos.indexOf(respuesta.data[i].nombre) == -1 ){
                         $('#agregarProductosCampos').append(`
                             <tr>
                                 <td>${respuesta.data[i].idProducto}</td>
@@ -154,6 +161,7 @@ async function rellenarTablaAgregarProductos() {
                                 </td>
                             </tr>
                         `);
+                    }
                 }
             }else{
                 $('#agregarProductosCampos').append(`
@@ -194,6 +202,7 @@ async function agregarProductoLista(numeroOT,idProducto,cantidad){
         switch(codigoMessage){
             case 0:{
                 $('#agregarProductosNotificacion').append(`<p style="color: green" >El producto fue agregado a la lista de cotización del cliente exitosamente</p>`);
+                $('#btnAgregarProducto'+idProducto).prop('disabled', true);
                 await rellenarTabla();
                 break;
             }
@@ -202,6 +211,17 @@ async function agregarProductoLista(numeroOT,idProducto,cantidad){
                 break;
             }
         }
+}
+
+/**
+ * FUNCION PARA ACTIVAR BOTON DE ACTIVAR PRODUCTO EN LA VENTANA MODAL
+ */
+function activarBotonAgregar(txtProducto,txtCantidaProducto){
+    if( $(txtCantidaProducto).val() !== "" ){
+        $(txtProducto).prop('disabled', false);
+    }else{
+        $(txtProducto).prop('disabled', true);
+    }
 }
 
 /**
@@ -245,17 +265,6 @@ async function eliminarProductosLista(){
         }
     }    
     await rellenarTabla();*/
-}
-
-/**
- * FUNCION PARA ACTIVAR BOTON DE ACTIVAR PRODUCTO EN LA VENTANA MODAL
- */
-function activarBotonAgregar(txtProducto,txtCantidaProducto){
-    if( $(txtCantidaProducto).val() !== "" ){
-        $(txtProducto).prop('disabled', false);
-    }else{
-        $(txtProducto).prop('disabled', true);
-    }
 }
 
 /**

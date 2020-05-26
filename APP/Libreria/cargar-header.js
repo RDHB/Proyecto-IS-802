@@ -72,6 +72,13 @@ $(Document.body).ready(function(){
                                 <!-- Menu (Nav) -->
                                 <nav class="nav">
                                     <ul id="menu-accion">
+                                        <!-- Lista de acciones del usuario Vehiculos -->
+                                        <li> <a href="https://localhost:3000/volvo/view/vehiculos/VE_Home" id="btnHome"> <span class="icon solid fa-home"></span><span>Inicio Gestión de Vehículos</span></a></li>          
+                                        <li> <a href="https://localhost:3000/volvo/view/vehiculos/VE_RegistrarCliente"> <span class="icon solid fa-th"></span> <span>Registro de Clientes</span></a></li>
+                                        <li> <a href="https://localhost:3000/volvo/view/vehiculos/VE_RegistrarVehiculos"> <span class="icon solid fa-th"></span> <span>Registro de Vehículos</span></a></li>
+                                        <li> <a href="https://localhost:3000/volvo/view/vehiculos/VE_AsociarClienteVehiculo"> <span class="icon solid fa-th"></span> <span>Asociar Clientes a Vehículos</span> </a> </li>            
+                                    </ul>
+                                    <ul id="menu-accion">
                                         <!-- Lista de acciones del usuario en Orden Trabajo-->
                                         <li> <a href="https://localhost:3000/volvo/view/gestionUsuario/GU_Configuracion_Usuario"> <span class="icon solid fa-cog"></span> <span>Configuracion de la cuenta</span> </a> </li>
                                         <li> <a href="https://localhost:3000/volvo/view/ordenTrabajo/OT_Home" id="btnHome"> <span class="icon solid fa-home"></span><span>Inicio Gestión Orden de Trabajo</span></a></li>          
@@ -81,13 +88,6 @@ $(Document.body).ready(function(){
                                         <li> <a href="https://localhost:3000/volvo/view/ordenTrabajo/OT-A_Cotizacion"> <span class="icon solid fa-th"></span> <span>Cotizaciones</span> </a> </li>            
                                         <li> <a href="https://localhost:3000/volvo/view/ordenTrabajo/OT-A_AprobacionCotizacion"> <span class="icon solid fa-th"></span> <span>Aprobación de Cotización</span></a></li>
                                         <li> <a href="https://localhost:3000/volvo/view/ordenTrabajo/OT-A_FinalizarOT"> <span class="icon solid fa-th"></span> <span>Finalizar Orden de Trabajo</span> </a> </li>            
-                                    </ul>
-                                    <ul id="menu-accion">
-                                        <!-- Lista de acciones del usuario Vehiculos -->
-                                        <li> <a href="https://localhost:3000/volvo/view/vehiculos/VE_Home" id="btnHome"> <span class="icon solid fa-home"></span><span>Inicio Gestión de Vehículos</span></a></li>          
-                                        <li> <a href="https://localhost:3000/volvo/view/vehiculos/VE_RegistrarCliente"> <span class="icon solid fa-th"></span> <span>Registro de Clientes</span></a></li>
-                                        <li> <a href="https://localhost:3000/volvo/view/vehiculos/VE_RegistrarVehiculos"> <span class="icon solid fa-th"></span> <span>Registro de Vehículos</span></a></li>
-                                        <li> <a href="https://localhost:3000/volvo/view/vehiculos/VE_AsociarClienteVehiculo"> <span class="icon solid fa-th"></span> <span>Asociar Clientes a Vehículos</span> </a> </li>            
                                     </ul>
                                 </nav>
                             </div>      

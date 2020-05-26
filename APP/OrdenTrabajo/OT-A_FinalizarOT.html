@@ -25,64 +25,181 @@
                                         <label for="name" align="center">Número de Orden de Trabajo</label>
                                     </div>
                                     <div class="field" style="width: auto; float:right; display:block; margin: auto;">
-                                        <input type="text" style="width:auto" name="name" id="vin" value=""/>
+                                        <input type="text" style="width:auto" name="name" id="iNumeroOT" value=""/>
                                     </div>
                                     <div class="linea" style="width: auto; float: right; display:block; margin: auto; margin-top: 5%;">
                                         <div class="linea" style="width: auto; float:left; display:block; margin: auto;">
                                             <ul class="actions" align="center">
-                                                <li><a href="#" style="width:1%" class="button primary icon solid fa-search"></a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="linea" style="width: auto; float:left; display:block; margin: auto;">
-                                            <ul class="actions" align="center">
-                                                <li><a href="#" style="width:1%" class="button primary icon solid fa-save"></a></li>
+                                                <li><input disabled type="button" id="btnBuscarOT" style="width:auto" class="button primary icon solid fa-search" value="Buscar Orden de Trabajo"></li>
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
                                 <h3 align="center" style="width: auto;">Detalles del Mantenimiento</h3><br>
+                                <div class="fields" style="margin-bottom: 5%;">
+                                    <div class="field" style="width: auto; float:left; display:block; margin: auto;">
+                                        <label for="name" align="center">Identidad Cliente</label>
+                                        <div class="field" align="right" style="width: auto; float:right; display:block; margin: auto;">
+                                            <input disabled type="text" name="message" id="iIdentidadCliente" rows="5" cols="30" value="">
+                                        </div>
+                                    </div>
+                                    <div class="field" style="width: auto; float:left; display:block; margin: auto;">
+                                        <label for="name" align="center">Nombre Cliente</label>
+                                        <div class="field" align="right" style="width: auto; float:right; display:block; margin: auto;">
+                                            <input disabled type="text" name="message" id="iNombreCliente" rows="5" cols="30" value="">
+                                        </div>
+                                    </div>
+
+                                    <div class="field" style="width: auto; float:left; display:block; margin: auto;">
+                                        <label for="name" align="center">Vehículo</label>
+                                        <div class="field" align="right" style="width: auto; float:right; display:block; margin: auto;">
+                                            <input disabled type="text" name="message" id="iInfoVehiculo" rows="5" cols="30" value="">
+                                        </div>
+                                    </div>
+                                    <div class="field" style="width: auto; float:left; display:block; margin: auto;">
+                                        <label for="name" align="center">Vin Vehículo</label>
+                                        <div class="field" align="right" style="width: auto; float:right; display:block; margin: auto;">
+                                            <input disabled type="text" name="message" id="iVin" rows="5" cols="30" value="">
+                                        </div>
+                                    </div>
+                                    <div class="field" style="width: auto; float:left; display:block; margin: auto;">
+                                        <label for="name" align="center">Fecha Inicio</label>
+                                        <div class="field" align="right" style="width: auto; float:right; display:block; margin: auto;">
+                                            <input disabled type="text" name="message" id="iFechaInicio" rows="5" cols="30" value="">
+                                        </div>
+                                    </div>
+                                    <div class="field" style="width: auto; float:left; display:block; margin: auto;">
+                                        <label for="name" align="center">Fecha Fin</label>
+                                        <div class="field" align="right" style="width: auto; float:right; display:block; margin: auto;">
+                                            <input disabled type="text" name="message" id="iFechaFin" rows="5" cols="30" value="">
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class="fields">
                                         <div class="field" style="width: auto; float:left; display:block; margin: auto;">
-                                            <label for="name" align="center">Reparaciones Efectuosas</label>
+                                            <label for="name" align="center">Estado del Vehículo</label>
                                             <div class="field" align="right" style="width: auto; float:right; display:block; margin: auto;">
-                                                <textarea name="message" id="message" rows="5" cols="30"></textarea>
+                                                <textarea name="message" id="iEstadoVehiculo" rows="5" cols="30"></textarea>
                                             </div>
                                         </div>
                                         <div class="field" style="width: auto; float:left; display:block; margin: auto;">
-                                            <label for="name" align="center">Reparaciones no Efectuosas</label>
+                                            <label for="name" align="center">Objetos Personales</label>
                                             <div class="field" align="right" style="width: auto; float:right; display:block; margin: auto;">
-                                                <textarea name="message" id="message" rows="5" cols="30"></textarea>
+                                                <textarea name="message" id="iObjetosPersonales" rows="5" cols="30"></textarea>
                                             </div>
                                         </div>
                                         <div class="field" style="width: auto; float:left; display:block; margin: auto;">
-                                            <label for="name" align="center">Imprevistos</label>
-                                            <div class="field" align="left" style="width: auto; float:left; display:block; margin: auto;">
-                                                <textarea name="message" id="message" rows="5" cols="30"></textarea>
+                                            <label for="name" align="center">Reparaciones Efectuadas</label>
+                                            <div class="field" align="right" style="width: auto; float:right; display:block; margin: auto;">
+                                                <textarea name="message" id="iReparacionesEfectuadas" rows="5" cols="30"></textarea>
                                             </div>
                                         </div>
-                                        <div class="field" align="center" style="width: auto; float:left; display:block; margin: auto;">
-                                            <label for="name" align="center">Sugerencia a imprevistos</label>
-                                            <div class="field" align="left" style="width: auto; float:left; display:block; margin: auto;">
-                                                <textarea name="message" id="message" rows="5" cols="30"></textarea>
-                                            </div>
-                                        </div>
-
                                         <div class="field" style="width: auto; float:left; display:block; margin: auto;">
-                                            <label for="name" align="center">Otros comentarios</label>
-                                            <div class="field"  style="width: auto; float:left; display:block; margin: auto;">
-                                                <textarea name="message" id="message" rows="5" cols="30" cols="30"></textarea>
+                                            <label for="name" align="center">Reparaciones no Efectuadas</label>
+                                            <div class="field" align="right" style="width: auto; float:right; display:block; margin: auto;">
+                                                <textarea name="message" id="iReparacionesNoEfectuadas" rows="5" cols="30"></textarea>
                                             </div>
                                         </div>
                                 </div><br><hr><br>
+                                <section>
+                                    <header>
+                                        <h4>Servicios</h4>
+                                    </header>
+                                    <div class="content"> 
+                                        <div class="table-wrapper" style="width: auto; display:block; margin-left: auto; margin-right: auto;">
+                                            
+                                            <div class="datagrid">
+                                                <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Código</th>
+                                                            <th>Servicio</th>
+                                                            <th>Servicio Efectuado</th>
+                                                            <th>Duración</th>
+                                                            <th>Costo Aproximado</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tfoot>
+                                                        
+                                                    </tfoot>
+                                                    <tbody id="cuerpoTablaServicios">
+                                                        <tr>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td>Rellene el campo correspondiente con el número de orden de trabajo</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>  
+                                                    </tbody>
+                                                </table>
+                                        </div>
+                                </section><br><br><br>
+                                
+                                <section>
+                                    <header>
+                                        <h4>Productos</h4>
+                                    </header>
+                                    <div class="content"> 
+                                        <div class="table-wrapper" style="width: auto; display:block; margin-left:auto; margin-right: auto;">
+                                            <div class="datagrid">
+                                                <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Código</th>
+                                                            <th>Nombre del Repuesto</th>
+                                                            <th>Cantidad</th>
+                                                            <th>Precio</th>
+                                                            <th>SubTotal</th>
+                                                            <th>Rebajado</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tfoot>
+                                                        
+                                                    </tfoot>
+                                                    <tbody id="cuerpoTablaProductos">
+                                                        <tr>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td>Rellene el campo correspondiente con el número de orden de trabajo</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>  
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                    </div><br><br><br>
+                                </section><hr><br>
                                 <div class="field" align="center" style="width: auto; display:block; margin: auto;">
-                                    <a href="#" class="button primary" style="width:auto">Finalizar Orden de Trabajo</a>
+                                    <input disabled id="btnRegresarOT" onclick="regresarOT()" type="button" class="button primary" style="width:auto" value="Regresar Orden Trabajo">
+                                    <input disabled id="btnFinalizarOT" onclick="finalizarOT()" type="button" class="button primary" style="width:auto" value="Finalizar Orden de Trabajo">
                                 </div>         
                             </form>
                         </div>
 					</section>
 				</div>
 			</div>
-		</section>
+        </section>
+        
+        <!-- ------------------------------------------------------------ -->
+		<!-- Ventanas modales -->
+        <!-- ------------------------------------------------------------ -->
+        
+        <div id="finalizarOT" class="modal">
+            <section style="display: flexbox; justify-content: center; align-items: center;">
+                <div style="display: flexbox; align-items: center; justify-content: start;">
+                    <div align="center" style="margin: 25;" id="finalizarOTNotificacion"></div>
+                </div>
+            </section>
+        </div>
+
+        <div id="regresarOT" class="modal">
+            <section style="display: flexbox; justify-content: center; align-items: center;">
+                <div style="display: flexbox; align-items: center; justify-content: start;">
+                    <div align="center" style="margin: 25;" id="regresarOTNotificacion"></div>
+                </div>
+            </section>
+        </div>
 		
 		<!-- ------------------------------------------------------------ -->
 		<!-- Hasta aquí se puede Editar -->
@@ -96,10 +213,15 @@
 		<script src="../assets/js/browser.min.js"></script>
 		<script src="../assets/js/breakpoints.min.js"></script>
 		<script src="../assets/js/util.js"></script>
-		<script src="../assets/js/main.js"></script>
+        <script src="../assets/js/main.js"></script>
+        
+        <!-- jquery-modal -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 
 		<!-- Header -->
 		<script src="../assets/js/header.js"></script>
-		<script src="../Libreria/cargar-header.js"></script>
+        <script src="../Libreria/cargar-header.js"></script>
+        <script src="../Libreria/js/OrdenTrabajo/OT-A_FinalizarOT.js"></script>
     </body>
 </html>
