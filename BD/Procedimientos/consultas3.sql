@@ -159,7 +159,7 @@ DECLARE
 SET @pnumeroOT = 'OT0000011';
 SET @pidServicios = 0;
 
-SET @paccion = 'SAVE';
+SET @paccion = 'SELECT';
 
 SET @pcodigoMensaje = 0;
 SET @pmensaje = '';
@@ -643,4 +643,196 @@ EXEC OT_T_FINALIZAR_MANTENIMIENTO
 -- OUTPUT
 SELECT @pcodigoMensaje;
 SELECT @pmensaje;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- LLamar al procedimiento almacenado: OT_J_CONTROL_CALIDAD
+select * from OrdenTrabajo
+
+
+DECLARE
+	-- Parametros de Entrada
+	@pnumeroOT						VARCHAR(45),
+	@precomendaciones				VARCHAR(45),
+    @paccion						VARCHAR(45),
+    
+    -- Parametros de Salida
+    -- Codigo de mensaje
+    @pcodigoMensaje					INT,
+	@pmensaje 						VARCHAR(1000)
+
+    -- Otros parametros de salida
+
+;
+
+SET @pnumeroOT = 'OT0000011';
+SET @precomendaciones = 'Seria bueno hacer el chekeo de los 100 KM';
+SET @paccion = 'SAVE';
+
+SET @pcodigoMensaje = 0;
+SET @pmensaje = '';
+
+
+EXEC OT_J_CONTROL_CALIDAD
+	-- INTPUT
+	@pnumeroOT,
+	@precomendaciones,
+	@paccion,
+	
+	-- OUTPUT
+	@pcodigoMensaje OUTPUT,
+	@pmensaje OUTPUT
+;
+
+-- OUTPUT
+SELECT @pcodigoMensaje;
+SELECT @pmensaje;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- LLamar al procedimiento almacenado: OT_A_FINALIZAR_OT
+select * from OrdenTrabajo
+UPDATE OrdenTrabajo SET 
+	EstadoOT_idEstadoOT = 11
+WHERE numeroOT = 'OT0000011';
+
+DECLARE
+	-- Parametros de Entrada
+	@pnumeroOT						VARCHAR(45),
+    @paccion						VARCHAR(45),
+    
+    -- Parametros de Salida
+    -- Codigo de mensaje
+    @pcodigoMensaje					INT,
+	@pmensaje 						VARCHAR(1000)
+
+    -- Otros parametros de salida
+
+;
+
+SET @pnumeroOT = 'OT0000011';
+SET @paccion = 'SAVE';
+
+SET @pcodigoMensaje = 0;
+SET @pmensaje = '';
+
+
+EXEC OT_A_FINALIZAR_OT
+	-- INTPUT
+	@pnumeroOT,
+	@paccion,
+	
+	-- OUTPUT
+	@pcodigoMensaje OUTPUT,
+	@pmensaje OUTPUT
+;
+
+-- OUTPUT
+SELECT @pcodigoMensaje;
+SELECT @pmensaje;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- LLamar al procedimiento almacenado: FA_FACTURA
+select * from OrdenTrabajo
+
+
+DECLARE
+	-- Parametros de Entrada
+	@pnumeroOT						VARCHAR(45),
+    @paccion						VARCHAR(45),
+    
+    -- Parametros de Salida
+    -- Codigo de mensaje
+    @pcodigoMensaje					INT,
+	@pmensaje 						VARCHAR(1000)
+
+    -- Otros parametros de salida
+
+;
+
+SET @pnumeroOT = 'OT0000011';
+SET @paccion = 'SAVE';
+
+SET @pcodigoMensaje = 0;
+SET @pmensaje = '';
+
+
+EXEC FA_FACTURA
+	-- INTPUT
+	@pnumeroOT,
+	@paccion,
+	
+	-- OUTPUT
+	@pcodigoMensaje OUTPUT,
+	@pmensaje OUTPUT
+;
+
+-- OUTPUT
+SELECT @pcodigoMensaje;
+SELECT @pmensaje;
+
+
 

@@ -175,12 +175,12 @@ BEGIN
 					, ' '
 					, P.segundoApellido
 				) FROM Cliente C
-				INNER JOIN Persona P ON P.idPersona = C.idCliente
+				INNER JOIN Persona P ON P.idPersona = C.Persona_idPersona
 				WHERE C.idCliente = OT.Cliente_idCliente
 			) AS 'Cliente'
 			, (
 				SELECT numeroIdentidad FROM Cliente C
-				INNER JOIN Persona P ON P.idPersona = C.idCliente
+				INNER JOIN Persona P ON P.idPersona = C.Persona_idPersona
 				WHERE C.idCliente = OT.Cliente_idCliente
 			) AS 'numeroIdentidad'
 			, CONCAT ( 
