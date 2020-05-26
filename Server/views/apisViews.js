@@ -30,11 +30,11 @@ apisViews.get('/gestionUsuario/GU_Configuracion_Usuario',functionsAuth.authLogin
 });    
 
 // -- VISTAS FACTURACION
-apisViews.get('/facturacion/FA_Home',/*functionsAuth.authCajero,*/ (req,res) => {
+apisViews.get('/facturacion/FA_Home',functionsAuth.authCajero, (req,res) => {
     res.sendFile(path + '/Facturacion/FA_Home.html');
 });
 
-apisViews.get('/facturacion/FA_Facturar',/*functionsAuth.authCajero,*/ (req,res) => {
+apisViews.get('/facturacion/FA_Facturar',functionsAuth.authCajero, (req,res) => {
     res.sendFile(path + '/Facturacion/FA_Facturar.html');
 });
 
