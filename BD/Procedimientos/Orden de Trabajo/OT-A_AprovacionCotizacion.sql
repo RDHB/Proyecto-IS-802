@@ -320,6 +320,12 @@ BEGIN
 			EstadoOT_idEstadoOT = 2
 		WHERE numeroOT = @pnumeroOT;
 
+		DELETE FROM Lista_Cotizacion 
+		WHERE OrdenTrabajo_idOrdenTrabajo = (
+			SELECT idOrdenTrabajo FROM OrdenTrabajo
+			WHERE numeroOT = @pnumeroOT
+		);
+
 
 		
         SET @pmensaje = 'Transaccion cancelada con exito';

@@ -335,6 +335,12 @@ BEGIN
 		UPDATE OrdenTrabajo SET 
 			EstadoOT_idEstadoOT = 3
 		WHERE numeroOT = @pnumeroOT;
+		
+		DELETE FROM Lista_Cotizacion 
+		WHERE OrdenTrabajo_idOrdenTrabajo = (
+			SELECT idOrdenTrabajo FROM OrdenTrabajo
+			WHERE numeroOT = @pnumeroOT
+		);
 
 
 		
