@@ -26,12 +26,12 @@
                                         
                                     </div>
                                     <div class="field" align="center" style="width: auto; float:left; display:block; margin: auto;">
-                                        <input type="text" style="width:auto" name="name" id="name" value=""/>
+                                        <input type="text" style="width:auto" name="name" id="iNumeroOT" value=""/>
                                         
                                     </div>
                                     <div style="width: auto; float:left; display:block; margin: auto; margin-left: auto; margin-right: auto; margin-top: 6%;">
                                         <ul class="actions" align="right">
-                                            <li><a href="#" style="width:auto" class="button primary icon solid fa-search">Buscar</a></li>
+                                            <li><input id="btnBuscarCotizacionAprobar" disabled type="button" style="width:auto" class="button primary icon solid fa-search" value="Buscar"></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -47,49 +47,28 @@
                                                     <tr>
                                                         <th>Código</th>
                                                         <th>Servicio</th>
-                                                        <th>Costo Aproximado</th>
+                                                        <th>Servicio Efectuado</th>
                                                         <th>Duración</th>
+                                                        <th>Costo Aproximado</th>
                                                     </tr>
                                                 </thead>
                                                 <tfoot>
-                                                    <tr>
-                                                        <td colspan="5">
-                                                        <div id="paging">
-                                                            <ul>
-                                                                <li><a href="#"><span>Anterior</span></a></li>
-                                                                <li><a href="#" class="active"><span>1</span></a></li>
-                                                                <li><a href="#"><span>2</span></a></li>
-                                                                <li><a href="#"><span>Siguiente</span></a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </tr>
                                                 </tfoot>
-                                                <tbody>
+                                                <tbody id="cuerpoTablaServicios">
                                                     <tr>
-                                                        <td>1</td>
-                                                        <td>Cambio de Aceite</td>
-                                                        <td>100</td>
-                                                        <td>4 horas</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2</td>
-                                                        <td>Mantenimiento 20mil Km</td>
-                                                        <td>200</td>
-                                                        <td>2 días</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3</td>
-                                                        <td>Reparación</td>
-                                                        <td>1300</td>
-                                                        <td>1 semana</td>
-                                                    </tr>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td>Rellene el campo correspondiente con el número de orden de trabajo</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>  
                                                 </tbody>
                                                 </table></div>
                                         </div>
                                 </section><br><br><br>
                                 <section>
                                     <header>
-                                        <h4>Recambios</h4>
+                                        <h4>Productos</h4>
                                     </header>
                                     <div class="content"> 
                                         <div class="table-wrapper" style="width: auto; display:block; margin-left:auto; margin-right: auto;">
@@ -105,54 +84,23 @@
                                                     </tr>
                                                 </thead>
                                                 <tfoot>
-                                                    <tr>
-                                                        <td colspan="5">
-                                                        <div id="paging">
-                                                            <ul>
-                                                                <li><a href="#"><span>Anterior</span></a></li>
-                                                                <li><a href="#" class="active"><span>1</span></a></li>
-                                                                <li><a href="#"><span>2</span></a></li>
-                                                                <li><a href="#"><span>Siguiente</span></a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </tr>
                                                 </tfoot>
-                                                <tbody>
+                                                <tbody id="cuerpoTablaProductos">
                                                     <tr>
-                                                        <td>1</td>
-                                                        <td>Suspensión</td>
-                                                        <td>2</td>
-                                                        <td>1234</td>
-                                                        <td>1234</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2</td>
-                                                        <td>Frenos</td>
-                                                        <td>2</td>
-                                                        <td>56789</td>
-                                                        <td>56789</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3</td>
-                                                        <td>Filtros</td>
-                                                        <td>3</td>
-                                                        <td>5421</td>
-                                                        <td>5421</td>
-                                                    </tr>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td>Rellene el campo correspondiente con el número de orden de trabajo</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>  
                                                 </tbody>
                                                 </table></div>
                                         </div><br><br><br><hr><br>
                                 </section>
-                                <div class="fields"  style="width: auto; float:left; display:block; margin: auto; margin-top: auto; margin-left: 2%; margin-right: auto">
-                                    <ul class="actions" align="left">
-                                        <label for="name"><h4>Total a Pagar</h4></label>
-                                        <input type="text" style="width: 50%" name="name" id="repuesto" value=""/>
-                                    </ul>
-                                </div>
                                 <div class="fields" align="center" style="width: auto; float:right; display:block; margin: auto; margin-top: auto;">
                                     <ul class="actions" align="right">
-                                        <li><a href="#" class="button">Rechazar</a></li>
-                                        <li><a href="#" class="button">Aprobar</a></li>
+                                        <li><a onclick="rechazarCotizacion()" class="button">Rechazar</a></li>
+                                        <li><a onclick="aprobarCotizacion()" class="button">Aprobar</a></li>
                                     </ul>
                                 </div>   
                             </form>
@@ -160,7 +108,27 @@
 					</section>
 				</div>
 			</div>
-		</section>
+        </section>
+
+        <!-- ------------------------------------------------------------ -->
+		<!-- Ventanas modales -->
+        <!-- ------------------------------------------------------------ -->
+        
+        <div id="vAprobarCotizacion" class="modal">
+            <section style="display: flexbox; justify-content: center; align-items: center;">
+                <div style="display: flexbox; align-items: center; justify-content: start;">
+                    <div align="center" style="margin: 25;" id="vAprobarCotizacionNotificacion"></div>
+                </div>
+            </section>
+        </div>
+
+        <div id="vRechazarCotizacion" class="modal">
+            <section style="display: flexbox; justify-content: center; align-items: center;">
+                <div style="display: flexbox; align-items: center; justify-content: start;">
+                    <div align="center" style="margin: 25;" id="vRechazarCotizacionNotificacion"></div>
+                </div>
+            </section>
+        </div>
 		
 		<!-- ------------------------------------------------------------ -->
 		<!-- Hasta aquí se puede Editar -->
@@ -174,10 +142,15 @@
 		<script src="../assets/js/browser.min.js"></script>
 		<script src="../assets/js/breakpoints.min.js"></script>
 		<script src="../assets/js/util.js"></script>
-		<script src="../assets/js/main.js"></script>
+        <script src="../assets/js/main.js"></script>
+        
+        <!-- jquery-modal -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 
 		<!-- Header -->
 		<script src="../assets/js/header.js"></script>
-		<script src="../Libreria/cargar-header.js"></script>
+        <script src="../Libreria/cargar-header.js"></script>
+        <script src="../Libreria/js/OrdenTrabajo/OT-A_AprovacionCotizacion.js"></script>
     </body>
 </html>
