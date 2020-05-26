@@ -6,6 +6,7 @@ $('#iNumeroOT').keyup(function(){
         $('#btnMostrarServicios').prop('disabled', false);
     }else{
         $('#btnMostrarServicios').prop('disabled', true);
+        activarAgregarQuitarServicios();
         $('#cuerpoTabla').empty();
         $('#cuerpoTabla').append(`
             <tr>
@@ -51,6 +52,7 @@ $('#btnAgregarServicios').click(async function(){
         }
     }
     $('#cuerpoTabla').empty();
+    activarAgregarQuitarServicios()
     await rellenarTabla();  
 });
 
@@ -78,6 +80,7 @@ $('#btnEliminarServicios').click(async function(){
         }
     }
     $('#cuerpoTabla').empty();
+    activarAgregarQuitarServicios()
     await rellenarTabla(); 
 });
 
@@ -95,11 +98,11 @@ $('#btnSalvarServiciosContratados').click(async function(){
     var codigoMessage = await salvarCambiosContratacion();
         switch(codigoMessage){
             case 0:{
-                $('#salvarServiciosNotificacion').append(`<p style="color: green" >Contratación salvada se puede pasar a la siguiente etapa</p>`);
+                $('#salvarServiciosNotificacion').append(`<p style="color: green" >La contratación de servicios fue salvada se puede pasar a la siguiente etapa.</p>`);
                 break;
             }
             default:{
-                $('#salvarServiciosNotificacion').append(`<p style="color: brown" >Contratación no pudo ser salvada, intente nuevamente o es probable no puede modificar en este momento</p>`);
+                $('#salvarServiciosNotificacion').append(`<p style="color: brown" >La contratación de servicios no pudo ser salvada. Revise el estado de la orden de trabajo.</p>`);
                 break;
             }
         }

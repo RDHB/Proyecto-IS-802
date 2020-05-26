@@ -178,11 +178,11 @@ async function aprobarCotizacion(){
         });
         switch(codigoMessage){
             case 0:{
-                $('#vAprobarCotizacionNotificacion').append(`<p style="color: green" >La cotización fue aprobada, se pasa a la siguiente etapa</p>`);
+                $('#vAprobarCotizacionNotificacion').append(`<p style="color: green" >La cotización fue aprobada, se pasa a la siguiente etapa.</p>`);
                 break;
             }
             default:{
-                $('#vAprobarCotizacionNotificacion').append(`<p style="color: brown" >La cotización no pudo ser aprobada. Intente de nuevo o el orden de trabajo ya se encuentra en la siguiente etapa</p>`);
+                $('#vAprobarCotizacionNotificacion').append(`<p style="color: brown" >La cotización no pudo ser aprobada. Revise el estado de la orden de trabajo.</p>`);
                 break;
             }
         }
@@ -217,11 +217,11 @@ async function aprobarCotizacion(){
         });
         switch(codigoMessage){
             case 0:{
-                $('#vRechazarCotizacionNotificacion').append(`<p style="color: green" >La cotización fue rechazada, se pasa a la etapa anterior</p>`);
+                $('#vRechazarCotizacionNotificacion').append(`<p style="color: green" >La cotización fue rechazada, se regresa a una etapa anterior.</p>`);
                 break;
             }
             default:{
-                $('#vRechazarCotizacionNotificacion').append(`<p style="color: brown" >La cotización no pudo ser rechazada. Intente de nuevo o el orden de trabajo ya se encuentra en la etapa anterior</p>`);
+                $('#vRechazarCotizacionNotificacion').append(`<p style="color: brown" >La cotización no pudo ser rechazada. Revise el estado de la orden de trabajo.</p>`);
                 break;
             }
         }

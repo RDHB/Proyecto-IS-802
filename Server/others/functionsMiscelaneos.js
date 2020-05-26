@@ -13,7 +13,7 @@ function redirectById(req,res){
         case 15:
         case 16:
         case 17:{
-            res.redirect('/volvo/view/ordenTrabajo/OT_Home');
+            res.redirect('/volvo/view/vehiculos/VE_Home');
             break;
         }
         case 2:
