@@ -21,59 +21,64 @@
 
                             <form method="post" action="#">
                                 <br>
-                                <div class="fields">
+                                <div class="fields" style="margin-bottom: 5%;">
                                     <div class="field linea" align="left" style="width: auto; float:left; display:block; margin: auto;">
                                         <label for="name" align="center">Número de Orden de Trabajo</label>
                                         <div class="field linea" align="left" style="width: auto; float:left; display:block; margin: auto;">
-                                            <input type="text" style="width:auto" name="name" id="vin" value=""/>
+                                            <input type="text" style="width:auto" name="name" id="iNumeroOT" value=""/>
                                         </div>
                                     </div>
-                                    <div class="field" align="left" style="width: auto; float:left; display:block; margin: auto;">
-                                        <label for="name" align="center">Kilometraje</label>
-                                        <div class="field" align="left" style="width: auto; float:left; display:block; margin: auto;">
-                                            <input type="text" style="width:auto" name="name" id="id" value=""/>
-                                        </div>
-                                    </div>
+                                </div>
+                                <div class="fields">
                                     <div class="field" align="center" style="width: auto; float:left; display:block; margin: auto;">
-                                        <label for="name" align="center">Nivel de Combustible</label>
+                                        <label for="name" align="center">Estado del Vehículo</label>
                                         <div class="field" align="left" style="width: auto; float:left; display:block; margin: auto;">
-                                            <input type="text" style="width:auto" name="name" id="vin" value=""/>
+                                            <textarea name="message" id="tEstadoVehiculo" rows="4" cols="40"></textarea>
                                         </div>
-                                    </div>
-                                    <div class="field" align="center" style="width: auto; float:left; display:block; margin: auto;">
-                                        <label for="name" align="center">Daños</label>
-                                        <div class="field" align="left" style="width: auto; float:left; display:block; margin: auto;">
-                                            <textarea name="message" id="message" rows="4" cols="40"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="field" align="center" style="width: auto; float:left; display:block; margin: auto;">
-                                        <label for="name" align="center">Accesorios Adicionales</label>
-                                        <div class="field" align="left" style="width: auto; float:left; display:block; margin: auto;">
-                                            <textarea name="message" id="message" rows="4" cols="40"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="field" align="center" style="width: auto; float:left; display:block; margin: auto;">
-                                        <label for="name" align="center">Accesorios Faltantes</label>
-                                        <div class="field" align="left" style="width: auto; float:left; display:block; margin: auto;">
-                                            <textarea name="message" id="message" rows="4" cols="40"></textarea>
-                                        </div>
-                                    </div>
+                                    </div>  
                                     <div class="field" align="center" style="width: auto; float:left; display:block; margin: auto;">
                                         <label for="name" align="center">Objetos Personales</label>
                                         <div class="field" align="left" style="width: auto; float:left; display:block; margin: auto;">
-                                            <textarea name="message" id="message" rows="4" cols="40"></textarea>
+                                            <textarea name="message" id="tObjetosPersonales" rows="4" cols="40"></textarea>
                                         </div>
                                     </div>
-                                </div><br><hr><br>      
-                                <div align="center">
-                                    <a href="#" class="button primary" align="center" style="width: 20%; display:block; margin: auto;">Guardar</a>
                                 </div>
+                                <br><hr><br>     
+                                <div class="field" align="center" style="width: auto; display:block; margin: auto; margin-left: 3%; margin-right: auto;">
+                                    <ul class="actions">
+                                        <li>
+                                            <div class="field" align="center" style="width: auto; display:block; margin: auto; margin-left: auto; margin-right: auto;">
+                                                <input type="button" id="btnGuardar" disabled="disabled" class="button primary" align="center" style="width: auto; display:block; margin: auto;" value="Guardar">
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="field" align="center" style="width: auto; display:block; margin: auto; margin-left: auto; margin-right: auto;">
+                                                <input type="button" id="btnLimpiar" class="button primary" align="center" style="width: auto; display:block; margin: auto;" value="Limpiar">
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div> 
                             </form>
                         </div>
 					</section>
 				</div>
 			</div>
-		</section>
+        </section>
+        
+        <!-- ------------------------------------------------------------ -->
+		<!-- Ventanas modales -->
+        <!-- ------------------------------------------------------------ -->
+
+
+        <div id="guardar" class="modal">
+            <section style="display: flexbox; justify-content: center; align-items: center;">
+                <div style="display: flexbox; align-items: center; justify-content: start;">
+                    <div align="center" style="margin: 25;" id="guardarNotificacion"></div>
+                </div>
+            </section>
+        </div>
+
+
 		
 		<!-- ------------------------------------------------------------ -->
 		<!-- Hasta aquí se puede Editar -->
@@ -87,10 +92,15 @@
 		<script src="../assets/js/browser.min.js"></script>
 		<script src="../assets/js/breakpoints.min.js"></script>
 		<script src="../assets/js/util.js"></script>
-		<script src="../assets/js/main.js"></script>
+        <script src="../assets/js/main.js"></script>
+        
+        <!-- jquery-modal -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 
 		<!-- Header -->
 		<script src="../assets/js/header.js"></script>
-		<script src="../Libreria/cargar-header.js"></script>
+        <script src="../Libreria/cargar-header.js"></script>
+        <script src="../Libreria/js/OrdenTrabajo/OT-A_RevisionVehiculo.js"></script>
     </body>
 </html>

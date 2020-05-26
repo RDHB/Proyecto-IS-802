@@ -56,27 +56,27 @@ apisViews.get('/ordenTrabajo/OT_Home',functionsAuth.authHomeOrdenTrabajo, (req,r
     res.sendFile(path + '/OrdenTrabajo/OT_Home.html');
 });
 // asesor servicios
-apisViews.get('/ordenTrabajo/OT-A_AprobacionCotizacion',/*functionsAuth.authAsesorServicios,*/ (req,res) => {
+apisViews.get('/ordenTrabajo/OT-A_AprobacionCotizacion',functionsAuth.authAsesorServicios, (req,res) => {
     res.sendFile(path + '/OrdenTrabajo/OT-A_AprobacionCotizacion.html');//>>>>>>>>>>>>>
 });
 
-apisViews.get('/ordenTrabajo/OT-A_ContratarServicios',/*functionsAuth.authAsesorServicios,*/ (req,res) => {
+apisViews.get('/ordenTrabajo/OT-A_ContratarServicios',functionsAuth.authAsesorServicios, (req,res) => {
     res.sendFile(path + '/OrdenTrabajo/OT-A_ContratarServicios.html');
 });
 
-apisViews.get('/ordenTrabajo/OT-A_Cotizacion',/*functionsAuth.authAsesorServicios,*/ (req,res) => {
+apisViews.get('/ordenTrabajo/OT-A_Cotizacion',functionsAuth.authAsesorServicios, (req,res) => {
     res.sendFile(path + '/OrdenTrabajo/OT-A_Cotizacion.html');
 });
 
-apisViews.get('/ordenTrabajo/OT-A_FinalizarOT',/*functionsAuth.authAsesorServicios,*/ (req,res) => {
+apisViews.get('/ordenTrabajo/OT-A_FinalizarOT',functionsAuth.authAsesorServicios, (req,res) => {
     res.sendFile(path + '/OrdenTrabajo/OT-A_FinalizarOT.html');
 });
 
-apisViews.get('/ordenTrabajo/OT-A_GenerarOT',/*functionsAuth.authAsesorServicios,*/ (req,res) => {
+apisViews.get('/ordenTrabajo/OT-A_GenerarOT',functionsAuth.authAsesorServicios, (req,res) => {
     res.sendFile(path + '/OrdenTrabajo/OT-A_GenerarOT.html');
 });
 
-apisViews.get('/ordenTrabajo/OT-A_RevisionVehiculo',/*functionsAuth.authAsesorServicios,*/ (req,res) => {
+apisViews.get('/ordenTrabajo/OT-A_RevisionVehiculo',functionsAuth.authAsesorServicios,(req,res) => {
     res.sendFile(path + '/OrdenTrabajo/OT-A_RevisionVehiculo.html');
 });
 // jefe taller

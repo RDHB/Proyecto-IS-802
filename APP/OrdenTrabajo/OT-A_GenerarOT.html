@@ -25,17 +25,17 @@
                                     <div class="field" style="width: auto; float:left; display:block; margin: auto;">
                                         <label for="name" align="center">VIN</label>
                                         <div class="field" style="width: auto; float:left; display:block; margin: auto;">
-                                            <input type="text" style="width:auto" name="name" id="vin" value=""/>
+                                            <input type="text" style="width:auto" name="name" id="iVin" value=""/>
                                         </div>
                                     </div>
                                     <div class="field" style="width: auto; float: right;; display:block; margin: auto;">
                                         <label for="name" align="center">Número de Identidad</label>
                                         <div class="field" style="width: auto; float:right; display:block; margin: auto;">
-                                            <input type="text" style="width:auto" placeholder="ejemplo: 000000000000" name="name" id="id" value=""/>
+                                            <input type="text" style="width:auto" placeholder="ejemplo: 000000000000" name="name" id="iIdentidadCliente" value=""/>
                                         </div>
                                     </div>
                                     <div class="field"  style="width: auto; float:left; display:block; margin: auto; margin-top: 3%;">
-                                        <a href="#" class="button small" align="left" style="width: auto; display:block; margin: auto;">Generar Orden de Trabajo</a>
+                                        <input type="buttom" id="btnGenerarOT" disabled="disabled" class="button small" align="left" style="width: auto; display:block; margin: auto;" value="Generar Orden de Trabajo">
                                     </div>
                                 </div><br>
                                 <section>
@@ -67,28 +67,26 @@
                                                         </div>
                                                     </tr>
                                                 </tfoot>
-                                                <tbody>
+                                                <tbody id="cuerpoTabla">
                                                     <tr>
-                                                        <td>OT-09001</td>
-                                                        <td>Luis Solano</td>
-                                                        <td>Hilux 4x4 Blanco</td>
-                                                        <td>Solicitando Servicios</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>OT-09002</td>
-                                                        <td>Rene Hernandez</td>
-                                                        <td>Camioneta Ford</td>
-                                                        <td>Mantenimiento Finalizado</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>OT-08001</td>
-                                                        <td>Mariela Rodriguez</td>
-                                                        <td>Honda Civic Rojo</td>
-                                                        <td>Finalizado</td>
-                                                    </tr>
+                                                        <td></td>
+                                                        <td>Rellene el campo correspondiente con la identidad del cliente</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr> 
+                                                    <!-- RELLENO DE LA TABLA CON LA INFORMACION QUE SE QUIERE MOSTRAR -->
                                                 </tbody>
-                                                </table></div><br><br>
-                                                
+                                                </table>
+                                            </div><br><br>
+                                            <div class="field" align="center" style="width: auto; display:block; margin: auto; margin-left: 3%; margin-right: auto;">
+                                                <ul class="actions">
+                                                    <li>
+                                                        <div class="field" align="center" style="width: auto; display:block; margin: auto; margin-left: auto; margin-right: auto;">
+                                                            <input disabled="disabled" id="btnMostrarOT" type="buttom" class="button small" style="width: 100%; display:block; margin: auto;" value="Mostrar Orden de Trabjo del Cliente">
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>    
                                         </div>
                                 </section>        
                             </form>
@@ -96,7 +94,21 @@
 					</section>
 				</div>
 			</div>
-		</section>
+        </section>
+        
+        <!-- ------------------------------------------------------------ -->
+		<!-- Ventanas modales -->
+        <!-- ------------------------------------------------------------ -->
+
+
+        <div id="generarOT" class="modal">
+            <section style="display: flexbox; justify-content: center; align-items: center;">
+                <div style="display: flexbox; align-items: center; justify-content: start;">
+                    <div align="center" style="margin: 25;" id="generarOTNotificacion"></div>
+                </div>
+            </section>
+        </div>
+
 		
 		<!-- ------------------------------------------------------------ -->
 		<!-- Hasta aquí se puede Editar -->
@@ -110,10 +122,15 @@
 		<script src="../assets/js/browser.min.js"></script>
 		<script src="../assets/js/breakpoints.min.js"></script>
 		<script src="../assets/js/util.js"></script>
-		<script src="../assets/js/main.js"></script>
+        <script src="../assets/js/main.js"></script>
+        
+        <!-- jquery-modal -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 
 		<!-- Header -->
 		<script src="../assets/js/header.js"></script>
-		<script src="../Libreria/cargar-header.js"></script>
+        <script src="../Libreria/cargar-header.js"></script>
+        <script src="../Libreria/js/OrdenTrabajo/OT-A_GenerarOT.js"></script>
     </body>
 </html>
