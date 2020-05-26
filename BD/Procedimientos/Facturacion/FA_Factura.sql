@@ -1,7 +1,10 @@
 -- <=== FA_FACTURA ===>
 /* Requisitos de las acciones:
  * SELECT-FA: @numeroOT
- * Salida: 
+ * Salida: idFactura, numeroFactura, fecha, total_a_pagar, OrdenTrabajo_idOrdenTrabajo
+ *		, codigoEmpleado, nombreEmpleado
+ *		, idDescuento, descripcionD, porcentaje, fecha_de_validez
+ *		, idPromocion, descripcionP, fechaInicio, fechaFin
  * 
  * SELECT-OT: @numeroOT
  * Salida: numeroOT, fechaInicio, fechaFin, estado_del_vehiculo, objetosPersonales
@@ -46,7 +49,116 @@ BEGIN
 
 
 
-    /* Funcionalidad: Consultar informacion Orden de Trabajo
+    /* Funcionalidad: Consultar informacion Factura
+     * Construir un select con la sigueinte informacion:
+     * Datos: @pnumeroOT
+     *
+     * Consultar los sigueintes datos en la tabla Factura:
+	 * idFactura, numeroFactura, fecha, total_a_pagar, OrdenTrabajo_idOrdenTrabajo
+	 *		, codigoEmpleado, nombreEmpleado
+	 *		, idDescuento, descripcionD, porcentaje, fecha_de_validez
+	 *		, idPromocion, descripcionP, fechaInicio, fechaFin
+    */
+    IF @paccion = 'SELECT-FA' BEGIN
+		-- Setear Valores
+		SET @pcodigoMensaje=0;
+		SET @pmensaje='';
+
+
+
+		-- Validacion de campos nulos
+		IF @pnumeroOT = '' OR @pnumeroOT IS NULL BEGIN
+			SET @pmensaje = @pmensaje + ' numeroOT ';
+		END;
+
+		IF @pmensaje <> '' BEGIN
+			SET @pcodigoMensaje = 3;
+			SET @pmensaje = 'Error: Campos vacios: ' + @pmensaje;
+			RETURN;
+		END;
+
+
+
+		-- Validacion de identificadores
+        SELECT @vconteo = COUNT(*) FROM OrdenTrabajo
+		WHERE numeroOT = @pnumeroOT;
+		IF @vconteo = 0 BEGIN
+			SET @pmensaje = @pmensaje + ' No existe el identificador => ' + @pnumeroOT + ' ';
+		END;
+
+		IF @pmensaje <> '' BEGIN
+			SET @pcodigoMensaje = 4;
+			SET @pmensaje = 'Error: Identificadores no validos: ' + @pmensaje;
+			RETURN;
+		END;
+
+
+
+		-- Validacion de procedimientos
+		-- No hay validaciones del procedimiento
+		
+
+
+		-- Accion del procedimiento 
+		SELECT 
+			numeroOT
+			, fechaInicio
+			, fechaFin
+			, estado_del_vehiculo
+			, objetosPersonales
+			, reparacionesEfectuadas
+			, reparacionesNoEfectuadas
+			, EstadoOT_idEstadoOT
+			, P.numeroIdentidad
+			, CONCAT(
+					P.primerNombre
+					, ' '
+					, P.segundoNombre
+					, ' '
+					, P.primerApellido
+					, ' '
+					, P.segundoApellido
+			) AS 'nombreCliente' 
+			, (
+				SELECT vin FROM Vehiculos V
+				WHERE V.idVehiculos = OT.Vehiculos_idVehiculos
+			) AS 'vin'
+			, CONCAT ( 
+				(
+					SELECT MA.descripcion FROM Modelo MO 
+					INNER JOIN Marca MA ON MA.idMarca = MO.Marca_idMarca
+					WHERE MO.idModelo = (
+						SELECT V.Modelo_idModelo FROM Vehiculos V
+						WHERE idVehiculos = OT.Vehiculos_idVehiculos
+					)
+				)
+				, ' '
+				, (
+					SELECT descripcion FROM Modelo MO WHERE MO.idModelo = (
+						SELECT V.Modelo_idModelo FROM Vehiculos V
+						WHERE idVehiculos = OT.Vehiculos_idVehiculos
+					)
+				)
+			) AS 'Vehiculo'
+		FROM OrdenTrabajo OT
+		INNER JOIN Cliente C ON C.idCliente = OT.Cliente_idCliente
+		INNER JOIN Persona P ON P.idPersona = C.Persona_idPersona
+		WHERE numeroOT = @pnumeroOT
+
+
+        SET @pmensaje = 'Consulta finalizada con exito';
+	END;
+
+
+
+
+
+
+
+
+
+
+	/* Funcionalidad: Consultar informacion Orden de Trabajo
      * Construir un select con la sigueinte informacion:
      * Datos: @pnumeroOT
      *
