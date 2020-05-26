@@ -155,26 +155,27 @@ async function rellenarTablaProductos(){
  * FUNCION APROBAR COTIZACION
  */
 async function aprobarCotizacion(){
-    $('#vAprobarCotizacionNotificacion').empty();
-    $('#vAprobarCotizacion').modal({
-        fadeDuration: 250,
-        fadeDelay: 1.5,
-        modalClass: "modal"
-    });
-    var codigoMessage;
-    await $.ajax({
-        url: "https://localhost:3000/volvo/api/OT/OT_A_APROVACION_COTIZACION",
-        headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')},
-        data: {
-            "accion" : 'SAVE',
-            "numeroOT" : $('#iNumeroOT').val()
-        },
-        dataType: "json",
-        method: "POST",
-        success: function (respuesta) {
-            codigoMessage = respuesta.output.pcodigoMensaje;
-        }
-    });
+    if($('#iNumeroOT').val()!=""){
+        $('#vAprobarCotizacionNotificacion').empty();
+        $('#vAprobarCotizacion').modal({
+            fadeDuration: 250,
+            fadeDelay: 1.5,
+            modalClass: "modal"
+        });
+        var codigoMessage;
+        await $.ajax({
+            url: "https://localhost:3000/volvo/api/OT/OT_A_APROVACION_COTIZACION",
+            headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')},
+            data: {
+                "accion" : 'SAVE',
+                "numeroOT" : $('#iNumeroOT').val()
+            },
+            dataType: "json",
+            method: "POST",
+            success: function (respuesta) {
+                codigoMessage = respuesta.output.pcodigoMensaje;
+            }
+        });
         switch(codigoMessage){
             case 0:{
                 $('#vAprobarCotizacionNotificacion').append(`<p style="color: green" >La cotización fue aprobada, se pasa a la siguiente etapa</p>`);
@@ -185,6 +186,7 @@ async function aprobarCotizacion(){
                 break;
             }
         }
+    }
 }
 
 
@@ -192,26 +194,27 @@ async function aprobarCotizacion(){
   * FUNCION RECHAZAR COTIZACION
   */
  async function rechazarCotizacion(){
-    $('#vRechazarCotizacionNotificacion').empty();
-    $('#vRechazarCotizacion').modal({
-        fadeDuration: 250,
-        fadeDelay: 1.5,
-        modalClass: "modal"
-    });
-    var codigoMessage;
-    await $.ajax({
-        url: "https://localhost:3000/volvo/api/OT/OT_A_APROVACION_COTIZACION",
-        headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')},
-        data: {
-            "accion" : 'CANCEL',
-            "numeroOT" : $('#iNumeroOT').val()
-        },
-        dataType: "json",
-        method: "POST",
-        success: function (respuesta) {
-            codigoMessage = respuesta.output.pcodigoMensaje;
-        }
-    });
+    if($('#iNumeroOT').val()!=""){
+        $('#vRechazarCotizacionNotificacion').empty();
+        $('#vRechazarCotizacion').modal({
+            fadeDuration: 250,
+            fadeDelay: 1.5,
+            modalClass: "modal"
+        });
+        var codigoMessage;
+        await $.ajax({
+            url: "https://localhost:3000/volvo/api/OT/OT_A_APROVACION_COTIZACION",
+            headers: {'Authorization': 'Bearer ' + localStorage.getItem('token')},
+            data: {
+                "accion" : 'CANCEL',
+                "numeroOT" : $('#iNumeroOT').val()
+            },
+            dataType: "json",
+            method: "POST",
+            success: function (respuesta) {
+                codigoMessage = respuesta.output.pcodigoMensaje;
+            }
+        });
         switch(codigoMessage){
             case 0:{
                 $('#vRechazarCotizacionNotificacion').append(`<p style="color: green" >La cotización fue rechazada, se pasa a la etapa anterior</p>`);
@@ -222,4 +225,5 @@ async function aprobarCotizacion(){
                 break;
             }
         }
+    }
  }
