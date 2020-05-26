@@ -80,60 +80,60 @@ apisViews.get('/ordenTrabajo/OT-A_RevisionVehiculo',functionsAuth.authAsesorServ
     res.sendFile(path + '/OrdenTrabajo/OT-A_RevisionVehiculo.html');
 });
 // jefe taller
-apisViews.get('/ordenTrabajo/OT-J_AprobacionLista',/*functionsAuth.authJefeTaller,*/ (req,res) => {
+apisViews.get('/ordenTrabajo/OT-J_AprobacionLista',functionsAuth.authJefeTaller, (req,res) => {
     res.sendFile(path + '/OrdenTrabajo/OT-J_AprobacionLista.html');//>>>>>>>>>>>>>>>>>>>
 });
 
-apisViews.get('/ordenTrabajo/OT-J_ControlCalidad',/*functionsAuth.authJefeTaller,*/ (req,res) => {
+apisViews.get('/ordenTrabajo/OT-J_ControlCalidad',functionsAuth.authJefeTaller, (req,res) => {
     res.sendFile(path + '/OrdenTrabajo/OT-J_ControlCalidad.html');
 });
 
-apisViews.get('/ordenTrabajo/OT-J_AprobacionCotizacion',/*functionsAuth.authJefeTaller,*/ (req,res) => {
+apisViews.get('/ordenTrabajo/OT-J_AprobacionCotizacion',functionsAuth.authJefeTaller, (req,res) => {
     res.sendFile(path + '/OrdenTrabajo/OT-J_AprobacionCotizacion.html');
 });
 // tecnico
-apisViews.get('/ordenTrabajo/OT-T_FinalizarMantenimiento',/*functionsAuth.authTecnico,*/ (req,res) => {
+apisViews.get('/ordenTrabajo/OT-T_FinalizarMantenimiento',functionsAuth.authTecnico, (req,res) => {
     res.sendFile(path + '/OrdenTrabajo/OT-T_FinalizarMantenimiento.html');
 });
 
-apisViews.get('/ordenTrabajo/OT-T_Generarlista',/*functionsAuth.authTecnico,*/ (req,res) => {
+apisViews.get('/ordenTrabajo/OT-T_Generarlista',functionsAuth.authTecnico, (req,res) => {
     res.sendFile(path + '/OrdenTrabajo/OT-T_Generarlista.html');
 });
 // encargado bodega
-apisViews.get('/ordenTrabajo/OT-E_RebajarInventario',/*functionsAuth.authEncargadoBodega,*/ (req,res) => {
+apisViews.get('/ordenTrabajo/OT-E_RebajarInventario',functionsAuth.authEncargadoBodega, (req,res) => {
     res.sendFile(path + '/OrdenTrabajo/OT-E_RebajarInventario.html');
 });
 
 // -- VISTAS RRHH
-apisViews.get('/rrhh/RH_Home',/*functionsAuth.authHomeRRHH,*/ (req,res) => {
+apisViews.get('/rrhh/RH_Home',functionsAuth.authHomeRRHH, (req,res) => {
     res.sendFile(path + '/RRHH/RH_Home.html');
 });
 // jefe rrhh
-apisViews.get('/rrhh/RH_Permisos',/*functionsAuth.authJefeRRHH,*/ (req,res) => {
+apisViews.get('/rrhh/RH_Permisos',functionsAuth.authJefeRRHH, (req,res) => {
     res.sendFile(path + '/RRHH/RH_Permisos.html');
 });
 
-apisViews.get('/rrhh/RH_Vacaciones',/*functionsAuth.authJefeRRHH,*/ (req,res) => {
+apisViews.get('/rrhh/RH_Vacaciones',functionsAuth.authJefeRRHH, (req,res) => {
     res.sendFile(path + '/RRHH/RH_Vacaciones.html');
 });
 // asistente rrhh
-apisViews.get('/rrhh/RH_Contratos',/*functionsAuth.authAsistenteRRHH,*/ (req,res) => {
+apisViews.get('/rrhh/RH_Contratos',functionsAuth.authAsistenteRRHH, (req,res) => {
     res.sendFile(path + '/RRHH/RH_Contratos.html');
 });
 
-apisViews.get('/rrhh/RH_EntrevistaTrabajo',/*functionsAuth.authAsistenteRRHH,*/ (req,res) => {
+apisViews.get('/rrhh/RH_EntrevistaTrabajo',functionsAuth.authAsistenteRRHH, (req,res) => {
     res.sendFile(path + '/RRHH/RH_EntrevistaTrabajo.html');
 });
 
-apisViews.get('/rrhh/RH_HorasExtras',/*functionsAuth.authAsistenteRRHH,*/ (req,res) => {
+apisViews.get('/rrhh/RH_HorasExtras',functionsAuth.authAsistenteRRHH, (req,res) => {
     res.sendFile(path + '/RRHH/RH_HorasExtras.html');
 });
 
-apisViews.get('/rrhh/RH_HuellaDigital',/*functionsAuth.authAsistenteRRHH,*/ (req,res) => {
+apisViews.get('/rrhh/RH_HuellaDigital',functionsAuth.authAsistenteRRHH, (req,res) => {
     res.sendFile(path + '/RRHH/RH_HuellaDigital.html');
 });
 
-apisViews.get('/rrhh/RH_RolPago',/*functionsAuth.authAsistenteRRHH,*/ (req,res) => {
+apisViews.get('/rrhh/RH_RolPago',functionsAuth.authAsistenteRRHH, (req,res) => {
     res.sendFile(path + '/RRHH/RH_RolPago.html');
 });
 
