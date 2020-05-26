@@ -205,7 +205,7 @@ BEGIN
 			)
 		) AS T
 		RIGHT JOIN Servicios S ON T.Servicios_idServicios = S.idServicios
-		
+		ORDER BY idOrdenTrabajo DESC, idServicios ASC
         SET @pmensaje = 'Consulta finalizada con exito';
 	END;
 

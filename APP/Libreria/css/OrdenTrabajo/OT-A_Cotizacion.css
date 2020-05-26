@@ -1,4 +1,7 @@
-
+.jquery-modal  .modal{
+  background-color: #d5d9e5;
+  max-width: 1200px;
+}
   .content1 {
     width: auto;
     margin-top: 1%;

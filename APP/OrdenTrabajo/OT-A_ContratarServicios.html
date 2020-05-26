@@ -25,20 +25,12 @@
                                         <label for="name" align="center">Número de Orden de Trabajo</label>
                                     </div>
                                     <div class="field" align="center" style="width: auto; float:left; display:block; margin: auto;">
-                                        <input type="text" style="width:100%" name="name" id="number" value=""/>
+                                        <input type="text" style="width:100%" name="name" id="iNumeroOT" value=""/>
                                     </div>
                                 </div>
                                 <section>
                                     <header>
                                         <h4><b>Servicios</b></h4>
-                                        <div class="field" align="center" style="width: auto; display:block; margin: auto;">
-                                            <div align="center" style="width: auto;" >
-                                                <input type="radio" style="width: auto;" id="priority-low" name="priority" checked />
-                                                <label for="priority-low">Contratar Servicios</label>
-                                                <input type="radio" style="width: auto" id="priority-normal" name="priority" />
-                                                <label for="priority-normal">Cancelar Servicios</label>
-                                            </div>
-                                        </div>
                                     </header><br>
                                     <div class="content"> 
                                         <div class="table-wrapper" style="width: auto; display:block; margin-left: auto; margin-right: auto;">
@@ -47,73 +39,46 @@
                                                 <thead>
                                                     <tr>
                                                         <th></th>
-                                                        <th>Código</th>
+                                                        <th>Estado Contratado</th>
                                                         <th>Servicio</th>
                                                         <th>Costo Aproximado</th>
                                                         <th>Duración</th>
+                                                        <th>Servicio Efectuado</th>
                                                     </tr>
                                                 </thead>
                                                 <tfoot>
-                                                    <tr>
-                                                        <td colspan="5">
-                                                        <div id="paging">
-                                                            <ul>
-                                                                <li><a href="#"><span>Anterior</span></a></li>
-                                                                <li><a href="#" class="active"><span>1</span></a></li>
-                                                                <li><a href="#"><span>2</span></a></li>
-                                                                <li><a href="#"><span>Siguiente</span></a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </tr>
                                                 </tfoot>
-                                                <tbody>
+                                                <tbody id="cuerpoTabla">
                                                     <tr>
-                                                        <td style="width: 0.5%;">
-                                                            <input type="checkbox" id="check" name="check">
-                                                            <label for="check"></label>
-                                                        </td>
-                                                        <td>1</td>
-                                                        <td>Cambio de Aceite</td>
-                                                        <td>100</td>
-                                                        <td>4 horas</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="width: 0.5%;">
-                                                            <input type="checkbox" id="check" name="check">
-                                                            <label for="check"></label>
-                                                        </td>
-                                                        <td>2</td>
-                                                        <td>Mantenimiento 20mil Km</td>
-                                                        <td>200</td>
-                                                        <td>2 días</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td style="width: 0.5%;">
-                                                            <input type="checkbox" id="check" name="check">
-                                                            <label for="check"></label>
-                                                        </td>
-                                                        <td>3</td>
-                                                        <td>Reparación</td>
-                                                        <td>1300</td>
-                                                        <td>1 semana</td>
-                                                    </tr>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td>Rellene el campo correspondiente con el número de orden de trabajo</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>  
                                                 </tbody>
                                                 </table></div><br>
                                                 <div class="field" align="center" style="width: auto; display:block; margin: auto; margin-left: 16%; margin-right: auto;">
                                                     <ul class="actions">
                                                         <li>
                                                             <div class="field" align="center" style="width: auto; display:block; margin: auto; margin-left: auto; margin-right: auto;">
-                                                                <a href="#" class="button small" style="width: auto; display:block; margin: auto;">Agregar nuevo registro a la tabla</a>
+                                                                <input type="button" id="btnMostrarServicios" disabled="disabled" class="button small" style="width: auto; display:block; margin: auto;" value="Mostrar Servicios">
                                                             </div>
                                                         </li>
                                                         <li>
                                                             <div class="field" align="center" style="width: auto; display:block; margin: auto; margin-left: auto; margin-right: auto;">
-                                                                <a href="#" class="button small" style="width: auto; display:block; margin: auto;">Revertir Cambios</a>
+                                                                <input type="button" id="btnAgregarServicios" disabled="disabled" class="button small" style="width: auto; display:block; margin: auto;" value="Agregar Servicios Seleccionados">
                                                             </div>
                                                         </li>
                                                         <li>
                                                             <div class="field" align="center" style="width: auto; display:block; margin: auto; margin-left: auto; margin-right: auto;">
-                                                                <a href="#" class="button small" style="width: auto; display:block; margin: auto;">Guardar Cambios</a>
+                                                                <input type="button" id="btnEliminarServicios" disabled="disabled" class="button small" style="width: auto; display:block; margin: auto;" value="Quitar servicios seleccionados">
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="field" align="center" style="width: auto; display:block; margin: auto; margin-left: auto; margin-right: auto;">
+                                                                <input type="button" id="btnSalvarServiciosContratados" class="button small" style="width: auto; display:block; margin: auto;" value="Salvar Contratacion">
                                                             </div>
                                                         </li>
                                                     </ul>
@@ -126,7 +91,36 @@
 				</div>
 			</div>
 		</section>
-		
+        
+        <!-- ------------------------------------------------------------ -->
+		<!-- Ventanas modales -->
+        <!-- ------------------------------------------------------------ -->
+
+
+        <div id="contratarServicios" class="modal">
+            <section style="display: flexbox; justify-content: center; align-items: center;">
+                <div style="display: flexbox; align-items: center; justify-content: start;">
+                    <div align="center" style="margin: 25;" id="contratarServiciosNotificacion"></div>
+                </div>
+            </section>
+        </div>
+
+        <div id="descontratarServicios" class="modal">
+            <section style="display: flexbox; justify-content: center; align-items: center;">
+                <div style="display: flexbox; align-items: center; justify-content: start;">
+                    <div align="center" style="margin: 25;" id="descontratarServiciosNotificacion"></div>
+                </div>
+            </section>
+        </div>
+
+        <div id="salvarServicios" class="modal">
+            <section style="display: flexbox; justify-content: center; align-items: center;">
+                <div style="display: flexbox; align-items: center; justify-content: start;">
+                    <div align="center" style="margin: 25;" id="salvarServiciosNotificacion"></div>
+                </div>
+            </section>
+        </div>
+
 		<!-- ------------------------------------------------------------ -->
 		<!-- Hasta aquí se puede Editar -->
 		<!-- ------------------------------------------------------------ -->
@@ -139,10 +133,15 @@
 		<script src="../assets/js/browser.min.js"></script>
 		<script src="../assets/js/breakpoints.min.js"></script>
 		<script src="../assets/js/util.js"></script>
-		<script src="../assets/js/main.js"></script>
+        <script src="../assets/js/main.js"></script>
+        
+        <!-- jquery-modal -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 
 		<!-- Header -->
 		<script src="../assets/js/header.js"></script>
-		<script src="../Libreria/cargar-header.js"></script>
+        <script src="../Libreria/cargar-header.js"></script>
+        <script src="../Libreria/js/OrdenTrabajo/OT-A_ContratarServicios.js"></script>
     </body>
 </html>
