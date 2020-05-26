@@ -49,16 +49,16 @@ BEGIN
 					SELECT Mo.Marca_idMarca FROM Modelo Mo
 					WHERE Mo.idModelo = V.Modelo_idModelo
 				)
-			)
+			) as marca
 			, ( -- descripcion Modelo
 				SELECT descripcion FROM Modelo Mo2
 				WHERE Mo2.idModelo = V.Modelo_idModelo
-			)
+			) as modelo
 			, ( -- numeroIdentidad
 				SELECT P.numeroIdentidad FROM Persona P
 				INNER JOIN Cliente C2 ON C2.Persona_idPersona = P.idPersona
 				WHERE C2.idCliente = VCV.Cliente_idCliente
-			)
+			) as identidad
 			,( -- NombreCompleto
 				SELECT CONCAT(
 					P2.primerNombre
@@ -69,7 +69,7 @@ BEGIN
 				FROM Persona P2
 				INNER JOIN Cliente C2 ON C2.Persona_idPersona = P2.idPersona
 				WHERE C2.idCliente = VCV.Cliente_idCliente
-			)
+			) as nombre
 		FROM VinculoCyV VCV
 		INNER JOIN Cliente C ON C.idCliente = VCV.Cliente_idCliente
 		INNER JOIN Vehiculos V ON V.idVehiculos = VCV.Vehiculos_idVehiculos

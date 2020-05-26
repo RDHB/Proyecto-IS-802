@@ -19,7 +19,7 @@ function VE_ASOCIAR_CYV(req,res){
             if(req.body.accion === 'LINK' || req.body.accion === 'UNLINK'){
                 res.send(result.output);
             }else if(req.body.accion === 'SELECT'){
-                res.send({output:result.output, data: result.recordsets});
+                res.send({output:result.output, data: result.recordsets[0]});
             }
         }).catch(function(err){
             conn.close();

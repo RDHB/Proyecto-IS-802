@@ -142,15 +142,15 @@ apisViews.get('/vehiculos/VE_Home',functionsAuth.authAsesorServicios, (req,res) 
     res.sendFile(path + '/Vehiculos/VE_Home.html');
 });
 
-apisViews.get('/vehiculos/VE_AsociarClienteVehiculo',/*functionsAuth.authAsesorServicios,*/ (req,res) => {
+apisViews.get('/vehiculos/VE_AsociarClienteVehiculo',functionsAuth.authAsesorServicios, (req,res) => {
     res.sendFile(path + '/Vehiculos/VE_AsociarClienteVehiculo.html');
 });
 
-apisViews.get('/vehiculos/VE_RegistrarVehiculos',/*functionsAuth.authAsesorServicios,*/ (req,res) => {
+apisViews.get('/vehiculos/VE_RegistrarVehiculos',functionsAuth.authAsesorServicios, (req,res) => {
     res.sendFile(path + '/Vehiculos/VE_RegistrarVehiculos.html');
 });
 
-apisViews.get('/vehiculos/VE_RegistrarCliente',/*functionsAuth.authAsesorServicios,*/ (req,res) => {
+apisViews.get('/vehiculos/VE_RegistrarCliente',functionsAuth.authAsesorServicios, (req,res) => {
     res.sendFile(path + '/Vehiculos/VE_RegistrarCliente.html');
 });
 // EXPORTANDO LA API QUE MUESTRA LA VISTA
