@@ -802,32 +802,43 @@ select * from OrdenTrabajo
 DECLARE
 	-- Parametros de Entrada
 	@pnumeroOT						VARCHAR(45),
+	@pidEmpleado					INT,
+	@pidFormaPago					INT,
+	@pidDescuento					INT,
     @paccion						VARCHAR(45),
     
     -- Parametros de Salida
     -- Codigo de mensaje
     @pcodigoMensaje					INT,
-	@pmensaje 						VARCHAR(1000)
-
+	@pmensaje 						VARCHAR(1000),
+	@pnumeroFactura					VARCHAR(45)
     -- Otros parametros de salida
 
 ;
 
 SET @pnumeroOT = 'OT0000011';
-SET @paccion = 'SAVE';
+SET @pidEmpleado = 0;
+SET @pidFormaPago = 0;
+SET @pidDescuento = 0;
+SET @paccion = 'SELECT-FA';
 
 SET @pcodigoMensaje = 0;
 SET @pmensaje = '';
+SET @pnumeroFactura = '';
 
 
 EXEC FA_FACTURA
 	-- INTPUT
 	@pnumeroOT,
+	@pidEmpleado,
+	@pidFormaPago,
+	@pidDescuento,
 	@paccion,
 	
 	-- OUTPUT
 	@pcodigoMensaje OUTPUT,
-	@pmensaje OUTPUT
+	@pmensaje OUTPUT,
+	@pnumeroFactura OUTPUT
 ;
 
 -- OUTPUT

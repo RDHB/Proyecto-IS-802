@@ -1,7 +1,7 @@
 -- <=== FA_FACTURA ===>
 /* Requisitos de las acciones:
  * SELECT-FA: @numeroOT
- * Salida: idFactura, numeroFactura, fecha, total_a_pagar, OrdenTrabajo_idOrdenTrabajo
+ * Salida: idFactura, numeroFactura, fecha, total_a_pagar, idOrdenTrabajo
  *		, codigoEmpleado, nombreEmpleado
  *		, idDescuento, descripcionD, porcentaje, fecha_de_validez
  *		, idPromocion, descripcionP, fechaInicio, fechaFin
@@ -45,6 +45,7 @@ BEGIN
 		, @vidCliente INT = NULL
 		, @vidOrdenTrabajo INT = NULL
 		, @vidPromociones INT = NULL
+		, @vporcentaje DECIMAL(18,4)
 	;
 
 
@@ -101,49 +102,46 @@ BEGIN
 
 		-- Accion del procedimiento 
 		SELECT 
-			numeroOT
-			, fechaInicio
-			, fechaFin
-			, estado_del_vehiculo
-			, objetosPersonales
-			, reparacionesEfectuadas
-			, reparacionesNoEfectuadas
-			, EstadoOT_idEstadoOT
-			, P.numeroIdentidad
-			, CONCAT(
-					P.primerNombre
-					, ' '
-					, P.segundoNombre
-					, ' '
-					, P.primerApellido
-					, ' '
-					, P.segundoApellido
-			) AS 'nombreCliente' 
+			FA.idFactura
+			, FA.numeroFactura
+			, FA.fecha
+			, FA.total_a_pagar
+			, FA.OrdenTrabajo_idOrdenTrabajo AS 'idOrdenTrabajo'
 			, (
-				SELECT vin FROM Vehiculos V
-				WHERE V.idVehiculos = OT.Vehiculos_idVehiculos
-			) AS 'vin'
-			, CONCAT ( 
-				(
-					SELECT MA.descripcion FROM Modelo MO 
-					INNER JOIN Marca MA ON MA.idMarca = MO.Marca_idMarca
-					WHERE MO.idModelo = (
-						SELECT V.Modelo_idModelo FROM Vehiculos V
-						WHERE idVehiculos = OT.Vehiculos_idVehiculos
+				SELECT codigoEmpleado FROM Empleado
+				WHERE idEmpleado = FA.Empleado_idEmpleado
+			) AS 'codigoEmpleado'
+			, (
+				SELECT 
+					CONCAT(
+						P.primerNombre
+						, ' '
+						, P.segundoNombre
+						, ' '
+						, P.primerApellido
+						, ' '
+						, P.segundoApellido
 					)
-				)
-				, ' '
-				, (
-					SELECT descripcion FROM Modelo MO WHERE MO.idModelo = (
-						SELECT V.Modelo_idModelo FROM Vehiculos V
-						WHERE idVehiculos = OT.Vehiculos_idVehiculos
-					)
-				)
-			) AS 'Vehiculo'
-		FROM OrdenTrabajo OT
-		INNER JOIN Cliente C ON C.idCliente = OT.Cliente_idCliente
-		INNER JOIN Persona P ON P.idPersona = C.Persona_idPersona
-		WHERE numeroOT = @pnumeroOT
+				FROM Persona P
+				INNER JOIN Empleado E ON E.Persona_idPersona = P.idPersona
+				WHERE E.idEmpleado = FA.Empleado_idEmpleado
+			) AS 'nombreEmpleado'
+			, D.idDescuento
+			, D.descripcion AS 'descripcionD'
+			, D.porcentaje
+			, D.fecha_de_validez
+			, P.idPromociones
+			, P.descripcion AS 'descripcionP'
+			, P.fechaInicio
+			, P.fechaFin
+		FROM Factura FA
+		LEFT JOIN Descuento D ON D.idDescuento = FA.Descuento_idDescuento
+		LEFT JOIN Promociones P ON P.idPromociones = FA.Promociones_idPromociones
+		WHERE OrdenTrabajo_idOrdenTrabajo = (
+			SELECT idOrdenTrabajo FROM OrdenTrabajo
+			WHERE numeroOT = @pnumeroOT
+		);
+
 
 
         SET @pmensaje = 'Consulta finalizada con exito';
@@ -553,9 +551,18 @@ BEGIN
 			SET @vidPromociones = NULL;
 		END;
 
+		SET @vporcentaje = 0;
+		IF @pidDescuento IS NOT NULL BEGIN
+			SET @vporcentaje = (
+				SELECT porcentaje FROM Descuento
+				WHERE idDescuento = @pidDescuento
+			);
+		END;
+
 
 
 		--Crear Factura
+		SET @vtotal_a_pagar = @vtotal_a_pagar - ( @vtotal_a_pagar * (@vporcentaje/100) );
 		INSERT INTO Factura (
 			idFactura
 			, numeroFactura
