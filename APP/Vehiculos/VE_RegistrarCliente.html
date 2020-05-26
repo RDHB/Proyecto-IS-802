@@ -23,58 +23,72 @@
                                 <div class="fields">
                                     <div class="field" align="left" style="width: auto; float:left; display:block; margin: auto;">
                                         <label for="name" align="center">Primer Nombre</label>
-                                        <input type="text" style="width:auto" name="name" id="name" value=""/>
+                                        <input type="text" style="width:auto" id="iPrimerNombre" value=""/>
                                         <br>
                                     </div>
                                     <div class="field" align="left" style="width: auto; float:left; display:block; margin: auto;">
                                         <label for="name" align="center">Segundo Nombre</label>
-                                        <input type="text" style="width:auto" name="name" id="name" value=""/>
+                                        <input type="text" style="width:auto" id="iSegundoNombre" value="" placeholder="Opcional"/>
                                         <br>
                                     </div>
                                     <div class="field" align="left" style="width: auto; float:left; display:block; margin: auto;">
                                         <label for="name" align="center">Primer Apellido</label>
-                                        <input type="text" style="width:auto" name="name" id="name" value=""/>
+                                        <input type="text" style="width:auto" id="iPrimerApellido" value=""/>
                                         <br>
                                     </div>
                                     <div class="field" align="left" style="width: auto; float:left; display:block; margin: auto;">
                                         <label for="name" align="center">Segundo Apellido</label>
-                                        <input type="text" style="width:auto" name="name" id="name" value=""/>
+                                        <input type="text" style="width:auto" id="iSegundoApellido" value=""/>
                                         <br>
                                     </div>
                                     <div class="field" align="left" style="width: auto; float:left; display:block; margin: auto;">
                                         <label for="name" align="center">Número de Identidad</label>
-                                        <input type="text" style="width:auto" name="name" id="name" value=""/>
+                                        <input type="text" style="width:auto" id="iNumeroIdentidad" value=""/>
                                         <br>
                                     </div>
                                     <div class="field" align="left" style="width: auto; float:left; display:block; margin: auto;">
                                         <label for="name" align="center">Correo Electrónico</label>
-                                        <input type="text" style="width:auto" name="name" id="name" value=""/>
+                                        <input type="text" style="width:auto" id="iCorreoElectronico" value="" placeholder="Opcional"/>
                                         
                                     </div>
                                     <div class="field" align="left" style="width: auto; float:left; display:block; margin: auto;">
                                         <label for="name" align="center">Número de Teléfono</label>
-                                        <input type="text" style="width:auto" name="name" id="name" value=""/>
+                                        <input type="text" style="width:auto" id="iNumeroTelefono" value=""/>
                                     </div>
                                     <div class="field" style="width: auto; float:left; display:block; margin: auto;">
                                         <h4 align="center"><b>Género</b></h4>
                                         <div style="width: auto; margin-left: auto;" >
-                                            <input type="radio" style="width: auto;" id="priority-low" name="priority" checked />
+                                            <input type="radio" style="width: auto;" id="priority-low" name="priority" value="1" checked />
                                             <label for="priority-low">Másculino</label>
-                                            <input type="radio" style="width: auto" id="priority-normal" name="priority" />
+                                            <input type="radio" style="width: auto" id="priority-normal" value="2" name="priority" />
                                             <label for="priority-normal">Femenino</label>
                                         </div>
                                     </div>
                                 </div><br><hr><br>        
                                 <div align="center" style="width: inherit; display:block; margin-right: auto;">
-                                    <br><a href="#" align="right" class="button primary" >Guardar</a>
-                                    <a href="#" align="right" class="button primary" >Cancelar</a>
+                                    <br><buttom id="btnGuardar" align="right" class="button primary" >Guardar</buttom>
+                                    <buttom id="btnCancelar" align="right" class="button primary" >Cancelar</buttom>
                                 </div>
                             </form>
                         </div>
                     </section>    
 				</div>
 			</div>
-		</section>
+        </section>
+        
+        <!-- ------------------------------------------------------------ -->
+		<!-- Ventanas modales -->
+        <!-- ------------------------------------------------------------ -->
+
+
+        <div id="guardar" class="modal">
+            <section style="display: flexbox; justify-content: center; align-items: center;">
+                <div style="display: flexbox; align-items: center; justify-content: start;">
+                    <div align="center" style="margin: 25;" id="guardarNotificacion"></div>
+                </div>
+            </section>
+        </div>
+
 		
 		<!-- ------------------------------------------------------------ -->
 		<!-- Hasta aquí se puede Editar -->
@@ -88,10 +102,15 @@
 		<script src="../assets/js/browser.min.js"></script>
 		<script src="../assets/js/breakpoints.min.js"></script>
 		<script src="../assets/js/util.js"></script>
-		<script src="../assets/js/main.js"></script>
+        <script src="../assets/js/main.js"></script>
+        
+        <!-- jquery-modal -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 
 		<!-- Header -->
 		<script src="../assets/js/header.js"></script>
-		<script src="../Libreria/cargar-header.js"></script>
+        <script src="../Libreria/cargar-header.js"></script>
+        <script src="../Libreria/js/Vehiculos/VE_RegistrarCliente.js"></script>
     </body>
 </html>

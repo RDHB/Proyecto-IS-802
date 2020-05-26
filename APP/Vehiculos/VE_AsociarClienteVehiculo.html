@@ -23,16 +23,16 @@
                                     <div class="fields">
                                         <div class="field" align="center" style="width: auto; float:left; display:block; margin: auto;">
                                             <label for="name" align="center">Número de Identidad</label>
-                                            <input type="text" style="width:auto" name="name" id="name" value="" placeholder="ejemplo: 000000000000"/>
+                                            <input type="text" style="width:auto" name="name" id="iIdentidadCliente" value="" placeholder="ejemplo: 000000000000"/>
                                             <br>
                                         </div>
                                         <div class="field" align="center" style="width: auto; float:left; display:block; margin: auto;">
                                             <label for="name" align="center">Vin</label>
-                                            <input type="text" style="width:auto" name="name" id="name" value=""/>
+                                            <input type="text" style="width:auto" name="name" id="iVin" value=""/>
                                             <br>
                                         </div>
                                         <div class="field" align="center" style="width: auto; float:left; display:block; margin: auto; margin-right:7%;">
-                                            <a href="#" class="button primary" style="width: auto; display:block" >Vincular</a>
+                                            <input disabled="disabled" id="btnVincularVehiculoCliente" type="buttom" class="button primary" style="width: auto; display:block" value="Vincular" >
                                         </div>
                                     </div>
                                     <section>
@@ -46,7 +46,7 @@
                                                     <thead>
                                                         <tr>
                                                             <th></th>
-                                                            <th>Código</th>
+                                                            <th>Identidad</th>
                                                             <th>Cliente</th>
                                                             <th>Vehículo</th>
                                                             <th>VIN</th>
@@ -65,37 +65,15 @@
                                                             </div>
                                                         </tr>
                                                     </tfoot>
-                                                    <tbody>
+                                                    <tbody id="cuerpoTabla">
                                                         <tr>
-                                                            <td style="width: 0.5%;">
-                                                                <input type="checkbox" id="check" name="check">
-                                                                <label for="check"></label>
-                                                            </td>
-                                                            <td>1</td>
-                                                            <td>Mariela Rodriguez</td>
-                                                            <td>Toyota 4x4 Hilux</td>
-                                                            <td>1234</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="width: 0.5%;">
-                                                                <input type="checkbox" id="check1" name="check1">
-                                                                <label for="check1"></label>
-                                                            </td>
-                                                            <td>2</td>
-                                                            <td>Mariela Rodriguez</td>
-                                                            <td>Camioneta Ford</td>
-                                                            <td>5678</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td style="width: 0.5%;">
-                                                                <input type="checkbox" id="check2" name="check2">
-                                                                <label for="check2"></label>
-                                                            </td>
-                                                            <td>1</td>
-                                                            <td>Mariela Rodriguez</td>
-                                                            <td>Honda Civic</td>
-                                                            <td>7542</td>
-                                                        </tr>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td>Rellene el campo correspondiente con la identidad del cliente</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                        </tr>    
+                                                        <!-- INFORMACION DE LOS VEHICULOS ASOCIADOS AL CLIENTE -->
                                                     </tbody>
                                                     </table>
                                                 </div><br><br>
@@ -103,22 +81,12 @@
                                                         <ul class="actions">
                                                             <li>
                                                                 <div class="field" align="center" style="width: auto; display:block; margin: auto; margin-left: auto; margin-right: auto;">
-                                                                    <a href="#" class="button small" style="width: auto; display:block; margin: auto;">Agregar nuevo registro a la tabla</a>
+                                                                    <input disabled="disabled" id="btnMostrarVehiculo" type="buttom" class="button small" style="width: 100%; display:block; margin: auto;" value="Mostrar Vehículos">
                                                                 </div>
                                                             </li>
                                                             <li>
                                                                 <div class="field" align="center" style="width: auto; display:block; margin: auto; margin-left: auto; margin-right: auto;">
-                                                                    <a href="#" class="button small" style="width: auto; display:block; margin: auto;">Eliminar Registros Seleccionados</a>
-                                                                </div>
-                                                            </li>
-                                                            <li>
-                                                                <div class="field" align="center" style="width: auto; display:block; margin: auto; margin-left: auto; margin-right: auto;">
-                                                                    <a href="#" class="button small" style="width: auto; display:block; margin: auto;">Revertir Cambios</a>
-                                                                </div>
-                                                            </li>
-                                                            <li>
-                                                                <div class="field" align="right" style="width: auto; display:block; margin: auto; margin-left: auto; margin-right: auto;">
-                                                                    <a href="#" class="button small" style="width: auto; display:block; margin: auto;">Guardar Cambios</a>
+                                                                    <input disabled="disabled" id="btnDesasociarVehiculo" type="buttom" class="button small" style="width: auto; display:block; margin: auto;" value="Desasociar Vehículo">
                                                                 </div>
                                                             </li>
                                                         </ul>
@@ -132,6 +100,28 @@
                     </div>
                 </div>
             </section>
+
+        <!-- ------------------------------------------------------------ -->
+		<!-- Ventanas modales -->
+        <!-- ------------------------------------------------------------ -->
+
+
+        <div id="vincularVehiculoCliente" class="modal">
+            <section style="display: flexbox; justify-content: center; align-items: center;">
+                <div style="display: flexbox; align-items: center; justify-content: start;">
+                    <div align="center" style="margin: 25;" id="vincularVehiculoClienteNotificacion"></div>
+                </div>
+            </section>
+        </div>
+
+        <div id="desVincularVehiculoCliente" class="modal">
+            <section style="display: flexbox; justify-content: center; align-items: center;">
+                <div style="display: flexbox; align-items: center; justify-content: start;">
+                    <div align="center" style="margin: 25;" id="desVincularVehiculoClienteNotificacion"></div>
+                </div>
+            </section>
+        </div>
+
 		
 		<!-- ------------------------------------------------------------ -->
 		<!-- Hasta aquí se puede Editar -->
@@ -145,7 +135,11 @@
 		<script src="../assets/js/browser.min.js"></script>
 		<script src="../assets/js/breakpoints.min.js"></script>
 		<script src="../assets/js/util.js"></script>
-		<script src="../assets/js/main.js"></script>
+        <script src="../assets/js/main.js"></script>
+        
+        <!-- jquery-modal -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 
         <!-- Header -->
         <script src="../Libreria/cargar-header.js"></script>
