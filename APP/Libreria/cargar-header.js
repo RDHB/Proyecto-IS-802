@@ -14,7 +14,41 @@ $(Document.body).ready(function(){
 		success: function (respuesta) {
             switch (respuesta.idCargo){
                 case 19:{
-                    $('body').prepend('<!-- Header --><div id="header"><div class="top"><!-- Usuario --><div id="perfil-usuario"><!-- Información del usuario --><span class="image avatar48"><a title="avatarUsuario" href="https://localhost:3000/volvo/view/gestionUsuario/GU_Configuracion_Usuario" style="width:100%; height:100%;"><img src="'+localStorage.getItem('nombreArchivo')+'" alt="avatarUsuario"/></a></span> <h1><span id="nickNameUser">' + localStorage.getItem('usuario') +'</span></h1> <p id="nameOfUser">' + localStorage.getItem('nombre') + '</p></div><!-- Menu (Nav) --><nav class="nav"><ul id="menu-accion"><!-- Lista de acciones del usuario --><li> <a href="https://localhost:3000/volvo/view/gestionUsuario/GU_Home" id="btnHome"> <span class="icon solid fa-home"></span> <span>Inicio</span></a></li>          <li> <a href="https://localhost:3000/volvo/view/gestionUsuario/GU_Gestion_Usuarios"> <span class="icon solid fa-th"></span> <span>Gestión de Usuarios</span> </a> </li>           <li> <a href="https://localhost:3000/volvo/view/gestionUsuario/GU_DataBase"> <span class="icon solid fa-th"></span> <span>Control Base de Datos</span> </a> </li>            </ul></nav></div>      <div class="bottom nav"><ul><li><a href="#" onClick="cerrarSession();" style="width:auto; color:white;" class="icon solid fa-sign-out-alt"><span>Cerrar Sesión</span></a></li></ul></div>         </div>');
+                    $('body').prepend(`
+                        <!-- Header -->
+                        <div id="header">
+                            <div class="top">
+                                <!-- Usuario -->
+                                <div id="perfil-usuario">
+                                    <!-- Información del usuario -->
+                                    <span class="image avatar48">
+                                        <a title="avatarUsuario" href="https://localhost:3000/volvo/view/gestionUsuario/GU_Configuracion_Usuario" style="width:100%; height:100%;">
+                                            <img src="'+localStorage.getItem('nombreArchivo')+'" alt="avatarUsuario"/>
+                                        </a>
+                                    </span> 
+                                    <h1>
+                                        <span id="nickNameUser">' + localStorage.getItem('usuario') +'</span>
+                                    </h1> 
+                                    <p id="nameOfUser">' + localStorage.getItem('nombre') + '</p>
+                                </div>
+                                <!-- Menu (Nav) -->
+                                <nav class="nav">
+                                    <ul id="menu-accion">
+                                        <!-- Lista de acciones del usuario -->
+                                        <li> <a href="https://localhost:3000/volvo/view/gestionUsuario/GU_Configuracion_Usuario"> <span class="icon solid fa-cog"></span> <span>Configuracion de la cuenta</span> </a> </li>
+                                        <li> <a href="https://localhost:3000/volvo/view/gestionUsuario/GU_Home" id="btnHome"> <span class="icon solid fa-home"></span> <span>Inicio</span></a></li>          
+                                        <li> <a href="https://localhost:3000/volvo/view/gestionUsuario/GU_Gestion_Usuarios"> <span class="icon solid fa-th"></span> <span>Gestión de Usuarios</span> </a> </li>           
+                                        <li> <a href="https://localhost:3000/volvo/view/gestionUsuario/GU_DataBase"> <span class="icon solid fa-th"></span> <span>Control Base de Datos</span> </a> </li>
+                                    </ul>
+                                </nav>
+                            </div>      
+                            <div class="bottom nav">
+                                <ul>
+                                    <li><a href="#" onClick="cerrarSession();" style="width:auto; color:white;" class="icon solid fa-sign-out-alt"><span>Cerrar Sesión</span></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    `);
                     break;
                 }
                 case 17:{
@@ -39,6 +73,7 @@ $(Document.body).ready(function(){
                                 <nav class="nav">
                                     <ul id="menu-accion">
                                         <!-- Lista de acciones del usuario en Orden Trabajo-->
+                                        <li> <a href="https://localhost:3000/volvo/view/gestionUsuario/GU_Configuracion_Usuario"> <span class="icon solid fa-cog"></span> <span>Configuracion de la cuenta</span> </a> </li>
                                         <li> <a href="https://localhost:3000/volvo/view/ordenTrabajo/OT_Home" id="btnHome"> <span class="icon solid fa-home"></span><span>Inicio Gestión Orden de Trabajo</span></a></li>          
                                         <li> <a href="https://localhost:3000/volvo/view/ordenTrabajo/OT-A_GenerarOT"> <span class="icon solid fa-th"></span> <span>Generar Orden de Trabajo</span> </a> </li> 
                                         <li> <a href="https://localhost:3000/volvo/view/ordenTrabajo/OT-A_RevisionVehiculo"> <span class="icon solid fa-th"></span> <span>Revisión de Vehículo</span> </a> </li>            
@@ -88,6 +123,7 @@ $(Document.body).ready(function(){
                                 <nav class="nav">
                                     <ul id="menu-accion">
                                         <!-- Lista de acciones del usuario en Orden Trabajo-->
+                                        <li> <a href="https://localhost:3000/volvo/view/gestionUsuario/GU_Configuracion_Usuario"> <span class="icon solid fa-cog"></span> <span>Configuracion de la cuenta</span> </a> </li>
                                         <li> <a href="https://localhost:3000/volvo/view/ordenTrabajo/OT_Home" id="btnHome"> <span class="icon solid fa-home"></span><span>Inicio Gestión Orden de Trabajo</span></a></li>
                                         <li> <a href="https://localhost:3000/volvo/view/ordenTrabajo/OT-E_RebajarInventario" id="btnHome"> <span class="icon solid fa-th"></span><span>Rebajar productos del Inventario</span></a></li>
                                     </ul>
@@ -125,6 +161,7 @@ $(Document.body).ready(function(){
                                 <nav class="nav">
                                     <ul id="menu-accion">
                                         <!-- Lista de acciones del usuario en Orden Trabajo-->
+                                        <li> <a href="https://localhost:3000/volvo/view/gestionUsuario/GU_Configuracion_Usuario"> <span class="icon solid fa-cog"></span> <span>Configuracion de la cuenta</span> </a> </li>
                                         <li> <a href="https://localhost:3000/volvo/view/ordenTrabajo/OT_Home" id="btnHome"> <span class="icon solid fa-home"></span><span>Inicio Gestión Orden de Trabajo</span></a></li>
                                         <li> <a href="https://localhost:3000/volvo/view/ordenTrabajo/OT-J_AprobacionCotizacion" id="btnHome"> <span class="icon solid fa-th"></span><span>Aprobación Cotización</span></a></li>
                                         <li> <a href="https://localhost:3000/volvo/view/ordenTrabajo/OT-J_AprobacionLista" id="btnHome"> <span class="icon solid fa-th"></span><span>Aprobación Lista de Materiales</span></a></li>
@@ -163,6 +200,7 @@ $(Document.body).ready(function(){
                                 <nav class="nav">
                                     <ul id="menu-accion">
                                         <!-- Lista de acciones del usuario en Orden Trabajo-->
+                                        <li> <a href="https://localhost:3000/volvo/view/gestionUsuario/GU_Configuracion_Usuario"> <span class="icon solid fa-cog"></span> <span>Configuracion de la cuenta</span> </a> </li>
                                         <li> <a href="https://localhost:3000/volvo/view/ordenTrabajo/OT_Home" id="btnHome"> <span class="icon solid fa-home"></span><span>Inicio Gestión Orden de Trabajo</span></a></li>
                                         <li> <a href="https://localhost:3000/volvo/view/ordenTrabajo/OT-T_Generarlista" id="btnHome"> <span class="icon solid fa-th"></span><span>Generar Lista de Materiales</span></a></li>
                                         <li> <a href="https://localhost:3000/volvo/view/ordenTrabajo/OT-T_FinalizarMantenimiento" id="btnHome"> <span class="icon solid fa-th"></span><span>Finalizar Mantenimiento</span></a></li>
@@ -200,6 +238,7 @@ $(Document.body).ready(function(){
                                 <nav class="nav">
                                     <ul id="menu-accion">
                                         <!-- Lista de acciones del usuario en Orden Trabajo-->
+                                        <li> <a href="https://localhost:3000/volvo/view/gestionUsuario/GU_Configuracion_Usuario"> <span class="icon solid fa-cog"></span> <span>Configuracion de la cuenta</span> </a> </li>
                                         <li> <a href="https://localhost:3000/volvo/view/rrhh/RH_Home" id="btnHome"> <span class="icon solid fa-home"></span><span>Inicio Gestión RRHH</span></a></li>
                                         <li> <a href="https://localhost:3000/volvo/view/rrhh/RH_Permisos" id="btnHome"> <span class="icon solid fa-th"></span><span>Permisos</span></a></li>
                                         <li> <a href="https://localhost:3000/volvo/view/rrhh/RH_Vacaciones" id="btnHome"> <span class="icon solid fa-th"></span><span>Vacaciones</span></a></li>
@@ -237,6 +276,7 @@ $(Document.body).ready(function(){
                                 <nav class="nav">
                                     <ul id="menu-accion">
                                         <!-- Lista de acciones del usuario en Orden Trabajo-->
+                                        <li> <a href="https://localhost:3000/volvo/view/gestionUsuario/GU_Configuracion_Usuario"> <span class="icon solid fa-cog"></span> <span>Configuracion de la cuenta</span> </a> </li>
                                         <li> <a href="https://localhost:3000/volvo/view/rrhh/RH_Home" id="btnHome"> <span class="icon solid fa-home"></span><span>Inicio Gestión RRHH</span></a></li>
                                         <li> <a href="https://localhost:3000/volvo/view/rrhh/RH_Contratos" id="btnHome"> <span class="icon solid fa-th"></span><span>Contratos</span></a></li>
                                         <li> <a href="https://localhost:3000/volvo/view/rrhh/RH_EntrevistaTrabajo" id="btnHome"> <span class="icon solid fa-th"></span><span>Entrevista de Trabajo</span></a></li>
@@ -277,6 +317,7 @@ $(Document.body).ready(function(){
                                 <nav class="nav">
                                     <ul id="menu-accion">
                                         <!-- Lista de acciones del usuario en Orden Trabajo-->
+                                        <li> <a href="https://localhost:3000/volvo/view/gestionUsuario/GU_Configuracion_Usuario"> <span class="icon solid fa-cog"></span> <span>Configuracion de la cuenta</span> </a> </li>
                                         <li> <a href="https://localhost:3000/volvo/view/facturacion/FA_Home" id="btnHome"> <span class="icon solid fa-home"></span><span>Inicio Gestión Factura</span></a></li>
                                         <li> <a href="https://localhost:3000/volvo/view/facturacion/FA_Facturar" id="btnHome"> <span class="icon solid fa-th"></span><span>Facturar</span></a></li>
                                     </ul>
