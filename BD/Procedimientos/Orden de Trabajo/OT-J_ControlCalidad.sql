@@ -1,5 +1,8 @@
 -- <=== OT_J_ControlCalidad ===>
 /* Requisitos de las acciones:
+ * SELECT: @pnumeroOT
+ * Salida: numeroOT, reparacionesEfectuadas, reparacionesNoEfectuadas
+ * 
  * SAVE: @pnumeroOT, @precomendaciones
  * Opcionales: @preparacionesNoEfectuadas
 */
@@ -22,9 +25,8 @@ BEGIN
     DECLARE	@vconteo INT;
 
 
-
-    /* Funcionalidad: Guardar cambios
-     * Construir un update con la sigueinte informacion:
+	/* Funcionalidad: Guardar cambios
+     * Construir un select con la sigueinte informacion:
      * Datos: @pnumeroOT, @precomendaciones
      *
      * Actualizar los sigueintes datos en la tabla OrdenTrabajo:
@@ -94,6 +96,77 @@ BEGIN
 
 		
         SET @pmensaje = 'Datos guardados con exito';
+	END;
+
+
+
+
+
+
+
+
+
+
+    /* Funcionalidad: Consultar Orden de Trabajo
+     * Construir un select con la sigueinte informacion:
+     * Datos: @pnumeroOT
+	 * Salida: numeroOT, reparacionesEfectuadas, reparacionesNoEfectuadas
+     *
+     * Seleccionar los sigueintes datos en la tabla OrdenTrabajo:
+     * : numeroOT, reparacionesEfectuadas, reparacionesNoEfectuadas
+    */
+    IF @paccion = 'SELECT' BEGIN
+		-- Setear Valores
+		SET @pcodigoMensaje=0;
+		SET @pmensaje='';
+
+
+
+		-- Validacion de campos nulos
+		IF @pnumeroOT = '' OR @pnumeroOT IS NULL BEGIN
+			SET @pmensaje = @pmensaje + ' numeroOT ';
+		END;
+
+		IF @pmensaje <> '' BEGIN
+			SET @pcodigoMensaje = 3;
+			SET @pmensaje = 'Error: Campos vacios: ' + @pmensaje;
+			RETURN;
+		END;
+
+
+
+		-- Validacion de identificadores
+        SELECT @vconteo = COUNT(*) FROM OrdenTrabajo
+		WHERE numeroOT = @pnumeroOT;
+		IF @vconteo = 0 BEGIN
+			SET @pmensaje = @pmensaje + ' No existe el identificador => ' + @pnumeroOT + ' ';
+		END;
+
+		IF @pmensaje <> '' BEGIN
+			SET @pcodigoMensaje = 4;
+			SET @pmensaje = 'Error: Identificadores no validos: ' + @pmensaje;
+			RETURN;
+		END;
+
+
+
+		-- Validacion de procedimientos
+		
+
+
+		-- Accion del procedimiento
+		-- Actualiza la orden de trabajo 
+		SELECT 
+			numeroOT
+			, reparacionesEfectuadas
+			, reparacionesNoEfectuadas
+			, EstadoOT_idEstadoOT
+		FROM OrdenTrabajo
+		WHERE numeroOT = @pnumeroOT
+
+
+		
+        SET @pmensaje = 'Consulta finalizada con exito';
 	END;
     
 	-- En caso de no elegir una accion
