@@ -25,26 +25,33 @@
                                     <div class="field" align="center" style="width: auto; float:left; display:block; margin: auto; margin-left: 8%;">
                                         <label for="name" align="center">Número de Orden de Trabajo</label>
                                         <div class="field" style="width: auto; float:right; display:block; margin: auto;">
-                                            <input type="text" style="width:auto" name="name" id="vin" value=""/>
+                                            <input type="text" style="width:auto" name="name" id="txtnumeroOT" value=""/>
                                         </div>
                                     </div>
                                     <div class="linea" style="width: auto; float: right; display:block; margin: auto; margin-top: 8%;">
                                         <div class="linea" style="width: auto; float:left; display:block; margin: auto;">
                                             <ul class="actions1" align="center">
-                                                <li><a href="#" style="width:1%" class="button primary icon solid fa-search"></a></li>
+                                                <li><a href="#" id="btnBuscarOrden" style="width:1%; margin-left:50%" class="button primary icon solid fa-search"></a></li>
                                             </ul>
                                         </div>
                                     </div>
                                     <div class="field" align="center" style="width: auto; float:left; display:block; margin: auto;">
                                         <label for="name" align="center">Repuestos o Materiales</label>
                                         <div class="field" style="width: auto; float:right; display:block; margin: auto;">
-                                            <input type="text" style="width:auto" name="name" id="vin" value=""/>
+                                            <input type="text" style="width:auto" name="name" id="txtProducto" value=""/>
                                         </div>
                                     </div>
                                     <div class="linea" style="width: auto; float: right; display:block; margin: auto; margin-top: 8%;">
                                         <div class="linea" style="width: auto; float:left; display:block; margin: auto;">
                                             <ul class="actions1" align="center">
-                                                <li><a href="#" style="width:1%" class="button primary icon solid fa-search"></a></li>
+                                                <li><a href="#" id="btnBuscarProducto" style="width:1%; margin-left:50%" class="button primary icon solid fa-search"></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="linea" style="width: auto; float: right; display:block; margin: auto; margin-top: 8%;">
+                                        <div class="linea" style="width: auto; float:left; display:block; margin: auto;">
+                                            <ul class="actions1" align="center">
+                                                <li><a href="#" id="btnAgregarProducto" style="width:100%; margin-left:40%" class="button primary">Agregar Producto</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -79,28 +86,8 @@
                                                         </div>
                                                     </tr>
                                                 </tfoot>
-                                                <tbody>
-                                                    <tr>
-                                                        <td>1</td>
-                                                        <td>Suspensión</td>
-                                                        <td>2</td>
-                                                        <td>1234</td>
-                                                        <td>1234</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>2</td>
-                                                        <td>Frenos</td>
-                                                        <td>2</td>
-                                                        <td>56789</td>
-                                                        <td>56789</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>3</td>
-                                                        <td>Filtros</td>
-                                                        <td>3</td>
-                                                        <td>5421</td>
-                                                        <td>5421</td>
-                                                    </tr>
+                                                <tbody id="tbodyListaMateriales">
+                                                    
                                                 </tbody>
                                                 </table>
                                             </div>
@@ -108,8 +95,8 @@
                                     </div>
                                 </section><br><br><br><hr><br>
                                 <div class="field" style="width: auto; display:block; margin: auto;">
-                                    <a href="#" class="button primary">Generar Lista</a>
-                                    <a href="#" class="button primary">Limpiar Lista</a>
+                                    <a href="#" id="btnGenerar" class="button primary">Generar Lista</a>
+                                    <a href="#" id="btnCancelar" class="button primary">Cancelar</a>
                                 </div>      
                             </form>
                         </div>
@@ -117,7 +104,67 @@
 				</div>
 			</div>
 		</section>
-		
+        
+        <div id="modalProductos" class="modal">
+            <section style="display: flexbox; justify-content: center; align-items: center;">
+                <header style="display: flexbox; justify-content: center; align-items: center;">
+                    <h3 style="text-align: center; ">Lista de Productos</h3>
+                </header>
+                <div id="modalCuerpo" style="display: flexbox; align-items: center; justify-content: start;">
+                    
+                </div>
+                <div align="center" id="desactivateNotificacion" style="margin: 25; display: flexbox; justify-content: center; align-content: center; flex-direction: column;">
+                <!-- Cuerpo de la ventana Modal -->
+                    
+                <section>
+                    <header>
+                        <h4>Productos</h4>
+                    </header>
+                    <div class="content"> 
+                        <div class="table-wrapper" style="width: auto; display:block; margin-left: auto; margin-right: auto;">
+                            <div class="datagrid"><table>
+                                <thead>
+                                    <tr>
+                                        <th>Código</th>
+                                        <th>Producto</th>
+                                        <th>Costo Aproximado</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="5">
+                                        <div id="paging">
+                                            <ul>
+                                                <li><a href="#"><span>Anterior</span></a></li>
+                                                <li><a href="#" class="active"><span>1</span></a></li>
+                                                <li><a href="#"><span>2</span></a></li>
+                                                <li><a href="#"><span>Siguiente</span></a></li>
+                                            </ul>
+                                        </div>
+                                    </tr>
+                                </tfoot>
+                                <tbody id="tbodyProductos">
+                                    
+                                </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section><br><br><br>
+                <!-- Cuerpo de la ventana Modal -->
+                </div>
+                <div class="content" style="display: flexbox; justify-content: center; align-items: center;">
+                    <div class="table-wrapper" style="margin: 25; display: flexbox; justify-content: center; align-items: center;">
+                        <div align="center" style="margin: 25; display: flexbox; justify-content: space-between;">
+                            <a id="aceptarDesactivateUser" class="button small" rel="modal:close">Aceptar</a>
+                            <!--<a id="cancelarDesactivateUser" class="button small" rel="modal:close">Cancelar</a>-->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
 		<!-- ------------------------------------------------------------ -->
 		<!-- Hasta aquí se puede Editar -->
 		<!-- ------------------------------------------------------------ -->
@@ -132,8 +179,15 @@
 		<script src="../assets/js/util.js"></script>
 		<script src="../assets/js/main.js"></script>
 
-		<!-- Header -->
+		 <!-- jquery-modal -->
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+ 
+         <!-- Header -->
+         <script src="../Libreria/js/efecto.js"></script>
 		<script src="../assets/js/header.js"></script>
-		<script src="../Libreria/cargar-header.js"></script>
+        <script src="../Libreria/cargar-header.js"></script>
+        <script src="../Libreria/js/OrdenTrabajo/OT-T_GenerarLista.js"></script>
     </body>
+
 </html>

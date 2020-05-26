@@ -797,7 +797,13 @@ SELECT @pmensaje;
 
 -- LLamar al procedimiento almacenado: FA_FACTURA
 select * from OrdenTrabajo
+UPDATE OrdenTrabajo SET 
+	EstadoOT_idEstadoOT = 12
+WHERE numeroOT = 'OT0000011';
 
+SELECT * FROM Factura
+DELETE FROM Factura WHERE idFactura = 1
+SELECT * FROM FormaPago
 
 DECLARE
 	-- Parametros de Entrada
@@ -817,9 +823,9 @@ DECLARE
 ;
 
 SET @pnumeroOT = 'OT0000011';
-SET @pidEmpleado = 0;
-SET @pidFormaPago = 0;
-SET @pidDescuento = 0;
+SET @pidEmpleado = 1;
+SET @pidFormaPago = 2;
+SET @pidDescuento = 1;
 SET @paccion = 'SELECT-FA';
 
 SET @pcodigoMensaje = 0;
